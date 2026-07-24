@@ -17,7 +17,7 @@
             <meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <style>
-                #map_e19e738d4d77cea7a22a20dca1db66ae {
+                #map_5905b98362c7461482a23e9ad7724a55 {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -54,16 +54,30 @@
 <body>
     
     
-            <div class="folium-map" id="map_e19e738d4d77cea7a22a20dca1db66ae" ></div>
+    <div style="position: fixed; bottom: 30px; left: 30px; z-index: 9999;
+         background: white; padding: 10px 14px; border: 1px solid #ccc;
+         border-radius: 6px; font: 12px sans-serif; line-height: 1.6">
+      <b>Fill = risk</b><br>
+      <span style="color:#c0392b">&#9679;</span> high (70+)&nbsp;
+      <span style="color:#e67e22">&#9679;</span> med (50-69)&nbsp;
+      <span style="color:#27ae60">&#9679;</span> lower<br>
+      <b>Border = confidence</b><br>
+      <span style="color:#1a5276">&#9679;</span> high&nbsp;
+      <span style="color:#7d6608">&#9679;</span> medium&nbsp;
+      <span style="color:#7b241c">&#9679;</span> low
+    </div>
+    
+    
+            <div class="folium-map" id="map_5905b98362c7461482a23e9ad7724a55" ></div>
         
 </body>
 <script>
     
     
-            var map_e19e738d4d77cea7a22a20dca1db66ae = L.map(
-                "map_e19e738d4d77cea7a22a20dca1db66ae",
+            var map_5905b98362c7461482a23e9ad7724a55 = L.map(
+                "map_5905b98362c7461482a23e9ad7724a55",
                 {
-                    center: [-29.93538797142857, 23.336217957142857],
+                    center: [-29.93538571428571, 23.33622142857143],
                     crs: L.CRS.EPSG3857,
                     ...{
   "zoom": 6,
@@ -78,7 +92,7 @@
 
         
     
-            var tile_layer_e374c579f0df8e08b861cb26946b3647 = L.tileLayer(
+            var tile_layer_4792f8bc829e0caebef1ebe461b2ec58 = L.tileLayer(
                 "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
                 {
   "minZoom": 0,
@@ -95,35 +109,35 @@
             );
         
     
-            tile_layer_e374c579f0df8e08b861cb26946b3647.addTo(map_e19e738d4d77cea7a22a20dca1db66ae);
+            tile_layer_4792f8bc829e0caebef1ebe461b2ec58.addTo(map_5905b98362c7461482a23e9ad7724a55);
         
     
-            var circle_marker_956df5c334ee532302f28dd7ed61d2c6 = L.circleMarker(
-                [-33.9680556, 18.4877778],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 16.6, "stroke": true, "weight": 3}
-            ).addTo(map_e19e738d4d77cea7a22a20dca1db66ae);
+            var circle_marker_ca92a7e8a95be9eed5f304f982b9940d = L.circleMarker(
+                [-33.9681, 18.4878],
+                {"bubblingMouseEvents": true, "color": "#1a5276", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#c0392b", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 16.6, "stroke": true, "weight": 3}
+            ).addTo(map_5905b98362c7461482a23e9ad7724a55);
         
     
-        var popup_00b761957bbe580e8605f8debcb464d1 = L.popup({
-  "maxWidth": 250,
+        var popup_de1f115ed8d1499cea2155173cb4b65a = L.popup({
+  "maxWidth": 280,
 });
 
         
             
-                var html_f0faa30e1eb3842db0071158c31e5f69 = $(`<div id="html_f0faa30e1eb3842db0071158c31e5f69" style="width: 100.0%; height: 100.0%;"><b>RONDEBOSCH</b> (Cape Town)<br>Risk score: <b>84.8</b><br>Incidents: 102<br>Total cost: R5,118,796<br><hr style='margin:4px 0'>Frequency: 0.949<br>Severity: 0.653<br>Recency: 0.897<br>Peak-time: 0.913</div>`)[0];
-                popup_00b761957bbe580e8605f8debcb464d1.setContent(html_f0faa30e1eb3842db0071158c31e5f69);
+                var html_7988401bb46d035905e09563e2bbff15 = $(`<div id="html_7988401bb46d035905e09563e2bbff15" style="width: 100.0%; height: 100.0%;"><b>H001 &middot; Rondebosch</b> (Cape Town)<br><hr style='margin:4px 0'>Claims risk: <b>84.8</b><br>Blended (with SAPS): <b>60.9</b><br>Confidence: <b>76</b> (HIGH)<br>Primary driver: frequency<br>Main peril: Home Invasion<br>SAPS corroborated: no (station Claremont, 1413 thefts)<br>Peak: Saturday 01:00-04:00<br>Incidents: 102 | Value: R5,118,796</div>`)[0];
+                popup_de1f115ed8d1499cea2155173cb4b65a.setContent(html_7988401bb46d035905e09563e2bbff15);
             
         
 
-        circle_marker_956df5c334ee532302f28dd7ed61d2c6.bindPopup(popup_00b761957bbe580e8605f8debcb464d1)
+        circle_marker_ca92a7e8a95be9eed5f304f982b9940d.bindPopup(popup_de1f115ed8d1499cea2155173cb4b65a)
         ;
 
         
     
     
-            circle_marker_956df5c334ee532302f28dd7ed61d2c6.bindTooltip(
+            circle_marker_ca92a7e8a95be9eed5f304f982b9940d.bindTooltip(
                 `<div>
-                     RONDEBOSCH: 84.8
+                     Rondebosch: risk 84.8, conf HIGH
                  </div>`,
                 {
   "sticky": true,
@@ -131,32 +145,32 @@
             );
         
     
-            var circle_marker_1a7152ba004641b4d99c39655fff69f7 = L.circleMarker(
-                [-34.0822195, 18.8489342],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 16.5875, "stroke": true, "weight": 3}
-            ).addTo(map_e19e738d4d77cea7a22a20dca1db66ae);
+            var circle_marker_3ea9c409fa7ca36c247123c67e5ee41b = L.circleMarker(
+                [-34.0822, 18.8489],
+                {"bubblingMouseEvents": true, "color": "#1a5276", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#c0392b", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 16.5875, "stroke": true, "weight": 3}
+            ).addTo(map_5905b98362c7461482a23e9ad7724a55);
         
     
-        var popup_4c7a29dc617b5b137da514646f4b4789 = L.popup({
-  "maxWidth": 250,
+        var popup_1fc373132703ffe4808d07ed2175f698 = L.popup({
+  "maxWidth": 280,
 });
 
         
             
-                var html_a75dec4da4eedb975b9255bd76c921dc = $(`<div id="html_a75dec4da4eedb975b9255bd76c921dc" style="width: 100.0%; height: 100.0%;"><b>SOMERSET WEST</b> (Cape Town)<br>Risk score: <b>84.7</b><br>Incidents: 107<br>Total cost: R6,032,135<br><hr style='margin:4px 0'>Frequency: 1.0<br>Severity: 0.733<br>Recency: 0.844<br>Peak-time: 0.51</div>`)[0];
-                popup_4c7a29dc617b5b137da514646f4b4789.setContent(html_a75dec4da4eedb975b9255bd76c921dc);
+                var html_574b10a21d59332b8cc7edc34cb8678b = $(`<div id="html_574b10a21d59332b8cc7edc34cb8678b" style="width: 100.0%; height: 100.0%;"><b>H002 &middot; Somerset West</b> (Cape Town)<br><hr style='margin:4px 0'>Claims risk: <b>84.7</b><br>Blended (with SAPS): <b>61.2</b><br>Confidence: <b>77</b> (HIGH)<br>Primary driver: frequency<br>Main peril: Home Invasion<br>SAPS corroborated: no (station Somerset West, 1467 thefts)<br>Peak: Sunday 01:00-04:00<br>Incidents: 107 | Value: R6,032,135</div>`)[0];
+                popup_1fc373132703ffe4808d07ed2175f698.setContent(html_574b10a21d59332b8cc7edc34cb8678b);
             
         
 
-        circle_marker_1a7152ba004641b4d99c39655fff69f7.bindPopup(popup_4c7a29dc617b5b137da514646f4b4789)
+        circle_marker_3ea9c409fa7ca36c247123c67e5ee41b.bindPopup(popup_1fc373132703ffe4808d07ed2175f698)
         ;
 
         
     
     
-            circle_marker_1a7152ba004641b4d99c39655fff69f7.bindTooltip(
+            circle_marker_3ea9c409fa7ca36c247123c67e5ee41b.bindTooltip(
                 `<div>
-                     SOMERSET WEST: 84.7
+                     Somerset West: risk 84.7, conf HIGH
                  </div>`,
                 {
   "sticky": true,
@@ -164,32 +178,32 @@
             );
         
     
-            var circle_marker_d35821629c47134c70c1b4a6e7e10578 = L.circleMarker(
-                [-26.0513889, 28.0280556],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 16.5, "stroke": true, "weight": 3}
-            ).addTo(map_e19e738d4d77cea7a22a20dca1db66ae);
+            var circle_marker_4f06869c95fa58f209feef44f9616694 = L.circleMarker(
+                [-26.0514, 28.0281],
+                {"bubblingMouseEvents": true, "color": "#1a5276", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#c0392b", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 16.5, "stroke": true, "weight": 3}
+            ).addTo(map_5905b98362c7461482a23e9ad7724a55);
         
     
-        var popup_97b821ccfa72b4910385d7f80b4ecd81 = L.popup({
-  "maxWidth": 250,
+        var popup_8f31b23c58631e079250fa3ad53172bb = L.popup({
+  "maxWidth": 280,
 });
 
         
             
-                var html_a922012a216fb1ead992fc20b1fd053e = $(`<div id="html_a922012a216fb1ead992fc20b1fd053e" style="width: 100.0%; height: 100.0%;"><b>BRYANSTON</b> (Gauteng)<br>Risk score: <b>84.0</b><br>Incidents: 89<br>Total cost: R9,454,547<br><hr style='margin:4px 0'>Frequency: 0.802<br>Severity: 0.952<br>Recency: 0.963<br>Peak-time: 0.49</div>`)[0];
-                popup_97b821ccfa72b4910385d7f80b4ecd81.setContent(html_a922012a216fb1ead992fc20b1fd053e);
+                var html_5b6b6c9a086b49c2514a1659fcedc95b = $(`<div id="html_5b6b6c9a086b49c2514a1659fcedc95b" style="width: 100.0%; height: 100.0%;"><b>H003 &middot; Bryanston</b> (Gauteng)<br><hr style='margin:4px 0'>Claims risk: <b>84.0</b><br>Blended (with SAPS): <b>67.3</b><br>Confidence: <b>90</b> (HIGH)<br>Primary driver: frequency<br>Main peril: Home Invasion<br>SAPS corroborated: YES (station Sandton, 2410 thefts)<br>Peak: Friday 12:00-15:00<br>Incidents: 89 | Value: R9,454,547</div>`)[0];
+                popup_8f31b23c58631e079250fa3ad53172bb.setContent(html_5b6b6c9a086b49c2514a1659fcedc95b);
             
         
 
-        circle_marker_d35821629c47134c70c1b4a6e7e10578.bindPopup(popup_97b821ccfa72b4910385d7f80b4ecd81)
+        circle_marker_4f06869c95fa58f209feef44f9616694.bindPopup(popup_8f31b23c58631e079250fa3ad53172bb)
         ;
 
         
     
     
-            circle_marker_d35821629c47134c70c1b4a6e7e10578.bindTooltip(
+            circle_marker_4f06869c95fa58f209feef44f9616694.bindTooltip(
                 `<div>
-                     BRYANSTON: 84.0
+                     Bryanston: risk 84.0, conf HIGH
                  </div>`,
                 {
   "sticky": true,
@@ -197,32 +211,32 @@
             );
         
     
-            var circle_marker_e2a1787048fdd294f76feab3d9f90cf8 = L.circleMarker(
-                [-33.9742832, 18.4572951],
-                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15.2875, "stroke": true, "weight": 3}
-            ).addTo(map_e19e738d4d77cea7a22a20dca1db66ae);
+            var circle_marker_eb841683ab68673dfd4bdd3bb5e8b190 = L.circleMarker(
+                [-33.9743, 18.4573],
+                {"bubblingMouseEvents": true, "color": "#7d6608", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#c0392b", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15.2875, "stroke": true, "weight": 3}
+            ).addTo(map_5905b98362c7461482a23e9ad7724a55);
         
     
-        var popup_c4b154670a9f85a588b75554f03536ce = L.popup({
-  "maxWidth": 250,
+        var popup_d5d4d284475573feb358cc9aa9885ecf = L.popup({
+  "maxWidth": 280,
 });
 
         
             
-                var html_a2e2b6de4562c5c061a4048d7f6c1cdd = $(`<div id="html_a2e2b6de4562c5c061a4048d7f6c1cdd" style="width: 100.0%; height: 100.0%;"><b>NEWLANDS</b> (Cape Town)<br>Risk score: <b>74.3</b><br>Incidents: 76<br>Total cost: R7,243,880<br><hr style='margin:4px 0'>Frequency: 0.633<br>Severity: 0.822<br>Recency: 0.743<br>Peak-time: 1.0</div>`)[0];
-                popup_c4b154670a9f85a588b75554f03536ce.setContent(html_a2e2b6de4562c5c061a4048d7f6c1cdd);
+                var html_c1fce1090be41b1889fee46148294afe = $(`<div id="html_c1fce1090be41b1889fee46148294afe" style="width: 100.0%; height: 100.0%;"><b>H004 &middot; Newlands</b> (Cape Town)<br><hr style='margin:4px 0'>Claims risk: <b>74.3</b><br>Blended (with SAPS): <b>53.6</b><br>Confidence: <b>64</b> (MEDIUM)<br>Primary driver: frequency<br>Main peril: Home Invasion<br>SAPS corroborated: no (station Claremont, 1413 thefts)<br>Peak: Thursday 18:00-21:00<br>Incidents: 76 | Value: R7,243,880</div>`)[0];
+                popup_d5d4d284475573feb358cc9aa9885ecf.setContent(html_c1fce1090be41b1889fee46148294afe);
             
         
 
-        circle_marker_e2a1787048fdd294f76feab3d9f90cf8.bindPopup(popup_c4b154670a9f85a588b75554f03536ce)
+        circle_marker_eb841683ab68673dfd4bdd3bb5e8b190.bindPopup(popup_d5d4d284475573feb358cc9aa9885ecf)
         ;
 
         
     
     
-            circle_marker_e2a1787048fdd294f76feab3d9f90cf8.bindTooltip(
+            circle_marker_eb841683ab68673dfd4bdd3bb5e8b190.bindTooltip(
                 `<div>
-                     NEWLANDS: 74.3
+                     Newlands: risk 74.3, conf MEDIUM
                  </div>`,
                 {
   "sticky": true,
@@ -230,32 +244,32 @@
             );
         
     
-            var circle_marker_8617a58bc871453f28c88f5867eff153 = L.circleMarker(
-                [-33.9172222, 18.3922222],
-                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.1125, "stroke": true, "weight": 3}
-            ).addTo(map_e19e738d4d77cea7a22a20dca1db66ae);
+            var circle_marker_c7822b387bbd403c975ba529cf594b21 = L.circleMarker(
+                [-33.9172, 18.3922],
+                {"bubblingMouseEvents": true, "color": "#1a5276", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e67e22", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.1125, "stroke": true, "weight": 3}
+            ).addTo(map_5905b98362c7461482a23e9ad7724a55);
         
     
-        var popup_9bc210f1739a76d8458b2a18ac0f3b31 = L.popup({
-  "maxWidth": 250,
+        var popup_6b31869edae3a8d2e4fc1fd1fe37ac63 = L.popup({
+  "maxWidth": 280,
 });
 
         
             
-                var html_74796e2efd54827183408c74f7e2959c = $(`<div id="html_74796e2efd54827183408c74f7e2959c" style="width: 100.0%; height: 100.0%;"><b>SEA POINT</b> (Cape Town)<br>Risk score: <b>64.9</b><br>Incidents: 78<br>Total cost: R4,340,394<br><hr style='margin:4px 0'>Frequency: 0.66<br>Severity: 0.572<br>Recency: 0.897<br>Peak-time: 0.453</div>`)[0];
-                popup_9bc210f1739a76d8458b2a18ac0f3b31.setContent(html_74796e2efd54827183408c74f7e2959c);
+                var html_027465a35a7dcd595c168573e51e35a3 = $(`<div id="html_027465a35a7dcd595c168573e51e35a3" style="width: 100.0%; height: 100.0%;"><b>H005 &middot; Sea Point</b> (Cape Town)<br><hr style='margin:4px 0'>Claims risk: <b>64.9</b><br>Blended (with SAPS): <b>75.4</b><br>Confidence: <b>84</b> (HIGH)<br>Primary driver: frequency<br>Main peril: Vehicle Theft<br>SAPS corroborated: YES (station Cape Town Central, 5496 thefts)<br>Peak: Sunday 10:00-13:00<br>Incidents: 78 | Value: R4,340,394</div>`)[0];
+                popup_6b31869edae3a8d2e4fc1fd1fe37ac63.setContent(html_027465a35a7dcd595c168573e51e35a3);
             
         
 
-        circle_marker_8617a58bc871453f28c88f5867eff153.bindPopup(popup_9bc210f1739a76d8458b2a18ac0f3b31)
+        circle_marker_c7822b387bbd403c975ba529cf594b21.bindPopup(popup_6b31869edae3a8d2e4fc1fd1fe37ac63)
         ;
 
         
     
     
-            circle_marker_8617a58bc871453f28c88f5867eff153.bindTooltip(
+            circle_marker_c7822b387bbd403c975ba529cf594b21.bindTooltip(
                 `<div>
-                     SEA POINT: 64.9
+                     Sea Point: risk 64.9, conf HIGH
                  </div>`,
                 {
   "sticky": true,
@@ -263,32 +277,32 @@
             );
         
     
-            var circle_marker_2d4274d897d7681ca970b24711beb42b = L.circleMarker(
-                [-33.9252902, 18.4185215],
-                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 13.6375, "stroke": true, "weight": 3}
-            ).addTo(map_e19e738d4d77cea7a22a20dca1db66ae);
+            var circle_marker_21877dc5def9c4336f92f9a59253527e = L.circleMarker(
+                [-33.9253, 18.4185],
+                {"bubblingMouseEvents": true, "color": "#1a5276", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e67e22", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 13.6375, "stroke": true, "weight": 3}
+            ).addTo(map_5905b98362c7461482a23e9ad7724a55);
         
     
-        var popup_2e0f8ea0649a2ca02844190b9440e183 = L.popup({
-  "maxWidth": 250,
+        var popup_ead412968105e61312857a731a4489b8 = L.popup({
+  "maxWidth": 280,
 });
 
         
             
-                var html_1bf2797bfbd5ca98de58c2c6c569f83e = $(`<div id="html_1bf2797bfbd5ca98de58c2c6c569f83e" style="width: 100.0%; height: 100.0%;"><b>CAPE TOWN CITY CENTRE</b> (Cape Town)<br>Risk score: <b>61.1</b><br>Incidents: 93<br>Total cost: R1,343,333<br><hr style='margin:4px 0'>Frequency: 0.849<br>Severity: 0.0<br>Recency: 1.0<br>Peak-time: 0.793</div>`)[0];
-                popup_2e0f8ea0649a2ca02844190b9440e183.setContent(html_1bf2797bfbd5ca98de58c2c6c569f83e);
+                var html_841c2cf2a29fd93039649b94f0098e61 = $(`<div id="html_841c2cf2a29fd93039649b94f0098e61" style="width: 100.0%; height: 100.0%;"><b>H006 &middot; Cape Town City Centre</b> (Cape Town)<br><hr style='margin:4px 0'>Claims risk: <b>61.1</b><br>Blended (with SAPS): <b>72.8</b><br>Confidence: <b>92</b> (HIGH)<br>Primary driver: frequency<br>Main peril: Vehicle Theft<br>SAPS corroborated: YES (station Cape Town Central, 5496 thefts)<br>Peak: Thursday 14:00-17:00<br>Incidents: 93 | Value: R1,343,333</div>`)[0];
+                popup_ead412968105e61312857a731a4489b8.setContent(html_841c2cf2a29fd93039649b94f0098e61);
             
         
 
-        circle_marker_2d4274d897d7681ca970b24711beb42b.bindPopup(popup_2e0f8ea0649a2ca02844190b9440e183)
+        circle_marker_21877dc5def9c4336f92f9a59253527e.bindPopup(popup_ead412968105e61312857a731a4489b8)
         ;
 
         
     
     
-            circle_marker_2d4274d897d7681ca970b24711beb42b.bindTooltip(
+            circle_marker_21877dc5def9c4336f92f9a59253527e.bindTooltip(
                 `<div>
-                     CAPE TOWN CITY CENTRE: 61.1
+                     Cape Town City Centre: risk 61.1, conf HIGH
                  </div>`,
                 {
   "sticky": true,
@@ -296,32 +310,32 @@
             );
         
     
-            var circle_marker_89dbb9ffdd12c807f625552d47b911e6 = L.circleMarker(
-                [-25.7944444, 28.3],
-                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 13.25, "stroke": true, "weight": 3}
-            ).addTo(map_e19e738d4d77cea7a22a20dca1db66ae);
+            var circle_marker_94a9c63fdb9fc6f0ee79a1a948f06c5f = L.circleMarker(
+                [-25.7944, 28.3],
+                {"bubblingMouseEvents": true, "color": "#1a5276", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e67e22", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 13.25, "stroke": true, "weight": 3}
+            ).addTo(map_5905b98362c7461482a23e9ad7724a55);
         
     
-        var popup_88854e025aed1ce4e432e174377e913e = L.popup({
-  "maxWidth": 250,
+        var popup_88f4b3b21d51355a299cff808f8a91c6 = L.popup({
+  "maxWidth": 280,
 });
 
         
             
-                var html_7aa559146aa7a72f910104e316c6a5ba = $(`<div id="html_7aa559146aa7a72f910104e316c6a5ba" style="width: 100.0%; height: 100.0%;"><b>GARSFONTEIN</b> (Gauteng)<br>Risk score: <b>58.0</b><br>Incidents: 57<br>Total cost: R10,436,499<br><hr style='margin:4px 0'>Frequency: 0.325<br>Severity: 1.0<br>Recency: 0.678<br>Peak-time: 0.324</div>`)[0];
-                popup_88854e025aed1ce4e432e174377e913e.setContent(html_7aa559146aa7a72f910104e316c6a5ba);
+                var html_9dc5f7615165fa93b1515eec873d3875 = $(`<div id="html_9dc5f7615165fa93b1515eec873d3875" style="width: 100.0%; height: 100.0%;"><b>H007 &middot; Garsfontein</b> (Gauteng)<br><hr style='margin:4px 0'>Claims risk: <b>58.0</b><br>Blended (with SAPS): <b>46.6</b><br>Confidence: <b>76</b> (HIGH)<br>Primary driver: severity<br>Main peril: Vehicle Theft<br>SAPS corroborated: YES (station Brooklyn, 2045 thefts)<br>Peak: Saturday 13:00-16:00<br>Incidents: 57 | Value: R10,436,499</div>`)[0];
+                popup_88f4b3b21d51355a299cff808f8a91c6.setContent(html_9dc5f7615165fa93b1515eec873d3875);
             
         
 
-        circle_marker_89dbb9ffdd12c807f625552d47b911e6.bindPopup(popup_88854e025aed1ce4e432e174377e913e)
+        circle_marker_94a9c63fdb9fc6f0ee79a1a948f06c5f.bindPopup(popup_88f4b3b21d51355a299cff808f8a91c6)
         ;
 
         
     
     
-            circle_marker_89dbb9ffdd12c807f625552d47b911e6.bindTooltip(
+            circle_marker_94a9c63fdb9fc6f0ee79a1a948f06c5f.bindTooltip(
                 `<div>
-                     GARSFONTEIN: 58.0
+                     Garsfontein: risk 58.0, conf HIGH
                  </div>`,
                 {
   "sticky": true,
@@ -329,32 +343,32 @@
             );
         
     
-            var circle_marker_621b84ca08e02f001938cf11833ce317 = L.circleMarker(
-                [-33.9847222, 18.4625],
-                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.925, "stroke": true, "weight": 3}
-            ).addTo(map_e19e738d4d77cea7a22a20dca1db66ae);
+            var circle_marker_272c4fc318b486cc4e5af435e484a52d = L.circleMarker(
+                [-33.9847, 18.4625],
+                {"bubblingMouseEvents": true, "color": "#7d6608", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e67e22", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.925, "stroke": true, "weight": 3}
+            ).addTo(map_5905b98362c7461482a23e9ad7724a55);
         
     
-        var popup_a13802f57c67f5869ccee861c9751b32 = L.popup({
-  "maxWidth": 250,
+        var popup_3f2faf97b83e700702435c1270514fe7 = L.popup({
+  "maxWidth": 280,
 });
 
         
             
-                var html_0db6c73c5e1139e99ffc6edfbf62ede1 = $(`<div id="html_0db6c73c5e1139e99ffc6edfbf62ede1" style="width: 100.0%; height: 100.0%;"><b>CLAREMONT</b> (Cape Town)<br>Risk score: <b>55.4</b><br>Incidents: 82<br>Total cost: R2,140,231<br><hr style='margin:4px 0'>Frequency: 0.714<br>Severity: 0.227<br>Recency: 0.705<br>Peak-time: 0.585</div>`)[0];
-                popup_a13802f57c67f5869ccee861c9751b32.setContent(html_0db6c73c5e1139e99ffc6edfbf62ede1);
+                var html_57f0c593b391c596695f7b394c82c151 = $(`<div id="html_57f0c593b391c596695f7b394c82c151" style="width: 100.0%; height: 100.0%;"><b>H008 &middot; Claremont</b> (Cape Town)<br><hr style='margin:4px 0'>Claims risk: <b>55.4</b><br>Blended (with SAPS): <b>40.3</b><br>Confidence: <b>65</b> (MEDIUM)<br>Primary driver: frequency<br>Main peril: Home Invasion<br>SAPS corroborated: no (station Claremont, 1413 thefts)<br>Peak: Saturday 02:00-05:00<br>Incidents: 82 | Value: R2,140,231</div>`)[0];
+                popup_3f2faf97b83e700702435c1270514fe7.setContent(html_57f0c593b391c596695f7b394c82c151);
             
         
 
-        circle_marker_621b84ca08e02f001938cf11833ce317.bindPopup(popup_a13802f57c67f5869ccee861c9751b32)
+        circle_marker_272c4fc318b486cc4e5af435e484a52d.bindPopup(popup_3f2faf97b83e700702435c1270514fe7)
         ;
 
         
     
     
-            circle_marker_621b84ca08e02f001938cf11833ce317.bindTooltip(
+            circle_marker_272c4fc318b486cc4e5af435e484a52d.bindTooltip(
                 `<div>
-                     CLAREMONT: 55.4
+                     Claremont: risk 55.4, conf MEDIUM
                  </div>`,
                 {
   "sticky": true,
@@ -362,32 +376,32 @@
             );
         
     
-            var circle_marker_0b4d61a1b2d41bb0a252536ea2e8732b = L.circleMarker(
-                [-26.004472, 28.0042447],
-                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.5875, "stroke": true, "weight": 3}
-            ).addTo(map_e19e738d4d77cea7a22a20dca1db66ae);
+            var circle_marker_311f9a5630cf6b22052ab8645e50f931 = L.circleMarker(
+                [-26.0045, 28.0042],
+                {"bubblingMouseEvents": true, "color": "#1a5276", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e67e22", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.5875, "stroke": true, "weight": 3}
+            ).addTo(map_5905b98362c7461482a23e9ad7724a55);
         
     
-        var popup_249073bf07532f351ff01edb42165474 = L.popup({
-  "maxWidth": 250,
+        var popup_4f4826c9a5dea9ad822d15330ed679d9 = L.popup({
+  "maxWidth": 280,
 });
 
         
             
-                var html_b3b28037860886ee88260caa746b6934 = $(`<div id="html_b3b28037860886ee88260caa746b6934" style="width: 100.0%; height: 100.0%;"><b>FOURWAYS</b> (Gauteng)<br>Risk score: <b>52.7</b><br>Incidents: 56<br>Total cost: R4,261,937<br><hr style='margin:4px 0'>Frequency: 0.306<br>Severity: 0.563<br>Recency: 0.915<br>Peak-time: 0.831</div>`)[0];
-                popup_249073bf07532f351ff01edb42165474.setContent(html_b3b28037860886ee88260caa746b6934);
+                var html_3ffd3eab701b1e8210c459b8dadca8f3 = $(`<div id="html_3ffd3eab701b1e8210c459b8dadca8f3" style="width: 100.0%; height: 100.0%;"><b>H009 &middot; Fourways</b> (Gauteng)<br><hr style='margin:4px 0'>Claims risk: <b>52.7</b><br>Blended (with SAPS): <b>39.7</b><br>Confidence: <b>75</b> (HIGH)<br>Primary driver: severity<br>Main peril: Vehicle Theft<br>SAPS corroborated: YES (station Douglasdale, 1591 thefts)<br>Peak: Sunday 17:00-20:00<br>Incidents: 56 | Value: R4,261,937</div>`)[0];
+                popup_4f4826c9a5dea9ad822d15330ed679d9.setContent(html_3ffd3eab701b1e8210c459b8dadca8f3);
             
         
 
-        circle_marker_0b4d61a1b2d41bb0a252536ea2e8732b.bindPopup(popup_249073bf07532f351ff01edb42165474)
+        circle_marker_311f9a5630cf6b22052ab8645e50f931.bindPopup(popup_4f4826c9a5dea9ad822d15330ed679d9)
         ;
 
         
     
     
-            circle_marker_0b4d61a1b2d41bb0a252536ea2e8732b.bindTooltip(
+            circle_marker_311f9a5630cf6b22052ab8645e50f931.bindTooltip(
                 `<div>
-                     FOURWAYS: 52.7
+                     Fourways: risk 52.7, conf HIGH
                  </div>`,
                 {
   "sticky": true,
@@ -395,32 +409,32 @@
             );
         
     
-            var circle_marker_10019013fd2cac9cb64a2738e55e7d30 = L.circleMarker(
-                [-26.1763889, 28.1425],
-                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.55, "stroke": true, "weight": 3}
-            ).addTo(map_e19e738d4d77cea7a22a20dca1db66ae);
+            var circle_marker_a510fa7d197e71f335e65bb7c4bd8cc3 = L.circleMarker(
+                [-26.1764, 28.1425],
+                {"bubblingMouseEvents": true, "color": "#7d6608", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e67e22", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.55, "stroke": true, "weight": 3}
+            ).addTo(map_5905b98362c7461482a23e9ad7724a55);
         
     
-        var popup_43d8bd12230cb7a8d0a1eeb071b7f234 = L.popup({
-  "maxWidth": 250,
+        var popup_89b731ffc8c1b225a8cdf25ec393c501 = L.popup({
+  "maxWidth": 280,
 });
 
         
             
-                var html_cfb47627eed4e48f3f247551a147cf7c = $(`<div id="html_cfb47627eed4e48f3f247551a147cf7c" style="width: 100.0%; height: 100.0%;"><b>BEDFORDVIEW</b> (Gauteng)<br>Risk score: <b>52.4</b><br>Incidents: 50<br>Total cost: R6,873,700<br><hr style='margin:4px 0'>Frequency: 0.185<br>Severity: 0.796<br>Recency: 0.921<br>Peak-time: 0.633</div>`)[0];
-                popup_43d8bd12230cb7a8d0a1eeb071b7f234.setContent(html_cfb47627eed4e48f3f247551a147cf7c);
+                var html_2d0f1ef820685e0e1c41fdf8a2d8f6de = $(`<div id="html_2d0f1ef820685e0e1c41fdf8a2d8f6de" style="width: 100.0%; height: 100.0%;"><b>H010 &middot; Bedfordview</b> (Gauteng)<br><hr style='margin:4px 0'>Claims risk: <b>52.4</b><br>Blended (with SAPS): <b>36.7</b><br>Confidence: <b>52</b> (MEDIUM)<br>Primary driver: severity<br>Main peril: Home Invasion<br>SAPS corroborated: no (station Germiston, 1187 thefts)<br>Peak: Friday 14:00-17:00<br>Incidents: 50 | Value: R6,873,700</div>`)[0];
+                popup_89b731ffc8c1b225a8cdf25ec393c501.setContent(html_2d0f1ef820685e0e1c41fdf8a2d8f6de);
             
         
 
-        circle_marker_10019013fd2cac9cb64a2738e55e7d30.bindPopup(popup_43d8bd12230cb7a8d0a1eeb071b7f234)
+        circle_marker_a510fa7d197e71f335e65bb7c4bd8cc3.bindPopup(popup_89b731ffc8c1b225a8cdf25ec393c501)
         ;
 
         
     
     
-            circle_marker_10019013fd2cac9cb64a2738e55e7d30.bindTooltip(
+            circle_marker_a510fa7d197e71f335e65bb7c4bd8cc3.bindTooltip(
                 `<div>
-                     BEDFORDVIEW: 52.4
+                     Bedfordview: risk 52.4, conf MEDIUM
                  </div>`,
                 {
   "sticky": true,
@@ -428,32 +442,32 @@
             );
         
     
-            var circle_marker_9359e0ee31a193fd7aa84b0004ec6b36 = L.circleMarker(
-                [-25.7872222, 28.2388889],
-                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.3125, "stroke": true, "weight": 3}
-            ).addTo(map_e19e738d4d77cea7a22a20dca1db66ae);
+            var circle_marker_2cc49fa5a875e1a8f0bc27d19a5af271 = L.circleMarker(
+                [-25.7872, 28.2389],
+                {"bubblingMouseEvents": true, "color": "#1a5276", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e67e22", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.3125, "stroke": true, "weight": 3}
+            ).addTo(map_5905b98362c7461482a23e9ad7724a55);
         
     
-        var popup_bed17ac6f4bc76ebf226c363ac69e85b = L.popup({
-  "maxWidth": 250,
+        var popup_9623c4f184ad18ba45c148008188116f = L.popup({
+  "maxWidth": 280,
 });
 
         
             
-                var html_b3b635ca95af7d41ccf8e404dbf327ff = $(`<div id="html_b3b635ca95af7d41ccf8e404dbf327ff" style="width: 100.0%; height: 100.0%;"><b>WATERKLOOF RIDGE</b> (Gauteng)<br>Risk score: <b>50.5</b><br>Incidents: 56<br>Total cost: R8,466,709<br><hr style='margin:4px 0'>Frequency: 0.306<br>Severity: 0.898<br>Recency: 0.652<br>Peak-time: 0.0</div>`)[0];
-                popup_bed17ac6f4bc76ebf226c363ac69e85b.setContent(html_b3b635ca95af7d41ccf8e404dbf327ff);
+                var html_0889df10fcfe048958b5588c502eb4b4 = $(`<div id="html_0889df10fcfe048958b5588c502eb4b4" style="width: 100.0%; height: 100.0%;"><b>H011 &middot; Waterkloof Ridge</b> (Gauteng)<br><hr style='margin:4px 0'>Claims risk: <b>50.5</b><br>Blended (with SAPS): <b>41.3</b><br>Confidence: <b>74</b> (HIGH)<br>Primary driver: severity<br>Main peril: Home Invasion<br>SAPS corroborated: YES (station Brooklyn, 2045 thefts)<br>Peak: Sunday 01:00-04:00<br>Incidents: 56 | Value: R8,466,709</div>`)[0];
+                popup_9623c4f184ad18ba45c148008188116f.setContent(html_0889df10fcfe048958b5588c502eb4b4);
             
         
 
-        circle_marker_9359e0ee31a193fd7aa84b0004ec6b36.bindPopup(popup_bed17ac6f4bc76ebf226c363ac69e85b)
+        circle_marker_2cc49fa5a875e1a8f0bc27d19a5af271.bindPopup(popup_9623c4f184ad18ba45c148008188116f)
         ;
 
         
     
     
-            circle_marker_9359e0ee31a193fd7aa84b0004ec6b36.bindTooltip(
+            circle_marker_2cc49fa5a875e1a8f0bc27d19a5af271.bindTooltip(
                 `<div>
-                     WATERKLOOF RIDGE: 50.5
+                     Waterkloof Ridge: risk 50.5, conf HIGH
                  </div>`,
                 {
   "sticky": true,
@@ -461,32 +475,32 @@
             );
         
     
-            var circle_marker_9c6e4f2d6e84aa9eaed5bc9ad32c66c7 = L.circleMarker(
-                [-25.7697222, 28.2555556],
-                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 11.675, "stroke": true, "weight": 3}
-            ).addTo(map_e19e738d4d77cea7a22a20dca1db66ae);
+            var circle_marker_4ec925d90766a0e4645d575e0b44988e = L.circleMarker(
+                [-25.7697, 28.2556],
+                {"bubblingMouseEvents": true, "color": "#1a5276", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#27ae60", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 11.675, "stroke": true, "weight": 3}
+            ).addTo(map_5905b98362c7461482a23e9ad7724a55);
         
     
-        var popup_e7e0cdaa424a0b763dedc1b438e91214 = L.popup({
-  "maxWidth": 250,
+        var popup_f04e45cfa96d315fc2173912c9b020a9 = L.popup({
+  "maxWidth": 280,
 });
 
         
             
-                var html_78ed522fb4e1be3570689fc432c2a715 = $(`<div id="html_78ed522fb4e1be3570689fc432c2a715" style="width: 100.0%; height: 100.0%;"><b>MENLO PARK</b> (Gauteng)<br>Risk score: <b>45.4</b><br>Incidents: 42<br>Total cost: R8,976,320<br><hr style='margin:4px 0'>Frequency: 0.0<br>Severity: 0.926<br>Recency: 0.844<br>Peak-time: 0.49</div>`)[0];
-                popup_e7e0cdaa424a0b763dedc1b438e91214.setContent(html_78ed522fb4e1be3570689fc432c2a715);
+                var html_58215880c1b0144005880ef352318627 = $(`<div id="html_58215880c1b0144005880ef352318627" style="width: 100.0%; height: 100.0%;"><b>H012 &middot; Menlo Park</b> (Gauteng)<br><hr style='margin:4px 0'>Claims risk: <b>45.4</b><br>Blended (with SAPS): <b>37.8</b><br>Confidence: <b>70</b> (HIGH)<br>Primary driver: severity<br>Main peril: Vehicle Theft<br>SAPS corroborated: YES (station Brooklyn, 2045 thefts)<br>Peak: Saturday 00:00-03:00<br>Incidents: 42 | Value: R8,976,320</div>`)[0];
+                popup_f04e45cfa96d315fc2173912c9b020a9.setContent(html_58215880c1b0144005880ef352318627);
             
         
 
-        circle_marker_9c6e4f2d6e84aa9eaed5bc9ad32c66c7.bindPopup(popup_e7e0cdaa424a0b763dedc1b438e91214)
+        circle_marker_4ec925d90766a0e4645d575e0b44988e.bindPopup(popup_f04e45cfa96d315fc2173912c9b020a9)
         ;
 
         
     
     
-            circle_marker_9c6e4f2d6e84aa9eaed5bc9ad32c66c7.bindTooltip(
+            circle_marker_4ec925d90766a0e4645d575e0b44988e.bindTooltip(
                 `<div>
-                     MENLO PARK: 45.4
+                     Menlo Park: risk 45.4, conf HIGH
                  </div>`,
                 {
   "sticky": true,
@@ -494,32 +508,32 @@
             );
         
     
-            var circle_marker_044b20edfba5ef011fc299228bedefd8 = L.circleMarker(
-                [-33.8236111, 18.4902778],
-                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 11.1, "stroke": true, "weight": 3}
-            ).addTo(map_e19e738d4d77cea7a22a20dca1db66ae);
+            var circle_marker_c3ff178215ac5bea5fc4e945fde4502b = L.circleMarker(
+                [-33.8236, 18.4903],
+                {"bubblingMouseEvents": true, "color": "#7d6608", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#27ae60", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 11.1, "stroke": true, "weight": 3}
+            ).addTo(map_5905b98362c7461482a23e9ad7724a55);
         
     
-        var popup_c7adb96cd46648c8c7d09655aab4a391 = L.popup({
-  "maxWidth": 250,
+        var popup_b008f35344a4782e602ea53f61604ff3 = L.popup({
+  "maxWidth": 280,
 });
 
         
             
-                var html_54a5071ca19c28ab0a7d7df105b8993c = $(`<div id="html_54a5071ca19c28ab0a7d7df105b8993c" style="width: 100.0%; height: 100.0%;"><b>TABLE VIEW</b> (Cape Town)<br>Risk score: <b>40.8</b><br>Incidents: 57<br>Total cost: R1,941,403<br><hr style='margin:4px 0'>Frequency: 0.325<br>Severity: 0.18<br>Recency: 0.754<br>Peak-time: 0.952</div>`)[0];
-                popup_c7adb96cd46648c8c7d09655aab4a391.setContent(html_54a5071ca19c28ab0a7d7df105b8993c);
+                var html_5714f13f2652a1c84dc36cc136011a60 = $(`<div id="html_5714f13f2652a1c84dc36cc136011a60" style="width: 100.0%; height: 100.0%;"><b>H013 &middot; Table View</b> (Cape Town)<br><hr style='margin:4px 0'>Claims risk: <b>40.8</b><br>Blended (with SAPS): <b>30.2</b><br>Confidence: <b>57</b> (MEDIUM)<br>Primary driver: frequency<br>Main peril: Home Invasion<br>SAPS corroborated: no (station Table View, 1425 thefts)<br>Peak: Tuesday 01:00-04:00<br>Incidents: 57 | Value: R1,941,403</div>`)[0];
+                popup_b008f35344a4782e602ea53f61604ff3.setContent(html_5714f13f2652a1c84dc36cc136011a60);
             
         
 
-        circle_marker_044b20edfba5ef011fc299228bedefd8.bindPopup(popup_c7adb96cd46648c8c7d09655aab4a391)
+        circle_marker_c3ff178215ac5bea5fc4e945fde4502b.bindPopup(popup_b008f35344a4782e602ea53f61604ff3)
         ;
 
         
     
     
-            circle_marker_044b20edfba5ef011fc299228bedefd8.bindTooltip(
+            circle_marker_c3ff178215ac5bea5fc4e945fde4502b.bindTooltip(
                 `<div>
-                     TABLE VIEW: 40.8
+                     Table View: risk 40.8, conf MEDIUM
                  </div>`,
                 {
   "sticky": true,
@@ -527,32 +541,32 @@
             );
         
     
-            var circle_marker_53339e980a15035caeb0a64dc403c016 = L.circleMarker(
-                [-25.836389, 28.180278],
-                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9.5125, "stroke": true, "weight": 3}
-            ).addTo(map_e19e738d4d77cea7a22a20dca1db66ae);
+            var circle_marker_06a301ce2299f47c70fe03669fd19206 = L.circleMarker(
+                [-25.8364, 28.1803],
+                {"bubblingMouseEvents": true, "color": "#7d6608", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#27ae60", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9.5125, "stroke": true, "weight": 3}
+            ).addTo(map_5905b98362c7461482a23e9ad7724a55);
         
     
-        var popup_a3db95477f871298cf889c9c42e58615 = L.popup({
-  "maxWidth": 250,
+        var popup_1ebe0079d13fefe0a115cfc0412dc481 = L.popup({
+  "maxWidth": 280,
 });
 
         
             
-                var html_68d4c664d771a75d4c3f84c2e513f3df = $(`<div id="html_68d4c664d771a75d4c3f84c2e513f3df" style="width: 100.0%; height: 100.0%;"><b>CENTURION CENTRAL</b> (Gauteng)<br>Risk score: <b>28.1</b><br>Incidents: 50<br>Total cost: R3,190,783<br><hr style='margin:4px 0'>Frequency: 0.185<br>Severity: 0.422<br>Recency: 0.0<br>Peak-time: 0.709</div>`)[0];
-                popup_a3db95477f871298cf889c9c42e58615.setContent(html_68d4c664d771a75d4c3f84c2e513f3df);
+                var html_ff1dae5661f75d5e2bb7fb9788d8b538 = $(`<div id="html_ff1dae5661f75d5e2bb7fb9788d8b538" style="width: 100.0%; height: 100.0%;"><b>H014 &middot; Centurion Central</b> (Gauteng)<br><hr style='margin:4px 0'>Claims risk: <b>28.1</b><br>Blended (with SAPS): <b>19.7</b><br>Confidence: <b>52</b> (MEDIUM)<br>Primary driver: severity<br>Main peril: Vehicle Theft<br>SAPS corroborated: no (station Lyttelton, 1188 thefts)<br>Peak: Saturday 11:00-14:00<br>Incidents: 50 | Value: R3,190,783</div>`)[0];
+                popup_1ebe0079d13fefe0a115cfc0412dc481.setContent(html_ff1dae5661f75d5e2bb7fb9788d8b538);
             
         
 
-        circle_marker_53339e980a15035caeb0a64dc403c016.bindPopup(popup_a3db95477f871298cf889c9c42e58615)
+        circle_marker_06a301ce2299f47c70fe03669fd19206.bindPopup(popup_1ebe0079d13fefe0a115cfc0412dc481)
         ;
 
         
     
     
-            circle_marker_53339e980a15035caeb0a64dc403c016.bindTooltip(
+            circle_marker_06a301ce2299f47c70fe03669fd19206.bindTooltip(
                 `<div>
-                     CENTURION CENTRAL: 28.1
+                     Centurion Central: risk 28.1, conf MEDIUM
                  </div>`,
                 {
   "sticky": true,

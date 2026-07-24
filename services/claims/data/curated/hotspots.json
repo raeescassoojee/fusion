@@ -27,7 +27,23 @@
       "saps_score": 5.2,
       "corroborated": false
     },
-    "blended_risk_score": 60.9
+    "blended_risk_score": 60.9,
+    "contributions_pct": {
+      "frequency": 50.4,
+      "severity": 23.0,
+      "recency": 15.9,
+      "peak_time": 10.7
+    },
+    "primary_driver": "frequency",
+    "confidence": {
+      "score": 76,
+      "band": "HIGH",
+      "inputs": {
+        "volume": 0.95,
+        "timestamp_reliability": 0.93,
+        "saps_corroborated": false
+      }
+    }
   },
   {
     "hotspot_id": "H002",
@@ -57,7 +73,23 @@
       "saps_score": 6.5,
       "corroborated": false
     },
-    "blended_risk_score": 61.2
+    "blended_risk_score": 61.2,
+    "contributions_pct": {
+      "frequency": 53.2,
+      "severity": 25.9,
+      "recency": 14.9,
+      "peak_time": 6.0
+    },
+    "primary_driver": "frequency",
+    "confidence": {
+      "score": 77,
+      "band": "HIGH",
+      "inputs": {
+        "volume": 1.0,
+        "timestamp_reliability": 0.91,
+        "saps_corroborated": false
+      }
+    }
   },
   {
     "hotspot_id": "H003",
@@ -87,7 +119,23 @@
       "saps_score": 28.4,
       "corroborated": true
     },
-    "blended_risk_score": 67.3
+    "blended_risk_score": 67.3,
+    "contributions_pct": {
+      "frequency": 43.0,
+      "severity": 34.0,
+      "recency": 17.2,
+      "peak_time": 5.8
+    },
+    "primary_driver": "frequency",
+    "confidence": {
+      "score": 90,
+      "band": "HIGH",
+      "inputs": {
+        "volume": 0.83,
+        "timestamp_reliability": 0.94,
+        "saps_corroborated": true
+      }
+    }
   },
   {
     "hotspot_id": "H004",
@@ -117,7 +165,23 @@
       "saps_score": 5.2,
       "corroborated": false
     },
-    "blended_risk_score": 53.6
+    "blended_risk_score": 53.6,
+    "contributions_pct": {
+      "frequency": 38.3,
+      "severity": 33.2,
+      "recency": 15.0,
+      "peak_time": 13.5
+    },
+    "primary_driver": "frequency",
+    "confidence": {
+      "score": 64,
+      "band": "MEDIUM",
+      "inputs": {
+        "volume": 0.71,
+        "timestamp_reliability": 0.96,
+        "saps_corroborated": false
+      }
+    }
   },
   {
     "hotspot_id": "H005",
@@ -147,7 +211,23 @@
       "saps_score": 100.0,
       "corroborated": true
     },
-    "blended_risk_score": 75.4
+    "blended_risk_score": 75.4,
+    "contributions_pct": {
+      "frequency": 45.8,
+      "severity": 26.4,
+      "recency": 20.8,
+      "peak_time": 6.9
+    },
+    "primary_driver": "frequency",
+    "confidence": {
+      "score": 84,
+      "band": "HIGH",
+      "inputs": {
+        "volume": 0.73,
+        "timestamp_reliability": 0.92,
+        "saps_corroborated": true
+      }
+    }
   },
   {
     "hotspot_id": "H006",
@@ -177,7 +257,23 @@
       "saps_score": 100.0,
       "corroborated": true
     },
-    "blended_risk_score": 72.8
+    "blended_risk_score": 72.8,
+    "contributions_pct": {
+      "frequency": 62.6,
+      "severity": 0.0,
+      "recency": 24.5,
+      "peak_time": 12.9
+    },
+    "primary_driver": "frequency",
+    "confidence": {
+      "score": 92,
+      "band": "HIGH",
+      "inputs": {
+        "volume": 0.87,
+        "timestamp_reliability": 0.95,
+        "saps_corroborated": true
+      }
+    }
   },
   {
     "hotspot_id": "H007",
@@ -207,7 +303,23 @@
       "saps_score": 19.9,
       "corroborated": true
     },
-    "blended_risk_score": 46.6
+    "blended_risk_score": 46.6,
+    "contributions_pct": {
+      "frequency": 24.9,
+      "severity": 51.9,
+      "recency": 17.6,
+      "peak_time": 5.5
+    },
+    "primary_driver": "severity",
+    "confidence": {
+      "score": 76,
+      "band": "HIGH",
+      "inputs": {
+        "volume": 0.53,
+        "timestamp_reliability": 0.96,
+        "saps_corroborated": true
+      }
+    }
   },
   {
     "hotspot_id": "H008",
@@ -237,7 +349,23 @@
       "saps_score": 5.2,
       "corroborated": false
     },
-    "blended_risk_score": 40.3
+    "blended_risk_score": 40.3,
+    "contributions_pct": {
+      "frequency": 57.8,
+      "severity": 12.5,
+      "recency": 19.3,
+      "peak_time": 10.5
+    },
+    "primary_driver": "frequency",
+    "confidence": {
+      "score": 65,
+      "band": "MEDIUM",
+      "inputs": {
+        "volume": 0.77,
+        "timestamp_reliability": 0.9,
+        "saps_corroborated": false
+      }
+    }
   },
   {
     "hotspot_id": "H009",
@@ -267,7 +395,23 @@
       "saps_score": 9.4,
       "corroborated": true
     },
-    "blended_risk_score": 39.7
+    "blended_risk_score": 39.7,
+    "contributions_pct": {
+      "frequency": 26.5,
+      "severity": 31.9,
+      "recency": 25.9,
+      "peak_time": 15.7
+    },
+    "primary_driver": "severity",
+    "confidence": {
+      "score": 75,
+      "band": "HIGH",
+      "inputs": {
+        "volume": 0.52,
+        "timestamp_reliability": 0.95,
+        "saps_corroborated": true
+      }
+    }
   },
   {
     "hotspot_id": "H010",
@@ -297,7 +441,23 @@
       "saps_score": 0.0,
       "corroborated": false
     },
-    "blended_risk_score": 36.7
+    "blended_risk_score": 36.7,
+    "contributions_pct": {
+      "frequency": 16.2,
+      "severity": 45.6,
+      "recency": 26.2,
+      "peak_time": 12.0
+    },
+    "primary_driver": "severity",
+    "confidence": {
+      "score": 52,
+      "band": "MEDIUM",
+      "inputs": {
+        "volume": 0.47,
+        "timestamp_reliability": 0.96,
+        "saps_corroborated": false
+      }
+    }
   },
   {
     "hotspot_id": "H011",
@@ -327,7 +487,23 @@
       "saps_score": 19.9,
       "corroborated": true
     },
-    "blended_risk_score": 41.3
+    "blended_risk_score": 41.3,
+    "contributions_pct": {
+      "frequency": 27.5,
+      "severity": 53.3,
+      "recency": 19.2,
+      "peak_time": 0.0
+    },
+    "primary_driver": "severity",
+    "confidence": {
+      "score": 74,
+      "band": "HIGH",
+      "inputs": {
+        "volume": 0.52,
+        "timestamp_reliability": 0.93,
+        "saps_corroborated": true
+      }
+    }
   },
   {
     "hotspot_id": "H012",
@@ -357,7 +533,23 @@
       "saps_score": 19.9,
       "corroborated": true
     },
-    "blended_risk_score": 37.8
+    "blended_risk_score": 37.8,
+    "contributions_pct": {
+      "frequency": 0.0,
+      "severity": 61.5,
+      "recency": 27.8,
+      "peak_time": 10.8
+    },
+    "primary_driver": "severity",
+    "confidence": {
+      "score": 70,
+      "band": "HIGH",
+      "inputs": {
+        "volume": 0.39,
+        "timestamp_reliability": 1.0,
+        "saps_corroborated": true
+      }
+    }
   },
   {
     "hotspot_id": "H013",
@@ -387,7 +579,23 @@
       "saps_score": 5.5,
       "corroborated": false
     },
-    "blended_risk_score": 30.2
+    "blended_risk_score": 30.2,
+    "contributions_pct": {
+      "frequency": 35.5,
+      "severity": 13.3,
+      "recency": 27.7,
+      "peak_time": 23.4
+    },
+    "primary_driver": "frequency",
+    "confidence": {
+      "score": 57,
+      "band": "MEDIUM",
+      "inputs": {
+        "volume": 0.53,
+        "timestamp_reliability": 1.0,
+        "saps_corroborated": false
+      }
+    }
   },
   {
     "hotspot_id": "H014",
@@ -417,6 +625,22 @@
       "saps_score": 0.0,
       "corroborated": false
     },
-    "blended_risk_score": 19.7
+    "blended_risk_score": 19.7,
+    "contributions_pct": {
+      "frequency": 30.3,
+      "severity": 44.6,
+      "recency": 0.0,
+      "peak_time": 25.1
+    },
+    "primary_driver": "severity",
+    "confidence": {
+      "score": 52,
+      "band": "MEDIUM",
+      "inputs": {
+        "volume": 0.47,
+        "timestamp_reliability": 0.96,
+        "saps_corroborated": false
+      }
+    }
   }
 ]
