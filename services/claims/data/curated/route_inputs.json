@@ -1,0 +1,113 @@
+{
+  "note": "Route within a metro only. risk_weight is the 0-100 Risk Pulse score.",
+  "metros": {
+    "Cape Town": {
+      "depot": "rondebosch",
+      "stops": [
+        {
+          "id": "rondebosch",
+          "suburb": "RONDEBOSCH",
+          "lat": -33.9680556,
+          "lon": 18.4877778,
+          "risk_weight": 84.8
+        },
+        {
+          "id": "somerset-west",
+          "suburb": "SOMERSET WEST",
+          "lat": -34.0822195,
+          "lon": 18.8489342,
+          "risk_weight": 84.7
+        },
+        {
+          "id": "newlands",
+          "suburb": "NEWLANDS",
+          "lat": -33.9742832,
+          "lon": 18.4572951,
+          "risk_weight": 74.3
+        },
+        {
+          "id": "sea-point",
+          "suburb": "SEA POINT",
+          "lat": -33.9172222,
+          "lon": 18.3922222,
+          "risk_weight": 64.9
+        },
+        {
+          "id": "cape-town-city-centre",
+          "suburb": "CAPE TOWN CITY CENTRE",
+          "lat": -33.9252902,
+          "lon": 18.4185215,
+          "risk_weight": 61.1
+        },
+        {
+          "id": "claremont",
+          "suburb": "CLAREMONT",
+          "lat": -33.9847222,
+          "lon": 18.4625,
+          "risk_weight": 55.4
+        },
+        {
+          "id": "table-view",
+          "suburb": "TABLE VIEW",
+          "lat": -33.8236111,
+          "lon": 18.4902778,
+          "risk_weight": 40.8
+        }
+      ]
+    },
+    "Gauteng": {
+      "depot": "bryanston",
+      "stops": [
+        {
+          "id": "bryanston",
+          "suburb": "BRYANSTON",
+          "lat": -26.0513889,
+          "lon": 28.0280556,
+          "risk_weight": 84.0
+        },
+        {
+          "id": "garsfontein",
+          "suburb": "GARSFONTEIN",
+          "lat": -25.7944444,
+          "lon": 28.3,
+          "risk_weight": 58.0
+        },
+        {
+          "id": "fourways",
+          "suburb": "FOURWAYS",
+          "lat": -26.004472,
+          "lon": 28.0042447,
+          "risk_weight": 52.7
+        },
+        {
+          "id": "bedfordview",
+          "suburb": "BEDFORDVIEW",
+          "lat": -26.1763889,
+          "lon": 28.1425,
+          "risk_weight": 52.4
+        },
+        {
+          "id": "waterkloof-ridge",
+          "suburb": "WATERKLOOF RIDGE",
+          "lat": -25.7872222,
+          "lon": 28.2388889,
+          "risk_weight": 50.5
+        },
+        {
+          "id": "menlo-park",
+          "suburb": "MENLO PARK",
+          "lat": -25.7697222,
+          "lon": 28.2555556,
+          "risk_weight": 45.4
+        },
+        {
+          "id": "centurion-central",
+          "suburb": "CENTURION CENTRAL",
+          "lat": -25.836389,
+          "lon": 28.180278,
+          "risk_weight": 28.1
+        }
+      ]
+    }
+  }
+}
