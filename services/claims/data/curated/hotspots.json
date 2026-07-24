@@ -1,360 +1,422 @@
-{
-  "generated_from": "Discovery claims workbook (pilot)",
-  "pilot_metros": [
-    "Cape Town",
-    "Gauteng"
-  ],
-  "hotspot_count": 14,
-  "hotspots": [
-    {
-      "area_id": "rondebosch",
-      "suburb": "RONDEBOSCH",
-      "metro": "Cape Town",
-      "location": {
-        "lat": -33.9680556,
-        "lon": 18.4877778
-      },
-      "geofence": {
-        "type": "circle",
-        "radius_m": 1500
-      },
-      "risk_score": 84.8,
-      "components": {
-        "frequency": 0.949,
-        "severity": 0.653,
-        "recency": 0.897,
-        "peak_time": 0.913
-      },
-      "stats": {
-        "incident_count": 102,
-        "total_cost": 5118796.23
-      },
-      "formula_version": "risk-pulse-v1"
+[
+  {
+    "hotspot_id": "H001",
+    "name": "Rondebosch",
+    "latitude": -33.9681,
+    "longitude": 18.4878,
+    "metro": "Cape Town",
+    "risk_score": 84.8,
+    "frequency_score": 0.95,
+    "severity_score": 0.65,
+    "recency_score": 0.9,
+    "peak_time_score": 0.91,
+    "main_peril": "Home Invasion",
+    "peak_window": {
+      "day": "Saturday",
+      "start": "01:00",
+      "end": "04:00"
     },
-    {
-      "area_id": "somerset-west",
-      "suburb": "SOMERSET WEST",
-      "metro": "Cape Town",
-      "location": {
-        "lat": -34.0822195,
-        "lon": 18.8489342
-      },
-      "geofence": {
-        "type": "circle",
-        "radius_m": 1500
-      },
-      "risk_score": 84.7,
-      "components": {
-        "frequency": 1.0,
-        "severity": 0.733,
-        "recency": 0.844,
-        "peak_time": 0.51
-      },
-      "stats": {
-        "incident_count": 107,
-        "total_cost": 6032135.3
-      },
-      "formula_version": "risk-pulse-v1"
+    "peak_window_confidence": "high",
+    "claim_count": 102,
+    "total_claim_value": 5118796.0,
+    "formula_version": "risk-pulse-v1",
+    "saps": {
+      "station": "Claremont",
+      "theft_incidents": 1413,
+      "theft_year": "2016-2017",
+      "saps_score": 5.2,
+      "corroborated": false
     },
-    {
-      "area_id": "bryanston",
-      "suburb": "BRYANSTON",
-      "metro": "Gauteng",
-      "location": {
-        "lat": -26.0513889,
-        "lon": 28.0280556
-      },
-      "geofence": {
-        "type": "circle",
-        "radius_m": 1500
-      },
-      "risk_score": 84.0,
-      "components": {
-        "frequency": 0.802,
-        "severity": 0.952,
-        "recency": 0.963,
-        "peak_time": 0.49
-      },
-      "stats": {
-        "incident_count": 89,
-        "total_cost": 9454546.94
-      },
-      "formula_version": "risk-pulse-v1"
+    "blended_risk_score": 60.9
+  },
+  {
+    "hotspot_id": "H002",
+    "name": "Somerset West",
+    "latitude": -34.0822,
+    "longitude": 18.8489,
+    "metro": "Cape Town",
+    "risk_score": 84.7,
+    "frequency_score": 1.0,
+    "severity_score": 0.73,
+    "recency_score": 0.84,
+    "peak_time_score": 0.51,
+    "main_peril": "Home Invasion",
+    "peak_window": {
+      "day": "Sunday",
+      "start": "01:00",
+      "end": "04:00"
     },
-    {
-      "area_id": "newlands",
-      "suburb": "NEWLANDS",
-      "metro": "Cape Town",
-      "location": {
-        "lat": -33.9742832,
-        "lon": 18.4572951
-      },
-      "geofence": {
-        "type": "circle",
-        "radius_m": 1500
-      },
-      "risk_score": 74.3,
-      "components": {
-        "frequency": 0.633,
-        "severity": 0.822,
-        "recency": 0.743,
-        "peak_time": 1.0
-      },
-      "stats": {
-        "incident_count": 76,
-        "total_cost": 7243879.57
-      },
-      "formula_version": "risk-pulse-v1"
+    "peak_window_confidence": "high",
+    "claim_count": 107,
+    "total_claim_value": 6032135.0,
+    "formula_version": "risk-pulse-v1",
+    "saps": {
+      "station": "Somerset West",
+      "theft_incidents": 1467,
+      "theft_year": "2016-2017",
+      "saps_score": 6.5,
+      "corroborated": false
     },
-    {
-      "area_id": "sea-point",
-      "suburb": "SEA POINT",
-      "metro": "Cape Town",
-      "location": {
-        "lat": -33.9172222,
-        "lon": 18.3922222
-      },
-      "geofence": {
-        "type": "circle",
-        "radius_m": 1500
-      },
-      "risk_score": 64.9,
-      "components": {
-        "frequency": 0.66,
-        "severity": 0.572,
-        "recency": 0.897,
-        "peak_time": 0.453
-      },
-      "stats": {
-        "incident_count": 78,
-        "total_cost": 4340393.73
-      },
-      "formula_version": "risk-pulse-v1"
+    "blended_risk_score": 61.2
+  },
+  {
+    "hotspot_id": "H003",
+    "name": "Bryanston",
+    "latitude": -26.0514,
+    "longitude": 28.0281,
+    "metro": "Gauteng",
+    "risk_score": 84.0,
+    "frequency_score": 0.8,
+    "severity_score": 0.95,
+    "recency_score": 0.96,
+    "peak_time_score": 0.49,
+    "main_peril": "Home Invasion",
+    "peak_window": {
+      "day": "Friday",
+      "start": "12:00",
+      "end": "15:00"
     },
-    {
-      "area_id": "cape-town-city-centre",
-      "suburb": "CAPE TOWN CITY CENTRE",
-      "metro": "Cape Town",
-      "location": {
-        "lat": -33.9252902,
-        "lon": 18.4185215
-      },
-      "geofence": {
-        "type": "circle",
-        "radius_m": 1500
-      },
-      "risk_score": 61.1,
-      "components": {
-        "frequency": 0.849,
-        "severity": 0.0,
-        "recency": 1.0,
-        "peak_time": 0.793
-      },
-      "stats": {
-        "incident_count": 93,
-        "total_cost": 1343332.83
-      },
-      "formula_version": "risk-pulse-v1"
+    "peak_window_confidence": "high",
+    "claim_count": 89,
+    "total_claim_value": 9454547.0,
+    "formula_version": "risk-pulse-v1",
+    "saps": {
+      "station": "Sandton",
+      "theft_incidents": 2410,
+      "theft_year": "2016-2017",
+      "saps_score": 28.4,
+      "corroborated": true
     },
-    {
-      "area_id": "garsfontein",
-      "suburb": "GARSFONTEIN",
-      "metro": "Gauteng",
-      "location": {
-        "lat": -25.7944444,
-        "lon": 28.3
-      },
-      "geofence": {
-        "type": "circle",
-        "radius_m": 1500
-      },
-      "risk_score": 58.0,
-      "components": {
-        "frequency": 0.325,
-        "severity": 1.0,
-        "recency": 0.678,
-        "peak_time": 0.324
-      },
-      "stats": {
-        "incident_count": 57,
-        "total_cost": 10436498.92
-      },
-      "formula_version": "risk-pulse-v1"
+    "blended_risk_score": 67.3
+  },
+  {
+    "hotspot_id": "H004",
+    "name": "Newlands",
+    "latitude": -33.9743,
+    "longitude": 18.4573,
+    "metro": "Cape Town",
+    "risk_score": 74.3,
+    "frequency_score": 0.63,
+    "severity_score": 0.82,
+    "recency_score": 0.74,
+    "peak_time_score": 1.0,
+    "main_peril": "Home Invasion",
+    "peak_window": {
+      "day": "Thursday",
+      "start": "18:00",
+      "end": "21:00"
     },
-    {
-      "area_id": "claremont",
-      "suburb": "CLAREMONT",
-      "metro": "Cape Town",
-      "location": {
-        "lat": -33.9847222,
-        "lon": 18.4625
-      },
-      "geofence": {
-        "type": "circle",
-        "radius_m": 1500
-      },
-      "risk_score": 55.4,
-      "components": {
-        "frequency": 0.714,
-        "severity": 0.227,
-        "recency": 0.705,
-        "peak_time": 0.585
-      },
-      "stats": {
-        "incident_count": 82,
-        "total_cost": 2140231.49
-      },
-      "formula_version": "risk-pulse-v1"
+    "peak_window_confidence": "high",
+    "claim_count": 76,
+    "total_claim_value": 7243880.0,
+    "formula_version": "risk-pulse-v1",
+    "saps": {
+      "station": "Claremont",
+      "theft_incidents": 1413,
+      "theft_year": "2016-2017",
+      "saps_score": 5.2,
+      "corroborated": false
     },
-    {
-      "area_id": "fourways",
-      "suburb": "FOURWAYS",
-      "metro": "Gauteng",
-      "location": {
-        "lat": -26.004472,
-        "lon": 28.0042447
-      },
-      "geofence": {
-        "type": "circle",
-        "radius_m": 1500
-      },
-      "risk_score": 52.7,
-      "components": {
-        "frequency": 0.306,
-        "severity": 0.563,
-        "recency": 0.915,
-        "peak_time": 0.831
-      },
-      "stats": {
-        "incident_count": 56,
-        "total_cost": 4261937.47
-      },
-      "formula_version": "risk-pulse-v1"
+    "blended_risk_score": 53.6
+  },
+  {
+    "hotspot_id": "H005",
+    "name": "Sea Point",
+    "latitude": -33.9172,
+    "longitude": 18.3922,
+    "metro": "Cape Town",
+    "risk_score": 64.9,
+    "frequency_score": 0.66,
+    "severity_score": 0.57,
+    "recency_score": 0.9,
+    "peak_time_score": 0.45,
+    "main_peril": "Vehicle Theft",
+    "peak_window": {
+      "day": "Sunday",
+      "start": "10:00",
+      "end": "13:00"
     },
-    {
-      "area_id": "bedfordview",
-      "suburb": "BEDFORDVIEW",
-      "metro": "Gauteng",
-      "location": {
-        "lat": -26.1763889,
-        "lon": 28.1425
-      },
-      "geofence": {
-        "type": "circle",
-        "radius_m": 1500
-      },
-      "risk_score": 52.4,
-      "components": {
-        "frequency": 0.185,
-        "severity": 0.796,
-        "recency": 0.921,
-        "peak_time": 0.633
-      },
-      "stats": {
-        "incident_count": 50,
-        "total_cost": 6873699.78
-      },
-      "formula_version": "risk-pulse-v1"
+    "peak_window_confidence": "high",
+    "claim_count": 78,
+    "total_claim_value": 4340394.0,
+    "formula_version": "risk-pulse-v1",
+    "saps": {
+      "station": "Cape Town Central",
+      "theft_incidents": 5496,
+      "theft_year": "2016-2017",
+      "saps_score": 100.0,
+      "corroborated": true
     },
-    {
-      "area_id": "waterkloof-ridge",
-      "suburb": "WATERKLOOF RIDGE",
-      "metro": "Gauteng",
-      "location": {
-        "lat": -25.7872222,
-        "lon": 28.2388889
-      },
-      "geofence": {
-        "type": "circle",
-        "radius_m": 1500
-      },
-      "risk_score": 50.5,
-      "components": {
-        "frequency": 0.306,
-        "severity": 0.898,
-        "recency": 0.652,
-        "peak_time": 0.0
-      },
-      "stats": {
-        "incident_count": 56,
-        "total_cost": 8466708.69
-      },
-      "formula_version": "risk-pulse-v1"
+    "blended_risk_score": 75.4
+  },
+  {
+    "hotspot_id": "H006",
+    "name": "Cape Town City Centre",
+    "latitude": -33.9253,
+    "longitude": 18.4185,
+    "metro": "Cape Town",
+    "risk_score": 61.1,
+    "frequency_score": 0.85,
+    "severity_score": 0.0,
+    "recency_score": 1.0,
+    "peak_time_score": 0.79,
+    "main_peril": "Vehicle Theft",
+    "peak_window": {
+      "day": "Thursday",
+      "start": "14:00",
+      "end": "17:00"
     },
-    {
-      "area_id": "menlo-park",
-      "suburb": "MENLO PARK",
-      "metro": "Gauteng",
-      "location": {
-        "lat": -25.7697222,
-        "lon": 28.2555556
-      },
-      "geofence": {
-        "type": "circle",
-        "radius_m": 1500
-      },
-      "risk_score": 45.4,
-      "components": {
-        "frequency": 0.0,
-        "severity": 0.926,
-        "recency": 0.844,
-        "peak_time": 0.49
-      },
-      "stats": {
-        "incident_count": 42,
-        "total_cost": 8976319.64
-      },
-      "formula_version": "risk-pulse-v1"
+    "peak_window_confidence": "high",
+    "claim_count": 93,
+    "total_claim_value": 1343333.0,
+    "formula_version": "risk-pulse-v1",
+    "saps": {
+      "station": "Cape Town Central",
+      "theft_incidents": 5496,
+      "theft_year": "2016-2017",
+      "saps_score": 100.0,
+      "corroborated": true
     },
-    {
-      "area_id": "table-view",
-      "suburb": "TABLE VIEW",
-      "metro": "Cape Town",
-      "location": {
-        "lat": -33.8236111,
-        "lon": 18.4902778
-      },
-      "geofence": {
-        "type": "circle",
-        "radius_m": 1500
-      },
-      "risk_score": 40.8,
-      "components": {
-        "frequency": 0.325,
-        "severity": 0.18,
-        "recency": 0.754,
-        "peak_time": 0.952
-      },
-      "stats": {
-        "incident_count": 57,
-        "total_cost": 1941403.06
-      },
-      "formula_version": "risk-pulse-v1"
+    "blended_risk_score": 72.8
+  },
+  {
+    "hotspot_id": "H007",
+    "name": "Garsfontein",
+    "latitude": -25.7944,
+    "longitude": 28.3,
+    "metro": "Gauteng",
+    "risk_score": 58.0,
+    "frequency_score": 0.32,
+    "severity_score": 1.0,
+    "recency_score": 0.68,
+    "peak_time_score": 0.32,
+    "main_peril": "Vehicle Theft",
+    "peak_window": {
+      "day": "Saturday",
+      "start": "13:00",
+      "end": "16:00"
     },
-    {
-      "area_id": "centurion-central",
-      "suburb": "CENTURION CENTRAL",
-      "metro": "Gauteng",
-      "location": {
-        "lat": -25.836389,
-        "lon": 28.180278
-      },
-      "geofence": {
-        "type": "circle",
-        "radius_m": 1500
-      },
-      "risk_score": 28.1,
-      "components": {
-        "frequency": 0.185,
-        "severity": 0.422,
-        "recency": 0.0,
-        "peak_time": 0.709
-      },
-      "stats": {
-        "incident_count": 50,
-        "total_cost": 3190783.0
-      },
-      "formula_version": "risk-pulse-v1"
-    }
-  ]
-}
+    "peak_window_confidence": "high",
+    "claim_count": 57,
+    "total_claim_value": 10436499.0,
+    "formula_version": "risk-pulse-v1",
+    "saps": {
+      "station": "Brooklyn",
+      "theft_incidents": 2045,
+      "theft_year": "2016-2017",
+      "saps_score": 19.9,
+      "corroborated": true
+    },
+    "blended_risk_score": 46.6
+  },
+  {
+    "hotspot_id": "H008",
+    "name": "Claremont",
+    "latitude": -33.9847,
+    "longitude": 18.4625,
+    "metro": "Cape Town",
+    "risk_score": 55.4,
+    "frequency_score": 0.71,
+    "severity_score": 0.23,
+    "recency_score": 0.71,
+    "peak_time_score": 0.58,
+    "main_peril": "Home Invasion",
+    "peak_window": {
+      "day": "Saturday",
+      "start": "02:00",
+      "end": "05:00"
+    },
+    "peak_window_confidence": "high",
+    "claim_count": 82,
+    "total_claim_value": 2140231.0,
+    "formula_version": "risk-pulse-v1",
+    "saps": {
+      "station": "Claremont",
+      "theft_incidents": 1413,
+      "theft_year": "2016-2017",
+      "saps_score": 5.2,
+      "corroborated": false
+    },
+    "blended_risk_score": 40.3
+  },
+  {
+    "hotspot_id": "H009",
+    "name": "Fourways",
+    "latitude": -26.0045,
+    "longitude": 28.0042,
+    "metro": "Gauteng",
+    "risk_score": 52.7,
+    "frequency_score": 0.31,
+    "severity_score": 0.56,
+    "recency_score": 0.91,
+    "peak_time_score": 0.83,
+    "main_peril": "Vehicle Theft",
+    "peak_window": {
+      "day": "Sunday",
+      "start": "17:00",
+      "end": "20:00"
+    },
+    "peak_window_confidence": "high",
+    "claim_count": 56,
+    "total_claim_value": 4261937.0,
+    "formula_version": "risk-pulse-v1",
+    "saps": {
+      "station": "Douglasdale",
+      "theft_incidents": 1591,
+      "theft_year": "2016-2017",
+      "saps_score": 9.4,
+      "corroborated": true
+    },
+    "blended_risk_score": 39.7
+  },
+  {
+    "hotspot_id": "H010",
+    "name": "Bedfordview",
+    "latitude": -26.1764,
+    "longitude": 28.1425,
+    "metro": "Gauteng",
+    "risk_score": 52.4,
+    "frequency_score": 0.19,
+    "severity_score": 0.8,
+    "recency_score": 0.92,
+    "peak_time_score": 0.63,
+    "main_peril": "Home Invasion",
+    "peak_window": {
+      "day": "Friday",
+      "start": "14:00",
+      "end": "17:00"
+    },
+    "peak_window_confidence": "high",
+    "claim_count": 50,
+    "total_claim_value": 6873700.0,
+    "formula_version": "risk-pulse-v1",
+    "saps": {
+      "station": "Germiston",
+      "theft_incidents": 1187,
+      "theft_year": "2016-2017",
+      "saps_score": 0.0,
+      "corroborated": false
+    },
+    "blended_risk_score": 36.7
+  },
+  {
+    "hotspot_id": "H011",
+    "name": "Waterkloof Ridge",
+    "latitude": -25.7872,
+    "longitude": 28.2389,
+    "metro": "Gauteng",
+    "risk_score": 50.5,
+    "frequency_score": 0.31,
+    "severity_score": 0.9,
+    "recency_score": 0.65,
+    "peak_time_score": 0.0,
+    "main_peril": "Home Invasion",
+    "peak_window": {
+      "day": "Sunday",
+      "start": "01:00",
+      "end": "04:00"
+    },
+    "peak_window_confidence": "high",
+    "claim_count": 56,
+    "total_claim_value": 8466709.0,
+    "formula_version": "risk-pulse-v1",
+    "saps": {
+      "station": "Brooklyn",
+      "theft_incidents": 2045,
+      "theft_year": "2016-2017",
+      "saps_score": 19.9,
+      "corroborated": true
+    },
+    "blended_risk_score": 41.3
+  },
+  {
+    "hotspot_id": "H012",
+    "name": "Menlo Park",
+    "latitude": -25.7697,
+    "longitude": 28.2556,
+    "metro": "Gauteng",
+    "risk_score": 45.4,
+    "frequency_score": 0.0,
+    "severity_score": 0.93,
+    "recency_score": 0.84,
+    "peak_time_score": 0.49,
+    "main_peril": "Vehicle Theft",
+    "peak_window": {
+      "day": "Saturday",
+      "start": "00:00",
+      "end": "03:00"
+    },
+    "peak_window_confidence": "high",
+    "claim_count": 42,
+    "total_claim_value": 8976320.0,
+    "formula_version": "risk-pulse-v1",
+    "saps": {
+      "station": "Brooklyn",
+      "theft_incidents": 2045,
+      "theft_year": "2016-2017",
+      "saps_score": 19.9,
+      "corroborated": true
+    },
+    "blended_risk_score": 37.8
+  },
+  {
+    "hotspot_id": "H013",
+    "name": "Table View",
+    "latitude": -33.8236,
+    "longitude": 18.4903,
+    "metro": "Cape Town",
+    "risk_score": 40.8,
+    "frequency_score": 0.32,
+    "severity_score": 0.18,
+    "recency_score": 0.75,
+    "peak_time_score": 0.95,
+    "main_peril": "Home Invasion",
+    "peak_window": {
+      "day": "Tuesday",
+      "start": "01:00",
+      "end": "04:00"
+    },
+    "peak_window_confidence": "high",
+    "claim_count": 57,
+    "total_claim_value": 1941403.0,
+    "formula_version": "risk-pulse-v1",
+    "saps": {
+      "station": "Table View",
+      "theft_incidents": 1425,
+      "theft_year": "2016-2017",
+      "saps_score": 5.5,
+      "corroborated": false
+    },
+    "blended_risk_score": 30.2
+  },
+  {
+    "hotspot_id": "H014",
+    "name": "Centurion Central",
+    "latitude": -25.8364,
+    "longitude": 28.1803,
+    "metro": "Gauteng",
+    "risk_score": 28.1,
+    "frequency_score": 0.19,
+    "severity_score": 0.42,
+    "recency_score": 0.0,
+    "peak_time_score": 0.71,
+    "main_peril": "Vehicle Theft",
+    "peak_window": {
+      "day": "Saturday",
+      "start": "11:00",
+      "end": "14:00"
+    },
+    "peak_window_confidence": "high",
+    "claim_count": 50,
+    "total_claim_value": 3190783.0,
+    "formula_version": "risk-pulse-v1",
+    "saps": {
+      "station": "Lyttelton",
+      "theft_incidents": 1188,
+      "theft_year": "2016-2017",
+      "saps_score": 0.0,
+      "corroborated": false
+    },
+    "blended_risk_score": 19.7
+  }
+]

@@ -1,0 +1,15 @@
+suburb,station,saps_theft,saps_score,claims_risk,blended_risk,corroborated
+Sea Point,CAPE TOWN CENTRAL,5496,100.0,64.9,75.4,True
+Cape Town City Centre,CAPE TOWN CENTRAL,5496,100.0,61.1,72.8,True
+Bryanston,SANDTON,2410,28.4,84.0,67.3,True
+Somerset West,SOMERSET WEST,1467,6.5,84.7,61.2,False
+Rondebosch,CLAREMONT,1413,5.2,84.8,60.9,False
+Newlands,CLAREMONT,1413,5.2,74.3,53.6,False
+Garsfontein,BROOKLYN,2045,19.9,58.0,46.6,True
+Waterkloof Ridge,BROOKLYN,2045,19.9,50.5,41.3,True
+Claremont,CLAREMONT,1413,5.2,55.4,40.3,False
+Fourways,DOUGLASDALE,1591,9.4,52.7,39.7,True
+Menlo Park,BROOKLYN,2045,19.9,45.4,37.8,True
+Bedfordview,GERMISTON,1187,0.0,52.4,36.7,False
+Table View,TABLE VIEW,1425,5.5,40.8,30.2,False
+Centurion Central,LYTTELTON,1188,0.0,28.1,19.7,False

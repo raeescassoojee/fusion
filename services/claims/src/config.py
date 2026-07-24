@@ -44,3 +44,28 @@ PILOT_SUBURBS = {
 
 # --- Formula version, so scores are traceable ---
 FORMULA_VERSION = "risk-pulse-v1"
+
+# --- SAPS partner data: pilot suburb -> covering police station ---
+# Police precincts cover multiple suburbs; mapping is manually verified.
+# Stations chosen from the SAPS station-level theft dataset (open.africa).
+SUBURB_TO_STATION = {
+    "RONDEBOSCH":            "CLAREMONT",
+    "SOMERSET WEST":         "SOMERSET WEST",
+    "CAPE TOWN CITY CENTRE":  "CAPE TOWN CENTRAL",
+    "CLAREMONT":             "CLAREMONT",
+    "SEA POINT":             "CAPE TOWN CENTRAL",
+    "NEWLANDS":              "CLAREMONT",
+    "TABLE VIEW":            "TABLE VIEW",
+    "BRYANSTON":             "SANDTON",
+    "FOURWAYS":              "DOUGLASDALE",
+    "BEDFORDVIEW":           "GERMISTON",
+    "GARSFONTEIN":           "BROOKLYN",
+    "WATERKLOOF RIDGE":      "BROOKLYN",
+    "MENLO PARK":            "BROOKLYN",
+    "CENTURION CENTRAL":     "LYTTELTON",
+}
+
+# How much SAPS influences the blended score (0.3 = 30% SAPS, 70% claims)
+SAPS_BLEND_WEIGHT = 0.30
+
+PARTNER_DIR = CLAIMS_DIR / "data" / "partner"
