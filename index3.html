@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AEGIS × Discovery Insure — Neighborhood Risk &amp; Active Defense</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,500;0,700;0,800;1,500&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0C0D0E;
+  --ink-surface: #141618;
+  --ink-card: #1A1D20;
+  --ink-border: #282C31;
+  --line-faint: #1F2327;
+  
+  /* Discovery Insure Brand Accents */
+  --disc-blue: #00509E;
+  --disc-teal: #00A3E0;
+  --disc-gold: #F1A80A;
+  --disc-orange: #FF5A00;
+  --red-alert: #E53935;
+  --green-safe: #4CAF50;
+  
+  /* Text */
+  --text-main: #F0F4F8;
+  --text-muted: #94A3B8;
+  --text-dim: #64748B;
+  
+  /* Fonts */
+  --dfont: 'Archivo', sans-serif;
+  --bfont: 'IBM Plex Sans', sans-serif;
+  --mfont: 'IBM Plex Mono', monospace;
+  --maxw: 1240px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; background: var(--ink); color: var(--text-main); font-family: var(--bfont); -webkit-font-smoothing: antialiased; }
+body { overflow-x: hidden; position: relative; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+::selection { background: rgba(0, 163, 224, 0.3); color: #fff; }
+:focus-visible { outline: 2px solid var(--disc-teal); outline-offset: 3px; }
+.mono { font-family: var(--mfont); }
+
+/* Grid Overlay & Subdued Background */
+body::before {
+  content: ''; position: fixed; inset: 0; z-index: -2; pointer-events: none;
+  background: 
+    radial-gradient(circle at 10% 0%, rgba(0, 80, 158, 0.15), transparent 45%),
+    radial-gradient(circle at 90% 100%, rgba(241, 168, 10, 0.08), transparent 50%),
+    var(--ink);
+}
+body::after {
+  content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: 0.35;
+  background-image: linear-gradient(var(--ink-border) 1px, transparent 1px), linear-gradient(90deg, var(--ink-border) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ================= NAV ================= */
+.scroll-progress { position: fixed; top: 0; left: 0; height: 2px; width: 0%; background: linear-gradient(90deg, var(--disc-teal), var(--disc-gold)); z-index: 200; }
+.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 16px 32px; border-bottom: 1px solid transparent; transition: all .25s ease; }
+.nav.scrolled { padding: 12px 32px; background: rgba(12, 13, 14, 0.92); backdrop-filter: blur(16px); border-bottom: 1px solid var(--ink-border); }
+.brand { display: flex; align-items: center; gap: 12px; }
+.brand .mark { width: 34px; height: 34px; border: 1.5px solid var(--disc-teal); border-radius: 8px; display: flex; align-items: center; justify-content: center; position: relative; background: rgba(0, 163, 224, 0.05); }
+.brand .mark::before { content: ''; width: 12px; height: 12px; border-radius: 2px; border: 1.5px solid var(--disc-gold); transform: rotate(45deg); }
+.brand .name { font-family: var(--dfont); font-weight: 800; font-size: 18px; letter-spacing: 0.12em; color: #fff; }
+.brand .co-brand { font-family: var(--mfont); font-size: 11px; color: var(--disc-teal); background: rgba(0, 163, 224, 0.1); border: 1px solid rgba(0, 163, 224, 0.3); padding: 2px 6px; border-radius: 4px; letter-spacing: 0.05em; }
+
+.nav-links { display: flex; gap: 28px; }
+.nav-links a { font-family: var(--mfont); font-size: 12px; letter-spacing: 0.05em; color: var(--text-muted); padding: 6px 0; position: relative; transition: color .2s; }
+.nav-links a::after { content: ''; position: absolute; left: 0; bottom: -2px; height: 2px; width: 0; background: var(--disc-teal); transition: width .2s; }
+.nav-links a:hover, .nav-links a.active { color: #fff; }
+.nav-links a.active::after { width: 100%; }
+
+.nav-cta { font-family: var(--mfont); font-size: 12px; font-weight: 600; color: #fff; background: var(--disc-blue); border: 1px solid rgba(0, 163, 224, 0.4); padding: 8px 16px; border-radius: 6px; transition: all .2s; }
+.nav-cta:hover { background: var(--disc-teal); color: var(--ink); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0, 163, 224, 0.3); }
+
+/* ================= UTILITY & LAYOUT ================= */
+.sect { padding: 90px 32px; position: relative; }
+.sect-inner { max-width: var(--maxw); margin: 0 auto; }
+.eyebrow { font-family: var(--mfont); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--disc-teal); display: inline-flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+.eyebrow::before { content: ''; width: 20px; height: 1.5px; background: var(--disc-teal); }
+.h-sect { font-family: var(--dfont); font-weight: 800; letter-spacing: -0.02em; font-size: clamp(28px, 4vw, 46px); line-height: 1.08; color: #fff; }
+.lead { font-size: clamp(15px, 1.4vw, 17px); color: var(--text-muted); max-width: 640px; margin-top: 16px; line-height: 1.6; }
+
+/* ================= HERO ================= */
+.hero { min-height: 92vh; display: grid; grid-template-columns: 1.1fr 0.9fr; align-items: center; gap: 48px; padding: 130px 32px 60px; max-width: var(--maxw); margin: 0 auto; }
+.hero-copy h1 { font-family: var(--dfont); font-weight: 800; letter-spacing: -0.025em; font-size: clamp(36px, 4.5vw, 56px); line-height: 1.05; }
+.hero-copy h1 .highlight { color: transparent; background: linear-gradient(135deg, #fff 30%, var(--disc-teal) 100%); -webkit-background-clip: text; background-clip: text; }
+.hero-copy h1 .disc-gold { color: var(--disc-gold); }
+
+.hero-badge { font-family: var(--mfont); font-size: 12px; color: var(--disc-gold); letter-spacing: 0.06em; margin-bottom: 16px; display: inline-flex; align-items: center; gap: 8px; background: rgba(241, 168, 10, 0.08); border: 1px solid rgba(241, 168, 10, 0.25); padding: 5px 12px; border-radius: 20px; }
+.hero-badge .blip { width: 7px; height: 7px; border-radius: 50%; background: var(--red-alert); box-shadow: 0 0 8px var(--red-alert); animation: pulse 1.5s infinite; }
+
+@keyframes pulse { 0% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(1.2); } 100% { opacity: 1; transform: scale(1); } }
+
+.hero-sub { font-size: 16px; color: var(--text-muted); line-height: 1.65; margin-top: 20px; max-width: 520px; }
+.hero-cta { display: flex; gap: 14px; margin-top: 32px; flex-wrap: wrap; }
+
+.btn { font-family: var(--bfont); font-weight: 600; font-size: 14px; padding: 13px 22px; border-radius: 8px; display: inline-flex; align-items: center; gap: 8px; transition: all .2s ease; }
+.btn-primary { background: var(--disc-teal); color: var(--ink); font-weight: 700; box-shadow: 0 4px 20px rgba(0, 163, 224, 0.25); }
+.btn-primary:hover { background: #1ac0fd; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0, 163, 224, 0.4); }
+.btn-ghost { border: 1px solid var(--ink-border); color: var(--text-main); background: var(--ink-surface); }
+.btn-ghost:hover { border-color: var(--disc-teal); color: var(--disc-teal); }
+
+.hero-stats { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--ink-border); display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.stat-item .n { font-family: var(--dfont); font-weight: 800; font-size: 26px; color: #fff; }
+.stat-item .n small { font-size: 13px; color: var(--disc-teal); font-weight: 600; }
+.stat-item .l { font-family: var(--mfont); font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 4px; }
+
+/* Camera Telemetry Canvas */
+.cam-card { position: relative; border-radius: 16px; overflow: hidden; border: 1px solid var(--ink-border); background: #08090A; box-shadow: 0 30px 60px -20px rgba(0,0,0,0.9); aspect-ratio: 4/3.2; }
+.cam-card svg.scene { position: absolute; inset: 0; width: 100%; height: 100%; }
+.cam-card .overlay-hud { position: absolute; inset: 0; padding: 16px; pointer-events: none; font-family: var(--mfont); display: flex; flex-direction: column; justify-content: space-between; }
+.hud-top { display: flex; justify-content: space-between; font-size: 11px; color: #fff; }
+.hud-tag { background: rgba(0,0,0,0.65); padding: 4px 8px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; gap: 6px; }
+.hud-tag.alert { border-color: rgba(229, 57, 53, 0.5); color: var(--red-alert); }
+.hud-bot { display: flex; justify-content: space-between; align-items: flex-end; font-size: 11px; }
+.bounding-box { position: absolute; border: 1.5px solid var(--disc-gold); background: rgba(241, 168, 10, 0.1); border-radius: 4px; pointer-events: none; transition: all .3s ease; }
+.bounding-box .tag { position: absolute; top: -22px; left: -1px; background: var(--disc-gold); color: var(--ink); font-family: var(--mfont); font-size: 10px; font-weight: 700; padding: 1px 6px; border-radius: 3px 3px 3px 0; white-space: nowrap; }
+
+/* ================= PIPELINE INTERACTIVE ================= */
+.pipeline-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 40px; position: relative; }
+.pipe-step { background: var(--ink-card); border: 1px solid var(--ink-border); border-radius: 12px; padding: 20px; position: relative; transition: all .3s ease; }
+.pipe-step.active { border-color: var(--disc-teal); background: rgba(0, 163, 224, 0.03); box-shadow: 0 0 20px -5px rgba(0, 163, 224, 0.2); }
+.pipe-step .step-idx { font-family: var(--mfont); font-size: 10px; color: var(--text-dim); letter-spacing: 0.1em; margin-bottom: 12px; }
+.pipe-step.active .step-idx { color: var(--disc-teal); }
+.pipe-step h4 { font-family: var(--dfont); font-weight: 700; font-size: 15px; color: #fff; margin-bottom: 8px; }
+.pipe-step p { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+.pipe-output { margin-top: 14px; padding-top: 10px; border-top: 1px dashed var(--ink-border); font-family: var(--mfont); font-size: 11px; color: var(--disc-gold); min-height: 38px; }
+
+.pipeline-actions { display: flex; justify-content: space-between; align-items: center; margin-top: 24px; background: var(--ink-surface); border: 1px solid var(--ink-border); padding: 16px 24px; border-radius: 12px; }
+
+/* ================= MAP & DISPATCH ================= */
+.ops-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 20px; margin-top: 40px; }
+.panel { background: var(--ink-card); border: 1px solid var(--ink-border); border-radius: 16px; overflow: hidden; }
+.panel-head { padding: 18px 24px; border-bottom: 1px solid var(--ink-border); display: flex; justify-content: space-between; align-items: center; }
+.panel-head h3 { font-family: var(--dfont); font-weight: 700; font-size: 16px; color: #fff; }
+
+.map-container { position: relative; width: 100%; aspect-ratio: 16/10; background: #0E1012; overflow: hidden; }
+.map-canvas { width: 100%; height: 100%; }
+
+.feed-list { max-height: 420px; overflow-y: auto; }
+.feed-item { padding: 16px 20px; border-bottom: 1px solid var(--ink-border); display: flex; gap: 14px; transition: background .2s; cursor: pointer; }
+.feed-item:hover { background: rgba(255,255,255,0.02); }
+.feed-item.critical { border-left: 3px solid var(--red-alert); background: rgba(229, 57, 53, 0.03); }
+.feed-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--ink-surface); border: 1px solid var(--ink-border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--disc-teal); }
+.feed-item.critical .feed-icon { color: var(--red-alert); border-color: rgba(229, 57, 53, 0.3); }
+.feed-details { flex: 1; }
+.feed-title { font-size: 13px; font-weight: 600; color: #fff; display: flex; justify-content: space-between; }
+.feed-title .time { font-family: var(--mfont); font-size: 11px; color: var(--text-dim); font-weight: 400; }
+.feed-desc { font-size: 12px; color: var(--text-muted); margin-top: 4px; line-height: 1.4; }
+.feed-meta { display: flex; gap: 12px; margin-top: 8px; font-family: var(--mfont); font-size: 10.5px; color: var(--text-dim); }
+
+/* ================= DISCOVERY CLAIMS INTEGRATION ================= */
+.claim-sync { margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.sync-card { background: var(--ink-card); border: 1px solid var(--ink-border); border-radius: 16px; padding: 28px; }
+.sync-card h4 { font-family: var(--dfont); font-weight: 700; font-size: 20px; color: #fff; margin-bottom: 12px; }
+.sync-card p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+
+.claim-metric { margin-top: 20px; display: flex; align-items: center; gap: 16px; background: var(--ink-surface); padding: 14px 18px; border-radius: 10px; border: 1px solid var(--ink-border); }
+.claim-metric .score { font-family: var(--dfont); font-weight: 800; font-size: 28px; color: var(--disc-gold); }
+.claim-metric .desc { font-size: 12px; color: var(--text-muted); }
+
+/* ================= FOOTER ================= */
+.footer { border-top: 1px solid var(--ink-border); padding: 48px 32px; background: var(--ink-surface); margin-top: 80px; }
+.footer-inner { max-width: var(--maxw); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; font-family: var(--mfont); font-size: 12px; color: var(--text-dim); }
+
+/* RESPONSIVE */
+@media (max-width: 960px) {
+  .hero { grid-template-columns: 1fr; padding-top: 100px; }
+  .pipeline-grid { grid-template-columns: 1fr 1fr; }
+  .ops-grid, .claim-sync { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+}
+@media (max-width: 580px) {
+  .pipeline-grid { grid-template-columns: 1fr; }
+  .hero-stats { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="scroll-progress" id="progress"></div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a class="brand" href="#top">
+    <span class="mark"></span>
+    <span class="name">AEGIS</span>
+    <span class="co-brand">DISCOVERY INSURE</span>
+  </a>
+  <div class="nav-links">
+    <a href="#pipeline">Telemetry Pipeline</a>
+    <a href="#ops">Live Defense Grid</a>
+    <a href="#claims">Discovery Intelligence</a>
+  </div>
+  <button class="nav-cta" id="navDispatchBtn">Simulate Incident</button>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="hero-copy">
+    <div class="hero-badge"><span class="blip"></span> BRYANSTON SECTOR 4 · ACTIVE THREAT PROTOCOL</div>
+    <h1>Neighborhood Defense powered by <span class="disc-gold">Shared Intelligence.</span></h1>
+    <p class="hero-sub">
+      AEGIS fuses private edge-doorbell feeds with Discovery Insure's active claim spatial data. When an unrecognized vehicle lingers on your street, AEGIS correlates surrounding camera inputs, cross-references localized crime telemetry, and deploys armed patrols before an incident occurs.
+    </p>
+    <div class="hero-cta">
+      <button class="btn btn-primary" id="heroRunSim">
+        Run Threat Simulation
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+      <a class="btn btn-ghost" href="#ops">View Operations Map</a>
+    </div>
+    
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="n">184<small> nodes</small></div>
+        <div class="l">Bryanston Active Grid</div>
+      </div>
+      <div class="stat-item">
+        <div class="n">3.8<small> min</small></div>
+        <div class="l">Armed Response Intercept</div>
+      </div>
+      <div class="stat-item">
+        <div class="n">-22<small>%</small></div>
+        <div class="l">Discovery Risk Premium</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-cam">
+    <div class="cam-card">
+      <svg class="scene" viewBox="0 0 400 320" preserveAspectRatio="xMidYMid slice">
+        <rect width="400" height="320" fill="#0C0E10"/>
+        <!-- Suburban Street Visual Vector -->
+        <path d="M0 240 L160 160 L240 160 L400 240 L400 320 L0 320 Z" fill="#14171A"/>
+        <line x1="200" y1="160" x2="200" y2="320" stroke="#282C31" stroke-dasharray="8 6"/>
+        <!-- Wall / Gate Silhouette -->
+        <rect x="20" y="120" width="120" height="60" fill="#1A1D20" stroke="#282C31"/>
+        <rect x="260" y="120" width="120" height="60" fill="#1A1D20" stroke="#282C31"/>
+        <!-- Suspect Vehicle Visual -->
+        <g id="vehicleNode" transform="translate(150, 180)">
+          <rect x="0" y="0" width="100" height="45" rx="6" fill="#22262B" stroke="#00A3E0" stroke-width="1.5"/>
+          <circle cx="20" cy="45" r="8" fill="#0A0B0C" stroke="#282C31"/>
+          <circle cx="80" cy="45" r="8" fill="#0A0B0C" stroke="#282C31"/>
+          <!-- License Plate Frame -->
+          <rect x="35" y="28" width="30" height="10" fill="#F1A80A" rx="1"/>
+        </g>
+      </svg>
+      
+      <!-- Bounding Box Overlays -->
+      <div class="bounding-box" style="left: 36.5%; top: 52%; width: 28%; height: 22%;">
+        <span class="tag">SUSPECT VEHICLE · GP REG</span>
+      </div>
+
+      <div class="overlay-hud">
+        <div class="hud-top">
+          <div class="hud-tag alert"><span class="blip"></span> ANPR LOCK: HG 88 YL GP</div>
+          <div class="hud-tag">CAM-BRY-088 · 1080P IR</div>
+        </div>
+        <div class="hud-bot">
+          <div style="color: var(--text-muted);">LAT: -26.0458° S | LONG: 28.0183° E</div>
+          <div style="color: var(--disc-gold);">MATCH CONFIDENCE: 98.4%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- PIPELINE SECTION -->
+<section class="sect" id="pipeline">
+  <div class="sect-inner">
+    <div class="eyebrow">Real-time Telemetry</div>
+    <h2 class="h-sect">Incident Response Pipeline</h2>
+    <p class="lead">Watch how a single edge detection triggers multi-layered network verification and security deployment across the street cluster.</p>
+
+    <div class="pipeline-grid">
+      <div class="pipe-step" id="step1">
+        <div class="step-idx">STAGE 01 // CAPTURE</div>
+        <h4>Edge Detection</h4>
+        <p>Doorbell camera triggers on stationary vehicle lingering > 90 seconds in driveway threshold.</p>
+        <div class="pipe-output" id="out1">Awaiting trigger...</div>
+      </div>
+
+      <div class="pipe-step" id="step2">
+        <div class="step-idx">STAGE 02 // ANPR &amp; VISION</div>
+        <h4>Plate &amp; Model Index</h4>
+        <p>Optical character recognition extracts plate registration; checks vehicle profile against stolen vehicle databases.</p>
+        <div class="pipe-output" id="out2">—</div>
+      </div>
+
+      <div class="pipe-step" id="step3">
+        <div class="step-idx">STAGE 03 // SPATIAL LINK</div>
+        <h4>Cluster Relay</h4>
+        <p>Adjacent cameras on Bryanston Drive activate, tracking vehicle vector and dwell duration across 3 blocks.</p>
+        <div class="pipe-output" id="out3">—</div>
+      </div>
+
+      <div class="pipe-step" id="step4">
+        <div class="step-idx">STAGE 04 // DISCOVERY DISPATCH</div>
+        <h4>Armed Intercept</h4>
+        <p>Discovery Insure automated risk engine flags high-risk incident; dispatches nearest tactical patrol unit.</p>
+        <div class="pipe-output" id="out4">—</div>
+      </div>
+    </div>
+
+    <div class="pipeline-actions">
+      <div style="font-family: var(--mfont); font-size: 13px; color: var(--text-muted);">
+        STATUS: <span id="pipeStatus" style="color: var(--disc-teal);">READY FOR SIMULATION</span>
+      </div>
+      <div>
+        <button class="btn btn-primary" id="runPipelineBtn">Run Telemetry Sequence</button>
+        <button class="btn btn-ghost" id="resetPipelineBtn" style="margin-left: 8px;">Reset</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIVE DEFENSE GRID & MAP -->
+<section class="sect" id="ops" style="background: rgba(20, 22, 24, 0.5);">
+  <div class="sect-inner">
+    <div class="eyebrow">Active Operational Command</div>
+    <h2 class="h-sect">Bryanston Sector Defense Grid</h2>
+
+    <div class="ops-grid">
+      <div class="panel">
+        <div class="panel-head">
+          <h3>Sector Spatial Map</h3>
+          <span style="font-family: var(--mfont); font-size: 11px; color: var(--disc-teal);">● 14 UNITS ACTIVE</span>
+        </div>
+        <div class="map-container">
+          <svg class="map-canvas" viewBox="0 0 600 380">
+            <!-- Road Layout -->
+            <path d="M 50 190 L 550 190" stroke="#282C31" stroke-width="12"/>
+            <path d="M 300 30 L 300 350" stroke="#282C31" stroke-width="12"/>
+            <path d="M 120 50 L 480 330" stroke="#1F2327" stroke-width="6"/>
+
+            <!-- Road Labels -->
+            <text x="60" y="180" fill="#64748B" font-family="IBM Plex Mono" font-size="10">BRYANSTON DR</text>
+            <text x="310" y="50" fill="#64748B" font-family="IBM Plex Mono" font-size="10">GROSVENOR RD</text>
+
+            <!-- Camera Nodes -->
+            <circle cx="150" cy="190" r="6" fill="#00A3E0"/>
+            <circle cx="250" cy="190" r="6" fill="#00A3E0"/>
+            <circle cx="300" cy="120" r="6" fill="#00A3E0"/>
+            <circle cx="300" cy="260" r="6" fill="#00A3E0"/>
+            
+            <!-- Threat Ping Node -->
+            <g transform="translate(250, 190)">
+              <circle cx="0" cy="0" r="16" fill="none" stroke="#E53935" stroke-width="1.5">
+                <animate attributeName="r" values="6;22;6" dur="2s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="1;0;1" dur="2s" repeatCount="indefinite"/>
+              </circle>
+              <circle cx="0" cy="0" r="4" fill="#E53935"/>
+            </g>
+
+            <!-- Patrol Vehicle Unit -->
+            <g id="patrolUnit" transform="translate(100, 190)">
+              <rect x="-8" y="-8" width="16" height="16" fill="#F1A80A" rx="3"/>
+              <text x="-12" y="-12" fill="#F1A80A" font-family="IBM Plex Mono" font-size="9" font-weight="700">PATROL 01</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Live Telemetry Feed -->
+      <div class="panel">
+        <div class="panel-head">
+          <h3>Incident Feed</h3>
+          <span style="font-family: var(--mfont); font-size: 11px; color: var(--text-dim);">REAL-TIME TELEMETRY</span>
+        </div>
+        <div class="feed-list" id="feedList">
+          <div class="feed-item critical">
+            <div class="feed-icon">!</div>
+            <div class="feed-details">
+              <div class="feed-title">Unrecognized Dwell Threat <span class="time">22:14</span></div>
+              <div class="feed-desc">Silver Toyota Hilux idling in high-risk zone (3 claims recorded in 30 days).</div>
+              <div class="feed-meta">
+                <span>PLATE: HG 88 YL GP</span>
+                <span style="color: var(--disc-gold);">RISK: HIGH</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="feed-item">
+            <div class="feed-icon">✓</div>
+            <div class="feed-details">
+              <div class="feed-title">Scheduled Patrol Pass <span class="time">21:50</span></div>
+              <div class="feed-desc">Unit 04 completed sector sweep across Grosvenor Rd cluster.</div>
+              <div class="feed-meta">
+                <span>STATUS: CLEAR</span>
+                <span>SPEED: 32 KM/H</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="feed-item">
+            <div class="feed-icon">i</div>
+            <div class="feed-details">
+              <div class="feed-title">ANPR Verification <span class="time">21:12</span></div>
+              <div class="feed-desc">Resident vehicle matched; gate access auto-cleared.</div>
+              <div class="feed-meta">
+                <span>PLATE: CB 12 BB GP</span>
+                <span>VERIFIED</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DISCOVERY INSURE INTEGRATION -->
+<section class="sect" id="claims">
+  <div class="sect-inner">
+    <div class="eyebrow">Risk Architecture Integration</div>
+    <h2 class="h-sect">Discovery Insure Risk Correlation Engine</h2>
+    <p class="lead">Connecting suburban physical security with active underwriting data to proactively eliminate risk and lower member premiums.</p>
+
+    <div class="claim-sync">
+      <div class="sync-card">
+        <h4>Proactive Claim Prevention</h4>
+        <p>Traditional insurance responds after a loss occurs. AEGIS feeds proactive spatial data directly into Discovery Insure's underwriting models, actively intercepting home invasions and vehicle theft before losses manifest.</p>
+        <div class="claim-metric">
+          <div class="score">84%</div>
+          <div class="desc">Reduction in successful residential intrusions across protected AEGIS cluster sectors.</div>
+        </div>
+      </div>
+
+      <div class="sync-card">
+        <h4>Shared Shield Premium Discounts</h4>
+        <p>Discovery Insure members who connect their smart doorbell hardware to the community AEGIS grid earn enhanced Vitality Drive safety points and up to a 25% discount on vehicle and home structure coverage.</p>
+        <div class="claim-metric">
+          <div class="score">R 680</div>
+          <div class="desc">Average monthly premium savings per household in fully linked grid streets.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <strong style="color: #fff; font-family: var(--dfont); font-size: 14px;">AEGIS × DISCOVERY INSURE</strong>
+      <p style="margin-top: 4px;">Suburban Active Defense &amp; Spatial Risk Intelligence Engine.</p>
+    </div>
+    <div>
+      <span>CONFIDENTIAL · FOR INTERNAL DEMONSTRATION PURPOSES ONLY</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// SCROLL PROGRESS INDICATOR
+window.addEventListener('scroll', () => {
+  const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (winScroll / height) * 100;
+  document.getElementById('progress').style.width = scrolled + '%';
+  
+  const nav = document.getElementById('nav');
+  if (winScroll > 40) {
+    nav.classList.add('scrolled');
+  } else {
+    nav.classList.remove('scrolled');
+  }
+});
+
+// INTERACTIVE PIPELINE LOGIC
+const runPipelineBtn = document.getElementById('runPipelineBtn');
+const resetPipelineBtn = document.getElementById('resetPipelineBtn');
+const pipeStatus = document.getElementById('pipeStatus');
+
+const steps = [
+  { id: 'step1', out: 'out1', text: 'TRIGGERED: Motion detected at Node #114', delay: 400 },
+  { id: 'step2', out: 'out2', text: 'ANPR READ: HG 88 YL GP (Silver Hilux)', delay: 1200 },
+  { id: 'step3', out: 'out3', text: 'RELAY ACTIVE: 3 adjacent nodes tracking', delay: 2000 },
+  { id: 'step4', out: 'out4', text: 'DISPATCHED: Tactical Unit 01 en route (ETA 2.4m)', delay: 2800 }
+];
+
+let isRunning = false;
+
+function executePipeline() {
+  if (isRunning) return;
+  isRunning = true;
+  pipeStatus.textContent = 'EXECUTING SEQUENCE...';
+  pipeStatus.style.color = 'var(--disc-gold)';
+
+  steps.forEach((step, idx) => {
+    setTimeout(() => {
+      document.getElementById(step.id).classList.add('active');
+      document.getElementById(step.out).textContent = step.text;
+
+      // Animate Patrol Vehicle on Map on final step
+      if (idx === 3) {
+        const patrol = document.getElementById('patrolUnit');
+        if (patrol) {
+          patrol.setAttribute('transform', 'translate(230, 190)');
+          patrol.style.transition = 'transform 2s ease-in-out';
+        }
+        pipeStatus.textContent = 'PATROL INTERCEPT DEPLOYED';
+        pipeStatus.style.color = 'var(--red-alert)';
+        isRunning = false;
+      }
+    }, step.delay);
+  });
+}
+
+function resetPipeline() {
+  steps.forEach(step => {
+    document.getElementById(step.id).classList.remove('active');
+    document.getElementById(step.out).textContent = '—';
+  });
+  document.getElementById('out1').textContent = 'Awaiting trigger...';
+  
+  const patrol = document.getElementById('patrolUnit');
+  if (patrol) {
+    patrol.setAttribute('transform', 'translate(100, 190)');
+  }
+  
+  pipeStatus.textContent = 'READY FOR SIMULATION';
+  pipeStatus.style.color = 'var(--disc-teal)';
+  isRunning = false;
+}
+
+runPipelineBtn.addEventListener('click', executePipeline);
+resetPipelineBtn.addEventListener('click', resetPipeline);
+document.getElementById('heroRunSim').addEventListener('click', () => {
+  document.getElementById('pipeline').scrollIntoView({ behavior: 'smooth' });
+  executePipeline();
+});
+document.getElementById('navDispatchBtn').addEventListener('click', () => {
+  document.getElementById('pipeline').scrollIntoView({ behavior: 'smooth' });
+  executePipeline();
+});
+</script>
+
+</body>
+</html>
