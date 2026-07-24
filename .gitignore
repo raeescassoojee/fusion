@@ -34,3 +34,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# python
+venv/
+__pycache__/
+*.pyc
+
+# claims raw data
+services/claims/data/raw/

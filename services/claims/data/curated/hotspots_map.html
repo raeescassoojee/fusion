@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_e19e738d4d77cea7a22a20dca1db66ae {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_e19e738d4d77cea7a22a20dca1db66ae" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_e19e738d4d77cea7a22a20dca1db66ae = L.map(
+                "map_e19e738d4d77cea7a22a20dca1db66ae",
+                {
+                    center: [-29.93538797142857, 23.336217957142857],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 6,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_e374c579f0df8e08b861cb26946b3647 = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_e374c579f0df8e08b861cb26946b3647.addTo(map_e19e738d4d77cea7a22a20dca1db66ae);
+        
+    
+            var circle_marker_956df5c334ee532302f28dd7ed61d2c6 = L.circleMarker(
+                [-33.9680556, 18.4877778],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 16.6, "stroke": true, "weight": 3}
+            ).addTo(map_e19e738d4d77cea7a22a20dca1db66ae);
+        
+    
+        var popup_00b761957bbe580e8605f8debcb464d1 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_f0faa30e1eb3842db0071158c31e5f69 = $(`<div id="html_f0faa30e1eb3842db0071158c31e5f69" style="width: 100.0%; height: 100.0%;"><b>RONDEBOSCH</b> (Cape Town)<br>Risk score: <b>84.8</b><br>Incidents: 102<br>Total cost: R5,118,796<br><hr style='margin:4px 0'>Frequency: 0.949<br>Severity: 0.653<br>Recency: 0.897<br>Peak-time: 0.913</div>`)[0];
+                popup_00b761957bbe580e8605f8debcb464d1.setContent(html_f0faa30e1eb3842db0071158c31e5f69);
+            
+        
+
+        circle_marker_956df5c334ee532302f28dd7ed61d2c6.bindPopup(popup_00b761957bbe580e8605f8debcb464d1)
+        ;
+
+        
+    
+    
+            circle_marker_956df5c334ee532302f28dd7ed61d2c6.bindTooltip(
+                `<div>
+                     RONDEBOSCH: 84.8
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1a7152ba004641b4d99c39655fff69f7 = L.circleMarker(
+                [-34.0822195, 18.8489342],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 16.5875, "stroke": true, "weight": 3}
+            ).addTo(map_e19e738d4d77cea7a22a20dca1db66ae);
+        
+    
+        var popup_4c7a29dc617b5b137da514646f4b4789 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_a75dec4da4eedb975b9255bd76c921dc = $(`<div id="html_a75dec4da4eedb975b9255bd76c921dc" style="width: 100.0%; height: 100.0%;"><b>SOMERSET WEST</b> (Cape Town)<br>Risk score: <b>84.7</b><br>Incidents: 107<br>Total cost: R6,032,135<br><hr style='margin:4px 0'>Frequency: 1.0<br>Severity: 0.733<br>Recency: 0.844<br>Peak-time: 0.51</div>`)[0];
+                popup_4c7a29dc617b5b137da514646f4b4789.setContent(html_a75dec4da4eedb975b9255bd76c921dc);
+            
+        
+
+        circle_marker_1a7152ba004641b4d99c39655fff69f7.bindPopup(popup_4c7a29dc617b5b137da514646f4b4789)
+        ;
+
+        
+    
+    
+            circle_marker_1a7152ba004641b4d99c39655fff69f7.bindTooltip(
+                `<div>
+                     SOMERSET WEST: 84.7
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d35821629c47134c70c1b4a6e7e10578 = L.circleMarker(
+                [-26.0513889, 28.0280556],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 16.5, "stroke": true, "weight": 3}
+            ).addTo(map_e19e738d4d77cea7a22a20dca1db66ae);
+        
+    
+        var popup_97b821ccfa72b4910385d7f80b4ecd81 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_a922012a216fb1ead992fc20b1fd053e = $(`<div id="html_a922012a216fb1ead992fc20b1fd053e" style="width: 100.0%; height: 100.0%;"><b>BRYANSTON</b> (Gauteng)<br>Risk score: <b>84.0</b><br>Incidents: 89<br>Total cost: R9,454,547<br><hr style='margin:4px 0'>Frequency: 0.802<br>Severity: 0.952<br>Recency: 0.963<br>Peak-time: 0.49</div>`)[0];
+                popup_97b821ccfa72b4910385d7f80b4ecd81.setContent(html_a922012a216fb1ead992fc20b1fd053e);
+            
+        
+
+        circle_marker_d35821629c47134c70c1b4a6e7e10578.bindPopup(popup_97b821ccfa72b4910385d7f80b4ecd81)
+        ;
+
+        
+    
+    
+            circle_marker_d35821629c47134c70c1b4a6e7e10578.bindTooltip(
+                `<div>
+                     BRYANSTON: 84.0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e2a1787048fdd294f76feab3d9f90cf8 = L.circleMarker(
+                [-33.9742832, 18.4572951],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15.2875, "stroke": true, "weight": 3}
+            ).addTo(map_e19e738d4d77cea7a22a20dca1db66ae);
+        
+    
+        var popup_c4b154670a9f85a588b75554f03536ce = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_a2e2b6de4562c5c061a4048d7f6c1cdd = $(`<div id="html_a2e2b6de4562c5c061a4048d7f6c1cdd" style="width: 100.0%; height: 100.0%;"><b>NEWLANDS</b> (Cape Town)<br>Risk score: <b>74.3</b><br>Incidents: 76<br>Total cost: R7,243,880<br><hr style='margin:4px 0'>Frequency: 0.633<br>Severity: 0.822<br>Recency: 0.743<br>Peak-time: 1.0</div>`)[0];
+                popup_c4b154670a9f85a588b75554f03536ce.setContent(html_a2e2b6de4562c5c061a4048d7f6c1cdd);
+            
+        
+
+        circle_marker_e2a1787048fdd294f76feab3d9f90cf8.bindPopup(popup_c4b154670a9f85a588b75554f03536ce)
+        ;
+
+        
+    
+    
+            circle_marker_e2a1787048fdd294f76feab3d9f90cf8.bindTooltip(
+                `<div>
+                     NEWLANDS: 74.3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8617a58bc871453f28c88f5867eff153 = L.circleMarker(
+                [-33.9172222, 18.3922222],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.1125, "stroke": true, "weight": 3}
+            ).addTo(map_e19e738d4d77cea7a22a20dca1db66ae);
+        
+    
+        var popup_9bc210f1739a76d8458b2a18ac0f3b31 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_74796e2efd54827183408c74f7e2959c = $(`<div id="html_74796e2efd54827183408c74f7e2959c" style="width: 100.0%; height: 100.0%;"><b>SEA POINT</b> (Cape Town)<br>Risk score: <b>64.9</b><br>Incidents: 78<br>Total cost: R4,340,394<br><hr style='margin:4px 0'>Frequency: 0.66<br>Severity: 0.572<br>Recency: 0.897<br>Peak-time: 0.453</div>`)[0];
+                popup_9bc210f1739a76d8458b2a18ac0f3b31.setContent(html_74796e2efd54827183408c74f7e2959c);
+            
+        
+
+        circle_marker_8617a58bc871453f28c88f5867eff153.bindPopup(popup_9bc210f1739a76d8458b2a18ac0f3b31)
+        ;
+
+        
+    
+    
+            circle_marker_8617a58bc871453f28c88f5867eff153.bindTooltip(
+                `<div>
+                     SEA POINT: 64.9
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2d4274d897d7681ca970b24711beb42b = L.circleMarker(
+                [-33.9252902, 18.4185215],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 13.6375, "stroke": true, "weight": 3}
+            ).addTo(map_e19e738d4d77cea7a22a20dca1db66ae);
+        
+    
+        var popup_2e0f8ea0649a2ca02844190b9440e183 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_1bf2797bfbd5ca98de58c2c6c569f83e = $(`<div id="html_1bf2797bfbd5ca98de58c2c6c569f83e" style="width: 100.0%; height: 100.0%;"><b>CAPE TOWN CITY CENTRE</b> (Cape Town)<br>Risk score: <b>61.1</b><br>Incidents: 93<br>Total cost: R1,343,333<br><hr style='margin:4px 0'>Frequency: 0.849<br>Severity: 0.0<br>Recency: 1.0<br>Peak-time: 0.793</div>`)[0];
+                popup_2e0f8ea0649a2ca02844190b9440e183.setContent(html_1bf2797bfbd5ca98de58c2c6c569f83e);
+            
+        
+
+        circle_marker_2d4274d897d7681ca970b24711beb42b.bindPopup(popup_2e0f8ea0649a2ca02844190b9440e183)
+        ;
+
+        
+    
+    
+            circle_marker_2d4274d897d7681ca970b24711beb42b.bindTooltip(
+                `<div>
+                     CAPE TOWN CITY CENTRE: 61.1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_89dbb9ffdd12c807f625552d47b911e6 = L.circleMarker(
+                [-25.7944444, 28.3],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 13.25, "stroke": true, "weight": 3}
+            ).addTo(map_e19e738d4d77cea7a22a20dca1db66ae);
+        
+    
+        var popup_88854e025aed1ce4e432e174377e913e = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_7aa559146aa7a72f910104e316c6a5ba = $(`<div id="html_7aa559146aa7a72f910104e316c6a5ba" style="width: 100.0%; height: 100.0%;"><b>GARSFONTEIN</b> (Gauteng)<br>Risk score: <b>58.0</b><br>Incidents: 57<br>Total cost: R10,436,499<br><hr style='margin:4px 0'>Frequency: 0.325<br>Severity: 1.0<br>Recency: 0.678<br>Peak-time: 0.324</div>`)[0];
+                popup_88854e025aed1ce4e432e174377e913e.setContent(html_7aa559146aa7a72f910104e316c6a5ba);
+            
+        
+
+        circle_marker_89dbb9ffdd12c807f625552d47b911e6.bindPopup(popup_88854e025aed1ce4e432e174377e913e)
+        ;
+
+        
+    
+    
+            circle_marker_89dbb9ffdd12c807f625552d47b911e6.bindTooltip(
+                `<div>
+                     GARSFONTEIN: 58.0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_621b84ca08e02f001938cf11833ce317 = L.circleMarker(
+                [-33.9847222, 18.4625],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.925, "stroke": true, "weight": 3}
+            ).addTo(map_e19e738d4d77cea7a22a20dca1db66ae);
+        
+    
+        var popup_a13802f57c67f5869ccee861c9751b32 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_0db6c73c5e1139e99ffc6edfbf62ede1 = $(`<div id="html_0db6c73c5e1139e99ffc6edfbf62ede1" style="width: 100.0%; height: 100.0%;"><b>CLAREMONT</b> (Cape Town)<br>Risk score: <b>55.4</b><br>Incidents: 82<br>Total cost: R2,140,231<br><hr style='margin:4px 0'>Frequency: 0.714<br>Severity: 0.227<br>Recency: 0.705<br>Peak-time: 0.585</div>`)[0];
+                popup_a13802f57c67f5869ccee861c9751b32.setContent(html_0db6c73c5e1139e99ffc6edfbf62ede1);
+            
+        
+
+        circle_marker_621b84ca08e02f001938cf11833ce317.bindPopup(popup_a13802f57c67f5869ccee861c9751b32)
+        ;
+
+        
+    
+    
+            circle_marker_621b84ca08e02f001938cf11833ce317.bindTooltip(
+                `<div>
+                     CLAREMONT: 55.4
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0b4d61a1b2d41bb0a252536ea2e8732b = L.circleMarker(
+                [-26.004472, 28.0042447],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.5875, "stroke": true, "weight": 3}
+            ).addTo(map_e19e738d4d77cea7a22a20dca1db66ae);
+        
+    
+        var popup_249073bf07532f351ff01edb42165474 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_b3b28037860886ee88260caa746b6934 = $(`<div id="html_b3b28037860886ee88260caa746b6934" style="width: 100.0%; height: 100.0%;"><b>FOURWAYS</b> (Gauteng)<br>Risk score: <b>52.7</b><br>Incidents: 56<br>Total cost: R4,261,937<br><hr style='margin:4px 0'>Frequency: 0.306<br>Severity: 0.563<br>Recency: 0.915<br>Peak-time: 0.831</div>`)[0];
+                popup_249073bf07532f351ff01edb42165474.setContent(html_b3b28037860886ee88260caa746b6934);
+            
+        
+
+        circle_marker_0b4d61a1b2d41bb0a252536ea2e8732b.bindPopup(popup_249073bf07532f351ff01edb42165474)
+        ;
+
+        
+    
+    
+            circle_marker_0b4d61a1b2d41bb0a252536ea2e8732b.bindTooltip(
+                `<div>
+                     FOURWAYS: 52.7
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_10019013fd2cac9cb64a2738e55e7d30 = L.circleMarker(
+                [-26.1763889, 28.1425],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.55, "stroke": true, "weight": 3}
+            ).addTo(map_e19e738d4d77cea7a22a20dca1db66ae);
+        
+    
+        var popup_43d8bd12230cb7a8d0a1eeb071b7f234 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_cfb47627eed4e48f3f247551a147cf7c = $(`<div id="html_cfb47627eed4e48f3f247551a147cf7c" style="width: 100.0%; height: 100.0%;"><b>BEDFORDVIEW</b> (Gauteng)<br>Risk score: <b>52.4</b><br>Incidents: 50<br>Total cost: R6,873,700<br><hr style='margin:4px 0'>Frequency: 0.185<br>Severity: 0.796<br>Recency: 0.921<br>Peak-time: 0.633</div>`)[0];
+                popup_43d8bd12230cb7a8d0a1eeb071b7f234.setContent(html_cfb47627eed4e48f3f247551a147cf7c);
+            
+        
+
+        circle_marker_10019013fd2cac9cb64a2738e55e7d30.bindPopup(popup_43d8bd12230cb7a8d0a1eeb071b7f234)
+        ;
+
+        
+    
+    
+            circle_marker_10019013fd2cac9cb64a2738e55e7d30.bindTooltip(
+                `<div>
+                     BEDFORDVIEW: 52.4
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9359e0ee31a193fd7aa84b0004ec6b36 = L.circleMarker(
+                [-25.7872222, 28.2388889],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.3125, "stroke": true, "weight": 3}
+            ).addTo(map_e19e738d4d77cea7a22a20dca1db66ae);
+        
+    
+        var popup_bed17ac6f4bc76ebf226c363ac69e85b = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_b3b635ca95af7d41ccf8e404dbf327ff = $(`<div id="html_b3b635ca95af7d41ccf8e404dbf327ff" style="width: 100.0%; height: 100.0%;"><b>WATERKLOOF RIDGE</b> (Gauteng)<br>Risk score: <b>50.5</b><br>Incidents: 56<br>Total cost: R8,466,709<br><hr style='margin:4px 0'>Frequency: 0.306<br>Severity: 0.898<br>Recency: 0.652<br>Peak-time: 0.0</div>`)[0];
+                popup_bed17ac6f4bc76ebf226c363ac69e85b.setContent(html_b3b635ca95af7d41ccf8e404dbf327ff);
+            
+        
+
+        circle_marker_9359e0ee31a193fd7aa84b0004ec6b36.bindPopup(popup_bed17ac6f4bc76ebf226c363ac69e85b)
+        ;
+
+        
+    
+    
+            circle_marker_9359e0ee31a193fd7aa84b0004ec6b36.bindTooltip(
+                `<div>
+                     WATERKLOOF RIDGE: 50.5
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9c6e4f2d6e84aa9eaed5bc9ad32c66c7 = L.circleMarker(
+                [-25.7697222, 28.2555556],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 11.675, "stroke": true, "weight": 3}
+            ).addTo(map_e19e738d4d77cea7a22a20dca1db66ae);
+        
+    
+        var popup_e7e0cdaa424a0b763dedc1b438e91214 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_78ed522fb4e1be3570689fc432c2a715 = $(`<div id="html_78ed522fb4e1be3570689fc432c2a715" style="width: 100.0%; height: 100.0%;"><b>MENLO PARK</b> (Gauteng)<br>Risk score: <b>45.4</b><br>Incidents: 42<br>Total cost: R8,976,320<br><hr style='margin:4px 0'>Frequency: 0.0<br>Severity: 0.926<br>Recency: 0.844<br>Peak-time: 0.49</div>`)[0];
+                popup_e7e0cdaa424a0b763dedc1b438e91214.setContent(html_78ed522fb4e1be3570689fc432c2a715);
+            
+        
+
+        circle_marker_9c6e4f2d6e84aa9eaed5bc9ad32c66c7.bindPopup(popup_e7e0cdaa424a0b763dedc1b438e91214)
+        ;
+
+        
+    
+    
+            circle_marker_9c6e4f2d6e84aa9eaed5bc9ad32c66c7.bindTooltip(
+                `<div>
+                     MENLO PARK: 45.4
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_044b20edfba5ef011fc299228bedefd8 = L.circleMarker(
+                [-33.8236111, 18.4902778],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 11.1, "stroke": true, "weight": 3}
+            ).addTo(map_e19e738d4d77cea7a22a20dca1db66ae);
+        
+    
+        var popup_c7adb96cd46648c8c7d09655aab4a391 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_54a5071ca19c28ab0a7d7df105b8993c = $(`<div id="html_54a5071ca19c28ab0a7d7df105b8993c" style="width: 100.0%; height: 100.0%;"><b>TABLE VIEW</b> (Cape Town)<br>Risk score: <b>40.8</b><br>Incidents: 57<br>Total cost: R1,941,403<br><hr style='margin:4px 0'>Frequency: 0.325<br>Severity: 0.18<br>Recency: 0.754<br>Peak-time: 0.952</div>`)[0];
+                popup_c7adb96cd46648c8c7d09655aab4a391.setContent(html_54a5071ca19c28ab0a7d7df105b8993c);
+            
+        
+
+        circle_marker_044b20edfba5ef011fc299228bedefd8.bindPopup(popup_c7adb96cd46648c8c7d09655aab4a391)
+        ;
+
+        
+    
+    
+            circle_marker_044b20edfba5ef011fc299228bedefd8.bindTooltip(
+                `<div>
+                     TABLE VIEW: 40.8
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_53339e980a15035caeb0a64dc403c016 = L.circleMarker(
+                [-25.836389, 28.180278],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9.5125, "stroke": true, "weight": 3}
+            ).addTo(map_e19e738d4d77cea7a22a20dca1db66ae);
+        
+    
+        var popup_a3db95477f871298cf889c9c42e58615 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_68d4c664d771a75d4c3f84c2e513f3df = $(`<div id="html_68d4c664d771a75d4c3f84c2e513f3df" style="width: 100.0%; height: 100.0%;"><b>CENTURION CENTRAL</b> (Gauteng)<br>Risk score: <b>28.1</b><br>Incidents: 50<br>Total cost: R3,190,783<br><hr style='margin:4px 0'>Frequency: 0.185<br>Severity: 0.422<br>Recency: 0.0<br>Peak-time: 0.709</div>`)[0];
+                popup_a3db95477f871298cf889c9c42e58615.setContent(html_68d4c664d771a75d4c3f84c2e513f3df);
+            
+        
+
+        circle_marker_53339e980a15035caeb0a64dc403c016.bindPopup(popup_a3db95477f871298cf889c9c42e58615)
+        ;
+
+        
+    
+    
+            circle_marker_53339e980a15035caeb0a64dc403c016.bindTooltip(
+                `<div>
+                     CENTURION CENTRAL: 28.1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+</script>
+</html>
