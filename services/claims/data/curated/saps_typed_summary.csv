@@ -1,0 +1,15 @@
+suburb,station,peril,matched_total,typed_score,claims_risk,blended_v2,corroborated
+Sea Point,CAPE TOWN CENTRAL,Vehicle Theft,3867,100.0,64.9,73.7,True
+Cape Town City Centre,CAPE TOWN CENTRAL,Vehicle Theft,3867,100.0,61.1,70.8,True
+Somerset West,SOMERSET WEST,Home Invasion,946,10.5,84.7,66.2,False
+Bryanston,SANDTON,Home Invasion,1003,12.2,84.0,66.0,True
+Rondebosch,CLAREMONT,Home Invasion,668,2.0,84.8,64.1,False
+Newlands,CLAREMONT,Home Invasion,668,2.0,74.3,56.2,False
+Garsfontein,BROOKLYN,Vehicle Theft,1602,30.6,58.0,51.1,True
+Fourways,DOUGLASDALE,Vehicle Theft,984,11.6,52.7,42.4,True
+Claremont,CLAREMONT,Home Invasion,668,2.0,55.4,42.0,False
+Menlo Park,BROOKLYN,Vehicle Theft,1602,30.6,45.4,41.7,True
+Waterkloof Ridge,BROOKLYN,Home Invasion,922,9.7,50.5,40.3,False
+Bedfordview,GERMISTON,Home Invasion,604,0.0,52.4,39.3,False
+Table View,TABLE VIEW,Home Invasion,966,11.1,40.8,33.4,False
+Centurion Central,LYTTELTON,Vehicle Theft,1566,29.5,28.1,28.5,True

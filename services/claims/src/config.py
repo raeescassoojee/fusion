@@ -69,3 +69,13 @@ SUBURB_TO_STATION = {
 SAPS_BLEND_WEIGHT = 0.30
 
 PARTNER_DIR = CLAIMS_DIR / "data" / "partner"
+
+# --- Type-matched SAPS: Discovery peril -> matching SAPS crime categories ---
+PERIL_TO_SAPS_CATEGORIES = {
+    "Home Invasion": ["Burglary at residential premises",
+                      "Robbery at residential premises"],
+    "Vehicle Theft": ["Theft of motor vehicle and motorcycle",
+                      "Carjacking",
+                      "Theft out of or from motor vehicle"],
+}
+SAPS_TYPE_BLEND_WEIGHT = 0.25   # weight of type-matched SAPS in the new blend
