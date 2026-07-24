@@ -1,0 +1,79 @@
+{
+  "$defs": {
+    "MatchDecision": {
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "title": "Value",
+          "type": "boolean"
+        },
+        "score": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Score",
+          "type": "number"
+        },
+        "evidence_strength": {
+          "enum": [
+            "NONE",
+            "LOW",
+            "MEDIUM",
+            "HIGH"
+          ],
+          "title": "Evidence Strength",
+          "type": "string"
+        },
+        "reasons": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Reasons",
+          "type": "array"
+        }
+      },
+      "required": [
+        "value",
+        "score",
+        "evidence_strength"
+      ],
+      "title": "MatchDecision",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "event_a": {
+      "title": "Event A",
+      "type": "string"
+    },
+    "event_b": {
+      "title": "Event B",
+      "type": "string"
+    },
+    "possible_same_vehicle": {
+      "$ref": "#/$defs/MatchDecision"
+    },
+    "possible_same_face": {
+      "$ref": "#/$defs/MatchDecision"
+    },
+    "possible_same_appearance": {
+      "$ref": "#/$defs/MatchDecision"
+    },
+    "warnings": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Warnings",
+      "type": "array"
+    }
+  },
+  "required": [
+    "event_a",
+    "event_b",
+    "possible_same_vehicle",
+    "possible_same_face",
+    "possible_same_appearance"
+  ],
+  "title": "ComparisonResult",
+  "type": "object"
+}

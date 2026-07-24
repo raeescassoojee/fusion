@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=70", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sentinel-camera-ai"
+version = "0.1.0"
+description = "Local-first camera intelligence and repeat-match pipeline for Discovery Sentinel Mesh"
+readme = "README.md"
+requires-python = ">=3.11,<3.14"
+license = {text = "Proprietary project code; third-party models retain their own licences"}
+dependencies = [
+  "numpy>=2.0,<2.3",
+  "opencv-contrib-python-headless==4.12.0.88",
+  "pillow>=11,<13",
+  "pydantic>=2.10,<3",
+  "PyYAML>=6,<7",
+  "pytesseract>=0.3.13,<0.4",
+  "rapidfuzz>=3.10,<4",
+]
+
+[project.optional-dependencies]
+aws = ["boto3>=1.40,<2"]
+yolo = ["ultralytics>=8.3,<9"]
+dev = ["pytest>=8.3,<9", "pytest-cov>=6,<8"]
+
+[project.scripts]
+sentinel-camera-ai = "sentinel_camera_ai.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+

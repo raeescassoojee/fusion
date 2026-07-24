@@ -1,0 +1,93 @@
+{
+  "schema_version": "1.0",
+  "event_id": "EVT-4ADFB703C2",
+  "camera_id": "CAM01",
+  "timestamp": "2026-07-24T21:07:03.333333+02:00",
+  "mode": "HEIGHTENED",
+  "location": {
+    "latitude": -25.797,
+    "longitude": 28.301
+  },
+  "source_media": "/workspace/scratch/c9b13cc63ef4/sentinel-camera-ai/media/camera_1_clip.mp4",
+  "media_url": "evidence/EVT-4ADFB703C2/best_frame.jpg",
+  "frame_index": 50,
+  "motion_score": 0.1308,
+  "face": {
+    "present": false,
+    "count": 0,
+    "boxes": [],
+    "crop_paths": [],
+    "embedding_ref": null,
+    "detection_confidence": null
+  },
+  "plate": {
+    "text": "AB12CDGP",
+    "display_text": "AB12CD GP",
+    "box": {
+      "x": 639,
+      "y": 363,
+      "width": 207,
+      "height": 55
+    },
+    "crop_url": "evidence/EVT-4ADFB703C2/plate.jpg",
+    "detection_confidence": 0.82,
+    "ocr_confidence": 0.91
+  },
+  "vehicle": {
+    "colour": "Blue",
+    "type": "Car",
+    "make_model": null,
+    "direction": "right",
+    "box": {
+      "x": 504,
+      "y": 234,
+      "width": 412,
+      "height": 210
+    },
+    "detection_confidence": 0.68
+  },
+  "appearance": {
+    "upper_colour": "Unknown",
+    "lower_colour": "Unknown",
+    "cap": null,
+    "backpack": null,
+    "person_box": null,
+    "confidence": null
+  },
+  "camera_trust_score": 79,
+  "quality_metrics": {
+    "sharpness": 67,
+    "lighting": 100,
+    "detection": 70,
+    "unobstructed": 100,
+    "resolution": 63
+  },
+  "trust_reasons": [
+    "moderate motion blur",
+    "good lighting",
+    "moderate detections"
+  ],
+  "model_versions": {
+    "objects": "OpenCV colour/contour heuristic fallback",
+    "face": "OpenCV YuNet (face_detection_yunet_2023mar.onnx)",
+    "face_embedding": "OpenCV SFace",
+    "plate_detection": "OpenCV LPD-YuNet (license_plate_detection_lpd_yunet_2023mar.onnx) + contour",
+    "plate_ocr": "Tesseract 5"
+  },
+  "metadata": {
+    "annotated_media_url": "evidence/EVT-4ADFB703C2/annotated_frame.jpg",
+    "observation_count": 34,
+    "plate_raw_text": "AB12CDGP",
+    "ocr_backend": "Tesseract 5",
+    "vehicle_colour_confidence": 0.648,
+    "quality_raw": {
+      "laplacian_variance": 486.86,
+      "mean_brightness": 134.92
+    },
+    "model_notes": [
+      "heuristic object detector used",
+      "contour plate detector used"
+    ],
+    "possible_plate_in_vehicle": true
+  }
+}
