@@ -137,7 +137,7 @@
 
 <main>
   <div class="head">
-    <span>Seq</span><span>Time</span><span>Action</span>
+    <span>Seq</span><span>Time (SAST)</span><span>Action</span>
     <span>Backend</span><span>Target · result</span><span>Latency</span>
   </div>
   <div id="tape">
@@ -157,6 +157,16 @@
   const counts = {api:0, dynamodb:0, s3:0, sqlite:0, total:0};
   let lastSeq = 0, paused = false, inflight = false;
 
+  // Timestamps are stored as UTC instants; show them in South African time.
+  const SAST = new Intl.DateTimeFormat('en-ZA', {
+    timeZone: 'Africa/Johannesburg',
+    hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
+  });
+  const localTime = (iso) => {
+    const d = new Date(iso);
+    return isNaN(d) ? String(iso || '').slice(11, 19) : SAST.format(d);
+  };
+
   const el = (cls, text) => {
     const d = document.createElement('div');
     d.className = cls;
@@ -172,7 +182,7 @@
     row.className = 'row' + (isAws ? ' aws' : '');
 
     row.appendChild(el('seq', String(e.seq)));
-    row.appendChild(el('time', String(e.at || '').slice(11,19)));
+    row.appendChild(el('time', localTime(e.at)));
     row.appendChild(el('action', String(e.action || '')));
     row.appendChild(el('backend ' + backend, backend));
     row.appendChild(el('target', backend === 'api'
