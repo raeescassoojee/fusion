@@ -1,0 +1,188 @@
+{
+  "groups": [
+    {
+      "id": "rondebosch",
+      "name": "Rondebosch Community",
+      "metro": "Cape Town",
+      "visibility": "public"
+    },
+    {
+      "id": "somerset-west",
+      "name": "Somerset West Community",
+      "metro": "Cape Town",
+      "visibility": "public"
+    },
+    {
+      "id": "bryanston",
+      "name": "Bryanston Community",
+      "metro": "Gauteng",
+      "visibility": "public"
+    },
+    {
+      "id": "newlands",
+      "name": "Newlands Community",
+      "metro": "Cape Town",
+      "visibility": "public"
+    },
+    {
+      "id": "sea-point",
+      "name": "Sea Point Community",
+      "metro": "Cape Town",
+      "visibility": "public"
+    },
+    {
+      "id": "cape-town-city-centre",
+      "name": "Cape Town City Centre Community",
+      "metro": "Cape Town",
+      "visibility": "public"
+    },
+    {
+      "id": "garsfontein",
+      "name": "Garsfontein Community",
+      "metro": "Gauteng",
+      "visibility": "public"
+    },
+    {
+      "id": "claremont",
+      "name": "Claremont Community",
+      "metro": "Cape Town",
+      "visibility": "public"
+    },
+    {
+      "id": "fourways",
+      "name": "Fourways Community",
+      "metro": "Gauteng",
+      "visibility": "public"
+    },
+    {
+      "id": "bedfordview",
+      "name": "Bedfordview Community",
+      "metro": "Gauteng",
+      "visibility": "public"
+    },
+    {
+      "id": "waterkloof-ridge",
+      "name": "Waterkloof Ridge Community",
+      "metro": "Gauteng",
+      "visibility": "public"
+    },
+    {
+      "id": "menlo-park",
+      "name": "Menlo Park Community",
+      "metro": "Gauteng",
+      "visibility": "public"
+    },
+    {
+      "id": "table-view",
+      "name": "Table View Community",
+      "metro": "Cape Town",
+      "visibility": "public"
+    },
+    {
+      "id": "centurion-central",
+      "name": "Centurion Central Community",
+      "metro": "Gauteng",
+      "visibility": "public"
+    }
+  ],
+  "messages": [
+    {
+      "id": "81aed9c8-8e6e-48bb-83fc-e82ab73c4cc1",
+      "groupId": "rondebosch",
+      "kind": "chat",
+      "authorId": "4df62d5c-1cfd-4dc8-b679-6804f9bc8821",
+      "author": "You",
+      "role": "Resident",
+      "text": "Hi",
+      "ts": 1784993470621
+    },
+    {
+      "id": "6e375b78-e08f-4bfd-88a0-c3d9b7677379",
+      "groupId": "rondebosch",
+      "kind": "chat",
+      "authorId": "4df62d5c-1cfd-4dc8-b679-6804f9bc8821",
+      "author": "You",
+      "role": "Resident",
+      "text": "Is this working",
+      "ts": 1784993476075
+    },
+    {
+      "id": "e4f56e9c-40fb-4d15-b55d-bdcff4a59897",
+      "groupId": "rondebosch",
+      "kind": "chat",
+      "authorId": "c196df6d-64ce-4f12-be68-90d7756edac6",
+      "author": "You",
+      "role": "Resident",
+      "text": "wagwan",
+      "ts": 1784993532892
+    },
+    {
+      "id": "036a7bc5-8333-4f95-b1c7-c374ab107aa0",
+      "groupId": "rondebosch",
+      "kind": "chat",
+      "authorId": "c196df6d-64ce-4f12-be68-90d7756edac6",
+      "author": "You",
+      "role": "Resident",
+      "text": "this is infact working",
+      "ts": 1784993551442
+    },
+    {
+      "id": "f6d47397-22c0-45fb-81cb-693fbb6dc98c",
+      "groupId": "rondebosch",
+      "kind": "chat",
+      "authorId": "4df62d5c-1cfd-4dc8-b679-6804f9bc8821",
+      "author": "You",
+      "role": "Resident",
+      "text": "yes it is",
+      "ts": 1784993554903
+    },
+    {
+      "id": "c8ea193b-4b37-44a5-93cd-85ee8079d3ad",
+      "groupId": "rondebosch",
+      "kind": "chat",
+      "authorId": "4df62d5c-1cfd-4dc8-b679-6804f9bc8821",
+      "author": "You",
+      "role": "Resident",
+      "text": "hellloooo",
+      "ts": 1784993580517
+    },
+    {
+      "id": "236ce3db-aa49-4dda-ba43-b5da526f4c80",
+      "groupId": "rondebosch",
+      "kind": "chat",
+      "authorId": "c196df6d-64ce-4f12-be68-90d7756edac6",
+      "author": "You",
+      "role": "Resident",
+      "text": "response",
+      "ts": 1784993585204
+    },
+    {
+      "id": "117cf2b0-cca0-4fec-944e-3f9e3cd08d36",
+      "groupId": "rondebosch",
+      "kind": "chat",
+      "authorId": "4df62d5c-1cfd-4dc8-b679-6804f9bc8821",
+      "author": "You",
+      "role": "Resident",
+      "text": "hellosss",
+      "ts": 1784993625016
+    },
+    {
+      "id": "ab5e2b37-4b50-48c2-bf4c-f478e8c35ab4",
+      "groupId": "rondebosch",
+      "kind": "chat",
+      "authorId": "c196df6d-64ce-4f12-be68-90d7756edac6",
+      "author": "You",
+      "role": "Resident",
+      "text": "wagwan",
+      "ts": 1784993629634
+    }
+  ],
+  "memberships": {
+    "4df62d5c-1cfd-4dc8-b679-6804f9bc8821": [
+      "rondebosch"
+    ],
+    "c196df6d-64ce-4f12-be68-90d7756edac6": [
+      "rondebosch"
+    ]
+  }
+}

@@ -1,0 +1,2164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>Sentinel | Community Safety</title>
+
+  <style>
+    :root {
+      --blue: #0033a0;
+      --blue2: #0a2a72;
+      --cyan: #0090c8;
+      --ink: #101828;
+      --sub: #667085;
+      --edge: #e4e7ee;
+      --edge2: #eef1f6;
+      --panel: #ffffff;
+      --wash: #f7f8fa;
+      --thread: #f0f2f6;
+      --mine: #0033a0;
+      --amber: #c9761a;
+      --amberBg: #fbf3e6;
+      --sec: #0b6b46;
+      --staff: #5a2ea6;
+      --danger: #c0392b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 0;
+      color: var(--ink);
+      background: #dfe3ea;
+      font-family: Inter, "Segoe UI", system-ui, sans-serif;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button:disabled,
+    input:disabled,
+    select:disabled {
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
+    .app {
+      display: flex;
+      width: 100%;
+      max-width: 1040px;
+      height: 100vh;
+      max-height: 100vh;
+      overflow: hidden;
+      background: var(--panel);
+      border-left: 1px solid var(--edge);
+      border-right: 1px solid var(--edge);
+    }
+
+    /* Left rail */
+
+    .rail {
+      width: 340px;
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      background: var(--panel);
+      border-right: 1px solid var(--edge);
+    }
+
+    .me {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--edge);
+    }
+
+    .me .av {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      color: #ffffff;
+      background: var(--blue);
+      font-size: 16px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .me .txt {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .me .nm {
+      overflow: hidden;
+      font-size: 14.5px;
+      font-weight: 650;
+      letter-spacing: -0.01em;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .me .rl {
+      margin-top: 1px;
+      color: var(--sub);
+      font-size: 11.5px;
+    }
+
+    .me .edit {
+      width: 32px;
+      height: 32px;
+      color: var(--sub);
+      background: #ffffff;
+      border: 1px solid var(--edge);
+      border-radius: 7px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .me .edit:hover {
+      color: var(--ink);
+      background: var(--wash);
+    }
+
+    .find {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--edge);
+    }
+
+    .find input {
+      width: 100%;
+      padding: 8px 12px;
+      background: var(--wash);
+      border: 1px solid var(--edge);
+      border-radius: 8px;
+      font-size: 13px;
+      outline: none;
+    }
+
+    .find input:focus {
+      background: #ffffff;
+      border-color: var(--cyan);
+    }
+
+    .rooms {
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .sect {
+      padding: 14px 16px 6px;
+      color: var(--sub);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .room {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 16px;
+      border-left: 3px solid transparent;
+      cursor: pointer;
+    }
+
+    .room:hover {
+      background: var(--wash);
+    }
+
+    .room.active {
+      background: var(--edge2);
+      border-left-color: var(--blue);
+    }
+
+    .av {
+      position: relative;
+      width: 42px;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: #ffffff;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .av .lk {
+      position: absolute;
+      right: -3px;
+      bottom: -3px;
+      width: 17px;
+      height: 17px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ink);
+      background: #ffffff;
+      border: 1px solid var(--edge);
+      border-radius: 5px;
+      font-size: 9px;
+    }
+
+    .rmain {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .rtop {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .rname {
+      overflow: hidden;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .rtime {
+      flex-shrink: 0;
+      color: var(--sub);
+      font-size: 11px;
+    }
+
+    .rprev {
+      margin-top: 2px;
+      overflow: hidden;
+      color: var(--sub);
+      font-size: 12.5px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .rprev .warn {
+      color: var(--amber);
+      font-weight: 600;
+    }
+
+    .joinrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 16px;
+    }
+
+    .joinrow:hover {
+      background: var(--wash);
+    }
+
+    .joinrow .rmain {
+      flex: 1;
+    }
+
+    .jbtn {
+      padding: 5px 14px;
+      color: var(--blue);
+      background: #ffffff;
+      border: 1px solid var(--blue);
+      border-radius: 7px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .jbtn:hover {
+      color: #ffffff;
+      background: var(--blue);
+    }
+
+    .empty-rooms {
+      padding: 22px 18px;
+      color: var(--sub);
+      font-size: 13px;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    .tools {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 12px 14px;
+      border-top: 1px solid var(--edge);
+    }
+
+    .tool {
+      display: flex;
+      gap: 8px;
+    }
+
+    .tool input {
+      flex: 1;
+      min-width: 0;
+      padding: 8px 11px;
+      background: var(--wash);
+      border: 1px solid var(--edge);
+      border-radius: 8px;
+      font-size: 12.5px;
+      outline: none;
+    }
+
+    .tool input:focus {
+      background: #ffffff;
+      border-color: var(--cyan);
+    }
+
+    .tool button {
+      padding: 0 14px;
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 12.5px;
+      font-weight: 600;
+    }
+
+    .tool button.pri {
+      background: var(--blue);
+    }
+
+    .tool button.sec {
+      background: var(--cyan);
+    }
+
+    /* Thread */
+
+    .thread {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      background: var(--thread);
+    }
+
+    .thead {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 20px;
+      background: var(--panel);
+      border-bottom: 1px solid var(--edge);
+    }
+
+    .thead .av {
+      width: 38px;
+      height: 38px;
+      font-size: 14px;
+    }
+
+    .title-container {
+      min-width: 0;
+    }
+
+    .ttl {
+      overflow: hidden;
+      font-size: 14.5px;
+      font-weight: 650;
+      letter-spacing: -0.01em;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .tsub {
+      margin-top: 1px;
+      overflow: hidden;
+      color: var(--sub);
+      font-size: 11.5px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .code {
+      margin-left: 10px;
+      padding: 3px 9px;
+      color: var(--blue);
+      background: #eaf0fb;
+      border: 1px solid #d5e0f5;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 11px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .live {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .live .d {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+    }
+
+    .live.on {
+      color: var(--sec);
+    }
+
+    .live.on .d {
+      background: var(--sec);
+    }
+
+    .live.off {
+      color: var(--danger);
+    }
+
+    .live.off .d {
+      background: var(--danger);
+    }
+
+    .feed {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      padding: 16px 22px;
+      overflow-y: auto;
+    }
+
+    .ph {
+      max-width: 300px;
+      margin: auto;
+      color: var(--sub);
+      font-size: 13px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .m {
+      max-width: 70%;
+      margin-top: 3px;
+      padding: 7px 11px 6px;
+      align-self: flex-start;
+      background: #ffffff;
+      border: 1px solid var(--edge);
+      border-radius: 4px 12px 12px;
+      font-size: 14px;
+      line-height: 1.42;
+    }
+
+    .m.out {
+      align-self: flex-end;
+      color: #ffffff;
+      background: var(--mine);
+      border: none;
+      border-radius: 12px 4px 12px 12px;
+    }
+
+    .m .hd {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 2px;
+    }
+
+    .m .nm {
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .m.out .hd {
+      display: none;
+    }
+
+    .m .bd {
+      overflow-wrap: anywhere;
+      white-space: pre-wrap;
+    }
+
+    .m .tm {
+      margin-top: 2px;
+      color: var(--sub);
+      font-size: 10px;
+      text-align: right;
+    }
+
+    .m.out .tm {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .bdg {
+      padding: 1px 6px;
+      border: 1px solid;
+      border-radius: 4px;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .bdg.Resident {
+      color: #5a6b8c;
+      background: #f4f6fb;
+      border-color: #d6ddea;
+    }
+
+    .bdg.Security {
+      color: #ffffff;
+      background: var(--sec);
+      border-color: var(--sec);
+    }
+
+    .bdg.Staff {
+      color: #ffffff;
+      background: var(--staff);
+      border-color: var(--staff);
+    }
+
+    .inc {
+      display: flex;
+      align-items: flex-start;
+      align-self: stretch;
+      gap: 10px;
+      margin: 8px 0;
+      padding: 9px 12px;
+      background: var(--amberBg);
+      border: 1px solid #ecd5ac;
+      border-left: 3px solid var(--amber);
+      border-radius: 4px;
+    }
+
+    .inc .ic {
+      color: var(--amber);
+      font-size: 16px;
+      line-height: 1.2;
+    }
+
+    .inc .ib {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .inc .it {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 2px;
+      color: #8a5410;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .inc .itxt {
+      color: #5c4622;
+      font-size: 13.5px;
+      overflow-wrap: anywhere;
+      white-space: pre-wrap;
+    }
+
+    .inc .imeta {
+      margin-top: 3px;
+      color: #a67a3c;
+      font-size: 11px;
+    }
+
+    .incident-location {
+      color: #9a5a12;
+    }
+
+    /* Composer */
+
+    .comp {
+      background: var(--panel);
+      border-top: 1px solid var(--edge);
+    }
+
+    .comp.hidden {
+      display: none;
+    }
+
+    .incfields {
+      display: none;
+      gap: 8px;
+      padding: 9px 16px 0;
+    }
+
+    .incfields.show {
+      display: flex;
+    }
+
+    .incfields select,
+    .incfields input {
+      padding: 8px 10px;
+      border: 1px solid var(--edge);
+      border-radius: 8px;
+      font-size: 13px;
+      outline: none;
+    }
+
+    .incfields select {
+      flex: 0 0 170px;
+    }
+
+    .incfields input {
+      flex: 1;
+    }
+
+    .incfields select:focus,
+    .incfields input:focus {
+      border-color: var(--cyan);
+    }
+
+    .cline {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 16px;
+    }
+
+    .plus {
+      width: 38px;
+      height: 38px;
+      flex-shrink: 0;
+      color: var(--blue);
+      background: #ffffff;
+      border: 1px solid var(--edge);
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 20px;
+    }
+
+    .plus.on {
+      color: #ffffff;
+      background: var(--amber);
+      border-color: var(--amber);
+    }
+
+    .cin {
+      flex: 1;
+      min-width: 0;
+      padding: 10px 14px;
+      border: 1px solid var(--edge);
+      border-radius: 9px;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .cin:focus {
+      border-color: var(--cyan);
+    }
+
+    .snd {
+      width: 38px;
+      height: 38px;
+      flex-shrink: 0;
+      color: #ffffff;
+      background: var(--blue);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    .snd.alert {
+      background: var(--amber);
+    }
+
+    /* Toasts */
+
+    .toasts {
+      position: fixed;
+      top: 18px;
+      right: 18px;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .tst {
+      width: 300px;
+      padding: 10px 12px;
+      background: #ffffff;
+      border: 1px solid var(--edge);
+      border-left: 4px solid var(--cyan);
+      border-radius: 8px;
+      box-shadow: 0 8px 26px rgba(16, 24, 40, 0.14);
+      animation: slidein 0.22s ease-out;
+    }
+
+    .tst.err {
+      border-left-color: var(--danger);
+    }
+
+    .tst.warn {
+      border-left-color: var(--amber);
+    }
+
+    .tst .h {
+      margin-bottom: 2px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .tst.err .h {
+      color: var(--danger);
+    }
+
+    .tst.warn .h {
+      color: var(--amber);
+    }
+
+    .tst .b {
+      color: var(--sub);
+      font-size: 12.5px;
+    }
+
+    @keyframes slidein {
+      from {
+        opacity: 0;
+        transform: translateX(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .av.c0 {
+      background: #0033a0;
+    }
+
+    .av.c1 {
+      background: #0090c8;
+    }
+
+    .av.c2 {
+      background: #5a2ea6;
+    }
+
+    .av.c3 {
+      background: #0b6b46;
+    }
+
+    .av.c4 {
+      background: #b5641c;
+    }
+
+    .av.c5 {
+      background: #a52f63;
+    }
+
+    /* Tablet */
+
+    @media (max-width: 840px) {
+      .rail {
+        width: 290px;
+      }
+
+      .m {
+        max-width: 82%;
+      }
+    }
+
+    /* Mobile */
+
+    @media (max-width: 640px) {
+      body {
+        background: var(--panel);
+      }
+
+      .app {
+        max-width: none;
+        border: 0;
+      }
+
+      .rail {
+        width: 104px;
+      }
+
+      .me {
+        justify-content: center;
+        padding: 12px 7px;
+      }
+
+      .me .txt,
+      .me .edit,
+      .find,
+      .tools,
+      .rmain,
+      .sect {
+        display: none;
+      }
+
+      .room,
+      .joinrow {
+        justify-content: center;
+        padding: 10px 6px;
+        border-left-width: 2px;
+      }
+
+      .joinrow {
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      .jbtn {
+        padding: 4px 7px;
+        font-size: 10px;
+      }
+
+      .thead {
+        gap: 8px;
+        padding: 10px;
+      }
+
+      .thead .av {
+        display: none;
+      }
+
+      .title-container {
+        max-width: 150px;
+      }
+
+      .code {
+        margin-left: 0;
+        padding: 3px 6px;
+      }
+
+      .live {
+        gap: 4px;
+        font-size: 9px;
+      }
+
+      .feed {
+        padding: 12px 10px;
+      }
+
+      .m {
+        max-width: 90%;
+      }
+
+      .incfields {
+        flex-direction: column;
+      }
+
+      .incfields select {
+        width: 100%;
+        flex-basis: auto;
+      }
+
+      .cline {
+        gap: 7px;
+        padding: 9px 10px;
+      }
+
+      .toasts {
+        right: 10px;
+        left: 10px;
+      }
+
+      .tst {
+        width: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <aside class="rail">
+      <div class="me">
+        <div class="av" id="meAvatar">Y</div>
+
+        <div class="txt">
+          <div class="nm" id="meName">You</div>
+          <div class="rl" id="meRole">Resident</div>
+        </div>
+
+        <button
+          class="edit"
+          id="editMe"
+          type="button"
+          title="Edit name and role"
+          aria-label="Edit name and role"
+        >
+          &#9998;
+        </button>
+      </div>
+
+      <div class="find">
+        <input
+          id="search"
+          type="search"
+          placeholder="Search groups"
+          autocomplete="off"
+          aria-label="Search groups"
+        />
+      </div>
+
+      <div class="rooms" id="rooms"></div>
+
+      <div class="tools">
+        <div class="tool">
+          <input
+            id="joinCode"
+            placeholder="Enter share code"
+            autocomplete="off"
+            maxlength="10"
+            aria-label="Private group share code"
+          />
+
+          <button
+            class="sec"
+            id="joinCodeBtn"
+            type="button"
+          >
+            Join
+          </button>
+        </div>
+
+        <div class="tool">
+          <input
+            id="newGroup"
+            placeholder="Create private group"
+            autocomplete="off"
+            maxlength="40"
+            aria-label="New private group name"
+          />
+
+          <button
+            class="pri"
+            id="createBtn"
+            type="button"
+          >
+            Create
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <main class="thread">
+      <header
+        class="thead"
+        id="thead"
+        style="visibility: hidden"
+      >
+        <div class="av c0" id="tAvatar">#</div>
+
+        <div class="title-container">
+          <div class="ttl" id="tTitle">No group selected</div>
+          <div class="tsub" id="tSub"></div>
+        </div>
+
+        <button
+          class="code"
+          id="tCode"
+          type="button"
+          style="display: none"
+        ></button>
+
+        <div class="live off" id="live">
+          <span class="d"></span>
+          <span id="liveTxt">connecting</span>
+        </div>
+      </header>
+
+      <div
+        class="feed"
+        id="feed"
+        aria-live="polite"
+      >
+        <div class="ph">
+          Select or join a group to start chatting with your community.
+        </div>
+      </div>
+
+      <div class="comp hidden" id="comp">
+        <div class="incfields" id="incfields">
+          <select
+            id="peril"
+            aria-label="Incident type"
+          >
+            <option value="Home Invasion">Home Invasion</option>
+            <option value="Vehicle Theft">Vehicle Theft</option>
+            <option value="Suspicious Activity">
+              Suspicious Activity
+            </option>
+          </select>
+
+          <input
+            id="location"
+            placeholder="Street or landmark, optional"
+            autocomplete="off"
+            maxlength="120"
+            aria-label="Incident location"
+          />
+        </div>
+
+        <div class="cline">
+          <button
+            class="plus"
+            id="plus"
+            type="button"
+            title="Report an incident"
+            aria-label="Toggle incident reporting"
+          >
+            +
+          </button>
+
+          <input
+            class="cin"
+            id="draft"
+            placeholder="Type a message"
+            autocomplete="off"
+            maxlength="500"
+            aria-label="Message"
+          />
+
+          <button
+            class="snd"
+            id="send"
+            type="button"
+            title="Send"
+            aria-label="Send message"
+          >
+            &#10148;
+          </button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div
+    class="toasts"
+    id="toasts"
+    aria-live="assertive"
+  ></div>
+
+  <script>
+    "use strict";
+
+    const USER_ID_KEY = "sentinel.userId";
+    const USER_NAME_KEY = "sentinel.userName";
+    const USER_ROLE_KEY = "sentinel.userRole";
+
+    const ROLES = ["Resident", "Security", "Staff"];
+
+    const $ = (id) => document.getElementById(id);
+
+    let ws = null;
+    let reconnectTimer = null;
+    let reconnectAttempts = 0;
+    let manuallyClosed = false;
+
+    let groups = [];
+    let messages = [];
+    let myGroups = [];
+    let activeGroup = null;
+    let mode = "chat";
+    let search = "";
+    let codes = {};
+
+    let user = getCurrentUser();
+
+    function getCurrentUser() {
+      const storedName =
+        localStorage.getItem(USER_NAME_KEY) || "You";
+
+      const storedRole =
+        localStorage.getItem(USER_ROLE_KEY) || "Resident";
+
+      return {
+        name: storedName,
+        role: ROLES.includes(storedRole)
+          ? storedRole
+          : "Resident"
+      };
+    }
+
+    function setCurrentUser(name, role) {
+      localStorage.setItem(USER_NAME_KEY, name);
+      localStorage.setItem(USER_ROLE_KEY, role);
+    }
+
+    function getStoredUserId() {
+      let userId = localStorage.getItem(USER_ID_KEY);
+
+      if (!userId) {
+        userId = crypto.randomUUID();
+        localStorage.setItem(USER_ID_KEY, userId);
+      }
+
+      return userId;
+    }
+
+    function socketUrl() {
+      const protocol =
+        location.protocol === "https:" ? "wss:" : "ws:";
+
+      return `${protocol}//${location.host}/ws`;
+    }
+
+    function requestId() {
+      return crypto.randomUUID();
+    }
+
+    function initials(value) {
+      return String(value || "?")
+        .trim()
+        .slice(0, 1)
+        .toUpperCase();
+    }
+
+    function colorFor(id) {
+      let hash = 0;
+
+      for (const character of String(id || "")) {
+        hash =
+          (hash * 31 + character.charCodeAt(0)) >>> 0;
+      }
+
+      return `c${hash % 6}`;
+    }
+
+    function formatTime(timestamp) {
+      const date = new Date(timestamp);
+
+      if (Number.isNaN(date.getTime())) {
+        return "";
+      }
+
+      return (
+        date.getHours().toString().padStart(2, "0") +
+        ":" +
+        date.getMinutes().toString().padStart(2, "0")
+      );
+    }
+
+    function escapeHtml(value) {
+      return String(value ?? "").replace(
+        /[&<>"']/g,
+        (character) =>
+          ({
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#39;"
+          })[character]
+      );
+    }
+
+    function safeRole(role) {
+      return ROLES.includes(role) ? role : "Resident";
+    }
+
+    function isPrivate(group) {
+      return Boolean(
+        group && group.visibility === "private"
+      );
+    }
+
+    function pushToast(kind, heading, body) {
+      const element = document.createElement("div");
+      element.className = `tst ${kind || ""}`;
+
+      const headingElement = document.createElement("div");
+      headingElement.className = "h";
+      headingElement.textContent = heading;
+
+      const bodyElement = document.createElement("div");
+      bodyElement.className = "b";
+      bodyElement.textContent = body;
+
+      element.append(headingElement, bodyElement);
+      $("toasts").appendChild(element);
+
+      const displayTime = kind === "err" ? 4500 : 3500;
+
+      setTimeout(() => {
+        element.style.opacity = "0";
+        element.style.transition = "opacity 0.3s";
+
+        setTimeout(() => {
+          element.remove();
+        }, 300);
+      }, displayTime);
+    }
+
+    function socketSend(payload, showError = true) {
+      if (!ws || ws.readyState !== WebSocket.OPEN) {
+        if (showError) {
+          pushToast(
+            "err",
+            "Connection unavailable",
+            "Wait for the chat to reconnect, then try again."
+          );
+        }
+
+        return false;
+      }
+
+      ws.send(JSON.stringify(payload));
+      return true;
+    }
+
+    function hello() {
+      socketSend(
+        {
+          type: "hello",
+          userId: getStoredUserId(),
+          name: user.name,
+          role: user.role
+        },
+        false
+      );
+    }
+
+    function connectSocket() {
+      clearTimeout(reconnectTimer);
+
+      $("live").className = "live off";
+      $("liveTxt").textContent = "connecting";
+
+      try {
+        ws = new WebSocket(socketUrl());
+      } catch {
+        scheduleReconnect();
+        return;
+      }
+
+      ws.onopen = () => {
+        reconnectAttempts = 0;
+        $("live").className = "live on";
+        $("liveTxt").textContent = "live";
+        hello();
+      };
+
+      ws.onmessage = handleSocketMessage;
+
+      ws.onerror = () => {
+        $("live").className = "live off";
+        $("liveTxt").textContent = "error";
+      };
+
+      ws.onclose = () => {
+        $("live").className = "live off";
+        $("liveTxt").textContent = "offline";
+
+        if (!manuallyClosed) {
+          scheduleReconnect();
+        }
+      };
+    }
+
+    function scheduleReconnect() {
+      clearTimeout(reconnectTimer);
+
+      const delay = Math.min(
+        30000,
+        1000 * Math.pow(2, reconnectAttempts)
+      );
+
+      reconnectAttempts += 1;
+
+      $("liveTxt").textContent = "reconnecting";
+
+      reconnectTimer = setTimeout(
+        connectSocket,
+        delay
+      );
+    }
+
+    function handleSocketMessage(event) {
+      let data;
+
+      try {
+        data = JSON.parse(event.data);
+      } catch {
+        pushToast(
+          "err",
+          "Protocol error",
+          "The server sent an invalid response."
+        );
+        return;
+      }
+
+      if (!data || typeof data !== "object") {
+        return;
+      }
+
+      if (data.type === "session") {
+        localStorage.setItem(USER_ID_KEY, data.userId);
+
+        user = {
+          name: data.name || user.name,
+          role: safeRole(data.role)
+        };
+
+        setCurrentUser(user.name, user.role);
+        renderMe();
+        return;
+      }
+
+      if (data.type === "init") {
+        groups = Array.isArray(data.groups)
+          ? data.groups
+          : [];
+
+        messages = Array.isArray(data.messages)
+          ? data.messages
+          : [];
+
+        myGroups = Array.isArray(data.myGroups)
+          ? data.myGroups
+          : [];
+
+        codes = {};
+
+        for (const group of groups) {
+          if (group.code) {
+            codes[group.id] = group.code;
+          }
+        }
+
+        if (
+          activeGroup &&
+          !myGroups.includes(activeGroup)
+        ) {
+          activeGroup = null;
+        }
+
+        if (!activeGroup && myGroups.length) {
+          activeGroup = myGroups[0];
+        }
+
+        renderAll();
+        return;
+      }
+
+      if (data.type === "myGroups") {
+        myGroups = Array.isArray(data.myGroups)
+          ? data.myGroups
+          : [];
+
+        if (
+          activeGroup &&
+          !myGroups.includes(activeGroup)
+        ) {
+          activeGroup = myGroups[0] || null;
+        }
+
+        if (!activeGroup && myGroups.length) {
+          activeGroup = myGroups[0];
+        }
+
+        renderAll();
+        return;
+      }
+
+      if (
+        data.type === "groupAdded" &&
+        data.group
+      ) {
+        const existingIndex = groups.findIndex(
+          (group) => group.id === data.group.id
+        );
+
+        if (existingIndex >= 0) {
+          groups[existingIndex] = data.group;
+        } else {
+          groups.push(data.group);
+        }
+
+        if (data.group.code) {
+          codes[data.group.id] = data.group.code;
+        }
+
+        renderRooms();
+        return;
+      }
+
+      if (
+        data.type === "createdGroup" &&
+        data.group
+      ) {
+        activeGroup = data.group.id;
+
+        if (data.group.code) {
+          codes[data.group.id] = data.group.code;
+        }
+
+        pushToast(
+          "warn",
+          "Private group created",
+          `Share code ${data.group.code}. Anyone with the code can join.`
+        );
+
+        renderAll();
+        return;
+      }
+
+      if (data.type === "joinResult") {
+        pushToast(
+          data.ok ? "" : "err",
+          data.ok ? "Group joined" : "Could not join",
+          data.message || ""
+        );
+
+        if (data.ok && data.groupId) {
+          activeGroup = data.groupId;
+          renderAll();
+        }
+
+        return;
+      }
+
+      if (
+        data.type === "message" &&
+        data.message
+      ) {
+        const alreadyExists = messages.some(
+          (message) =>
+            message.id === data.message.id
+        );
+
+        if (!alreadyExists) {
+          messages.push(data.message);
+        }
+
+        if (
+          data.message.groupId === activeGroup
+        ) {
+          renderFeed();
+        }
+
+        if (
+          data.message.kind === "incident" &&
+          data.message.groupId === activeGroup &&
+          data.message.authorId !== getStoredUserId()
+        ) {
+          const group = groups.find(
+            (item) => item.id === activeGroup
+          );
+
+          const locationText =
+            data.message.location
+              ? ` at ${data.message.location}`
+              : "";
+
+          pushToast(
+            "warn",
+            `Incident in ${group ? group.name : "your group"}`,
+            `${data.message.peril || "Incident"}${locationText}`
+          );
+        }
+
+        renderRooms();
+        return;
+      }
+
+      if (data.type === "error") {
+        pushToast(
+          "err",
+          "Request failed",
+          data.message || "The request could not be completed."
+        );
+      }
+    }
+
+    function renderMe() {
+      $("meAvatar").textContent = initials(user.name);
+      $("meName").textContent = user.name;
+      $("meRole").textContent = user.role;
+    }
+
+    function renderAll() {
+      renderMe();
+      renderRooms();
+      renderHeader();
+      renderFeed();
+    }
+
+    function lastMessage(groupId) {
+      for (let index = messages.length - 1; index >= 0; index -= 1) {
+        if (messages[index].groupId === groupId) {
+          return messages[index];
+        }
+      }
+
+      return null;
+    }
+
+    function matchesSearch(group) {
+      if (!search) return true;
+
+      const searchableText = [
+        group.name,
+        group.metro
+      ]
+        .join(" ")
+        .toLowerCase();
+
+      return searchableText.includes(search);
+    }
+
+    function roomPreview(message) {
+      if (!message) {
+        return "No messages yet";
+      }
+
+      if (message.kind === "incident") {
+        return `
+          <span class="warn">
+            ${escapeHtml(message.peril || "Incident")}
+          </span>
+          ${escapeHtml(message.text)}
+        `;
+      }
+
+      return `
+        ${escapeHtml(message.author || "Anonymous")}:
+        ${escapeHtml(message.text)}
+      `;
+    }
+
+    function renderRooms() {
+      const container = $("rooms");
+      container.innerHTML = "";
+
+      const joinedGroups = groups
+        .filter((group) => myGroups.includes(group.id))
+        .filter(matchesSearch);
+
+      const availableGroups = groups
+        .filter(
+          (group) =>
+            !myGroups.includes(group.id) &&
+            group.visibility === "public"
+        )
+        .filter(matchesSearch);
+
+      if (joinedGroups.length) {
+        const label = document.createElement("div");
+        label.className = "sect";
+        label.textContent = "Chats";
+        container.appendChild(label);
+      }
+
+      for (const group of joinedGroups) {
+        const message = lastMessage(group.id);
+        const row = document.createElement("div");
+
+        row.className =
+          "room" +
+          (group.id === activeGroup ? " active" : "");
+
+        row.setAttribute("role", "button");
+        row.setAttribute("tabindex", "0");
+
+        row.innerHTML = `
+          <div class="av ${colorFor(group.id)}">
+            ${escapeHtml(initials(group.name))}
+            ${
+              isPrivate(group)
+                ? '<span class="lk" aria-label="Private group">&#128274;</span>'
+                : ""
+            }
+          </div>
+
+          <div class="rmain">
+            <div class="rtop">
+              <span class="rname">
+                ${escapeHtml(group.name)}
+              </span>
+
+              <span class="rtime">
+                ${message ? formatTime(message.ts) : ""}
+              </span>
+            </div>
+
+            <div class="rprev">
+              ${roomPreview(message)}
+            </div>
+          </div>
+        `;
+
+        const selectGroup = () => {
+          activeGroup = group.id;
+          renderAll();
+          $("draft").focus();
+        };
+
+        row.addEventListener("click", selectGroup);
+
+        row.addEventListener("keydown", (event) => {
+          if (
+            event.key === "Enter" ||
+            event.key === " "
+          ) {
+            event.preventDefault();
+            selectGroup();
+          }
+        });
+
+        container.appendChild(row);
+      }
+
+      if (availableGroups.length) {
+        const label = document.createElement("div");
+        label.className = "sect";
+        label.textContent = "Location groups";
+        container.appendChild(label);
+      }
+
+      for (const group of availableGroups) {
+        const row = document.createElement("div");
+        row.className = "joinrow";
+
+        row.innerHTML = `
+          <div class="av ${colorFor(group.id)}">
+            ${escapeHtml(initials(group.name))}
+          </div>
+
+          <div class="rmain">
+            <div class="rname">
+              ${escapeHtml(group.name)}
+            </div>
+
+            <div class="rprev">
+              ${escapeHtml(group.metro || "South Africa")}
+            </div>
+          </div>
+
+          <button
+            class="jbtn"
+            type="button"
+            data-join="${escapeHtml(group.id)}"
+          >
+            Join
+          </button>
+        `;
+
+        const joinButton = row.querySelector("[data-join]");
+
+        joinButton.addEventListener("click", () => {
+          const sent = socketSend({
+            type: "join",
+            groupId: group.id,
+            requestId: requestId()
+          });
+
+          if (sent) {
+            activeGroup = group.id;
+            joinButton.disabled = true;
+            joinButton.textContent = "Joining";
+          }
+        });
+
+        container.appendChild(row);
+      }
+
+      if (
+        !joinedGroups.length &&
+        !availableGroups.length
+      ) {
+        const empty = document.createElement("div");
+        empty.className = "empty-rooms";
+        empty.textContent = search
+          ? "No groups match your search."
+          : "No groups are currently available.";
+
+        container.appendChild(empty);
+      }
+    }
+
+    function renderHeader() {
+      const group = groups.find(
+        (item) => item.id === activeGroup
+      );
+
+      const header = $("thead");
+      const codeButton = $("tCode");
+      const composer = $("comp");
+
+      if (!group) {
+        header.style.visibility = "hidden";
+        codeButton.style.display = "none";
+        composer.classList.add("hidden");
+        return;
+      }
+
+      header.style.visibility = "visible";
+
+      $("tAvatar").className =
+        `av ${colorFor(group.id)}`;
+
+      $("tAvatar").textContent =
+        initials(group.name);
+
+      $("tTitle").textContent = group.name;
+
+      $("tSub").textContent =
+        `${group.metro || "South Africa"} | ` +
+        (isPrivate(group)
+          ? "private group"
+          : "community group");
+
+      if (isPrivate(group) && codes[group.id]) {
+        codeButton.style.display = "inline-block";
+        codeButton.textContent = `Code ${codes[group.id]}`;
+        codeButton.title = "Copy private group share code";
+
+        codeButton.onclick = async () => {
+          try {
+            await navigator.clipboard.writeText(
+              codes[group.id]
+            );
+
+            pushToast(
+              "",
+              "Code copied",
+              `Share code ${codes[group.id]} copied.`
+            );
+          } catch {
+            pushToast(
+              "err",
+              "Copy failed",
+              `The share code is ${codes[group.id]}.`
+            );
+          }
+        };
+      } else {
+        codeButton.style.display = "none";
+        codeButton.onclick = null;
+      }
+
+      composer.classList.remove("hidden");
+    }
+
+    function renderFeed() {
+      const feed = $("feed");
+      feed.innerHTML = "";
+
+      if (!activeGroup) {
+        feed.innerHTML = `
+          <div class="ph">
+            Select or join a group to start chatting.
+          </div>
+        `;
+        return;
+      }
+
+      const groupMessages = messages.filter(
+        (message) =>
+          message.groupId === activeGroup
+      );
+
+      if (!groupMessages.length) {
+        feed.innerHTML = `
+          <div class="ph">
+            No messages yet. Say hello or report something
+            you have seen.
+          </div>
+        `;
+        return;
+      }
+
+      for (const message of groupMessages) {
+        const role = safeRole(message.role);
+
+        if (message.kind === "incident") {
+          const element = document.createElement("div");
+          element.className = "inc";
+
+          element.innerHTML = `
+            <div class="ic">&#9888;</div>
+
+            <div class="ib">
+              <div class="it">
+                ${escapeHtml(message.peril || "Incident")}
+
+                <span class="bdg ${role}">
+                  ${escapeHtml(role)}
+                </span>
+
+                ${
+                  message.location
+                    ? `
+                      <span class="incident-location">
+                        ${escapeHtml(message.location)}
+                      </span>
+                    `
+                    : ""
+                }
+              </div>
+
+              <div class="itxt">
+                ${escapeHtml(message.text)}
+              </div>
+
+              <div class="imeta">
+                ${escapeHtml(message.author || "Anonymous")}
+                |
+                ${formatTime(message.ts)}
+              </div>
+            </div>
+          `;
+
+          feed.appendChild(element);
+          continue;
+        }
+
+        const isOwnMessage =
+          message.authorId === getStoredUserId();
+
+        const element = document.createElement("div");
+
+        element.className =
+          `m ${isOwnMessage ? "out" : ""}`;
+
+        element.innerHTML = `
+          <div class="hd">
+            <span class="nm">
+              ${escapeHtml(message.author || "Anonymous")}
+            </span>
+
+            <span class="bdg ${role}">
+              ${escapeHtml(role)}
+            </span>
+          </div>
+
+          <div class="bd">
+            ${escapeHtml(message.text)}
+          </div>
+
+          <div class="tm">
+            ${formatTime(message.ts)}
+          </div>
+        `;
+
+        feed.appendChild(element);
+      }
+
+      requestAnimationFrame(() => {
+        feed.scrollTop = feed.scrollHeight;
+      });
+    }
+
+    function setMode(nextMode) {
+      mode =
+        nextMode === "incident"
+          ? "incident"
+          : "chat";
+
+      const incidentMode = mode === "incident";
+
+      $("incfields").classList.toggle(
+        "show",
+        incidentMode
+      );
+
+      $("plus").classList.toggle(
+        "on",
+        incidentMode
+      );
+
+      $("send").classList.toggle(
+        "alert",
+        incidentMode
+      );
+
+      $("draft").placeholder = incidentMode
+        ? "Describe what you saw"
+        : "Type a message";
+
+      $("plus").setAttribute(
+        "aria-pressed",
+        String(incidentMode)
+      );
+
+      if (incidentMode) {
+        $("peril").focus();
+      } else {
+        $("draft").focus();
+      }
+    }
+
+    function submitMessage() {
+      if (!activeGroup) {
+        pushToast(
+          "err",
+          "No group selected",
+          "Pick or join a group first."
+        );
+        return;
+      }
+
+      if (!myGroups.includes(activeGroup)) {
+        pushToast(
+          "err",
+          "Group not joined",
+          "Join this group before posting."
+        );
+        return;
+      }
+
+      const text = $("draft").value.trim();
+
+      if (!text) {
+        pushToast(
+          "err",
+          mode === "incident"
+            ? "Description needed"
+            : "Message needed",
+          mode === "incident"
+            ? "Add a short description of what you saw."
+            : "Type a message before sending."
+        );
+        return;
+      }
+
+      const payload = {
+        type: "send",
+        requestId: requestId(),
+        groupId: activeGroup,
+        text,
+        kind: mode
+      };
+
+      if (mode === "incident") {
+        payload.peril = $("peril").value;
+        payload.location = $("location").value.trim();
+      }
+
+      const sent = socketSend(payload);
+
+      if (sent) {
+        $("draft").value = "";
+        $("location").value = "";
+        setMode("chat");
+      }
+    }
+
+    function createGroup() {
+      const name = $("newGroup").value.trim();
+
+      if (!name) {
+        pushToast(
+          "err",
+          "Name needed",
+          "Enter a name for your private group."
+        );
+        return;
+      }
+
+      const sent = socketSend({
+        type: "createGroup",
+        name,
+        requestId: requestId()
+      });
+
+      if (sent) {
+        $("newGroup").value = "";
+      }
+    }
+
+    function joinByCode() {
+      const code = $("joinCode")
+        .value
+        .trim()
+        .toUpperCase();
+
+      if (!code) {
+        pushToast(
+          "err",
+          "Code needed",
+          "Enter a share code to join a private group."
+        );
+        return;
+      }
+
+      const sent = socketSend({
+        type: "joinByCode",
+        code,
+        requestId: requestId()
+      });
+
+      if (sent) {
+        $("joinCode").value = "";
+      }
+    }
+
+    $("plus").addEventListener("click", () => {
+      setMode(
+        mode === "incident"
+          ? "chat"
+          : "incident"
+      );
+    });
+
+    $("send").addEventListener(
+      "click",
+      submitMessage
+    );
+
+    $("draft").addEventListener(
+      "keydown",
+      (event) => {
+        if (
+          event.key === "Enter" &&
+          !event.shiftKey
+        ) {
+          event.preventDefault();
+          submitMessage();
+        }
+      }
+    );
+
+    $("createBtn").addEventListener(
+      "click",
+      createGroup
+    );
+
+    $("newGroup").addEventListener(
+      "keydown",
+      (event) => {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          createGroup();
+        }
+      }
+    );
+
+    $("joinCodeBtn").addEventListener(
+      "click",
+      joinByCode
+    );
+
+    $("joinCode").addEventListener(
+      "keydown",
+      (event) => {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          joinByCode();
+        }
+      }
+    );
+
+    $("search").addEventListener(
+      "input",
+      (event) => {
+        search = event.target.value
+          .toLowerCase()
+          .trim();
+
+        renderRooms();
+      }
+    );
+
+    $("editMe").addEventListener("click", () => {
+      const suppliedName = prompt(
+        "Your display name",
+        user.name
+      );
+
+      if (suppliedName === null) {
+        return;
+      }
+
+      const name =
+        suppliedName.trim().slice(0, 40) || "You";
+
+      let role = prompt(
+        "Your role: Resident, Security, or Staff",
+        user.role
+      );
+
+      if (role === null) {
+        role = user.role;
+      }
+
+      role = role.trim();
+
+      if (!ROLES.includes(role)) {
+        role = "Resident";
+      }
+
+      user = { name, role };
+      setCurrentUser(name, role);
+      renderMe();
+      renderFeed();
+
+      if (
+        ws &&
+        ws.readyState === WebSocket.OPEN
+      ) {
+        hello();
+      }
+    });
+
+    window.addEventListener("online", () => {
+      if (
+        !ws ||
+        ws.readyState === WebSocket.CLOSED
+      ) {
+        reconnectAttempts = 0;
+        connectSocket();
+      }
+    });
+
+    window.addEventListener("offline", () => {
+      $("live").className = "live off";
+      $("liveTxt").textContent = "offline";
+    });
+
+    window.addEventListener("beforeunload", () => {
+      manuallyClosed = true;
+      clearTimeout(reconnectTimer);
+
+      if (ws) {
+        ws.close(1000, "Page closing");
+      }
+    });
+
+    renderMe();
+    renderRooms();
+    connectSocket();
+  </script>
+</body>
+</html>

@@ -10,6 +10,7 @@ from fastapi.responses import FileResponse, RedirectResponse
 from sentinel_ops.alerts import evaluate_alert
 from sentinel_ops.aws_status import aws_status
 from sentinel_ops.camera_bridge import camera_ai_to_operations
+from sentinel_ops.community import announce_review
 from sentinel_ops.camera_upload import router as camera_router
 from sentinel_ops.patterns_api import router as patterns_router
 from sentinel_ops.claims_bridge import (
@@ -172,7 +173,25 @@ def alert_review(alert_id: str, request: AlertReviewRequest):
     alert.review_reason = request.reason
     alert.reviewed_by = request.reviewed_by
     alert.reviewed_at = datetime.now(timezone.utc)
-    return update_alert(alert)
+    updated = update_alert(alert)
+
+    # Best effort, privacy-safe community notice. Never blocks the review.
+    if request.decision in {"ACCEPTED", "ESCALATED"} and alert.hotspot_id:
+        try:
+            hotspots, _ = load_claims_hotspots()
+            match = next(
+                (h for h in hotspots if h.hotspot_id == alert.hotspot_id), None
+            )
+            if match is not None:
+                announce_review(
+                    hotspot_name=match.name,
+                    decision=request.decision,
+                    peril=getattr(match, "main_peril", None),
+                )
+        except Exception:  # noqa: BLE001 - notice is optional
+            pass
+
+    return updated
 
 
 @app.post("/api/cases/reconstruct", response_model=IncidentTimeline)
