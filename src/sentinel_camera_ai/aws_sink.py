@@ -37,8 +37,13 @@ class AwsSink:
         except ImportError as exc:
             raise RuntimeError("install the project with the [aws] extra") from exc
         session_kwargs = {"region_name": self.region}
-        if config.profile:
-            session_kwargs["profile_name"] = config.profile
+        # AWS_PROFILE is the clearest operator-controlled choice. Avoid forcing the
+        # example ``sentinel-dev`` profile when the machine uses default credentials.
+        profile = os.getenv("AWS_PROFILE")
+        if not profile and config.profile and config.profile != "sentinel-dev":
+            profile = config.profile
+        if profile:
+            session_kwargs["profile_name"] = profile
         self.session = boto3.Session(**session_kwargs)
         self.s3 = self.session.client("s3")
 
@@ -62,7 +67,7 @@ class AwsSink:
                 str(path),
                 self.bucket,
                 key,
-                ExtraArgs={"ContentType": content_type},
+                ExtraArgs={"ContentType": content_type, "ServerSideEncryption": "AES256"},
             )
             evidence_objects[str(relative)] = f"s3://{self.bucket}/{key}"
 
@@ -86,6 +91,7 @@ class AwsSink:
             Key=event_key,
             Body=body,
             ContentType="application/json",
+            ServerSideEncryption="AES256",
         )
         event_object = f"s3://{self.bucket}/{event_key}"
 

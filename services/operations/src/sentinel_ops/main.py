@@ -11,6 +11,7 @@ from sentinel_ops.aws_status import aws_status
 from sentinel_ops.camera_bridge import camera_ai_to_operations
 from sentinel_ops.camera_upload import router as camera_router
 from sentinel_ops.patterns_api import router as patterns_router
+from sentinel_ops.roles_api import router as roles_router
 from sentinel_ops.claims_bridge import (
     build_metro_patrol,
     find_claims_file,
@@ -36,7 +37,13 @@ from sentinel_ops.models import (
 )
 from sentinel_ops.rewind import reconstruct_incident
 from sentinel_ops.routing import optimise_patrol
-from sentinel_ops.storage import clear_all, list_alerts, list_claims, list_events, status as storage_status
+from sentinel_ops.storage import (
+    clear_all,
+    list_alerts,
+    list_claims,
+    list_events,
+    status as storage_status,
+)
 
 
 OPERATIONS_ROOT = Path(__file__).resolve().parents[2]
@@ -65,6 +72,7 @@ app.add_middleware(
 # Camera intake (upload + roster) and evidence-pattern / height endpoints.
 app.include_router(camera_router)
 app.include_router(patterns_router)
+app.include_router(roles_router)
 
 
 @app.get("/", include_in_schema=False)
@@ -197,16 +205,17 @@ def post_claim(claim: Claim):
 def get_alerts(limit: int = Query(default=100, ge=1, le=1000)):
     return [alert.model_dump(mode="json") for alert in list_alerts(limit)]
 
-
 @app.post("/api/demo/seed")
 def seed_demo():
-    """Seed the runtime SQLite store with the bundled synthetic camera events and claim."""
+    """Seed the local operational store with bundled synthetic/consented fixtures."""
     import json
 
     fixtures = OPERATIONS_ROOT / "fixtures"
     events_payload = json.loads((fixtures / "events.json").read_text(encoding="utf-8"))
     claim_payload = json.loads((fixtures / "claim.json").read_text(encoding="utf-8"))
-    event_results = [ingest_event(CameraEvent.model_validate(item)) for item in events_payload]
+    event_results = [
+        ingest_event(CameraEvent.model_validate(item)) for item in events_payload
+    ]
     claim_result = ingest_claim(Claim.model_validate(claim_payload))
     return {
         "seeded_events": len(event_results),
@@ -218,11 +227,13 @@ def seed_demo():
 
 @app.delete("/api/demo/reset")
 def reset_demo():
-    """Reset the local operational store between judging runs."""
+    """Reset local events, claims and alerts between judging runs."""
     removed = clear_all()
     return {"removed": removed, "storage": storage_status()}
 
 
 @app.get("/api/aws/status")
 def get_aws_status():
+    """Report whether the optional S3/DynamoDB integration is ready."""
     return aws_status()
+

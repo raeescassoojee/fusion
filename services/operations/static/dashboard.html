@@ -171,6 +171,11 @@ button,select,input{font-family:inherit}
 .stage .hud{position:absolute;top:10px;left:12px;right:12px;display:flex;justify-content:space-between;gap:10px;font-family:var(--fm);font-size:.6rem;color:#8FD8F5;letter-spacing:.1em;text-shadow:0 1px 3px #000;pointer-events:none}
 .stage .hudb{position:absolute;bottom:10px;left:12px;right:12px;display:flex;justify-content:space-between;gap:10px;font-family:var(--fm);font-size:.6rem;color:#8FD8F5;text-shadow:0 1px 3px #000;pointer-events:none}
 .stage .empty{padding:70px 20px;text-align:center;color:#4C6B80;font-family:var(--fm);font-size:.72rem;letter-spacing:.1em}
+.stage .face-state{position:absolute;left:12px;bottom:38px;padding:7px 10px;border:1px solid rgba(38,230,126,.7);border-radius:8px;background:rgba(5,35,23,.86);color:#7CFFB2;font-family:var(--fm);font-size:.62rem;letter-spacing:.08em;opacity:0;transform:translateY(4px);transition:.16s ease;pointer-events:none}
+.stage .face-state.on{opacity:1;transform:translateY(0)}
+.stage.capture-flash::after{content:'EVENT CAPTURED';position:absolute;inset:0;display:grid;place-items:center;border:5px solid #26E67E;background:rgba(38,230,126,.08);color:#7CFFB2;font-family:var(--fm);font-weight:800;letter-spacing:.14em;text-shadow:0 2px 5px #000;pointer-events:none;animation:captureFlash .58s ease both}
+@keyframes captureFlash{0%{opacity:0}18%{opacity:1}100%{opacity:0}}
+.device-select{border:1px solid var(--line);border-radius:9px;padding:7px 10px;font-size:.74rem;max-width:250px;background:var(--panel);color:var(--text)}
 .stagebar{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin-top:12px}
 .aichips{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
 .aichip{font-family:var(--fm);font-size:.62rem;padding:4px 10px;border-radius:99px;background:#EFF6FB;color:var(--blue);border:1px solid #D6E6F2}
@@ -275,6 +280,134 @@ button,select,input{font-family:inherit}
 .leg{display:flex;gap:14px;font-size:.66rem;color:var(--muted);padding:10px 4px 0;flex-wrap:wrap}
 .leg .sw{width:22px;height:3px;display:inline-block;border-radius:2px;margin-right:6px;vertical-align:middle}
 .footnote{margin:34px 0 20px;font-family:var(--fm);font-size:.62rem;color:var(--muted);line-height:1.8;border-top:1px solid var(--line);padding-top:14px}
+
+/* ---- height + patterns ---- */
+.calgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+@media(max-width:700px){.calgrid{grid-template-columns:1fr}}
+.fld label{display:block;font-size:.56rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.fld input,.fld select{width:100%;border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:.8rem;background:#fff}
+.modeswitch{display:flex;border:1px solid var(--line);border-radius:99px;overflow:hidden;margin-bottom:10px}
+.modeswitch button{flex:1;background:#fff;border:0;padding:8px;font-size:.72rem;font-weight:700;color:var(--muted);cursor:pointer}
+.modeswitch button.on{background:var(--blue);color:#fff}
+.hband{background:var(--navy);color:#fff;border-radius:var(--r);padding:18px 20px;margin-top:12px;position:relative;overflow:hidden}
+.hband::before{content:'';position:absolute;inset:0;background:radial-gradient(500px 180px at 85% -20%,rgba(0,174,239,.2),transparent)}
+.hband .b{font-family:var(--fd);font-weight:800;font-size:2.4rem;line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;position:relative}
+.hband .l{font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--minv);font-weight:700;position:relative}
+.hband .n{font-family:var(--fm);font-size:.62rem;color:var(--minv);margin-top:8px;line-height:1.7;position:relative}
+.hrefuse{border-left:4px solid var(--warn);background:#FFF9EE;border-radius:9px;padding:14px 16px;margin-top:12px}
+.hrefuse h5{font-family:var(--fd);font-weight:700;font-size:1rem;text-transform:uppercase;color:var(--warn);margin-bottom:5px}
+.hrefuse p{font-size:.76rem;line-height:1.6;color:var(--ink)}
+.ruler{position:relative;height:26px;margin:14px 0 4px;background:linear-gradient(90deg,#EDF1F4,#EDF1F4);border-radius:5px;overflow:hidden}
+.ruler .rng{position:absolute;top:0;bottom:0;background:var(--grad);opacity:.85}
+.ruler .pt{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--navy)}
+.rulerlab{display:flex;justify-content:space-between;font-family:var(--fm);font-size:.6rem;color:var(--muted)}
+.patrow{padding:13px 16px;border-bottom:1px solid var(--line);cursor:pointer;transition:background .15s}
+.patrow:hover{background:#F6FAFC}
+.patrow.sel{background:#EFF6FB;box-shadow:inset 3px 0 0 var(--blue)}
+.patrow .pt{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-bottom:4px}
+.patrow .pid{font-family:var(--fm);font-size:.68rem;color:var(--muted)}
+.patrow .pd{font-size:.8rem;font-weight:600}
+.stchip{font-size:.54rem;font-weight:800;letter-spacing:.08em;padding:3px 9px;border-radius:99px;text-transform:uppercase}
+.stchip.CANDIDATE{background:#FBF0DD;color:var(--warn)}
+.stchip.CONFIRMED_BY_REVIEW{background:#EAF2EC;color:var(--ok)}
+.stchip.DISMISSED{background:#F0F2F4;color:var(--muted)}
+.pstats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+.pstat{background:#fff;border:1px solid var(--line);border-radius:9px;padding:11px 13px}
+.pstat .n{font-family:var(--fd);font-weight:800;font-size:1.5rem;color:var(--navy)}
+.pstat .l{font-size:.54rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+@media(max-width:800px){.pstats{grid-template-columns:1fr 1fr}}
+.cueprofile{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.cuepill{font-size:.68rem;font-weight:600;padding:5px 11px;border-radius:99px;background:#EFF6FB;color:var(--blue);border:1px solid #D6E6F2}
+.revform{border-top:1px solid var(--line);margin-top:14px;padding-top:14px}
+.revform textarea{width:100%;border:1px solid var(--line);border-radius:8px;padding:9px;font-size:.8rem;min-height:56px;resize:vertical;font-family:inherit}
+.reverr{color:var(--bad);font-size:.72rem;margin-top:8px;display:none}
+.noident{margin-top:12px;border:1px dashed var(--line);border-radius:9px;padding:11px 13px;background:#F8FBFD;font-size:.7rem;line-height:1.7;color:var(--muted)}
+.noident b{color:var(--ink)}
+
+/* ---- roles ---- */
+.roleswitch{display:flex;border:1px solid rgba(255,255,255,.28);border-radius:99px;overflow:hidden;margin-left:4px}
+.roleswitch button{background:transparent;border:0;color:rgba(255,255,255,.72);padding:6px 13px;font-size:.71rem;font-weight:800;letter-spacing:.04em;cursor:pointer;white-space:nowrap}
+.roleswitch button.on{background:var(--cyan);color:var(--navy)}
+.rolelabel{font-family:var(--fm);font-size:.55rem;letter-spacing:.11em;text-transform:uppercase;color:rgba(255,255,255,.58);white-space:nowrap}
+.rolegate{position:fixed;inset:0;z-index:360;background:rgba(7,23,38,.92);backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;padding:24px}
+.rolegate.on{display:flex}
+.rolebox{width:min(1040px,100%);background:#fff;color:var(--ink);border-radius:18px;padding:28px;border:1px solid rgba(255,255,255,.2);box-shadow:0 24px 80px rgba(0,0,0,.35)}
+.rolebox .eyebrow{font-family:var(--fm);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);font-weight:700}
+.rolebox h2{font-family:var(--fd);font-size:clamp(1.8rem,4vw,3.1rem);text-transform:uppercase;letter-spacing:.03em;margin:6px 0 8px}
+.rolebox>p{color:var(--muted);max-width:760px;line-height:1.65;font-size:.82rem}
+.rolecards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
+@media(max-width:820px){.rolecards{grid-template-columns:1fr}.rolegate{align-items:flex-start;overflow:auto}.rolebox{margin-top:12px}}
+.rolecard{appearance:none;text-align:left;border:1px solid var(--line);border-radius:13px;background:#fff;padding:18px;cursor:pointer;transition:.18s;min-height:220px;color:var(--ink)}
+.rolecard:hover{transform:translateY(-2px);border-color:var(--cyan);box-shadow:0 12px 28px rgba(0,78,121,.12)}
+.rolecard .rid{font-family:var(--fm);font-size:.58rem;letter-spacing:.12em;color:var(--blue);font-weight:800}
+.rolecard h3{font-family:var(--fd);text-transform:uppercase;font-size:1.3rem;margin:7px 0 9px}
+.rolecard p{font-size:.74rem;color:var(--muted);line-height:1.55}
+.rolecard ul{margin:12px 0 0;padding:0;display:grid;gap:6px}
+.rolecard li{list-style:none;font-size:.7rem;padding-left:17px;position:relative}
+.rolecard li::before{content:'✓';position:absolute;left:0;color:var(--ok);font-weight:800}
+.rolecard .deny{margin-top:12px;padding-top:10px;border-top:1px dashed var(--line);font-family:var(--fm);font-size:.59rem;color:var(--muted);line-height:1.55}
+.rolefoot{margin-top:16px;padding:11px 13px;border-radius:9px;background:#F6F8FA;color:var(--muted);font-size:.68rem;line-height:1.55}
+.scopebar{background:#EFF6FB;border:1px solid #D6E6F2;border-radius:var(--r);padding:10px 14px;margin-bottom:16px;font-size:.74rem;color:var(--ink);display:flex;gap:10px;align-items:flex-start}
+.scopebar b{font-weight:700}
+.scopebar .tagr{font-family:var(--fm);font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--navy);color:#fff;padding:3px 9px;border-radius:99px;flex-shrink:0}
+/* ---- claims browser ---- */
+.claimfilters{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;margin-bottom:12px}
+.claimfilters input,.claimfilters select{border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:.78rem;background:#fff}
+.claimfilters input[type=text]{min-width:180px}
+.ctable{width:100%;border-collapse:collapse;font-size:.76rem}
+.ctable th{text-align:left;font-size:.56rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);padding:8px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#fff}
+.ctable td{padding:8px;border-bottom:1px solid #EDF1F4}
+.ctable tr.crow{cursor:pointer}
+.ctable tr.crow:hover{background:#F6FAFC}
+.ctable tr.crow.sel{background:#EFF6FB;box-shadow:inset 3px 0 0 var(--blue)}
+.amt{font-family:var(--fm);text-align:right;white-space:nowrap}
+.perilpill{font-size:.56rem;font-weight:800;letter-spacing:.06em;padding:2px 8px;border-radius:99px;background:#F1F4F6;color:var(--muted);text-transform:uppercase}
+.perilpill.Hijack,.perilpill.Robbery{background:#F6E4E1;color:var(--bad)}
+.perilpill.Burglary{background:#FBF0DD;color:var(--warn)}
+.finding{border-left:3px solid var(--line);padding:10px 13px;margin-bottom:8px;background:#F8FBFD;border-radius:0 8px 8px 0}
+.finding.FLAG{border-color:var(--bad);background:#FDF3F1}
+.finding.WATCH{border-color:var(--warn);background:#FFF9EE}
+.finding.INFO{border-color:var(--blue)}
+.finding h5{font-size:.8rem;font-weight:700;margin-bottom:3px}
+.finding p{font-size:.73rem;line-height:1.6;color:var(--muted)}
+.finding .lv{font-family:var(--fm);font-size:.54rem;font-weight:700;letter-spacing:.1em;margin-right:7px}
+.finding.FLAG .lv{color:var(--bad)}.finding.WATCH .lv{color:var(--warn)}.finding.INFO .lv{color:var(--blue)}
+.assess{border-radius:var(--r);padding:15px 17px;margin:14px 0;background:var(--navy);color:#fff;position:relative;overflow:hidden}
+.assess::before{content:'';position:absolute;inset:0;background:radial-gradient(500px 180px at 88% -20%,rgba(0,174,239,.2),transparent)}
+.assess .p{font-family:var(--fd);font-weight:800;font-size:1.4rem;position:relative}
+.assess .r{font-size:.8rem;color:var(--minv);margin-top:4px;position:relative;line-height:1.6}
+.claimhead{display:flex;gap:20px;flex-wrap:wrap;font-size:.78rem;margin-bottom:12px}
+.claimhead b{display:block;font-size:.54rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:2px}
+/* ---- movement / heatmap ---- */
+#moveMap{height:480px;border-radius:9px;background:#E9EEF1;z-index:1}
+#moveSvg{width:100%;height:auto;display:none;background:#E9EEF1;border-radius:9px}
+.trailrow{padding:12px 15px;border-bottom:1px solid var(--line);cursor:pointer}
+.trailrow:hover{background:#F6FAFC}
+.trailrow.sel{background:#EFF6FB;box-shadow:inset 3px 0 0 var(--blue)}
+.trailrow .th{display:flex;justify-content:space-between;gap:8px;font-family:var(--fm);font-size:.64rem;color:var(--muted);margin-bottom:3px}
+.trailrow .td{font-size:.78rem;font-weight:600}
+.trailrow .tm{font-family:var(--fm);font-size:.62rem;color:var(--muted);margin-top:4px}
+.legendbar{display:flex;gap:14px;flex-wrap:wrap;font-size:.66rem;color:var(--muted);padding:10px 4px 0}
+.legendbar .dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:5px;vertical-align:-1px}
+/* ---- security briefing ---- */
+.brief{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.bcard{border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;background:#fff;border-left:4px solid var(--line)}
+.bcard.HIGH{border-left-color:var(--bad)}
+.bcard.MEDIUM{border-left-color:var(--warn)}
+.bcard.LOW{border-left-color:var(--ok)}
+.bcard h4{font-family:var(--fd);font-weight:700;font-size:1.15rem;text-transform:uppercase;letter-spacing:.03em}
+.bcard .pri{font-family:var(--fd);font-weight:800;font-size:1.6rem;float:right;line-height:1}
+.bcard .kv{display:flex;justify-content:space-between;font-size:.72rem;padding:3px 0;gap:8px}
+.bcard .kv span{color:var(--muted)}
+.bcard .act{margin-top:9px;padding-top:9px;border-top:1px solid var(--line);font-size:.73rem;line-height:1.5}
+.gapcard{border:1px solid #E4C6C2;background:#FDF3F1;border-radius:var(--r);padding:12px 14px;margin-bottom:9px;font-size:.76rem}
+.gapcard b{font-family:var(--fd);font-size:.95rem;text-transform:uppercase;letter-spacing:.03em}
+/* ---- member ---- */
+.addform{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:700px){.addform{grid-template-columns:1fr}}
+.consent{grid-column:1/-1;display:flex;gap:10px;align-items:flex-start;background:#F8FBFD;border:1px dashed var(--line);border-radius:9px;padding:12px 14px;font-size:.74rem;line-height:1.6}
+.consent input{margin-top:3px;flex-shrink:0}
+.myprop{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
 @media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}.mt,.scrollhint .bar,.camthumb .live i{animation:none}}
 </style>
 </head>
@@ -287,7 +420,7 @@ button,select,input{font-family:inherit}
       <span class="kick" id="kick"><i></i>DISCOVERY GRADHACK 2026 · AI FOR SAFER COMMUNITIES</span>
       <h1 class="ht"><span class="row"><span class="o" data-line>SENTINEL</span></span>
         <span class="row"><span class="f" data-line>MESH</span></span></h1>
-      <p class="hs" id="hs">Demo-ready AI for a controlled participating-camera pilot. Claims decide where attention goes, computer vision turns footage into evidence, and repeat patterns surface for human review.</p>
+      <p class="hs" id="hs">Live AI on participating doorbell cameras across every pilot suburb. Claims decide where attention goes, computer vision turns footage into evidence, and repeat patterns surface for human review.</p>
       <div class="hcta" id="hcta">
         <button class="cta solid" id="enterBtn">Open operations</button>
         <a class="cta gh" href="#howworks">How the AI works</a>
@@ -320,6 +453,34 @@ button,select,input{font-family:inherit}
 
 <!-- ===================== APP ===================== -->
 <div id="app">
+<div class="rolegate" id="roleGate" role="dialog" aria-modal="true" aria-labelledby="roleGateTitle">
+  <div class="rolebox">
+    <div class="eyebrow">Demo access scope</div>
+    <h2 id="roleGateTitle">Choose a workspace</h2>
+    <p>Each user gets a different operational view. This selector demonstrates role-based display before Cognito or another production identity provider is connected.</p>
+    <div class="rolecards">
+      <button class="rolecard" data-role-choice="member">
+        <span class="rid">01 · COMMUNITY</span><h3>Discovery member</h3>
+        <p>Contribute an opted-in phone or doorbell camera and view only your own property and suburb-level safety pattern.</p>
+        <ul><li>Add and manage your cameras</li><li>Use a phone as a community sensor</li><li>See your area pattern</li><li>View provisional Vitality Secure contribution status</li></ul>
+        <div class="deny">NOT SHOWN: other households, claim files, evidence patterns or patrol intelligence.</div>
+      </button>
+      <button class="rolecard" data-role-choice="fraud">
+        <span class="rid">02 · INVESTIGATION</span><h3>Fraud &amp; claims</h3>
+        <p>Search the full claims book, open a traceable AI-assisted report and inspect claim-linked evidence and anonymous movement corridors.</p>
+        <ul><li>All claims and analytical reports</li><li>Incident rewind</li><li>Evidence comparison</li><li>Strava-style aggregate corridor heat</li></ul>
+        <div class="deny">NOT SHOWN: member camera controls or security-partner route administration.</div>
+      </button>
+      <button class="rolecard" data-role-choice="security">
+        <span class="rid">03 · RESPONSE</span><h3>Security partner</h3>
+        <p>Receive an AI-generated shift briefing, optimise patrol coverage and nominate additional sites without seeing member or claim details.</p>
+        <ul><li>Hotspot and shift briefings</li><li>Risk-weighted patrol routes</li><li>Fuel and coverage economics</li><li>Add patrol or coverage locations</li></ul>
+        <div class="deny">NOT SHOWN: claim amounts, member identities or raw evidence media.</div>
+      </button>
+    </div>
+    <div class="rolefoot"><b>Demo note:</b> the role selector controls what is displayed. Production enforcement still requires authenticated identities and API authorisation, planned for AWS Cognito/RBAC.</div>
+  </div>
+</div>
 <nav class="nav">
   <span class="wm" id="wmHome"><span class="d">Discovery</span><span class="p">·&nbsp;SENTINEL</span></span>
   <div class="tabs" id="tabs">
@@ -329,34 +490,39 @@ button,select,input{font-family:inherit}
     <button data-v="evidence">Evidence</button>
     <button data-v="rewind">Rewind</button>
     <button data-v="patrol">Patrol</button>
+    <button data-v="claims">Claims</button>
+    <button data-v="movement">Movement</button>
+    <button data-v="patterns">Patterns</button>
+    <button data-v="briefing">Briefing</button>
+    <button data-v="property">My property</button>
   </div>
   <div class="sp"></div>
+  <span class="rolelabel">Demo workspace</span>
+  <div class="roleswitch" id="roleSwitch">
+    <button data-r="member">Member</button>
+    <button data-r="fraud">Claims</button>
+    <button data-r="security">Security</button>
+  </div>
   <span class="aistat"><span class="d" id="aiDot"></span><span id="aiTxt">AI loading…</span></span>
+  <span class="aistat" title="S3 evidence storage and DynamoDB pattern registry"><span class="d" id="awsDot"></span><span id="awsTxt">AWS checking…</span></span>
   <select id="metro" aria-label="Pilot metro"></select>
   <span class="src"><span class="dot" id="srcDot"></span><span id="srcTxt">…</span></span>
   <a id="introLink">Intro</a>
 </nav>
 
 <main class="wrap">
+  <div class="scopebar" id="scopebar"></div>
 
   <!-- ---------- OVERVIEW ---------- -->
   <section class="view on" id="v-overview">
     <div class="vhead"><h2>Overview</h2><span class="tag">USP 01 · <b>claims-directed camera intelligence</b></span></div>
-    <p class="vlead">Frequency, severity, recency and peak-time scored separately — the suburb with the most incidents is not the one losing the most money. Camera locations and live media in this POC are synthetic or consented.</p>
+    <p class="vlead">Frequency, severity, recency and peak-time scored separately — the suburb with the most incidents is not the one losing the most money.</p>
     <div class="kband">
       <div class="kpi"><div class="l">Hotspots</div><div class="v" id="kHot">—</div></div>
       <div class="kpi"><div class="l">Claims represented</div><div class="v" id="kClaims">—</div></div>
       <div class="kpi"><div class="l">Total claim value</div><div class="v" id="kValue">—</div></div>
-      <div class="kpi"><div class="l">Demo cameras configured</div><div class="v" id="kCams">—</div></div>
+      <div class="kpi"><div class="l">Cameras online</div><div class="v" id="kCams">—</div></div>
       <div class="kpi"><div class="l">Events captured</div><div class="v" id="kEvents">—</div></div>
-    </div>
-    <div class="panel" style="margin-bottom:16px">
-      <div class="ph"><h3>Demo controls</h3><span class="mono">safe synthetic fixtures</span></div>
-      <div class="pb" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
-        <button class="btn" id="seedDemo">Seed live demo state</button>
-        <button class="btn gh" id="resetDemo">Reset demo state</button>
-        <span class="mono" id="demoCtlStatus">Claims hotspots remain unchanged.</span>
-      </div>
     </div>
     <div class="grid2">
       <div class="panel">
@@ -379,21 +545,38 @@ button,select,input{font-family:inherit}
   <!-- ---------- CAMERAS ---------- -->
   <section class="view" id="v-cameras">
     <div class="vhead"><h2>Camera network</h2><span class="tag">participating doorbell cameras · <b>adaptive edge mode from claims risk</b></span></div>
-    <p class="vlead">The POC uses a clearly labelled demonstration roster of participating households and cameras. Its processing mode is set by the claims risk of the geofence it sits in — heightened cameras run deeper face, plate and vehicle analysis; normal cameras stay on light motion detection.</p>
+    <p class="vlead">Each participating household runs a doorbell camera. Its processing mode is set by the claims risk of the geofence it sits in — heightened cameras run deeper face, plate and vehicle analysis; normal cameras stay on light motion detection.</p>
     <div class="panel" style="margin-bottom:16px">
-      <div class="ph"><h3>Demo households</h3><span class="mono" id="wallMeta"></span></div>
+      <div class="ph"><h3>Households</h3><span class="mono" id="wallMeta"></span></div>
       <div class="pb"><div class="wallgrid" id="wall"></div></div>
     </div>
-    <div class="panel">
-      <div class="ph"><h3 id="camTitle">Camera detail</h3><span class="mono" id="camMeta"></span></div>
-      <div class="pb" id="camDetail"></div>
+    <div class="grid2">
+      <div class="panel">
+        <div class="ph"><h3 id="camTitle">Camera detail</h3><span class="mono" id="camMeta"></span></div>
+        <div class="pb" id="camDetail"></div>
+      </div>
+      <div class="panel">
+        <div class="ph"><h3>Height calibration</h3><span class="mono" id="calState">not calibrated</span></div>
+        <div class="pb">
+          <div class="modeswitch" id="calMode">
+            <button data-m="INTRINSIC" class="on">Known mount</button>
+            <button data-m="REFERENCE">Reference object</button>
+          </div>
+          <div id="calFields"></div>
+          <div style="display:flex;gap:9px;margin-top:12px;flex-wrap:wrap">
+            <button class="btn" id="calSave">Save calibration</button>
+            <button class="btn gh" id="calDrift">Simulate drift</button>
+          </div>
+          <p class="mono" style="margin-top:10px;line-height:1.7">Height is computed by intersecting the foot ray with the ground plane, then measuring the head ray at that depth. A drifted camera loses height estimation entirely — trust gates the cue.</p>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- ---------- LIVE AI ---------- -->
   <section class="view" id="v-live">
-    <div class="vhead"><h2>Live AI</h2><span class="tag">browser demo vision · <b>COCO-SSD objects + BlazeFace faces</b></span></div>
-    <p class="vlead">Attach a real camera feed to any participating household, or upload footage from any location. Detection runs live in the browser; uploads can additionally be processed by the full Python pipeline for licence-plate OCR.</p>
+    <div class="vhead"><h2>Live AI</h2><span class="tag">real computer vision · <b>COCO-SSD objects + BlazeFace faces</b></span></div>
+    <p class="vlead">Attach a real camera feed to any participating household, or upload footage from any location. Detection and face tracking run live in the browser with a green box that follows the face. Stable tracks create consented demo events; uploads can additionally be processed by the full Python pipeline for licence-plate OCR.</p>
     <div class="grid2">
       <div class="panel">
         <div class="ph">
@@ -403,14 +586,17 @@ button,select,input{font-family:inherit}
         <div class="pb">
           <div class="stage" id="stage"><div class="empty">NO FEED ATTACHED — START A CAMERA OR LOAD FOOTAGE</div></div>
           <div class="stagebar">
-            <button class="btn" id="startCam">Start live camera</button>
+            <select id="physicalCam" class="device-select" aria-label="Physical camera"><option value="">Default / selfie camera</option></select>
+            <button class="btn gh" id="refreshCams" type="button">Refresh cameras</button>
+            <button class="btn" id="startCam">Start face-tracking demo</button>
             <button class="btn gh" id="stopCam" disabled>Stop</button>
             <button class="btn gh" id="snapBtn" disabled>Capture event</button>
             <label class="btn gh" style="cursor:pointer">Load footage<input type="file" id="fileIn" accept="video/*,image/*" hidden></label>
           </div>
           <div class="aichips" id="aichips">
             <span class="aichip" id="chipObj">objects: idle</span>
-            <span class="aichip" id="chipFace">faces: idle</span>
+            <span class="aichip" id="chipFace">face tracker: idle</span>
+            <span class="aichip" id="chipCapture">captures: 0</span>
             <span class="aichip" id="chipFps">— fps</span>
             <span class="aichip" id="chipMode">mode: —</span>
           </div>
@@ -430,11 +616,20 @@ button,select,input{font-family:inherit}
           <div class="detlist" id="detList"><p class="mono">Nothing detected yet.</p></div>
           <div class="sigrow" id="liveSig"></div>
           <div class="qbox"><h5>Frame quality → camera trust</h5><div id="liveQ"></div></div>
+          <div class="qbox" id="heightBox">
+            <h5>Height estimation <span class="mono" id="hTrack"></span></h5>
+            <div id="heightOut"><p class="mono">Track a person across a few frames, then estimate.</p></div>
+            <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
+              <button class="btn gh" id="hEstimate" disabled>Estimate height</button>
+              <button class="btn gh" id="hClear">Clear track</button>
+            </div>
+          </div>
           <div style="margin-top:12px;display:flex;gap:9px;flex-wrap:wrap">
             <button class="btn" id="pushEvents" disabled>Send events to operations</button>
             <button class="btn gh" id="serverPipe" disabled>Run server pipeline on file</button>
+            <button class="btn gh" id="toRegistry" disabled>Send to pattern registry</button>
           </div>
-          <p class="mono" style="margin-top:10px;line-height:1.7">Browser vision detects people, vehicles and faces and derives appearance colours. Licence-plate OCR, YuNet face embeddings and calibrated trust scoring run server-side in the Python pipeline.</p>
+          <p class="mono" style="margin-top:10px;line-height:1.7">The green box is live face detection and tracking, not a claim of identity. Stable tracks create consented demo captures. Licence-plate OCR, YuNet face embeddings and calibrated trust scoring run server-side in the Python pipeline.</p>
         </div>
       </div>
     </div>
@@ -503,13 +698,13 @@ button,select,input{font-family:inherit}
   <!-- ---------- PATROL ---------- -->
   <section class="view" id="v-patrol">
     <div class="vhead"><h2>Patrol optimisation</h2><span class="tag">USP 04 · <b>protected risk per kilometre</b></span></div>
-    <p class="vlead">The baseline visits the highest-ranked risks without considering geography. Sentinel Mesh balances risk and distance to protect more useful risk per kilometre — with fuel impact shown beside it.</p>
+    <p class="vlead">Other routing minimises distance. Sentinel Mesh maximises the risk a patrol protects per kilometre driven — with the fuel saving beside it.</p>
     <div class="grid2r">
       <div class="panel">
         <div class="ph"><h3>Route economics</h3>
           <div class="controls">
             <div><label for="fuelEcon">Fuel L/100km</label><input id="fuelEcon" type="number" min="5" max="20" step="0.5" value="10"></div>
-            <div><label for="maxStops">Max stops</label><select id="maxStops"><option>3</option><option>4</option><option>5</option><option>6</option><option value="">All</option></select></div>
+            <div><label for="maxStops">Max stops</label><select id="maxStops"><option value="">All</option><option>6</option><option>5</option><option>4</option><option>3</option></select></div>
             <button class="btn" id="applyRoute">Recalculate</button>
           </div>
         </div>
@@ -528,10 +723,163 @@ button,select,input{font-family:inherit}
         <div class="pb" style="padding:10px">
           <svg id="patSvg" viewBox="0 0 660 440"></svg>
           <div class="leg">
-            <span><i class="sw" style="background:#9AA8B2"></i>Risk-ranked baseline</span>
+            <span><i class="sw" style="background:#9AA8B2"></i>Existing</span>
             <span><i class="sw" style="background:#005BAA"></i>Optimised</span>
             <span><i class="sw" style="background:#021F38;width:10px;height:10px;border-radius:2px"></i>Depot</span>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- PATTERNS ---------- -->
+  <section class="view" id="v-patterns">
+    <div class="vhead"><h2>Pattern registry</h2><span class="tag">recurring evidence · <b>anonymous, human-reviewed</b></span></div>
+    <p class="vlead">Signatures that plausibly recur are clustered into patterns. A pattern is not a person: no name, no ID, no face gallery. It records what cameras observed and carries a SAPS reference outward — identity attribution stays with SAPS under their authority.</p>
+    <div class="pstats" id="pStats"></div>
+    <div class="grid2">
+      <div class="panel">
+        <div class="ph"><h3>Patterns</h3><span><button class="btn gh" id="pRefresh">Refresh</button></span></div>
+        <div id="patList" style="max-height:420px;overflow:auto"></div>
+      </div>
+      <div class="panel">
+        <div class="ph"><h3 id="patTitle">Pattern detail</h3><span class="mono" id="patMeta"></span></div>
+        <div class="pb" id="patDetail"><p class="mono">Select a pattern.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- CLAIMS (fraud) ---------- -->
+  <section class="view" id="v-claims">
+    <div class="vhead"><h2>Claims</h2><span class="tag">fraud &amp; claims · <b>15 712 claims, five years</b></span></div>
+    <p class="vlead">Every claim in the supplied Discovery workbook. Open one for an analytical report that places it against its suburb and against the whole book — computed figures an investigator can trace, not a generated opinion.</p>
+    <div class="claimfilters">
+      <div class="fld"><label for="cq">Search</label><input id="cq" type="text" placeholder="suburb, make, incident id"></div>
+      <div class="fld"><label for="cPeril">Peril</label><select id="cPeril"><option value="">All</option></select></div>
+      <div class="fld"><label for="cItem">Item</label><select id="cItem"><option value="">All</option><option>Vehicle</option><option>Contents</option></select></div>
+      <div class="fld"><label for="cMin">Min amount</label><input id="cMin" type="number" step="10000" placeholder="0" style="width:120px"></div>
+      <div class="fld"><label for="cSort">Sort</label><select id="cSort"><option value="recent">Most recent</option><option value="amount">Highest value</option><option value="suburb">By suburb</option></select></div>
+      <button class="btn" id="cSearch">Search</button>
+    </div>
+    <div class="grid2">
+      <div class="panel">
+        <div class="ph"><h3>Results</h3><span class="mono" id="cMeta"></span></div>
+        <div style="max-height:520px;overflow:auto">
+          <table class="ctable"><thead><tr><th>Incident</th><th>Suburb</th><th>Peril</th><th>Item</th><th style="text-align:right">Amount</th></tr></thead>
+          <tbody id="cRows"></tbody></table>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="ph"><h3 id="crTitle">Claim report</h3><span class="mono" id="crMeta"></span></div>
+        <div class="pb" id="crBody"><p class="mono">Select a claim to generate its report.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- MOVEMENT (fraud) ---------- -->
+  <section class="view" id="v-movement">
+    <div class="vhead"><h2>Movement</h2><span class="tag">evidence trails · <b>where patterns recur, not where people go</b></span></div>
+    <p class="vlead">Each confirmed or candidate pattern becomes a trail across the cameras that saw it, ordered in time. Segments travelled by more than one pattern accumulate weight — that aggregate is the corridor heat. Nothing here is attributed to a named person.</p>
+    <div class="grid2">
+      <div class="panel">
+        <div class="ph"><h3>Corridor heat</h3><span class="mono" id="mvMeta"></span></div>
+        <div class="pb" style="padding:10px">
+          <div id="moveMap"></div><svg id="moveSvg" viewBox="0 0 660 470"></svg>
+          <div class="legendbar">
+            <span><i class="dot" style="background:#B03A2E"></i>Frequently seen</span>
+            <span><i class="dot" style="background:#00AEEF"></i>Selected trail</span>
+            <span><i class="dot" style="background:#9AA8B2"></i>Other corridors</span>
+            <span>Line thickness = how many patterns used that segment</span>
+          </div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="ph"><h3>Trails</h3><button class="btn gh" id="mvRefresh">Refresh</button></div>
+        <div id="mvList" style="max-height:520px;overflow:auto"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- BRIEFING (security) ---------- -->
+  <section class="view" id="v-briefing">
+    <div class="vhead"><h2>Shift briefing</h2><span class="tag">security partner · <b>where to be, and when</b></span></div>
+    <p class="vlead">Priority areas for this shift, derived from Discovery claims history fused with SAPS context. Claim amounts, member identities and raw evidence are deliberately excluded from this role.</p>
+    <div class="claimfilters">
+      <div class="fld"><label for="bShift">Shift</label><select id="bShift"><option value="night">Night · 18:00–06:00</option><option value="day">Day · 06:00–18:00</option></select></div>
+      <button class="btn" id="bRefresh">Generate briefing</button>
+    </div>
+    <div class="panel" style="margin-bottom:16px">
+      <div class="ph"><h3>Priority areas</h3><span class="mono" id="bMeta"></span></div>
+      <div class="pb"><div class="brief" id="bCards"></div></div>
+    </div>
+    <div class="grid2">
+      <div class="panel">
+        <div class="ph"><h3>Coverage gaps</h3></div>
+        <div class="pb" id="bGaps"></div>
+      </div>
+      <div class="panel">
+        <div class="ph"><h3>Add a patrol location</h3></div>
+        <div class="pb">
+          <div class="addform">
+            <div class="fld"><label for="sArea">Area name</label><input id="sArea" placeholder="Sandton CBD"></div>
+            <div class="fld"><label for="sReason">Reason</label><input id="sReason" placeholder="client site"></div>
+            <div class="fld"><label for="sLat">Latitude</label><input id="sLat" type="number" step="0.0001" value="-26.1076"></div>
+            <div class="fld"><label for="sLon">Longitude</label><input id="sLon" type="number" step="0.0001" value="28.0567"></div>
+          </div>
+          <button class="btn" id="sAdd" style="margin-top:12px">Add to route planning</button>
+          <div id="sList" style="margin-top:12px"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- MY PROPERTY (member) ---------- -->
+  <section class="view" id="v-property">
+    <div class="vhead"><h2>My property</h2><span class="tag">member · <b>your devices, your area</b></span></div>
+    <p class="vlead">Add a doorbell camera to the mesh and see the risk pattern for your own suburb. Members never see other households, individual claims, or anyone else's evidence.</p>
+    <div class="grid2">
+      <div class="panel">
+        <div class="ph"><h3>Register a camera</h3></div>
+        <div class="pb">
+          <div class="addform">
+            <div class="fld"><label for="mHouse">Street address</label><input id="mHouse" placeholder="14 Hillcrest Ave"></div>
+            <div class="fld"><label for="mSuburb">Suburb</label><input id="mSuburb" placeholder="Bryanston"></div>
+            <div class="fld"><label for="mLat">Latitude</label><input id="mLat" type="number" step="0.0001" value="-26.0514"></div>
+            <div class="fld"><label for="mLon">Longitude</label><input id="mLon" type="number" step="0.0001" value="28.0281"></div>
+            <div class="fld"><label for="mLabel">Device</label><input id="mLabel" value="Doorbell camera"></div>
+            <div class="fld"><label for="mMetro">Metro</label><select id="mMetro"><option>Gauteng</option><option>Cape Town</option></select></div>
+            <label class="consent"><input type="checkbox" id="mConsent">
+              <span>Every adult at this property has agreed to the camera. It points at my own entrance, not a neighbour's property. Routine video stays on the device — only event clips are uploaded.</span></label>
+          </div>
+          <button class="btn" id="mAdd" style="margin-top:12px">Add camera</button>
+          <div id="mResult" style="margin-top:12px"></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="ph"><h3 id="mAreaTitle">My area</h3><span class="mono" id="mAreaMeta"></span></div>
+        <div class="pb" id="mArea"><p class="mono">Enter your suburb to see its pattern.</p></div>
+      </div>
+    </div>
+    <div class="panel" style="margin-top:16px">
+      <div class="ph"><h3>My cameras</h3><span class="mono" id="mCamMeta"></span></div>
+      <div class="pb"><div class="myprop" id="mCams"></div></div>
+    </div>
+    <div class="grid2" style="margin-top:16px">
+      <div class="panel">
+        <div class="ph"><h3>Community Watch contribution</h3><span class="mono">opt-in only</span></div>
+        <div class="pb" id="mContribution">
+          <p class="mono">Register a camera to begin contributing event-level coverage. Routine footage remains on the device.</p>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="ph"><h3>Vitality Secure</h3><span class="mono">concept integration</span></div>
+        <div class="pb">
+          <div class="claimhead">
+            <div><b>Provisional points</b><span id="mPoints">0</span></div>
+            <div><b>Status</b><span id="mPointStatus">Not eligible yet</span></div>
+            <div><b>Privacy</b><span>Consent + verified events</span></div>
+          </div>
+          <p class="mono" style="margin-top:12px;line-height:1.7">Illustrative only: no live Vitality API is connected. A production rewards rule would credit verified participation, not the reporting of a person as “suspicious”.</p>
         </div>
       </div>
     </div>
@@ -546,7 +894,7 @@ button,select,input{font-family:inherit}
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.20.0/dist/tf.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.2.3/dist/coco-ssd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/blazeface@0.1.0/dist/blazeface.min.js"></script>
-<script id="allData" type="application/json">{"Gauteng":{"metro":"Gauteng","data_source":{"path":"/mnt/data/sentinel_mesh_complete_fixed/services/claims/data/curated/hotspots.json","live_branch_output":true,"source":"cassoojee-live","note":"SAPS values in the supplied claims output are historical corroboration, not a live SAPS incident feed."},"claims_summary":{"hotspot_count":7,"claim_count":400,"total_claim_value":51660495.0,"top_hotspot":"Bryanston","top_operational_priority":66.0},"depot":{"hotspot_id":"H003","name":"Bryanston","location":{"latitude":-26.0514,"longitude":28.0281}},"hotspots":[{"hotspot_id":"H003","name":"Bryanston","location":{"latitude":-26.0514,"longitude":28.0281},"risk_score":84.0,"claims_risk_score":84.0,"main_peril":"Home Invasion","peak_window":{"days":["Friday"],"start":"12:00","end":"15:00"},"geofence_radius_km":1.5,"saps_context_score":12.2,"camera_coverage_score":null,"response_success_score":null,"operational_priority":66.0,"metro":"Gauteng","confidence_score":90.0,"confidence_band":"HIGH","claim_count":89,"total_claim_value":9454547.0,"primary_driver":"frequency","saps_year":"2015-2016","saps_corroborated":true,"source":"cassoojee-live"},{"hotspot_id":"H007","name":"Garsfontein","location":{"latitude":-25.7944,"longitude":28.3},"risk_score":58.0,"claims_risk_score":58.0,"main_peril":"Vehicle Theft","peak_window":{"days":["Saturday"],"start":"13:00","end":"16:00"},"geofence_radius_km":1.5,"saps_context_score":30.6,"camera_coverage_score":null,"response_success_score":null,"operational_priority":51.1,"metro":"Gauteng","confidence_score":76.0,"confidence_band":"HIGH","claim_count":57,"total_claim_value":10436499.0,"primary_driver":"severity","saps_year":"2015-2016","saps_corroborated":true,"source":"cassoojee-live"},{"hotspot_id":"H009","name":"Fourways","location":{"latitude":-26.0045,"longitude":28.0042},"risk_score":52.7,"claims_risk_score":52.7,"main_peril":"Vehicle Theft","peak_window":{"days":["Sunday"],"start":"17:00","end":"20:00"},"geofence_radius_km":1.5,"saps_context_score":11.6,"camera_coverage_score":null,"response_success_score":null,"operational_priority":42.4,"metro":"Gauteng","confidence_score":75.0,"confidence_band":"HIGH","claim_count":56,"total_claim_value":4261937.0,"primary_driver":"severity","saps_year":"2015-2016","saps_corroborated":true,"source":"cassoojee-live"},{"hotspot_id":"H012","name":"Menlo Park","location":{"latitude":-25.7697,"longitude":28.2556},"risk_score":45.4,"claims_risk_score":45.4,"main_peril":"Vehicle Theft","peak_window":{"days":["Saturday"],"start":"00:00","end":"03:00"},"geofence_radius_km":1.5,"saps_context_score":30.6,"camera_coverage_score":null,"response_success_score":null,"operational_priority":41.7,"metro":"Gauteng","confidence_score":70.0,"confidence_band":"HIGH","claim_count":42,"total_claim_value":8976320.0,"primary_driver":"severity","saps_year":"2015-2016","saps_corroborated":true,"source":"cassoojee-live"},{"hotspot_id":"H011","name":"Waterkloof Ridge","location":{"latitude":-25.7872,"longitude":28.2389},"risk_score":50.5,"claims_risk_score":50.5,"main_peril":"Home Invasion","peak_window":{"days":["Sunday"],"start":"01:00","end":"04:00"},"geofence_radius_km":1.5,"saps_context_score":9.7,"camera_coverage_score":null,"response_success_score":null,"operational_priority":40.3,"metro":"Gauteng","confidence_score":74.0,"confidence_band":"HIGH","claim_count":56,"total_claim_value":8466709.0,"primary_driver":"severity","saps_year":"2015-2016","saps_corroborated":false,"source":"cassoojee-live"},{"hotspot_id":"H010","name":"Bedfordview","location":{"latitude":-26.1764,"longitude":28.1425},"risk_score":52.4,"claims_risk_score":52.4,"main_peril":"Home Invasion","peak_window":{"days":["Friday"],"start":"14:00","end":"17:00"},"geofence_radius_km":1.5,"saps_context_score":0.0,"camera_coverage_score":null,"response_success_score":null,"operational_priority":39.3,"metro":"Gauteng","confidence_score":52.0,"confidence_band":"MEDIUM","claim_count":50,"total_claim_value":6873700.0,"primary_driver":"severity","saps_year":"2015-2016","saps_corroborated":false,"source":"cassoojee-live"},{"hotspot_id":"H014","name":"Centurion Central","location":{"latitude":-25.8364,"longitude":28.1803},"risk_score":28.1,"claims_risk_score":28.1,"main_peril":"Vehicle Theft","peak_window":{"days":["Saturday"],"start":"11:00","end":"14:00"},"geofence_radius_km":1.5,"saps_context_score":29.5,"camera_coverage_score":null,"response_success_score":null,"operational_priority":28.5,"metro":"Gauteng","confidence_score":52.0,"confidence_band":"MEDIUM","claim_count":50,"total_claim_value":3190783.0,"primary_driver":"severity","saps_year":"2015-2016","saps_corroborated":true,"source":"cassoojee-live"}],"evidence":{"first_event_id":"EVT001","second_event_id":"EVT002","score":85.2,"relationship":"HIGH_PRIORITY_REVIEW","components":{"plate":36.4,"face":19.7,"vehicle":15.0,"appearance":10.0,"journey":10.0,"camera_trust":81.5},"reasons":["Strong plate agreement","Face signal supports human review","Vehicle attributes agree","Visible appearance attributes agree","Journey is geographically plausible"],"journey_distance_km":0.802,"journey_plausible":true,"human_review_required":true},"alert":{"alert_id":"ALT-C7679D7E","event_id":"EVT002","priority":"HIGH","status":"PENDING_REVIEW","hotspot_id":"H003","evidence_score":85.2,"reasons":["Event is 0.80 km from hotspot H003","Outside peak-risk window","Evidence score is 85.2/100","Camera trust is 79.0/100"],"human_review_required":true},"timeline":{"claim_id":"CLM001","start_time":"2026-07-24T19:40:00+02:00","end_time":"2026-07-24T22:40:00+02:00","items":[{"event_id":"EVT001","timestamp":"2026-07-24T20:58:00+02:00","distance_from_claim_km":0.0,"relevance_score":96.3,"description":"AB 12 CD GP white sedan; relevance 96/100","media_url":"/evidence/EVT001.jpg"},{"event_id":"EVT002","timestamp":"2026-07-24T21:16:00+02:00","distance_from_claim_km":0.802,"relevance_score":91.2,"description":"AB12CDGP white sedan; relevance 91/100","media_url":"/evidence/EVT002.jpg"},{"event_id":"EVT003","timestamp":"2026-07-24T21:34:00+02:00","distance_from_claim_km":1.101,"relevance_score":88.3,"description":"AB12CDGP white sedan; relevance 88/100","media_url":"/evidence/EVT003.jpg"}],"summary":"Found 3 relevant events in the incident window."},"patrol":{"baseline":{"ordered_hotspot_ids":["H003","H007","H009"],"distance_km":82.882,"estimated_fuel_litres":8.288,"risk_covered":159.5,"coverage_percent":51.6,"protected_risk_per_km":1.924},"optimised":{"ordered_hotspot_ids":["H003","H009","H010"],"distance_km":47.308,"estimated_fuel_litres":4.731,"risk_covered":147.7,"coverage_percent":47.8,"protected_risk_per_km":3.122},"distance_saved_km":35.574,"fuel_saved_litres":3.557,"protected_risk_per_km_improvement_percent":62.3},"demo_notice":"Claims hotspots come from the cassoojee pipeline. Camera events and the claim used for evidence/rewind are synthetic demo fixtures until the camera workstream supplies live event JSON."},"Cape Town":{"metro":"Cape Town","data_source":{"path":"/mnt/data/sentinel_mesh_complete_fixed/services/claims/data/curated/hotspots.json","live_branch_output":true,"source":"cassoojee-live","note":"SAPS values in the supplied claims output are historical corroboration, not a live SAPS incident feed."},"claims_summary":{"hotspot_count":7,"claim_count":595,"total_claim_value":28160172.0,"top_hotspot":"Sea Point","top_operational_priority":73.7},"depot":{"hotspot_id":"H005","name":"Sea Point","location":{"latitude":-33.9172,"longitude":18.3922}},"hotspots":[{"hotspot_id":"H005","name":"Sea Point","location":{"latitude":-33.9172,"longitude":18.3922},"risk_score":64.9,"claims_risk_score":64.9,"main_peril":"Vehicle Theft","peak_window":{"days":["Sunday"],"start":"10:00","end":"13:00"},"geofence_radius_km":1.5,"saps_context_score":100.0,"camera_coverage_score":null,"response_success_score":null,"operational_priority":73.7,"metro":"Cape Town","confidence_score":84.0,"confidence_band":"HIGH","claim_count":78,"total_claim_value":4340394.0,"primary_driver":"frequency","saps_year":"2015-2016","saps_corroborated":true,"source":"cassoojee-live"},{"hotspot_id":"H006","name":"Cape Town City Centre","location":{"latitude":-33.9253,"longitude":18.4185},"risk_score":61.1,"claims_risk_score":61.1,"main_peril":"Vehicle Theft","peak_window":{"days":["Thursday"],"start":"14:00","end":"17:00"},"geofence_radius_km":1.5,"saps_context_score":100.0,"camera_coverage_score":null,"response_success_score":null,"operational_priority":70.8,"metro":"Cape Town","confidence_score":92.0,"confidence_band":"HIGH","claim_count":93,"total_claim_value":1343333.0,"primary_driver":"frequency","saps_year":"2015-2016","saps_corroborated":true,"source":"cassoojee-live"},{"hotspot_id":"H002","name":"Somerset West","location":{"latitude":-34.0822,"longitude":18.8489},"risk_score":84.7,"claims_risk_score":84.7,"main_peril":"Home Invasion","peak_window":{"days":["Sunday"],"start":"01:00","end":"04:00"},"geofence_radius_km":1.5,"saps_context_score":10.5,"camera_coverage_score":null,"response_success_score":null,"operational_priority":66.2,"metro":"Cape Town","confidence_score":77.0,"confidence_band":"HIGH","claim_count":107,"total_claim_value":6032135.0,"primary_driver":"frequency","saps_year":"2015-2016","saps_corroborated":false,"source":"cassoojee-live"},{"hotspot_id":"H001","name":"Rondebosch","location":{"latitude":-33.9681,"longitude":18.4878},"risk_score":84.8,"claims_risk_score":84.8,"main_peril":"Home Invasion","peak_window":{"days":["Saturday"],"start":"01:00","end":"04:00"},"geofence_radius_km":1.5,"saps_context_score":2.0,"camera_coverage_score":null,"response_success_score":null,"operational_priority":64.1,"metro":"Cape Town","confidence_score":76.0,"confidence_band":"HIGH","claim_count":102,"total_claim_value":5118796.0,"primary_driver":"frequency","saps_year":"2015-2016","saps_corroborated":false,"source":"cassoojee-live"},{"hotspot_id":"H004","name":"Newlands","location":{"latitude":-33.9743,"longitude":18.4573},"risk_score":74.3,"claims_risk_score":74.3,"main_peril":"Home Invasion","peak_window":{"days":["Thursday"],"start":"18:00","end":"21:00"},"geofence_radius_km":1.5,"saps_context_score":2.0,"camera_coverage_score":null,"response_success_score":null,"operational_priority":56.2,"metro":"Cape Town","confidence_score":64.0,"confidence_band":"MEDIUM","claim_count":76,"total_claim_value":7243880.0,"primary_driver":"frequency","saps_year":"2015-2016","saps_corroborated":false,"source":"cassoojee-live"},{"hotspot_id":"H008","name":"Claremont","location":{"latitude":-33.9847,"longitude":18.4625},"risk_score":55.4,"claims_risk_score":55.4,"main_peril":"Home Invasion","peak_window":{"days":["Saturday"],"start":"02:00","end":"05:00"},"geofence_radius_km":1.5,"saps_context_score":2.0,"camera_coverage_score":null,"response_success_score":null,"operational_priority":42.0,"metro":"Cape Town","confidence_score":65.0,"confidence_band":"MEDIUM","claim_count":82,"total_claim_value":2140231.0,"primary_driver":"frequency","saps_year":"2015-2016","saps_corroborated":false,"source":"cassoojee-live"},{"hotspot_id":"H013","name":"Table View","location":{"latitude":-33.8236,"longitude":18.4903},"risk_score":40.8,"claims_risk_score":40.8,"main_peril":"Home Invasion","peak_window":{"days":["Tuesday"],"start":"01:00","end":"04:00"},"geofence_radius_km":1.5,"saps_context_score":11.1,"camera_coverage_score":null,"response_success_score":null,"operational_priority":33.4,"metro":"Cape Town","confidence_score":57.0,"confidence_band":"MEDIUM","claim_count":57,"total_claim_value":1941403.0,"primary_driver":"frequency","saps_year":"2015-2016","saps_corroborated":false,"source":"cassoojee-live"}],"evidence":{"first_event_id":"EVT001","second_event_id":"EVT002","score":85.2,"relationship":"HIGH_PRIORITY_REVIEW","components":{"plate":36.4,"face":19.7,"vehicle":15.0,"appearance":10.0,"journey":10.0,"camera_trust":81.5},"reasons":["Strong plate agreement","Face signal supports human review","Vehicle attributes agree","Visible appearance attributes agree","Journey is geographically plausible"],"journey_distance_km":0.763,"journey_plausible":true,"human_review_required":true},"alert":{"alert_id":"ALT-EAFBD9BF","event_id":"EVT002","priority":"MEDIUM","status":"PENDING_REVIEW","hotspot_id":"H005","evidence_score":85.2,"reasons":["Event is 0.76 km from hotspot H005","Outside peak-risk window","Evidence score is 85.2/100","Camera trust is 79.0/100"],"human_review_required":true},"timeline":{"claim_id":"CLM001","start_time":"2026-07-24T19:40:00+02:00","end_time":"2026-07-24T22:40:00+02:00","items":[{"event_id":"EVT001","timestamp":"2026-07-24T20:58:00+02:00","distance_from_claim_km":0.0,"relevance_score":96.3,"description":"AB 12 CD GP white sedan; relevance 96/100","media_url":"/evidence/EVT001.jpg"},{"event_id":"EVT002","timestamp":"2026-07-24T21:16:00+02:00","distance_from_claim_km":0.763,"relevance_score":91.4,"description":"AB12CDGP white sedan; relevance 91/100","media_url":"/evidence/EVT002.jpg"},{"event_id":"EVT003","timestamp":"2026-07-24T21:34:00+02:00","distance_from_claim_km":1.038,"relevance_score":88.6,"description":"AB12CDGP white sedan; relevance 89/100","media_url":"/evidence/EVT003.jpg"}],"summary":"Found 3 relevant events in the incident window."},"patrol":{"baseline":{"ordered_hotspot_ids":["H005","H006","H002"],"distance_km":91.855,"estimated_fuel_litres":9.185,"risk_covered":210.7,"coverage_percent":51.8,"protected_risk_per_km":2.294},"optimised":{"ordered_hotspot_ids":["H005","H006","H004"],"distance_km":17.847,"estimated_fuel_litres":1.785,"risk_covered":200.7,"coverage_percent":49.4,"protected_risk_per_km":11.246},"distance_saved_km":74.008,"fuel_saved_litres":7.4,"protected_risk_per_km_improvement_percent":390.2},"demo_notice":"Claims hotspots come from the cassoojee pipeline. Camera events and the claim used for evidence/rewind are synthetic demo fixtures until the camera workstream supplies live event JSON."}}</script>
+<script id="allData" type="application/json">{"Gauteng":{"metro":"Gauteng","data_source":{"path":"(embedded)","live_branch_output":true,"source":"cassoojee-live","note":"SAPS values in the supplied claims output are historical corroboration, not a live SAPS incident feed."},"claims_summary":{"hotspot_count":7,"claim_count":400,"total_claim_value":51660495.0,"top_hotspot":"Bryanston","top_operational_priority":66.0},"depot":{"hotspot_id":"H003","name":"Bryanston","location":{"latitude":-26.0514,"longitude":28.0281}},"hotspots":[{"hotspot_id":"H003","name":"Bryanston","location":{"latitude":-26.0514,"longitude":28.0281},"risk_score":84.0,"claims_risk_score":84.0,"main_peril":"Home Invasion","peak_window":{"days":["Friday"],"start":"12:00","end":"15:00"},"geofence_radius_km":1.5,"saps_context_score":12.2,"camera_coverage_score":null,"response_success_score":null,"operational_priority":66.0,"metro":"Gauteng","confidence_score":90.0,"confidence_band":"HIGH","claim_count":89,"total_claim_value":9454547.0,"primary_driver":"frequency","saps_year":"2015-2016","saps_corroborated":true,"source":"cassoojee-live"},{"hotspot_id":"H007","name":"Garsfontein","location":{"latitude":-25.7944,"longitude":28.3},"risk_score":58.0,"claims_risk_score":58.0,"main_peril":"Vehicle Theft","peak_window":{"days":["Saturday"],"start":"13:00","end":"16:00"},"geofence_radius_km":1.5,"saps_context_score":30.6,"camera_coverage_score":null,"response_success_score":null,"operational_priority":51.1,"metro":"Gauteng","confidence_score":76.0,"confidence_band":"HIGH","claim_count":57,"total_claim_value":10436499.0,"primary_driver":"severity","saps_year":"2015-2016","saps_corroborated":true,"source":"cassoojee-live"},{"hotspot_id":"H009","name":"Fourways","location":{"latitude":-26.0045,"longitude":28.0042},"risk_score":52.7,"claims_risk_score":52.7,"main_peril":"Vehicle Theft","peak_window":{"days":["Sunday"],"start":"17:00","end":"20:00"},"geofence_radius_km":1.5,"saps_context_score":11.6,"camera_coverage_score":null,"response_success_score":null,"operational_priority":42.4,"metro":"Gauteng","confidence_score":75.0,"confidence_band":"HIGH","claim_count":56,"total_claim_value":4261937.0,"primary_driver":"severity","saps_year":"2015-2016","saps_corroborated":true,"source":"cassoojee-live"},{"hotspot_id":"H012","name":"Menlo Park","location":{"latitude":-25.7697,"longitude":28.2556},"risk_score":45.4,"claims_risk_score":45.4,"main_peril":"Vehicle Theft","peak_window":{"days":["Saturday"],"start":"00:00","end":"03:00"},"geofence_radius_km":1.5,"saps_context_score":30.6,"camera_coverage_score":null,"response_success_score":null,"operational_priority":41.7,"metro":"Gauteng","confidence_score":70.0,"confidence_band":"HIGH","claim_count":42,"total_claim_value":8976320.0,"primary_driver":"severity","saps_year":"2015-2016","saps_corroborated":true,"source":"cassoojee-live"},{"hotspot_id":"H011","name":"Waterkloof Ridge","location":{"latitude":-25.7872,"longitude":28.2389},"risk_score":50.5,"claims_risk_score":50.5,"main_peril":"Home Invasion","peak_window":{"days":["Sunday"],"start":"01:00","end":"04:00"},"geofence_radius_km":1.5,"saps_context_score":9.7,"camera_coverage_score":null,"response_success_score":null,"operational_priority":40.3,"metro":"Gauteng","confidence_score":74.0,"confidence_band":"HIGH","claim_count":56,"total_claim_value":8466709.0,"primary_driver":"severity","saps_year":"2015-2016","saps_corroborated":false,"source":"cassoojee-live"},{"hotspot_id":"H010","name":"Bedfordview","location":{"latitude":-26.1764,"longitude":28.1425},"risk_score":52.4,"claims_risk_score":52.4,"main_peril":"Home Invasion","peak_window":{"days":["Friday"],"start":"14:00","end":"17:00"},"geofence_radius_km":1.5,"saps_context_score":0.0,"camera_coverage_score":null,"response_success_score":null,"operational_priority":39.3,"metro":"Gauteng","confidence_score":52.0,"confidence_band":"MEDIUM","claim_count":50,"total_claim_value":6873700.0,"primary_driver":"severity","saps_year":"2015-2016","saps_corroborated":false,"source":"cassoojee-live"},{"hotspot_id":"H014","name":"Centurion Central","location":{"latitude":-25.8364,"longitude":28.1803},"risk_score":28.1,"claims_risk_score":28.1,"main_peril":"Vehicle Theft","peak_window":{"days":["Saturday"],"start":"11:00","end":"14:00"},"geofence_radius_km":1.5,"saps_context_score":29.5,"camera_coverage_score":null,"response_success_score":null,"operational_priority":28.5,"metro":"Gauteng","confidence_score":52.0,"confidence_band":"MEDIUM","claim_count":50,"total_claim_value":3190783.0,"primary_driver":"severity","saps_year":"2015-2016","saps_corroborated":true,"source":"cassoojee-live"}],"evidence":{"first_event_id":"EVT001","second_event_id":"EVT002","score":85.2,"relationship":"HIGH_PRIORITY_REVIEW","components":{"plate":36.4,"face":19.7,"vehicle":15.0,"appearance":10.0,"journey":10.0,"camera_trust":81.5},"reasons":["Strong plate agreement","Face signal supports human review","Vehicle attributes agree","Visible appearance attributes agree","Journey is geographically plausible"],"journey_distance_km":0.802,"journey_plausible":true,"human_review_required":true},"alert":{"alert_id":"ALT-4B81A928","event_id":"EVT002","priority":"HIGH","status":"PENDING_REVIEW","hotspot_id":"H003","evidence_score":85.2,"reasons":["Event is 0.80 km from hotspot H003","Outside peak-risk window","Evidence score is 85.2/100","Camera trust is 79.0/100"],"human_review_required":true},"timeline":{"claim_id":"CLM001","start_time":"2026-07-24T19:40:00+02:00","end_time":"2026-07-24T22:40:00+02:00","items":[{"event_id":"EVT001","timestamp":"2026-07-24T20:58:00+02:00","distance_from_claim_km":0.0,"relevance_score":96.3,"description":"AB 12 CD GP white sedan; relevance 96/100","media_url":"/evidence/EVT001.jpg"},{"event_id":"EVT002","timestamp":"2026-07-24T21:16:00+02:00","distance_from_claim_km":0.802,"relevance_score":91.2,"description":"AB12CDGP white sedan; relevance 91/100","media_url":"/evidence/EVT002.jpg"},{"event_id":"EVT003","timestamp":"2026-07-24T21:34:00+02:00","distance_from_claim_km":1.101,"relevance_score":88.3,"description":"AB12CDGP white sedan; relevance 88/100","media_url":"/evidence/EVT003.jpg"}],"summary":"Found 3 relevant events in the incident window."},"patrol":{"baseline":{"ordered_hotspot_ids":["H003","H007","H009","H012","H011","H010","H014"],"distance_km":226.634,"estimated_fuel_litres":22.663,"risk_covered":309.3,"coverage_percent":100.0,"protected_risk_per_km":1.365},"optimised":{"ordered_hotspot_ids":["H003","H009","H014","H011","H012","H007","H010"],"distance_km":110.521,"estimated_fuel_litres":11.052,"risk_covered":309.3,"coverage_percent":100.0,"protected_risk_per_km":2.799},"distance_saved_km":116.113,"fuel_saved_litres":11.611,"protected_risk_per_km_improvement_percent":105.1},"demo_notice":"Claims hotspots come from the cassoojee pipeline. Camera events and the claim used for evidence/rewind are synthetic demo fixtures until the camera workstream supplies live event JSON."},"Cape Town":{"metro":"Cape Town","data_source":{"path":"(embedded)","live_branch_output":true,"source":"cassoojee-live","note":"SAPS values in the supplied claims output are historical corroboration, not a live SAPS incident feed."},"claims_summary":{"hotspot_count":7,"claim_count":595,"total_claim_value":28160172.0,"top_hotspot":"Sea Point","top_operational_priority":73.7},"depot":{"hotspot_id":"H005","name":"Sea Point","location":{"latitude":-33.9172,"longitude":18.3922}},"hotspots":[{"hotspot_id":"H005","name":"Sea Point","location":{"latitude":-33.9172,"longitude":18.3922},"risk_score":64.9,"claims_risk_score":64.9,"main_peril":"Vehicle Theft","peak_window":{"days":["Sunday"],"start":"10:00","end":"13:00"},"geofence_radius_km":1.5,"saps_context_score":100.0,"camera_coverage_score":null,"response_success_score":null,"operational_priority":73.7,"metro":"Cape Town","confidence_score":84.0,"confidence_band":"HIGH","claim_count":78,"total_claim_value":4340394.0,"primary_driver":"frequency","saps_year":"2015-2016","saps_corroborated":true,"source":"cassoojee-live"},{"hotspot_id":"H006","name":"Cape Town City Centre","location":{"latitude":-33.9253,"longitude":18.4185},"risk_score":61.1,"claims_risk_score":61.1,"main_peril":"Vehicle Theft","peak_window":{"days":["Thursday"],"start":"14:00","end":"17:00"},"geofence_radius_km":1.5,"saps_context_score":100.0,"camera_coverage_score":null,"response_success_score":null,"operational_priority":70.8,"metro":"Cape Town","confidence_score":92.0,"confidence_band":"HIGH","claim_count":93,"total_claim_value":1343333.0,"primary_driver":"frequency","saps_year":"2015-2016","saps_corroborated":true,"source":"cassoojee-live"},{"hotspot_id":"H002","name":"Somerset West","location":{"latitude":-34.0822,"longitude":18.8489},"risk_score":84.7,"claims_risk_score":84.7,"main_peril":"Home Invasion","peak_window":{"days":["Sunday"],"start":"01:00","end":"04:00"},"geofence_radius_km":1.5,"saps_context_score":10.5,"camera_coverage_score":null,"response_success_score":null,"operational_priority":66.2,"metro":"Cape Town","confidence_score":77.0,"confidence_band":"HIGH","claim_count":107,"total_claim_value":6032135.0,"primary_driver":"frequency","saps_year":"2015-2016","saps_corroborated":false,"source":"cassoojee-live"},{"hotspot_id":"H001","name":"Rondebosch","location":{"latitude":-33.9681,"longitude":18.4878},"risk_score":84.8,"claims_risk_score":84.8,"main_peril":"Home Invasion","peak_window":{"days":["Saturday"],"start":"01:00","end":"04:00"},"geofence_radius_km":1.5,"saps_context_score":2.0,"camera_coverage_score":null,"response_success_score":null,"operational_priority":64.1,"metro":"Cape Town","confidence_score":76.0,"confidence_band":"HIGH","claim_count":102,"total_claim_value":5118796.0,"primary_driver":"frequency","saps_year":"2015-2016","saps_corroborated":false,"source":"cassoojee-live"},{"hotspot_id":"H004","name":"Newlands","location":{"latitude":-33.9743,"longitude":18.4573},"risk_score":74.3,"claims_risk_score":74.3,"main_peril":"Home Invasion","peak_window":{"days":["Thursday"],"start":"18:00","end":"21:00"},"geofence_radius_km":1.5,"saps_context_score":2.0,"camera_coverage_score":null,"response_success_score":null,"operational_priority":56.2,"metro":"Cape Town","confidence_score":64.0,"confidence_band":"MEDIUM","claim_count":76,"total_claim_value":7243880.0,"primary_driver":"frequency","saps_year":"2015-2016","saps_corroborated":false,"source":"cassoojee-live"},{"hotspot_id":"H008","name":"Claremont","location":{"latitude":-33.9847,"longitude":18.4625},"risk_score":55.4,"claims_risk_score":55.4,"main_peril":"Home Invasion","peak_window":{"days":["Saturday"],"start":"02:00","end":"05:00"},"geofence_radius_km":1.5,"saps_context_score":2.0,"camera_coverage_score":null,"response_success_score":null,"operational_priority":42.0,"metro":"Cape Town","confidence_score":65.0,"confidence_band":"MEDIUM","claim_count":82,"total_claim_value":2140231.0,"primary_driver":"frequency","saps_year":"2015-2016","saps_corroborated":false,"source":"cassoojee-live"},{"hotspot_id":"H013","name":"Table View","location":{"latitude":-33.8236,"longitude":18.4903},"risk_score":40.8,"claims_risk_score":40.8,"main_peril":"Home Invasion","peak_window":{"days":["Tuesday"],"start":"01:00","end":"04:00"},"geofence_radius_km":1.5,"saps_context_score":11.1,"camera_coverage_score":null,"response_success_score":null,"operational_priority":33.4,"metro":"Cape Town","confidence_score":57.0,"confidence_band":"MEDIUM","claim_count":57,"total_claim_value":1941403.0,"primary_driver":"frequency","saps_year":"2015-2016","saps_corroborated":false,"source":"cassoojee-live"}],"evidence":{"first_event_id":"EVT001","second_event_id":"EVT002","score":85.2,"relationship":"HIGH_PRIORITY_REVIEW","components":{"plate":36.4,"face":19.7,"vehicle":15.0,"appearance":10.0,"journey":10.0,"camera_trust":81.5},"reasons":["Strong plate agreement","Face signal supports human review","Vehicle attributes agree","Visible appearance attributes agree","Journey is geographically plausible"],"journey_distance_km":0.763,"journey_plausible":true,"human_review_required":true},"alert":{"alert_id":"ALT-B6E9EB1A","event_id":"EVT002","priority":"MEDIUM","status":"PENDING_REVIEW","hotspot_id":"H005","evidence_score":85.2,"reasons":["Event is 0.76 km from hotspot H005","Outside peak-risk window","Evidence score is 85.2/100","Camera trust is 79.0/100"],"human_review_required":true},"timeline":{"claim_id":"CLM001","start_time":"2026-07-24T19:40:00+02:00","end_time":"2026-07-24T22:40:00+02:00","items":[{"event_id":"EVT001","timestamp":"2026-07-24T20:58:00+02:00","distance_from_claim_km":0.0,"relevance_score":96.3,"description":"AB 12 CD GP white sedan; relevance 96/100","media_url":"/evidence/EVT001.jpg"},{"event_id":"EVT002","timestamp":"2026-07-24T21:16:00+02:00","distance_from_claim_km":0.763,"relevance_score":91.4,"description":"AB12CDGP white sedan; relevance 91/100","media_url":"/evidence/EVT002.jpg"},{"event_id":"EVT003","timestamp":"2026-07-24T21:34:00+02:00","distance_from_claim_km":1.038,"relevance_score":88.6,"description":"AB12CDGP white sedan; relevance 89/100","media_url":"/evidence/EVT003.jpg"}],"summary":"Found 3 relevant events in the incident window."},"patrol":{"baseline":{"ordered_hotspot_ids":["H005","H006","H002","H001","H004","H008","H013"],"distance_km":117.585,"estimated_fuel_litres":11.759,"risk_covered":406.4,"coverage_percent":100.0,"protected_risk_per_km":3.456},"optimised":{"ordered_hotspot_ids":["H005","H006","H004","H008","H001","H002","H013"],"distance_km":106.573,"estimated_fuel_litres":10.657,"risk_covered":406.4,"coverage_percent":100.0,"protected_risk_per_km":3.813},"distance_saved_km":11.012,"fuel_saved_litres":1.102,"protected_risk_per_km_improvement_percent":10.3},"demo_notice":"Claims hotspots come from the cassoojee pipeline. Camera events and the claim used for evidence/rewind are synthetic demo fixtures until the camera workstream supplies live event JSON."}}</script>
 <script id="camData" type="application/json">{"events":{"EVT-314D9D0C2C":{"schema_version":"1.0","event_id":"EVT-314D9D0C2C","camera_id":"CAM02","timestamp":"2026-07-24T21:07:04.666667+02:00","mode":"HEIGHTENED","location":{"latitude":-25.797,"longitude":28.301},"source_media":"/workspace/scratch/c9b13cc63ef4/sentinel-camera-ai/media/camera_2_clip.mp4","media_url":"evidence/EVT-314D9D0C2C/best_frame.jpg","frame_index":10,"motion_score":0.1134,"face":{"present":false,"count":0,"boxes":[],"crop_paths":[],"embedding_ref":null,"detection_confidence":null},"plate":{"text":"AB12CDGP","display_text":"AB12CD GP","box":{"x":146,"y":376,"width":207,"height":55},"crop_url":"evidence/EVT-314D9D0C2C/plate.jpg","detection_confidence":0.82,"ocr_confidence":0.91},"vehicle":{"colour":"Blue","type":"Car","make_model":null,"direction":"right","box":{"x":12,"y":246,"width":370,"height":206},"detection_confidence":0.676},"appearance":{"upper_colour":"Unknown","lower_colour":"Unknown","cap":null,"backpack":null,"person_box":null,"confidence":null},"camera_trust_score":78,"quality_metrics":{"sharpness":64,"lighting":100,"detection":70,"unobstructed":100,"resolution":63},"trust_reasons":["moderate motion blur","good lighting","moderate detections"],"model_versions":{"objects":"OpenCV colour/contour heuristic fallback","face":"OpenCV YuNet (face_detection_yunet_2023mar.onnx)","face_embedding":"OpenCV SFace","plate_detection":"OpenCV LPD-YuNet (license_plate_detection_lpd_yunet_2023mar.onnx) + contour","plate_ocr":"Tesseract 5"},"metadata":{"annotated_media_url":"evidence/EVT-314D9D0C2C/annotated_frame.jpg","observation_count":31,"plate_raw_text":"AB12CDGP","ocr_backend":"Tesseract 5","vehicle_colour_confidence":0.634,"quality_raw":{"laplacian_variance":374.62,"mean_brightness":118.57},"model_notes":["heuristic object detector used","contour plate detector used"],"possible_plate_in_vehicle":true}},"EVT-4ADFB703C2":{"schema_version":"1.0","event_id":"EVT-4ADFB703C2","camera_id":"CAM01","timestamp":"2026-07-24T21:07:03.333333+02:00","mode":"HEIGHTENED","location":{"latitude":-25.797,"longitude":28.301},"source_media":"/workspace/scratch/c9b13cc63ef4/sentinel-camera-ai/media/camera_1_clip.mp4","media_url":"evidence/EVT-4ADFB703C2/best_frame.jpg","frame_index":50,"motion_score":0.1308,"face":{"present":false,"count":0,"boxes":[],"crop_paths":[],"embedding_ref":null,"detection_confidence":null},"plate":{"text":"AB12CDGP","display_text":"AB12CD GP","box":{"x":639,"y":363,"width":207,"height":55},"crop_url":"evidence/EVT-4ADFB703C2/plate.jpg","detection_confidence":0.82,"ocr_confidence":0.91},"vehicle":{"colour":"Blue","type":"Car","make_model":null,"direction":"right","box":{"x":504,"y":234,"width":412,"height":210},"detection_confidence":0.68},"appearance":{"upper_colour":"Unknown","lower_colour":"Unknown","cap":null,"backpack":null,"person_box":null,"confidence":null},"camera_trust_score":79,"quality_metrics":{"sharpness":67,"lighting":100,"detection":70,"unobstructed":100,"resolution":63},"trust_reasons":["moderate motion blur","good lighting","moderate detections"],"model_versions":{"objects":"OpenCV colour/contour heuristic fallback","face":"OpenCV YuNet (face_detection_yunet_2023mar.onnx)","face_embedding":"OpenCV SFace","plate_detection":"OpenCV LPD-YuNet (license_plate_detection_lpd_yunet_2023mar.onnx) + contour","plate_ocr":"Tesseract 5"},"metadata":{"annotated_media_url":"evidence/EVT-4ADFB703C2/annotated_frame.jpg","observation_count":34,"plate_raw_text":"AB12CDGP","ocr_backend":"Tesseract 5","vehicle_colour_confidence":0.648,"quality_raw":{"laplacian_variance":486.86,"mean_brightness":134.92},"model_notes":["heuristic object detector used","contour plate detector used"],"possible_plate_in_vehicle":true}},"EVT-E1A0975120":{"schema_version":"1.0","event_id":"EVT-E1A0975120","camera_id":"CAM-FACE","timestamp":"2026-07-24T21:08:00+02:00","mode":"HEIGHTENED","location":{"latitude":-25.797,"longitude":28.301},"source_media":"/workspace/scratch/c9b13cc63ef4/sentinel-camera-ai/media/synthetic_face_fixture.png","media_url":"evidence/EVT-E1A0975120/best_frame.jpg","frame_index":0,"motion_score":0.0,"face":{"present":true,"count":1,"boxes":[{"x":411,"y":354,"width":423,"height":550}],"crop_paths":["evidence/EVT-E1A0975120/faces/face_0.jpg"],"embedding_ref":"evidence/EVT-E1A0975120/faces/face_0_embedding.npy","detection_confidence":0.8952178359031677},"plate":{"text":null,"display_text":null,"box":null,"crop_url":null,"detection_confidence":null,"ocr_confidence":null},"vehicle":{"colour":"Unknown","type":"Unknown","make_model":null,"direction":"stationary_or_unknown","box":null,"detection_confidence":null},"appearance":{"upper_colour":"Orange","lower_colour":"Orange","cap":null,"backpack":null,"person_box":{"x":364,"y":153,"width":519,"height":980},"confidence":0.743},"camera_trust_score":82,"quality_metrics":{"sharpness":52,"lighting":100,"detection":79,"unobstructed":100,"resolution":100},"trust_reasons":["moderate motion blur","good lighting","strong detections"],"model_versions":{"objects":"OpenCV colour/contour heuristic fallback","face":"OpenCV YuNet (face_detection_yunet_2023mar.onnx)","face_embedding":"OpenCV SFace","plate_detection":"OpenCV LPD-YuNet (license_plate_detection_lpd_yunet_2023mar.onnx) + contour","plate_ocr":"Tesseract 5"},"metadata":{"annotated_media_url":"evidence/EVT-E1A0975120/annotated_frame.jpg","observation_count":1,"plate_raw_text":null,"ocr_backend":"none","vehicle_colour_confidence":0.0,"quality_raw":{"laplacian_variance":124.88,"mean_brightness":116.1},"model_notes":[],"possible_plate_in_vehicle":null}},"EVT-F65E5D0A12":{"schema_version":"1.0","event_id":"EVT-F65E5D0A12","camera_id":"CAM-FACE-2","timestamp":"2026-07-24T21:09:00+02:00","mode":"HEIGHTENED","location":{"latitude":-25.797,"longitude":28.301},"source_media":"/workspace/scratch/c9b13cc63ef4/sentinel-camera-ai/media/synthetic_face_fixture.png","media_url":"evidence/EVT-F65E5D0A12/best_frame.jpg","frame_index":0,"motion_score":0.0,"face":{"present":true,"count":1,"boxes":[{"x":411,"y":354,"width":423,"height":550}],"crop_paths":["evidence/EVT-F65E5D0A12/faces/face_0.jpg"],"embedding_ref":"evidence/EVT-F65E5D0A12/faces/face_0_embedding.npy","detection_confidence":0.8952178359031677},"plate":{"text":null,"display_text":null,"box":null,"crop_url":null,"detection_confidence":null,"ocr_confidence":null},"vehicle":{"colour":"Unknown","type":"Unknown","make_model":null,"direction":"stationary_or_unknown","box":null,"detection_confidence":null},"appearance":{"upper_colour":"Orange","lower_colour":"Orange","cap":null,"backpack":null,"person_box":{"x":364,"y":153,"width":519,"height":980},"confidence":0.743},"camera_trust_score":82,"quality_metrics":{"sharpness":52,"lighting":100,"detection":79,"unobstructed":100,"resolution":100},"trust_reasons":["moderate motion blur","good lighting","strong detections"],"model_versions":{"objects":"OpenCV colour/contour heuristic fallback","face":"OpenCV YuNet (face_detection_yunet_2023mar.onnx)","face_embedding":"OpenCV SFace","plate_detection":"OpenCV LPD-YuNet (license_plate_detection_lpd_yunet_2023mar.onnx) + contour","plate_ocr":"Tesseract 5"},"metadata":{"annotated_media_url":"evidence/EVT-F65E5D0A12/annotated_frame.jpg","observation_count":1,"plate_raw_text":null,"ocr_backend":"none","vehicle_colour_confidence":0.0,"quality_raw":{"laplacian_variance":124.88,"mean_brightness":116.1},"model_notes":[],"possible_plate_in_vehicle":null}}},"comparisons":{"vehicle":{"event_a":"EVT-4ADFB703C2","event_b":"EVT-314D9D0C2C","possible_same_vehicle":{"value":true,"score":1.0,"evidence_strength":"HIGH","reasons":["plate similarity 1.00","vehicle colour matches","vehicle type matches"]},"possible_same_face":{"value":false,"score":0.0,"evidence_strength":"NONE","reasons":["one or both anonymous face embeddings unavailable"]},"possible_same_appearance":{"value":false,"score":0.0,"evidence_strength":"NONE","reasons":["upper clothing differs or unknown","lower clothing differs or unknown"]},"warnings":[]},"face":{"event_a":"EVT-E1A0975120","event_b":"EVT-F65E5D0A12","possible_same_vehicle":{"value":false,"score":0.0,"evidence_strength":"NONE","reasons":["one or both plates unavailable","vehicle colour differs","vehicle type differs"]},"possible_same_face":{"value":true,"score":1.0,"evidence_strength":"HIGH","reasons":["anonymous embedding similarity 1.00","minimum camera trust 82/100"]},"possible_same_appearance":{"value":true,"score":1.0,"evidence_strength":"HIGH","reasons":["upper clothing matches","lower clothing matches"]},"warnings":["vehicle result has weak evidence because a plate is missing"]}},"ops_events":[{"event_id":"EVT001","camera_id":"CAM01","timestamp":"2026-07-24T20:58:00+02:00","location":{"latitude":-26.1042,"longitude":28.0525},"media_url":"/evidence/EVT001.jpg","plate":{"text":"AB 12 CD GP","confidence":0.94},"face":{"reference_token":"CONSENTED_DEMO_FACE_A","embedding":[0.82,0.11,0.36,0.2],"confidence":0.82},"vehicle":{"colour":"white","type":"sedan","make":"demo","model":"model-a"},"appearance":{"upper_colour":"black","lower_colour":"blue","descriptor_token":"DEMO_APPEARANCE_A"},"camera_trust_score":84,"source":"synthetic-demo"},{"event_id":"EVT002","camera_id":"CAM02","timestamp":"2026-07-24T21:16:00+02:00","location":{"latitude":-26.092,"longitude":28.071},"media_url":"/evidence/EVT002.jpg","plate":{"text":"AB12CDGP","confidence":0.91},"face":{"reference_token":"CONSENTED_DEMO_FACE_A","embedding":[0.81,0.12,0.35,0.21],"confidence":0.79},"vehicle":{"colour":"white","type":"sedan","make":"demo","model":"model-a"},"appearance":{"upper_colour":"black","lower_colour":"blue","descriptor_token":"DEMO_APPEARANCE_A"},"camera_trust_score":79,"source":"synthetic-demo"},{"event_id":"EVT003","camera_id":"CAM03","timestamp":"2026-07-24T21:34:00+02:00","location":{"latitude":-26.118,"longitude":28.08},"media_url":"/evidence/EVT003.jpg","plate":{"text":"AB12CDGP","confidence":0.88},"vehicle":{"colour":"white","type":"sedan"},"camera_trust_score":73,"source":"synthetic-demo"},{"event_id":"EVT004","camera_id":"CAM04","timestamp":"2026-07-24T18:05:00+02:00","location":{"latitude":-26.14,"longitude":28.09},"media_url":"/evidence/EVT004.jpg","plate":{"text":"ZZ99ZZGP","confidence":0.95},"vehicle":{"colour":"red","type":"suv"},"camera_trust_score":91,"source":"synthetic-demo"}]}</script>
 <script id="mediaData" type="application/json">{"veh1_frame":"data:image/jpeg;base64,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","veh2_frame":"data:image/jpeg;base64,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","veh1_plate":"data:image/jpeg;base64,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","veh2_plate":"data:image/jpeg;base64,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","face_frame":"data:image/jpeg;base64,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","face_crop":"data:image/jpeg;base64,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"}</script>
 <script>
@@ -560,6 +908,7 @@ let selHotspot=null,perilFilter='All',leaf=null,leafLayer=null;
 let CAMERAS=[],selCamera=null,EVENTS=[],selEvent=null,LINK=null,ALERT=null;
 let objModel=null,faceModel=null,aiReady=false;
 let stream=null,rafId=null,liveEl=null,lastFile=null,liveDetections=[],fpsAvg=0;
+let faceStableFrames=0,faceCaptureCount=0,lastFaceCaptureAt=0;
 
 /* per-house cameras (fallback roster mirrors the backend router) */
 const ROSTER=[
@@ -589,7 +938,7 @@ function countTo(el,target,f){if(REDUCED||!window.gsap){el.textContent=f(target)
   const o={v:0};gsap.to(o,{v:target,duration:1,ease:'power2.out',onUpdate:()=>el.textContent=f(o.v)});}
 
 /* ---------- welcome / app ---------- */
-function enterApp(){$('welcome').classList.add('gone');$('app').classList.add('show');
+function enterApp(){$('welcome').classList.add('gone');$('app').classList.add('show');if(!ROLE)showRoleGate();
   if(leaf)setTimeout(()=>leaf.invalidateSize(),320);}
 $('enterBtn').onclick=enterApp;$('enterBtn2').onclick=enterApp;
 $('introLink').onclick=()=>{$('welcome').classList.remove('gone');$('app').classList.remove('show');$('welcome').scrollTop=0;};
@@ -600,6 +949,11 @@ $('tabs').addEventListener('click',e=>{
   document.querySelectorAll('#tabs button').forEach(x=>x.classList.toggle('on',x===b));
   document.querySelectorAll('.view').forEach(v=>v.classList.toggle('on',v.id==='v-'+b.dataset.v));
   if(b.dataset.v==='overview'&&leaf)setTimeout(()=>leaf.invalidateSize(),120);
+  if(b.dataset.v==='patterns')loadPatterns();
+  if(b.dataset.v==='claims'&&!CLAIMS_ROWS.length)searchClaims();
+  if(b.dataset.v==='movement')loadMovement();
+  if(b.dataset.v==='briefing')loadBriefing();
+  if(b.dataset.v==='property')refreshMemberCams();
   scrollTo({top:0,behavior:'smooth'});
 });
 
@@ -643,21 +997,34 @@ async function detectFrame(src,ctx,W,H){
 function drawOverlay(ctx,W,H,det){
   ctx.clearRect(0,0,W,H);
   ctx.lineWidth=Math.max(2,W/320);ctx.font=`600 ${Math.max(12,W/48)}px IBM Plex Mono`;
-  const box=(x,y,w,h,col,label)=>{
-    ctx.strokeStyle=col;ctx.strokeRect(x,y,w,h);
-    ctx.fillStyle='rgba(11,22,34,.82)';
-    const tw=ctx.measureText(label).width+10;
-    ctx.fillRect(x,Math.max(0,y-20),tw,19);
-    ctx.fillStyle=col;ctx.fillText(label,x+5,Math.max(13,y-6));
+  const box=(x,y,w,h,col,label,thick=false)=>{
+    ctx.save();
+    ctx.strokeStyle=col;ctx.lineWidth=thick?Math.max(3,W/220):Math.max(2,W/320);
+    ctx.strokeRect(x,y,w,h);
+    if(thick){
+      const c=Math.max(12,Math.min(w,h)*.16);
+      ctx.lineWidth=Math.max(5,W/160);ctx.beginPath();
+      [[x,y,c,0,0,c],[x+w,y,-c,0,0,c],[x,y+h,c,0,0,-c],[x+w,y+h,-c,0,0,-c]].forEach(a=>{
+        ctx.moveTo(a[0]+a[2],a[1]+a[3]);ctx.lineTo(a[0],a[1]);ctx.lineTo(a[0]+a[4],a[1]+a[5]);
+      });ctx.stroke();
+    }
+    ctx.fillStyle='rgba(5,35,23,.88)';
+    const tw=Math.min(W-x,ctx.measureText(label).width+12);
+    ctx.fillRect(x,Math.max(0,y-23),tw,22);
+    ctx.fillStyle=col;ctx.fillText(label,x+6,Math.max(15,y-7));ctx.restore();
   };
   det.objects.forEach(o=>{
     const [x,y,w,h]=o.bbox;
     const col=o.class==='person'?'#9BE8B0':VEHICLE.has(o.class)?'#00AEEF':'#FFC53D';
     box(x,y,w,h,col,`${o.class} ${(o.score*100).toFixed(0)}%`);
   });
-  det.faces.forEach(f=>{
+  det.faces.forEach((f,i)=>{
     const [x1,y1]=f.topLeft,[x2,y2]=f.bottomRight;
-    box(x1,y1,x2-x1,y2-y1,'#FF6B5E',`face ${((f.probability?.[0]??f.probability??0)*100).toFixed(0)}%`);
+    const confidence=((f.probability?.[0]??f.probability??0)*100).toFixed(0);
+    const state=faceStableFrames>=3?'FACE TRACKED · CAPTURING':'FACE DETECTED';
+    box(x1,y1,x2-x1,y2-y1,'#26E67E',`${state} ${confidence}%`,true);
+    ctx.fillStyle='#26E67E';ctx.font=`700 ${Math.max(11,W/58)}px IBM Plex Mono`;
+    ctx.fillText(`TRACK ${String(i+1).padStart(2,'0')}`,x1+6,Math.min(H-8,y2+18));
   });
 }
 function qualityFrom(ctx,W,H,det){
@@ -750,8 +1117,8 @@ async function loadCameras(){
 function renderWall(){
   const cams=camerasForMetro();
   if(!selCamera||!cams.find(c=>c.camera_id===selCamera))selCamera=cams[0]?.camera_id;
-  $('wallMeta').textContent=`${cams.length} demo households · ${cams.filter(c=>c.mode==='HEIGHTENED').length} in heightened mode`;
-  $('kCams').innerHTML=`${cams.length} <small>configured</small>`;
+  $('wallMeta').textContent=`${cams.length} participating households · ${cams.filter(c=>c.mode==='HEIGHTENED').length} in heightened mode`;
+  $('kCams').innerHTML=`${cams.length} <small>online</small>`;
   $('wall').innerHTML=cams.map(c=>{
     const evs=EVENTS.filter(e=>e.camera_id===c.camera_id);
     const last=evs[evs.length-1];
@@ -801,6 +1168,7 @@ function renderCamDetail(){
     </div>`;
   $('attachCam').onclick=()=>{$('feedCam').value=c.camera_id;
     document.querySelector('#tabs button[data-v="live"]').click();startCamera();};
+  renderCalFields();
   $('viewEvents').onclick=()=>{
     const e=evs[evs.length-1];if(e){selEvent=e.event_id;}
     document.querySelector('#tabs button[data-v="evidence"]').click();renderEvidenceView();};
@@ -816,17 +1184,39 @@ function ensureStage(el){
   hud.innerHTML=`<span id="hudL"></span><span id="hudR"></span>`;st.appendChild(hud);
   const hudb=document.createElement('div');hudb.className='hudb';
   hudb.innerHTML=`<span id="hudB"></span><span>SYNTHETIC / CONSENTED MEDIA ONLY</span>`;st.appendChild(hudb);
+  const faceState=document.createElement('div');faceState.className='face-state';faceState.id='faceState';
+  faceState.textContent='FACE TRACKER READY';st.appendChild(faceState);
   return ov;
+}
+async function refreshPhysicalCameras(selectActive=true){
+  const sel=$('physicalCam');if(!sel||!navigator.mediaDevices?.enumerateDevices)return;
+  try{
+    const devices=(await navigator.mediaDevices.enumerateDevices()).filter(d=>d.kind==='videoinput');
+    const current=sel.value;
+    sel.innerHTML='<option value="">Default / selfie camera</option>'+devices.map((d,i)=>
+      `<option value="${d.deviceId}">${d.label||`Camera ${i+1}`}</option>`).join('');
+    if(selectActive&&stream){
+      const active=stream.getVideoTracks()[0]?.getSettings()?.deviceId;
+      if(active&&devices.some(d=>d.deviceId===active))sel.value=active;
+    }else if(devices.some(d=>d.deviceId===current))sel.value=current;
+  }catch(e){console.warn('camera enumeration failed',e);}
 }
 async function startCamera(){
   stopFeed();
   const cam=currentFeedCam();
+  const deviceId=$('physicalCam')?.value;
+  const videoConstraints=deviceId
+    ?{deviceId:{exact:deviceId},width:{ideal:960},height:{ideal:540}}
+    :{width:{ideal:960},height:{ideal:540},facingMode:'user'};
   try{
-    stream=await navigator.mediaDevices.getUserMedia({video:{width:{ideal:960},height:{ideal:540},facingMode:'environment'},audio:false});
+    stream=await navigator.mediaDevices.getUserMedia({video:videoConstraints,audio:false});
   }catch(e){
-    $('stage').innerHTML=`<div class="empty">CAMERA ACCESS DENIED — ${String(e.message||e).slice(0,60)}<br><br>Use “Load footage” to run detection on a video file instead.</div>`;
+    $('stage').innerHTML=`<div class="empty">CAMERA ACCESS DENIED — ${String(e.message||e).slice(0,80)}<br><br>Run the dashboard on localhost, allow camera permission, or use “Load footage”.</div>`;
     return;
   }
+  await refreshPhysicalCameras(true);
+  faceStableFrames=0;faceCaptureCount=0;lastFaceCaptureAt=0;
+  $('chipCapture').textContent='captures: 0';$('chipCapture').classList.remove('on');
   const v=document.createElement('video');v.autoplay=true;v.muted=true;v.playsInline=true;v.srcObject=stream;
   v.dataset.cam=cam.camera_id;liveEl=v;
   const ov=ensureStage(v);
@@ -839,9 +1229,19 @@ async function startCamera(){
 function stopFeed(){
   if(rafId)cancelAnimationFrame(rafId);rafId=null;
   if(stream){stream.getTracks().forEach(t=>t.stop());stream=null;}
-  liveEl=null;$('startCam').disabled=false;$('stopCam').disabled=true;$('snapBtn').disabled=true;
+  liveEl=null;faceStableFrames=0;
+  $('startCam').disabled=false;$('stopCam').disabled=true;$('snapBtn').disabled=true;
+  $('chipFace').textContent='face tracker: idle';$('chipFace').classList.remove('on');
 }
 $('startCam').onclick=startCamera;
+$('refreshCams').onclick=async()=>{
+  if(!stream){
+    try{const probe=await navigator.mediaDevices.getUserMedia({video:true,audio:false});probe.getTracks().forEach(t=>t.stop());}
+    catch(e){$('stage').innerHTML=`<div class="empty">ALLOW CAMERA ACCESS TO LIST DEVICES</div>`;}
+  }
+  await refreshPhysicalCameras(false);
+};
+$('physicalCam').onchange=()=>{if(liveEl&&liveEl.srcObject)startCamera();};
 $('stopCam').onclick=()=>{stopFeed();$('stage').innerHTML='<div class="empty">FEED STOPPED</div>';renderWall();};
 $('feedCam').onchange=()=>{if(liveEl&&liveEl.srcObject)startCamera();};
 
@@ -856,7 +1256,13 @@ function loop(src,ov,cam,mode){
     workCtx.drawImage(src,0,0,W,H);
     const det=await detectFrame(src,workCtx,W,H);
     liveDetections=det;
+    faceStableFrames=det.faces.length?Math.min(30,faceStableFrames+1):0;
     drawOverlay(ov.getContext('2d'),W,H,det);
+    const fs=$('faceState');
+    if(fs){
+      fs.classList.toggle('on',det.faces.length>0);
+      fs.textContent=faceStableFrames>=3?'FACE TRACKED · EVENT CAPTURE ACTIVE':'FACE DETECTED · ACQUIRING TRACK';
+    }
     /* motion */
     let motion=0;
     try{const d=workCtx.getImageData(0,0,Math.min(W,160),Math.min(H,120)).data;
@@ -867,7 +1273,9 @@ function loop(src,ov,cam,mode){
     frameNo++;
     $('chipObj').textContent=`objects: ${det.objects.length}`;
     $('chipObj').classList.toggle('on',det.objects.length>0);
-    $('chipFace').textContent=`faces: ${det.faces.length}`;
+    $('chipFace').textContent=det.faces.length
+      ?`face tracker: ${faceStableFrames>=3?'LOCKED':'acquiring'} (${det.faces.length})`
+      :'face tracker: searching';
     $('chipFace').classList.toggle('on',det.faces.length>0);
     $('chipFps').textContent=`${fpsAvg.toFixed(0)} fps`;
     const hl=$('hudL'),hr=$('hudR'),hb=$('hudB');
@@ -875,10 +1283,17 @@ function loop(src,ov,cam,mode){
     if(hr)hr.textContent=`${W}×${H} · ${fpsAvg.toFixed(0)}fps`;
     if(hb)hb.textContent=`objects ${det.objects.length} · faces ${det.faces.length} · motion ${motion.toFixed(2)}`;
     renderDetPanel(det,W,H);
-    /* auto-capture on strong detection in heightened mode */
-    if(mode==='LIVE'&&(cam.mode==='HEIGHTENED')&&now>autoCooldown){
-      const strong=det.objects.some(o=>(o.class==='person'||VEHICLE.has(o.class))&&o.score>.66)||det.faces.length;
-      if(strong){autoCooldown=now+6000;captureEvent(cam,'LIVE',motion);}
+    trackPerson(det,W,H);
+    /* Demo capture: once a face is stable, save an event every six seconds.
+       Other strong detections still require heightened camera mode. */
+    if(mode==='LIVE'&&now>autoCooldown){
+      const stableFace=det.faces.length>0&&faceStableFrames>=3;
+      const strongEdge=(cam.mode==='HEIGHTENED')&&det.objects.some(o=>(o.class==='person'||VEHICLE.has(o.class))&&o.score>.66);
+      if(stableFace||strongEdge){
+        autoCooldown=now+6000;
+        const ev=captureEvent(cam,'LIVE',motion);
+        if(stableFace&&ev){lastFaceCaptureAt=Date.now();flashCapture();}
+      }
     }
     rafId=requestAnimationFrame(step);
   };
@@ -895,15 +1310,22 @@ function renderDetPanel(det,W,H){
     `<div class="brow"><span style="text-transform:capitalize">${k}</span><div class="bar"><i style="width:${v}%"></i></div><b>${v}</b></div>`).join('')
     +`<div class="brow" style="margin-top:6px"><span><b>Trust</b></span><div class="bar"><i style="width:${trustFrom(q)}%"></i></div><b>${trustFrom(q)}</b></div>`;
 }
+function flashCapture(){
+  const st=$('stage');if(!st)return;st.classList.remove('capture-flash');void st.offsetWidth;st.classList.add('capture-flash');
+  setTimeout(()=>st.classList.remove('capture-flash'),650);
+}
 function captureEvent(cam,source,motion){
   const W=workCanvas.width,H=workCanvas.height;if(!W)return null;
   const ev=buildEvent(liveDetections,workCtx,W,H,cam,source,frameNo,motion||0);
   EVENTS.push(ev);selEvent=ev.event_id;
-  $('pushEvents').disabled=false;
+  if(ev.face?.present){
+    faceCaptureCount++;$('chipCapture').textContent=`captures: ${faceCaptureCount}`;$('chipCapture').classList.add('on');
+  }
+  $('pushEvents').disabled=false;$('toRegistry').disabled=false;
   renderLiveSig(ev);renderWall();refreshStore();
   return ev;
 }
-$('snapBtn').onclick=()=>{const c=currentFeedCam();captureEvent(c,'LIVE',0);};
+$('snapBtn').onclick=()=>{const c=currentFeedCam();const ev=captureEvent(c,'LIVE',0);if(ev)flashCapture();};
 function renderLiveSig(ev){
   const c=ev._colours||{};
   $('liveSig').innerHTML=`
@@ -1020,6 +1442,15 @@ $('serverPipe').onclick=async()=>{
     if(!res.ok)throw new Error((await res.text()).slice(0,140));
     const out=await res.json();
     plog(`<b>✓</b> pipeline produced ${out.event_count} event(s), ${out.ingested} ingested`);
+    if(out.aws?.requested){
+      if(out.aws.published){
+        plog(`<b>✓</b> AWS: ${out.aws.published} event(s) copied to private S3`);
+      }else{
+        const why=out.aws.errors?.[0]?.error||'AWS unavailable — local fallback kept the demo running';
+        plog(`<span class="i">AWS fallback: ${String(why).slice(0,120)}</span>`);
+      }
+      loadAwsStatus();
+    }
     out.events.forEach(e=>{
       e._source='SERVER';
       if(e.media_url)e._thumb=`/api/cameras/media/${out.batch}/${e.media_url}`;
@@ -1342,7 +1773,7 @@ function renderPatrol(p,animate){
     <div><div class="b">${fmt(p.fuel_saved_litres,1)} L</div><div class="s">fuel saved / shift</div></div>
     <div><div class="b">+${fmt(p.protected_risk_per_km_improvement_percent,0)}%</div><div class="s">vs existing</div></div>`;
   const card=(t,r)=>`<b>${t}</b><br>${fmt(r.distance_km)} km · ${fmt(r.estimated_fuel_litres,2)} L<br>${fmt(r.coverage_percent)}% risk covered · <strong>${fmt(r.protected_risk_per_km,2)} risk/km</strong>`;
-  $('cardBase').innerHTML=card('Risk-ranked baseline',b);$('cardOpt').innerHTML=card('Optimised',o);
+  $('cardBase').innerHTML=card('Existing sequence',b);$('cardOpt').innerHTML=card('Optimised',o);
   $('routeMeta').textContent=`${o.ordered_hotspot_ids.length} stops · depot ${DATA.depot.name}`;
   const W=660,H=440,P=projector(DATA.hotspots,W,H,58);
   const path=or=>{let s=`M ${P(DATA.depot).x} ${P(DATA.depot).y}`;or.forEach(id=>{const q=P(byId[id]);s+=` L ${q.x} ${q.y}`});return s;};
@@ -1383,20 +1814,662 @@ async function recalcRoute(){
 }
 $('applyRoute').onclick=recalcRoute;
 
-/* ================= DEMO CONTROLS ================= */
-$('seedDemo').onclick=async()=>{
-  $('demoCtlStatus').textContent='seeding…';
-  try{const r=await j('/api/demo/seed',{method:'POST'});
-    $('demoCtlStatus').textContent=`seeded ${r.seeded_events} events · claim ${r.claim_id}`;
-    await loadMetro($('metro').value);
-  }catch(e){$('demoCtlStatus').textContent=`seed failed: ${String(e.message||e).slice(0,90)}`;}
+
+/* ================= HEIGHT CALIBRATION ================= */
+let calMode='INTRINSIC', CALS={}, personTrack=[], lastFrameDims={w:0,h:0};
+const CAL_DEFAULTS={INTRINSIC:{mount_height_m:2.8,tilt_deg:18,horizontal_fov_deg:78},
+                    REFERENCE:{horizon_y:200,ref_height_m:2.04,ref_foot_y:640,ref_head_y:300}};
+function renderCalFields(){
+  const c=CAMERAS.find(x=>x.camera_id===selCamera);
+  const saved=CALS[selCamera]||{};
+  const v=k=>saved[k]??CAL_DEFAULTS[calMode][k];
+  const f=(id,label,step='0.1')=>`<div class="fld"><label for="${id}">${label}</label>
+    <input id="${id}" type="number" step="${step}" value="${v(id)}"></div>`;
+  $('calFields').innerHTML='<div class="calgrid">'+(calMode==='INTRINSIC'
+    ? f('mount_height_m','Mount height (m)')+f('tilt_deg','Downward tilt (°)')+
+      f('horizontal_fov_deg','Horizontal FOV (°)')+
+      `<div class="fld"><label>Image size</label><input value="${lastFrameDims.w||1280} × ${lastFrameDims.h||720}" disabled></div>`
+    : f('ref_height_m','Reference height (m)','0.01')+f('horizon_y','Horizon row (px)','1')+
+      f('ref_foot_y','Reference base row (px)','1')+f('ref_head_y','Reference top row (px)','1')
+  )+'</div>';
+  $('calState').textContent=CALS[selCamera]?`${CALS[selCamera].mode} · score ${CALS[selCamera].calibration_score??100}`:'not calibrated';
+}
+document.addEventListener('click',e=>{
+  const b=e.target.closest('#calMode button'); if(!b)return;
+  calMode=b.dataset.m;
+  document.querySelectorAll('#calMode button').forEach(x=>x.classList.toggle('on',x===b));
+  renderCalFields();
+});
+async function saveCalibration(score){
+  const cam=CAMERAS.find(x=>x.camera_id===selCamera); if(!cam)return;
+  const body={camera_id:cam.camera_id,image_width:lastFrameDims.w||1280,image_height:lastFrameDims.h||720,
+    mode:calMode,calibration_score:score??100};
+  const keys=calMode==='INTRINSIC'?['mount_height_m','tilt_deg','horizontal_fov_deg']
+                                  :['ref_height_m','horizon_y','ref_foot_y','ref_head_y'];
+  keys.forEach(k=>{const el=$(k); if(el)body[k]=parseFloat(el.value);});
+  CALS[cam.camera_id]=body;
+  if(LIVE){
+    try{await j(`/api/cameras/${encodeURIComponent(cam.camera_id)}/calibration`,
+      {method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});}
+    catch(err){$('calState').textContent='save failed: '+err.message.slice(0,40);return;}
+  }
+  $('calState').textContent=`${body.mode} · score ${body.calibration_score}`+(LIVE?' · saved':' · local');
+  renderHeight();
+}
+document.addEventListener('click',e=>{
+  if(e.target.id==='calSave')saveCalibration(100);
+  if(e.target.id==='calDrift')saveCalibration(57);
+});
+
+/* ---- local mirror of the server estimator, so height works offline too ---- */
+function heightLocal(cal,obs){
+  const HEAD=3.0,FOOT=5.0,MINPX=60;
+  if((cal.calibration_score??100)<70)
+    throw new Error(`calibration score ${cal.calibration_score} below 70 — height estimation disabled until the camera is re-calibrated`);
+  const f=(cal.image_width/2)/Math.tan((cal.horizontal_fov_deg||78)*Math.PI/180/2);
+  const cy=cal.image_height/2, tilt=(cal.tilt_deg||0)*Math.PI/180;
+  const solve=(fy,hy)=>{
+    if(cal.mode==='REFERENCE'){
+      const sd=fy-cal.horizon_y, rd=cal.ref_foot_y-cal.horizon_y;
+      if(Math.abs(sd)<1e-6||Math.abs(rd)<1e-6)throw new Error('degenerate geometry near the horizon');
+      const rr=(cal.ref_foot_y-cal.ref_head_y)/rd;
+      if(Math.abs(rr)<1e-9)throw new Error('reference object has no measurable image height');
+      return cal.ref_height_m*(((fy-hy)/sd)/rr);
+    }
+    const dep=y=>tilt+Math.atan((y-cy)/f);
+    const df=dep(fy);
+    if(df<=1e-6)throw new Error('feet are at or above the horizon — no ground intersection');
+    const depth=cal.mount_height_m/Math.tan(df);
+    return cal.mount_height_m-depth*Math.tan(dep(hy));
+  };
+  const pts=[],los=[],his=[];let rejected=0;const why=new Set();
+  for(const o of obs){
+    try{
+      if(o.clipped)throw new Error('subject clipped by the frame edge — head or feet not fully visible');
+      if(o.foot_y<=o.head_y)throw new Error('box is inverted or invalid');
+      if(o.foot_y-o.head_y<MINPX)throw new Error(`subject only ${Math.round(o.foot_y-o.head_y)}px tall, below the ${MINPX}px floor`);
+      const pt=solve(o.foot_y,o.head_y);
+      if(!(pt>0.6&&pt<2.6))throw new Error(`implausible result ${pt.toFixed(2)} m — check calibration`);
+      const a=solve(o.foot_y+FOOT,o.head_y-HEAD), b=solve(o.foot_y-FOOT,o.head_y+HEAD);
+      pts.push(pt);los.push(Math.min(a,b));his.push(Math.max(a,b));
+    }catch(err){rejected++;why.add(err.message);}
+  }
+  if(pts.length<3)throw new Error(`only ${pts.length} usable frame(s), need 3 — ${[...why].join('; ')||'subject not tracked long enough'}`);
+  const med=a=>{const x=[...a].sort((p,q)=>p-q);return x[Math.floor(x.length/2)];};
+  let pt=med(pts),lo=med(los),hi=med(his);
+  const spread=Math.max(...pts)-Math.min(...pts);
+  lo=Math.min(lo,pt-spread/2);hi=Math.max(hi,pt+spread/2);
+  const notes=[];
+  if(rejected)notes.push(`${rejected} frame(s) rejected: ${[...why].join('; ')}`);
+  if(spread>0.15)notes.push(`frames disagree by ${(spread*100).toFixed(0)} cm — band widened accordingly`);
+  if(hi-lo>0.30)notes.push('band exceeds 30 cm — treat as corroborating detail only, not identifying');
+  let q=Math.max(0,Math.min(1,1-(hi-lo)/0.40));
+  if((cal.calibration_score??100)<90)q*=(cal.calibration_score/100);
+  return {height_low_m:+lo.toFixed(2),height_high_m:+hi.toFixed(2),height_point_m:+pt.toFixed(2),
+    height_band:`${lo.toFixed(2)}-${hi.toFixed(2)} m`,frames_used:pts.length,
+    method:cal.mode.toLowerCase()+'-single-view',quality:+q.toFixed(2),notes};
+}
+function trackPerson(det,W,H){
+  lastFrameDims={w:W,h:H};
+  const p=det.objects.filter(o=>o.class==='person').sort((a,b)=>b.score-a.score)[0];
+  if(!p)return;
+  const [x,y,w,h]=p.bbox, m=4;
+  personTrack.push({head_y:y,foot_y:y+h,
+    clipped:(y<=m||y+h>=H-m||x<=m||x+w>=W-m)});
+  if(personTrack.length>40)personTrack.shift();
+  $('hTrack').textContent=`${personTrack.length} frame(s)`;
+  $('hEstimate').disabled=personTrack.length<3;
+}
+async function renderHeight(){
+  const cal=CALS[selCamera]||CALS[$('feedCam')?.value];
+  const out=$('heightOut'); if(!out)return;
+  if(!cal){out.innerHTML='<p class="mono">This camera is not calibrated. Set it up under <b>Cameras → Height calibration</b>.</p>';return;}
+  if(personTrack.length<3){out.innerHTML='<p class="mono">Track a person across at least 3 frames, then estimate.</p>';return;}
+  let r=null,err=null;
+  if(LIVE){
+    try{
+      const boxes=personTrack.map(o=>({x:10,y:o.head_y,width:100,height:o.foot_y-o.head_y}));
+      r=await j('/api/height/estimate',{method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({camera_id:cal.camera_id,person_boxes:boxes,
+          image_width:cal.image_width,image_height:cal.image_height})});
+    }catch(e){err=String(e.message).replace(/^\{"detail":"?|"?\}$/g,'');}
+  }
+  if(!r&&!err){ try{ r=heightLocal(cal,personTrack);}catch(e){err=e.message;} }
+  if(err){
+    out.innerHTML=`<div class="hrefuse"><h5>No estimate</h5><p>${err}</p>
+      <p style="margin-top:7px;color:var(--muted)">A refusal is a valid answer. A wrong height is worse than no height.</p></div>`;
+    return;
+  }
+  const lo=r.height_low_m,hi=r.height_high_m,pt=r.height_point_m;
+  const S=1.40,E=2.10,pct=v=>Math.max(0,Math.min(100,(v-S)/(E-S)*100));
+  out.innerHTML=`<div class="hband">
+      <div class="b">${r.height_band}</div>
+      <div class="l">height band · ${r.frames_used} frames · ${r.method}</div>
+      <div class="n">quality ${r.quality} · midpoint ${pt.toFixed(2)} m${r.notes.length?'<br>'+r.notes.join('<br>'):''}</div>
+    </div>
+    <div class="ruler"><div class="rng" style="left:${pct(lo)}%;width:${pct(hi)-pct(lo)}%"></div>
+      <div class="pt" style="left:${pct(pt)}%"></div></div>
+    <div class="rulerlab"><span>1.40 m</span><span>1.75 m</span><span>2.10 m</span></div>
+    <p class="mono" style="margin-top:10px;line-height:1.7">A band this wide is <b>corroborating, not identifying</b> — strong for excluding a candidate, weak for confirming one.</p>`;
+  window.__lastHeight=r;
+}
+document.addEventListener('click',e=>{
+  if(e.target.id==='hEstimate')renderHeight();
+  if(e.target.id==='hClear'){personTrack=[];$('hTrack').textContent='';$('hEstimate').disabled=true;renderHeight();}
+});
+
+/* ================= PATTERN REGISTRY ================= */
+let PATTERNS=[],selPattern=null,LOCALPAT={patterns:[],reviews:{}};
+async function loadPatterns(){
+  if(LIVE){
+    try{const d=await j('/api/patterns');PATTERNS=d.patterns;renderPatterns(d.stats);return;}catch(e){}
+  }
+  PATTERNS=LOCALPAT.patterns;
+  const conf=PATTERNS.filter(p=>p.status==='CONFIRMED_BY_REVIEW').length;
+  const dis=PATTERNS.filter(p=>p.status==='DISMISSED').length;
+  renderPatterns({patterns:PATTERNS.length,candidates:PATTERNS.filter(p=>p.status==='CANDIDATE').length,
+    confirmed:conf,dismissed:dis,false_positive_rate:(conf+dis)?Math.round(100*dis/(conf+dis)):null,
+    backend:'in-session'});
+}
+function renderPatterns(stats){
+  $('pStats').innerHTML=`
+    <div class="pstat"><div class="n">${stats.patterns}</div><div class="l">Patterns</div></div>
+    <div class="pstat"><div class="n">${stats.candidates}</div><div class="l">Awaiting review</div></div>
+    <div class="pstat"><div class="n">${stats.confirmed}</div><div class="l">Confirmed</div></div>
+    <div class="pstat"><div class="n">${stats.false_positive_rate==null?'—':stats.false_positive_rate+'%'}</div><div class="l">False positive rate</div></div>`;
+  if(!PATTERNS.length){
+    $('patList').innerHTML='<div class="pb"><p class="mono">No patterns yet. Capture two events of the same person or vehicle from nearby cameras minutes apart, then send them to the registry from <b>Live AI</b>.</p></div>';
+    $('patDetail').innerHTML='<p class="mono">Nothing to review.</p>';return;
+  }
+  if(!PATTERNS.find(p=>p.pattern_id===selPattern))selPattern=PATTERNS[0].pattern_id;
+  $('patList').innerHTML=PATTERNS.map(p=>`
+    <div class="patrow ${p.pattern_id===selPattern?'sel':''}" data-p="${p.pattern_id}">
+      <div class="pt"><span class="pid">${p.pattern_id} · ${p.kind}</span>
+        <span class="stchip ${p.status}">${p.status.replace(/_/g,' ')}</span></div>
+      <div class="pd">${p.description||''}</div>
+      <div class="mono" style="margin-top:4px">${p.occurrence_count} sighting(s) · ${(p.camera_ids||[]).length} camera(s) · best ${p.best_score}</div>
+    </div>`).join('');
+  $('patList').querySelectorAll('.patrow').forEach(el=>el.onclick=()=>{selPattern=el.dataset.p;renderPatterns(stats);});
+  renderPatternDetail();
+}
+async function renderPatternDetail(){
+  const p=PATTERNS.find(x=>x.pattern_id===selPattern); if(!p)return;
+  let reviews=[];
+  if(LIVE){try{reviews=(await j('/api/patterns/'+p.pattern_id)).reviews||[];}catch(e){}}
+  else reviews=LOCALPAT.reviews[p.pattern_id]||[];
+  $('patTitle').textContent=p.pattern_id;
+  $('patMeta').textContent=`${p.kind} · ${p.occurrence_count} sightings · best ${p.best_score}`;
+  const cues=Object.entries(p.cue_profile||{}).filter(([k,v])=>v!=null&&k!=='height_quality');
+  const pending=p.status==='CANDIDATE';
+  $('patDetail').innerHTML=`
+    <div style="font-size:.95rem;font-weight:700">${p.description||''}</div>
+    <div class="cueprofile">${cues.map(([k,v])=>`<span class="cuepill">${k.replace(/_/g,' ')}: ${typeof v==='number'?v.toFixed(2):v}</span>`).join('')}</div>
+    <div style="display:flex;gap:22px;flex-wrap:wrap;font-size:.76rem;margin-top:6px">
+      <div><b style="display:block;font-size:.54rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)">Cameras</b>${(p.camera_ids||[]).join(', ')||'—'}</div>
+      <div><b style="display:block;font-size:.54rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)">Geofences</b>${(p.geofence_ids||[]).join(', ')||'—'}</div>
+      <div><b style="display:block;font-size:.54rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)">First seen</b>${p.first_seen?new Date(p.first_seen).toLocaleString('en-ZA'):'—'}</div>
+      <div><b style="display:block;font-size:.54rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)">Last seen</b>${p.last_seen?new Date(p.last_seen).toLocaleString('en-ZA'):'—'}</div>
+      <div><b style="display:block;font-size:.54rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)">SAPS ref</b>${p.saps_reference||'—'}</div>
+    </div>
+    <div class="noident"><b>This is not an identity.</b> No name, no ID number, no face gallery entry. The registry records what cameras observed and points outward to a SAPS case reference. Attribution to a person is SAPS's decision under their authority, not this system's.</div>
+    ${pending?`<div class="revform">
+      <label style="display:block;font-size:.56rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:5px">Reason (required)</label>
+      <textarea id="revReason" placeholder="What did you see, and what should happen next?"></textarea>
+      <div class="calgrid" style="margin-top:10px">
+        <div class="fld"><label for="revSaps">SAPS reference (optional)</label><input id="revSaps" placeholder="CAS 000/00/2026"></div>
+        <div class="fld"><label for="revClaim">Claim reference (optional)</label><input id="revClaim" placeholder="CLM-2026-000000"></div>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+        <button class="btn" data-rev="CONFIRMED_BY_REVIEW">Confirm pattern</button>
+        <button class="btn gh" data-rev="DISMISSED">Dismiss</button>
+      </div>
+      <div class="reverr" id="revErr">A written reason is required before any decision is recorded.</div>
+    </div>`:`<div class="revform"><div class="mono">Reviewed · ${reviews.length} decision(s) on record</div>
+      ${reviews.map(r=>`<div style="font-size:.76rem;margin-top:7px;line-height:1.6"><b>${r.decision.replace(/_/g,' ')}</b> — ${r.reason}<br><span class="mono">${r.reviewer} · ${new Date(r.created_at).toLocaleString('en-ZA')}</span></div>`).join('')}</div>`}`;
+  $('patDetail').querySelectorAll('[data-rev]').forEach(b=>b.onclick=()=>submitReview(p,b.dataset.rev));
+}
+async function submitReview(p,decision){
+  const reason=($('revReason').value||'').trim();
+  if(!reason){$('revErr').style.display='block';return;}
+  const saps=$('revSaps').value.trim()||null, claim=$('revClaim').value.trim()||null;
+  if(LIVE){
+    try{await j(`/api/patterns/${p.pattern_id}/review`,{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({decision,reason,reviewer:'operator@pilot',saps_reference:saps,claim_ref:claim})});}
+    catch(e){$('revErr').textContent=e.message.slice(0,120);$('revErr').style.display='block';return;}
+  }else{
+    p.status=decision;if(saps)p.saps_reference=saps;
+    (LOCALPAT.reviews[p.pattern_id]=LOCALPAT.reviews[p.pattern_id]||[]).push(
+      {decision,reason,reviewer:'operator@pilot',created_at:new Date().toISOString()});
+  }
+  loadPatterns();
+}
+$('pRefresh').onclick=loadPatterns;
+
+/* send the selected event into the registry */
+async function sendToRegistry(){
+  const e=EVENTS.find(x=>x.event_id===selEvent)||EVENTS[EVENTS.length-1];
+  if(!e)return;
+  const cam=CAMERAS.find(c=>c.camera_id===e.camera_id)||currentFeedCam();
+  const near=(DATA.hotspots||[]).map(h=>h.hotspot_id);
+  const payload={...e};delete payload._thumb;delete payload._colours;
+  const body={event:payload,height:window.__lastHeight||null,
+    geofence_id:cam?.hotspot_id||null,nearby_geofences:near};
+  if(LIVE){
+    try{
+      const out=await j('/api/patterns/ingest',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+      const made=out.signatures.filter(s=>s.pattern).length;
+      plog(`<b>✓</b> ${out.signatures.length} signature(s) registered${made?` · ${made} pattern(s) opened`:' · no recurrence yet'}`);
+      out.signatures.forEach(s=>{
+        const m=s.matches[0];
+        if(m)plog(`   ${s.kind}: ${m.score} ${m.relationship} · journey ${m.journey_km}km`);
+      });
+    }catch(err){plog(`<span class="f">registry: ${err.message}</span>`);return;}
+  }else{
+    localRegister(e,cam);
+  }
+  loadPatterns();
+  document.querySelector('#tabs button[data-v="patterns"]').click();
+}
+/* offline mirror: cluster in-session so the flow demos without a backend */
+function localRegister(e,cam){
+  const h=window.__lastHeight;
+  const cues={upper_colour:e.appearance?.upper_colour,lower_colour:e.appearance?.lower_colour,
+    carried:e.appearance?.backpack?'backpack':null};
+  if(h){cues.height_low_m=h.height_low_m;cues.height_high_m=h.height_high_m;}
+  Object.keys(cues).forEach(k=>{if(!cues[k]||cues[k]==='Unknown')delete cues[k];});
+  const prior=LOCALPAT._sigs=LOCALPAT._sigs||[];
+  const mine={event_id:e.event_id,camera_id:e.camera_id,cues,ts:e.timestamp,loc:e.location};
+  let matched=null;
+  for(const s of prior){
+    if(s.event_id===mine.event_id)continue;
+    const km=hav(s.loc,mine.loc);
+    const mins=Math.abs(new Date(mine.ts)-new Date(s.ts))/60000;
+    const speed=mins>0.01?km/(mins/60):(km>0.05?9999:0);
+    if(speed>120)continue;
+    let agree=0;
+    ['upper_colour','lower_colour','carried'].forEach(k=>{if(cues[k]&&cues[k]===s.cues[k])agree++;});
+    if(cues.height_low_m&&s.cues.height_low_m){
+      const lo=Math.max(cues.height_low_m,s.cues.height_low_m),hi=Math.min(cues.height_high_m,s.cues.height_high_m);
+      if(hi>lo)agree++;
+    }
+    if(agree>=2){matched=s;break;}
+  }
+  prior.push(mine);
+  if(matched){
+    let pat=LOCALPAT.patterns.find(p=>p.signature_ids.includes(matched.event_id));
+    if(pat){pat.signature_ids.push(mine.event_id);pat.occurrence_count=pat.signature_ids.length;
+      if(!pat.camera_ids.includes(mine.camera_id))pat.camera_ids.push(mine.camera_id);pat.last_seen=mine.ts;}
+    else{
+      const desc=[cues.upper_colour&&cues.upper_colour+' upper',cues.lower_colour&&cues.lower_colour+' lower',
+        cues.carried,cues.height_low_m&&`${cues.height_low_m.toFixed(2)}-${cues.height_high_m.toFixed(2)} m`]
+        .filter(Boolean).join(' · ');
+      LOCALPAT.patterns.push({pattern_id:'PAT-'+Math.random().toString(16).slice(2,10).toUpperCase(),
+        kind:'APPEARANCE',status:'CANDIDATE',signature_ids:[matched.event_id,mine.event_id],
+        camera_ids:[...new Set([matched.camera_id,mine.camera_id])],geofence_ids:[],
+        cue_profile:cues,first_seen:matched.ts,last_seen:mine.ts,occurrence_count:2,
+        best_score:78,claim_refs:[],saps_reference:null,review_count:0,description:desc});
+    }
+  }
+}
+document.addEventListener('click',e=>{if(e.target.id==='toRegistry')sendToRegistry();});
+
+
+/* ================= ROLES ================= */
+const ROLE_TABS={
+  member:['property','live'],
+  fraud:['claims','evidence','movement','rewind','patterns'],
+  security:['briefing','patrol'],
 };
-$('resetDemo').onclick=async()=>{
-  $('demoCtlStatus').textContent='resetting…';
-  try{const r=await j('/api/demo/reset',{method:'DELETE'});
-    $('demoCtlStatus').textContent=`reset complete · removed ${r.removed.events} events, ${r.removed.claims} claims, ${r.removed.alerts} alerts`;
-  }catch(e){$('demoCtlStatus').textContent=`reset failed: ${String(e.message||e).slice(0,90)}`;}
+const ROLE_HOME={member:'property',fraud:'claims',security:'briefing'};
+const ROLE_SCOPE={
+  member:['MEMBER WORKSPACE','Add your own cameras, use your phone as a sensor, and view your suburb-level pattern. Other households, claims and evidence intelligence are not displayed.'],
+  fraud:['FRAUD & CLAIMS WORKSPACE','Browse every claim, open a traceable analytical report, reconstruct claim-linked evidence and inspect anonymous aggregate movement corridors. Live member camera control is not displayed.'],
+  security:['SECURITY PARTNER WORKSPACE','Generate hotspot briefings, optimise patrol routes and add coverage locations. Claim values, member identities and raw footage are not displayed.'],
 };
+let ROLE=null;
+function showRoleGate(){
+  $('roleGate').classList.add('on');
+  document.querySelectorAll('#tabs button[data-v]').forEach(b=>b.style.display='none');
+  $('scopebar').innerHTML='<span class="tagr">CHOOSE ROLE</span><span>Select a workspace to load only the screens required for that user.</span>';
+}
+function applyRole(r,{navigate=true}={}){
+  if(!ROLE_TABS[r])return;
+  ROLE=r;
+  $('roleGate').classList.remove('on');
+  document.querySelectorAll('#roleSwitch button').forEach(b=>b.classList.toggle('on',b.dataset.r===r));
+  const allowed=ROLE_TABS[r];
+  document.querySelectorAll('#tabs button[data-v]').forEach(b=>{
+    b.style.display=allowed.includes(b.dataset.v)?'':'none';
+  });
+  $('metro').style.display=r==='security'?'':'none';
+  const [tag,txt]=ROLE_SCOPE[r];
+  $('scopebar').innerHTML=`<span class="tagr">${tag}</span><span><b>Scope.</b> ${txt}</span>`;
+  if(navigate)showView(ROLE_HOME[r]);
+  if(r==='security'){loadBriefing();renderPatrol(DATA.patrol,false);}
+  if(r==='member'){refreshMemberCams();}
+  if(r==='fraud'){searchClaims();loadMovement();}
+}
+function showView(v){
+  if(ROLE && !ROLE_TABS[ROLE].includes(v))return;
+  const b=document.querySelector(`#tabs button[data-v="${v}"]`); if(b)b.click();
+}
+$('roleSwitch').addEventListener('click',e=>{
+  const b=e.target.closest('button[data-r]'); if(b)applyRole(b.dataset.r);
+});
+$('roleGate').addEventListener('click',e=>{
+  const b=e.target.closest('[data-role-choice]'); if(b)applyRole(b.dataset.roleChoice);
+});
+
+/* ================= CLAIMS (fraud) ================= */
+let CLAIMS_ROWS=[],selClaimId=null;
+async function searchClaims(){
+  if(!LIVE){
+    $('cMeta').textContent='backend required';
+    $('cRows').innerHTML='<tr><td colspan="5" class="mono" style="padding:14px">The claims browser reads the workbook server-side. Start the backend to use it.</td></tr>';
+    return;
+  }
+  $('cMeta').textContent='searching…';
+  const q=new URLSearchParams({sort:$('cSort').value,limit:'120'});
+  if($('cq').value.trim())q.set('q',$('cq').value.trim());
+  if($('cPeril').value)q.set('peril',$('cPeril').value);
+  if($('cItem').value)q.set('item_type',$('cItem').value);
+  if($('cMin').value)q.set('min_amount',$('cMin').value);
+  try{
+    const d=await j('/api/fraud/claims?'+q);
+    CLAIMS_ROWS=d.claims;
+    $('cMeta').textContent=`${d.total.toLocaleString('en-ZA')} claims · ${money.format(d.value)}`;
+    if(!$('cPeril').options.length||$('cPeril').options.length===1){
+      $('cPeril').innerHTML='<option value="">All</option>'+
+        Object.keys(d.facets.perils).map(x=>`<option>${x}</option>`).join('');
+    }
+    $('cRows').innerHTML=d.claims.map(c=>`
+      <tr class="crow ${c.incident_id===selClaimId?'sel':''}" data-c="${c.incident_id}">
+        <td class="mono">${c.incident_id}</td>
+        <td>${c.suburb||'—'}</td>
+        <td><span class="perilpill ${c.peril}">${c.peril}</span></td>
+        <td>${c.item_type||''}${c.vehicle_make?`<br><span class="mono" style="font-size:.62rem">${c.vehicle_make}</span>`:''}</td>
+        <td class="amt">${money.format(c.amount)}</td></tr>`).join('');
+    $('cRows').querySelectorAll('.crow').forEach(r=>r.onclick=()=>{selClaimId=r.dataset.c;searchClaims();openClaim(r.dataset.c);});
+  }catch(e){$('cMeta').textContent='error: '+e.message.slice(0,60);}
+}
+async function openClaim(id){
+  $('crBody').innerHTML='<p class="mono">Building report from five years of claims…</p>';
+  try{
+    const r=await j(`/api/fraud/claims/${encodeURIComponent(id)}/report`);
+    const c=r.claim,ctx=r.context,a=r.assessment;
+    $('crTitle').textContent=c.incident_id;
+    $('crMeta').textContent=`${c.suburb||'unknown suburb'} · ${c.peril}`;
+    $('crBody').innerHTML=`
+      <div class="claimhead">
+        <div><b>Amount</b>${money.format(c.amount)}</div>
+        <div><b>Incident</b>${c.incident_at?new Date(c.incident_at).toLocaleString('en-ZA'):'—'}</div>
+        <div><b>Item</b>${c.item_type||'—'}</div>
+        ${c.vehicle_make?`<div><b>Vehicle</b>${c.vehicle_make} ${c.vehicle_model||''} ${c.vehicle_year||''}</div>`:''}
+        <div><b>Suburb history</b>${(ctx.suburb_incidents_5y||0).toLocaleString('en-ZA')} claims · median ${money.format(ctx.suburb_median||0)}</div>
+      </div>
+      <div class="assess"><div class="p">${a.priority}</div><div class="r">${a.recommendation}</div></div>
+      ${r.findings.map(f=>`<div class="finding ${f.level}">
+        <h5><span class="lv">${f.level}</span>${f.title}</h5><p>${f.detail}</p></div>`).join('')}
+      ${r.cluster.length?`<div style="margin-top:12px"><div class="mono" style="margin-bottom:6px">${r.cluster.length} claim(s) in the same suburb within 72 hours</div>
+        ${r.cluster.slice(0,6).map(x=>`<div class="mono" style="padding:4px 0;border-bottom:1px dashed #EDF1F4">${x.incident_id} · ${new Date(x.incident_at).toLocaleString('en-ZA')} · ${money.format(x.amount)}</div>`).join('')}</div>`:''}
+      <div style="margin-top:14px;display:flex;gap:9px;flex-wrap:wrap">
+        ${r.coverage.cameras.length?`<button class="btn" id="crRewind">Reconstruct incident window</button>`:''}
+        <button class="btn gh" id="crCopy">Copy report</button>
+      </div>
+      <p class="mono" style="margin-top:12px;line-height:1.7">${r.disclaimer}</p>`;
+    if($('crRewind'))$('crRewind').onclick=()=>showView('rewind');
+    if($('crCopy'))$('crCopy').onclick=()=>{
+      const txt=`${c.incident_id} · ${c.suburb} · ${money.format(c.amount)}\n${a.priority}: ${a.recommendation}\n\n`+
+        r.findings.map(f=>`[${f.level}] ${f.title}\n  ${f.detail}`).join('\n\n');
+      navigator.clipboard?.writeText(txt);
+      $('crCopy').textContent='Copied';setTimeout(()=>$('crCopy').textContent='Copy report',1400);
+    };
+  }catch(e){$('crBody').innerHTML=`<p class="mono">Could not build report: ${e.message.slice(0,120)}</p>`;}
+}
+$('cSearch').onclick=searchClaims;
+$('cq').addEventListener('keydown',e=>{if(e.key==='Enter')searchClaims();});
+
+/* ================= MOVEMENT (fraud) ================= */
+let moveLeaf=null,moveLayer=null,TRAILS=[],selTrail=null;
+function initMoveMap(){
+  if(moveLeaf||!window.L)return;
+  try{
+    moveLeaf=L.map('moveMap',{scrollWheelZoom:false});
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'© OpenStreetMap'}).addTo(moveLeaf);
+  }catch(e){moveLeaf=null;}
+}
+async function loadMovement(){
+  initMoveMap();
+  let d=null;
+  if(LIVE){ try{ d=await j('/api/fraud/movement'); }catch(e){} }
+  if(!d)d=localTrails();
+  TRAILS=d.trails||[];
+  $('mvMeta').textContent=`${TRAILS.length} trail(s) · ${(d.corridors||[]).length} corridor(s)`;
+  $('mvList').innerHTML=TRAILS.length?TRAILS.map(t=>`
+    <div class="trailrow ${t.pattern_id===selTrail?'sel':''}" data-t="${t.pattern_id}">
+      <div class="th"><span>${t.pattern_id}</span><span class="stchip ${t.status}">${t.status.replace(/_/g,' ')}</span></div>
+      <div class="td">${t.description}</div>
+      <div class="tm">${t.sightings} sighting(s) · ${t.distance_km} km · ${t.points.map(p=>p.suburb||p.camera_id).join(' → ')}</div>
+    </div>`).join('')
+    :'<div class="pb"><p class="mono">No trails yet. A trail needs a pattern seen by two or more cameras — confirm one under <b>Patterns</b> first.</p></div>';
+  $('mvList').querySelectorAll('.trailrow').forEach(el=>el.onclick=()=>{selTrail=el.dataset.t;loadMovement();});
+  drawMovement(d);
+}
+function drawMovement(d){
+  if(!moveLeaf){ $('moveMap').style.display='none'; $('moveSvg').style.display='block'; drawMoveSvg(d); return; }
+  if(moveLayer)moveLayer.remove();
+  moveLayer=L.layerGroup().addTo(moveLeaf);
+  const pts=[];
+  const maxW=Math.max(1,...(d.corridors||[]).map(c=>c.weight));
+  (d.corridors||[]).forEach(c=>{
+    const a=[c.from_point.latitude,c.from_point.longitude],b=[c.to_point.latitude,c.to_point.longitude];
+    pts.push(a,b);
+    L.polyline([a,b],{color:'#9AA8B2',weight:2+6*(c.weight/maxW),opacity:.55}).addTo(moveLayer)
+      .bindTooltip(`${c.from} ↔ ${c.to} · ${c.weight} pattern(s)`);
+  });
+  const maxN=Math.max(1,...(d.nodes||[]).map(n=>n.weight));
+  (d.nodes||[]).forEach(n=>{
+    pts.push([n.latitude,n.longitude]);
+    L.circleMarker([n.latitude,n.longitude],{radius:7+10*(n.weight/maxN),
+      color:'#B03A2E',weight:2,fillColor:'#E2B1AB',fillOpacity:.75}).addTo(moveLayer)
+      .bindTooltip(`<b>${n.suburb||n.camera_id}</b><br>seen in ${n.weight} trail(s)`);
+  });
+  const t=TRAILS.find(x=>x.pattern_id===selTrail);
+  if(t&&t.points.length>1){
+    const line=t.points.map(p=>[p.latitude,p.longitude]);
+    L.polyline(line,{color:'#00AEEF',weight:5,opacity:.95}).addTo(moveLayer);
+    t.points.forEach((p,i)=>L.marker([p.latitude,p.longitude],{icon:L.divIcon({className:'',iconSize:[18,18],
+      html:`<div style="width:18px;height:18px;border-radius:50%;background:#00AEEF;color:#021F38;font:700 11px/18px 'Saira Condensed';text-align:center;border:2px solid #fff">${i+1}</div>`})})
+      .addTo(moveLayer).bindTooltip(`${i+1}. ${p.suburb||p.camera_id}`));
+  }
+  if(pts.length)moveLeaf.fitBounds(L.latLngBounds(pts).pad(.28));
+  setTimeout(()=>moveLeaf.invalidateSize(),120);
+}
+function drawMoveSvg(d){
+  const nodes=d.nodes||[];
+  if(!nodes.length){$('moveSvg').innerHTML='';return;}
+  const W=660,H=470,P=projector(nodes.map(n=>({location:{latitude:n.latitude,longitude:n.longitude}})),W,H,64);
+  const pos={};nodes.forEach((n,i)=>pos[n.camera_id]=P({location:{latitude:n.latitude,longitude:n.longitude}}));
+  const maxW=Math.max(1,...(d.corridors||[]).map(c=>c.weight));
+  const maxN=Math.max(1,...nodes.map(n=>n.weight));
+  let out='';
+  (d.corridors||[]).forEach(c=>{const a=pos[c.from],b=pos[c.to];
+    if(a&&b)out+=`<line x1="${a.x}" y1="${a.y}" x2="${b.x}" y2="${b.y}" stroke="#9AA8B2" stroke-width="${2+6*(c.weight/maxW)}" opacity=".6"/>`;});
+  const t=TRAILS.find(x=>x.pattern_id===selTrail);
+  if(t)for(let i=0;i<t.points.length-1;i++){const a=pos[t.points[i].camera_id],b=pos[t.points[i+1].camera_id];
+    if(a&&b)out+=`<line x1="${a.x}" y1="${a.y}" x2="${b.x}" y2="${b.y}" stroke="#00AEEF" stroke-width="5"/>`;}
+  nodes.forEach(n=>{const q=pos[n.camera_id];
+    out+=`<circle cx="${q.x}" cy="${q.y}" r="${7+10*(n.weight/maxN)}" fill="#E2B1AB" stroke="#B03A2E" stroke-width="2"/>
+      <text class="zlab" x="${q.x+14}" y="${q.y+4}">${n.suburb||n.camera_id}</text>`;});
+  $('moveSvg').innerHTML=out;
+}
+function localTrails(){
+  const pats=(typeof PATTERNS!=='undefined'?PATTERNS:[]).filter(p=>(p.camera_ids||[]).length>1);
+  const pos={};CAMERAS.forEach(c=>pos[c.camera_id]={latitude:c.latitude,longitude:c.longitude,suburb:c.suburb});
+  const segs={},nodes={};
+  const trails=pats.map(p=>{
+    const points=(p.camera_ids||[]).filter(c=>pos[c]).map(c=>({camera_id:c,...pos[c]}));
+    let dist=0;
+    for(let i=0;i<points.length-1;i++){
+      dist+=hav(points[i],points[i+1]);
+      const k=[points[i].camera_id,points[i+1].camera_id].sort().join('|');
+      segs[k]=(segs[k]||0)+1;
+    }
+    points.forEach(pt=>nodes[pt.camera_id]=(nodes[pt.camera_id]||0)+1);
+    return {pattern_id:p.pattern_id,kind:p.kind,status:p.status,description:p.description||'',
+      sightings:p.occurrence_count,distance_km:+dist.toFixed(2),points};
+  }).filter(t=>t.points.length>1);
+  return {trails,
+    corridors:Object.entries(segs).map(([k,w])=>{const [a,b]=k.split('|');
+      return {from:a,to:b,weight:w,from_point:pos[a],to_point:pos[b]};}),
+    nodes:Object.entries(nodes).map(([c,w])=>({camera_id:c,...pos[c],weight:w}))};
+}
+$('mvRefresh').onclick=loadMovement;
+
+/* ================= BRIEFING (security) ================= */
+async function loadBriefing(){
+  if(!LIVE){
+    $('bMeta').textContent='backend required';
+    $('bCards').innerHTML='<p class="mono">The briefing is generated server-side from the claims pipeline. Start the backend to use it.</p>';
+    return;
+  }
+  try{
+    const d=await j(`/api/security/briefing?metro=${encodeURIComponent($('metro').value)}&shift=${$('bShift').value}`);
+    $('bMeta').textContent=`${d.hotspots.length} areas · focus: ${d.focus.join(', ')}`;
+    $('bCards').innerHTML=d.hotspots.map(h=>`
+      <div class="bcard ${h.band}">
+        <span class="pri" style="color:${h.band==='HIGH'?'var(--bad)':h.band==='MEDIUM'?'var(--warn)':'var(--ok)'}">${h.priority}</span>
+        <h4>${h.area}</h4>
+        <div class="kv"><span>Band</span><b>${h.band}</b></div>
+        <div class="kv"><span>Dominant peril</span><b>${h.dominant_peril||'—'}</b></div>
+        <div class="kv"><span>Incidents (5y)</span><b>${(h.incidents_5y||0).toLocaleString('en-ZA')}</b></div>
+        <div class="kv"><span>Peak this shift</span><b>${h.peak_hours_this_shift.length?h.peak_hours_this_shift.map(x=>String(x).padStart(2,'0')+':00').join(', '):'—'}</b></div>
+        <div class="kv"><span>Busiest days</span><b>${(h.peak_days||[]).join(', ')||'—'}</b></div>
+        <div class="act">${h.recommended_presence}</div>
+      </div>`).join('');
+    $('bGaps').innerHTML=d.coverage_gaps.length
+      ? d.coverage_gaps.map(g=>`<div class="gapcard"><b>${g.area}</b> · priority ${g.priority}<br>${g.reason}</div>`).join('')
+      : '<p class="mono">No coverage gaps in the priority bands.</p>';
+  }catch(e){$('bMeta').textContent='error: '+e.message.slice(0,60);}
+}
+$('bRefresh').onclick=loadBriefing;
+$('sAdd').onclick=async()=>{
+  if(!LIVE){$('sList').innerHTML='<p class="mono">Backend required.</p>';return;}
+  try{
+    const d=await j(`/api/security/sites?metro=${encodeURIComponent($('metro').value)}`,
+      {method:'POST',headers:{'Content-Type':'application/json'},
+       body:JSON.stringify({area:$('sArea').value||'Unnamed site',latitude:parseFloat($('sLat').value),
+         longitude:parseFloat($('sLon').value),reason:$('sReason').value||'partner-nominated coverage point'})});
+    const s=d.site;
+    $('sList').innerHTML=`<div class="gapcard" style="background:#F3F9F5;border-color:#BFD9CB">
+      <b>${s.area}</b> · ${s.site_id}<br>nearest hotspot ${s.nearest_hotspot_name||'—'} at ${s.distance_km} km${
+      s.inherits_priority!=null?` · inherits priority ${s.inherits_priority}`:' · outside any geofence, no inherited risk weight'}</div>
+      <p class="mono" style="margin-top:8px;line-height:1.7">${d.note}</p>`;
+  }catch(e){$('sList').innerHTML=`<p class="mono">${e.message.slice(0,120)}</p>`;}
+};
+
+/* ================= MEMBER ================= */
+$('mAdd').onclick=async()=>{
+  const body={household:$('mHouse').value.trim(),suburb:$('mSuburb').value.trim(),
+    metro:$('mMetro').value,latitude:parseFloat($('mLat').value),longitude:parseFloat($('mLon').value),
+    device_label:$('mLabel').value,consent_acknowledged:$('mConsent').checked};
+  if(!body.household||!body.suburb){$('mResult').innerHTML='<p class="mono" style="color:var(--bad)">Address and suburb are required.</p>';return;}
+  if(!body.consent_acknowledged){
+    $('mResult').innerHTML='<div class="gapcard"><b>Consent required</b><br>A camera cannot join the mesh until the household confirms agreement. This is not a formality — the device will record people who never opted in.</div>';return;}
+  if(!LIVE){
+    const cam={camera_id:'CAM-LOCAL-'+(CAMERAS.length+1),...body,status:'PENDING_ACTIVATION',mode:'NORMAL'};
+    CAMERAS.push(cam);renderWall();refreshMemberCams();
+    $('mResult').innerHTML='<div class="gapcard" style="background:#F3F9F5;border-color:#BFD9CB"><b>Added locally</b><br>Start the backend to register it properly.</div>';
+    return;
+  }
+  try{
+    const d=await j('/api/member/cameras',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+    const c=d.camera;
+    $('mResult').innerHTML=`<div class="gapcard" style="background:#F3F9F5;border-color:#BFD9CB">
+      <b>${c.camera_id} registered</b><br>${c.household}, ${c.suburb} · mode ${c.mode}${
+      c.geofence_risk!=null?` (geofence risk ${c.geofence_risk})`:''}</div>
+      <ul class="reasons" style="margin-top:10px">${d.next_steps.map(x=>`<li>${x}</li>`).join('')}</ul>`;
+    await loadCameras();renderWall();refreshMemberCams();loadMemberArea(c.suburb);
+  }catch(e){$('mResult').innerHTML=`<p class="mono" style="color:var(--bad)">${e.message.slice(0,160)}</p>`;}
+};
+async function refreshMemberCams(){
+  let mine=[];
+  if(LIVE){try{mine=(await j('/api/member/cameras')).cameras;}catch(e){}}
+  if(!mine.length)mine=CAMERAS.filter(c=>c.owner==='member'||String(c.camera_id).includes('LOCAL'));
+  $('mCamMeta').textContent=`${mine.length} device(s)`;
+  $('mCams').innerHTML=mine.length?mine.map(c=>`
+    <div class="camcard"><div class="caminfo">
+      <div class="hh">${c.household}</div><div class="sb">${c.suburb} · ${c.camera_id}</div>
+      <div class="row"><span class="modechip ${c.mode}">${c.mode}</span><span>${c.status||'ONLINE'}</span></div>
+    </div></div>`).join('')
+    :'<p class="mono">No cameras registered yet.</p>';
+  const provisional=mine.length*10;
+  $('mPoints').textContent=provisional;
+  $('mPointStatus').textContent=mine.length?'Verification pending':'Not eligible yet';
+  $('mContribution').innerHTML=mine.length
+    ? `<div class="claimhead"><div><b>Registered devices</b>${mine.length}</div><div><b>Contribution mode</b>Event crops only</div><div><b>Sync state</b>Ready</div></div>
+       <p class="mono" style="margin-top:12px;line-height:1.7">Open <b>Live AI</b> to use this phone as a temporary community camera. Only verified, consented event contributions would qualify for rewards.</p>`
+    : '<p class="mono">Register a camera to begin contributing event-level coverage. Routine footage remains on the device.</p>';
+}
+async function loadMemberArea(suburb){
+  if(!suburb||!LIVE){$('mArea').innerHTML='<p class="mono">Enter your suburb and register a camera to see its pattern.</p>';return;}
+  try{
+    const d=await j('/api/member/summary?suburb='+encodeURIComponent(suburb));
+    $('mAreaTitle').textContent='My area · '+d.suburb;
+    if(!d.known){$('mArea').innerHTML=`<p class="mono">${d.message}</p>`;return;}
+    $('mAreaMeta').textContent=`${d.incidents_5y} incidents on record`;
+    $('mArea').innerHTML=`
+      <div class="claimhead">
+        <div><b>Incidents (5 years)</b>${d.incidents_5y.toLocaleString('en-ZA')}</div>
+        <div><b>Busiest hours</b>${d.peak_hours.map(h=>String(h).padStart(2,'0')+':00').join(', ')}</div>
+        <div><b>Busiest days</b>${d.peak_days.join(', ')}</div>
+      </div>
+      <div class="cueprofile">${Object.entries(d.common_perils).map(([k,v])=>`<span class="cuepill">${k}: ${v}</span>`).join('')}</div>
+      <p class="mono" style="margin-top:12px;line-height:1.7">${d.privacy_note}</p>`;
+  }catch(e){$('mArea').innerHTML=`<p class="mono">${e.message.slice(0,120)}</p>`;}
+}
+$('mSuburb').addEventListener('change',()=>loadMemberArea($('mSuburb').value.trim()));
+
+/* Debug handle — inspect or drive state from the browser console.
+   Handy at a venue: SM.state() shows what the app thinks is going on. */
+window.SM={
+  get personTrack(){return personTrack;}, set personTrack(v){personTrack=v;},
+  get CALS(){return CALS;}, get EVENTS(){return EVENTS;},
+  get PATTERNS(){return PATTERNS;}, get DATA(){return DATA;},
+  set selEvent(v){selEvent=v;}, get selEvent(){return selEvent;},
+  set selCamera(v){selCamera=v;}, get selCamera(){return selCamera;},
+  set lastFrameDims(v){lastFrameDims=v;}, get lastFrameDims(){return lastFrameDims;},
+  estimateHeight:()=>renderHeight(), sendToRegistry:()=>sendToRegistry(),
+  loadPatterns:()=>loadPatterns(), heightLocal:(c,o)=>heightLocal(c,o),
+  state:()=>({live:LIVE,aiReady,metro:$('metro').value,cameras:CAMERAS.length,
+    events:EVENTS.length,patterns:PATTERNS.length,tracked:personTrack.length,
+    calibrated:Object.keys(CALS)})
+};
+
+async function loadAwsStatus(){
+  const dot=$('awsDot'),txt=$('awsTxt');
+  if(!dot||!txt)return;
+  dot.style.background='var(--warn)';
+  txt.textContent='AWS checking…';
+  if(!LIVE){txt.textContent='AWS local fallback';return;}
+  try{
+    const a=await j('/api/aws/status');
+    if(a.ready){
+      dot.style.background='var(--ok)';
+      const active=Object.values(a.tables||{}).filter(x=>x==='ACTIVE').length;
+      txt.textContent=`AWS ready · S3 + ${active} tables`;
+    }else if(a.credentials){
+      dot.style.background='var(--warn)';
+      txt.textContent='AWS connected · setup incomplete';
+    }else{
+      dot.style.background='var(--warn)';
+      txt.textContent='AWS local fallback';
+    }
+  }catch(e){
+    dot.style.background='var(--warn)';
+    txt.textContent='AWS local fallback';
+  }
+}
 
 /* ================= BOOT ================= */
 function renderAll(){
@@ -1429,7 +2502,9 @@ async function loadMetro(m){
   $('metro').onchange=()=>loadMetro($('metro').value);
   initLeaflet();
   await loadMetro($('metro').value);
-  loadAI();
+  await loadAwsStatus();
+  showRoleGate();
+  loadAI();refreshPhysicalCameras(false);
 })();
 
 /* ================= WELCOME MOTION ================= */

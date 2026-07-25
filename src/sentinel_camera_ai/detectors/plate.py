@@ -262,8 +262,20 @@ class TesseractPlateOCR:
     def __init__(self, config: AppConfig):
         self.config = config
         configured = os.getenv("TESSERACT_CMD", "").strip()
-        self.executable = configured or shutil.which("tesseract")
-        self.available = bool(self.executable and Path(self.executable).exists())
+        candidates = [configured, shutil.which("tesseract")]
+        if os.name == "nt":
+            candidates.extend(
+                [
+                    str(Path(os.environ.get("ProgramFiles", r"C:\\Program Files")) / "Tesseract-OCR" / "tesseract.exe"),
+                    str(Path(os.environ.get("ProgramFiles(x86)", r"C:\\Program Files (x86)")) / "Tesseract-OCR" / "tesseract.exe"),
+                    str(Path(os.environ.get("LOCALAPPDATA", "")) / "Programs" / "Tesseract-OCR" / "tesseract.exe"),
+                ]
+            )
+        self.executable = next(
+            (candidate for candidate in candidates if candidate and Path(candidate).is_file()),
+            None,
+        )
+        self.available = self.executable is not None
         self.name = "Tesseract 5"
 
     def read(self, crop: np.ndarray) -> OCRResult:

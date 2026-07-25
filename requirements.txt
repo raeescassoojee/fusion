@@ -7,5 +7,12 @@ pytesseract>=0.3.13,<0.4
 rapidfuzz>=3.10,<4
 boto3>=1.40,<2
 
-# --- added for camera intake + evidence patterns ---
-python-multipart  # video/image upload via /api/cameras/upload
+# --- API server (were previously undeclared) ---
+fastapi>=0.115,<1
+uvicorn[standard]>=0.30,<1
+
+pandas>=2.2,<3            # claims workbook for fraud analytics
+openpyxl>=3.1,<4          # xlsx reader
+
+# --- camera intake + evidence patterns ---
+python-multipart>=0.0.9   # file upload for /api/cameras/upload

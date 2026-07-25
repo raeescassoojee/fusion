@@ -34,3 +34,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# camera intake + pattern registry runtime artefacts
+services/operations/uploads/
+sentinel_patterns.sqlite3
+
+# Local AWS demo settings/secrets
+aws.local.ps1

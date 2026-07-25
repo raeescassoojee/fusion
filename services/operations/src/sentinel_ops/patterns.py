@@ -594,21 +594,34 @@ class PatternRegistry:
 
         best = strong[0]
         existing = None
+        matched_sig = None
         for cand_sig in self.candidates_for(sig):
-            if cand_sig.signature_id == best.candidate_signature_id and cand_sig.pattern_id:
-                existing = self.store.get_pattern(cand_sig.pattern_id)
+            if cand_sig.signature_id == best.candidate_signature_id:
+                matched_sig = cand_sig
+                if cand_sig.pattern_id:
+                    existing = self.store.get_pattern(cand_sig.pattern_id)
                 break
 
         if existing is None:
+            # A new pattern spans BOTH sightings, so it must carry both cameras and
+            # both geofences. Recording only the newer one leaves the pattern looking
+            # single-camera, which silently breaks movement reconstruction.
+            cams = [sig.camera_id]
+            geos = [g for g in [sig.geofence_id] if g]
+            if matched_sig:
+                if matched_sig.camera_id not in cams:
+                    cams.insert(0, matched_sig.camera_id)
+                if matched_sig.geofence_id and matched_sig.geofence_id not in geos:
+                    geos.insert(0, matched_sig.geofence_id)
             pattern = Pattern(
                 pattern_id="PAT-" + uuid.uuid4().hex[:10].upper(),
                 kind=sig.kind,
                 signature_ids=[best.candidate_signature_id, sig.signature_id],
-                camera_ids=[sig.camera_id],
-                geofence_ids=[g for g in [sig.geofence_id] if g],
+                camera_ids=cams,
+                geofence_ids=geos,
                 cue_profile=dict(sig.cues),
-                first_seen=sig.observed_at,
-                last_seen=sig.observed_at,
+                first_seen=min(matched_sig.observed_at, sig.observed_at) if matched_sig else sig.observed_at,
+                last_seen=max(matched_sig.observed_at, sig.observed_at) if matched_sig else sig.observed_at,
                 occurrence_count=2,
                 best_score=best.score,
             )
@@ -629,8 +642,14 @@ class PatternRegistry:
                 if k.endswith("_m") or sig.cues.get(k) == v
             }
 
+        # Stamp BOTH signatures with the pattern id. Without this the earlier sighting
+        # stays unlinked, so a third sighting that matches it opens yet another pattern
+        # and the cluster fragments into pairs instead of accumulating.
         sig.pattern_id = pattern.pattern_id
         self.store.put_signature(sig)
+        if matched_sig and matched_sig.pattern_id != pattern.pattern_id:
+            matched_sig.pattern_id = pattern.pattern_id
+            self.store.put_signature(matched_sig)
         self.store.put_pattern(pattern)
         return pattern
 

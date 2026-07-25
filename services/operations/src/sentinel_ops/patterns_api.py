@@ -14,7 +14,7 @@ from __future__ import annotations
 from typing import Any, Literal
 
 from fastapi import APIRouter, HTTPException
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import AliasChoices, BaseModel, ConfigDict, Field
 
 from sentinel_ops.height import (
     CameraCalibration,
@@ -118,7 +118,11 @@ class SignatureIn(BaseModel):
     height: dict[str, Any] | None = None
     geofence_id: str | None = None
     nearby_geofences: list[str] = Field(default_factory=list)
-    should_register: bool = Field(default=True, alias="register")
+    should_register: bool = Field(
+        default=True,
+        validation_alias=AliasChoices("register", "register_pattern", "should_register"),
+        serialization_alias="register",
+    )
 
 
 @router.post("/api/patterns/ingest")

@@ -2,7 +2,7 @@
   "hotspots": {
     "metro": "Gauteng",
     "data_source": {
-      "path": "/mnt/data/sentinel_mesh_complete_fixed/services/claims/data/curated/hotspots.json",
+      "path": "/tmp/sentinel-merged/services/claims/data/curated/hotspots.json",
       "live_branch_output": true,
       "source": "cassoojee-live",
       "note": "SAPS values in the supplied claims output are historical corroboration, not a live SAPS incident feed."
@@ -270,7 +270,7 @@
       },
       "candidate_links": [],
       "alert": {
-        "alert_id": "ALT-D1B8D583",
+        "alert_id": "ALT-98251BFB",
         "event_id": "EVT-4ADFB703C2",
         "priority": "NONE",
         "status": "NO_ALERT",
@@ -285,7 +285,7 @@
         "human_review_required": true
       },
       "hotspot_source": {
-        "path": "/mnt/data/sentinel_mesh_complete_fixed/services/claims/data/curated/hotspots.json",
+        "path": "/tmp/sentinel-merged/services/claims/data/curated/hotspots.json",
         "live_branch_output": true,
         "source": "cassoojee-live",
         "note": "SAPS values in the supplied claims output are historical corroboration, not a live SAPS incident feed."
@@ -350,7 +350,7 @@
         }
       ],
       "alert": {
-        "alert_id": "ALT-D35A9CBD",
+        "alert_id": "ALT-25EB6A40",
         "event_id": "EVT-314D9D0C2C",
         "priority": "LOW",
         "status": "PENDING_REVIEW",
@@ -365,7 +365,7 @@
         "human_review_required": true
       },
       "hotspot_source": {
-        "path": "/mnt/data/sentinel_mesh_complete_fixed/services/claims/data/curated/hotspots.json",
+        "path": "/tmp/sentinel-merged/services/claims/data/curated/hotspots.json",
         "live_branch_output": true,
         "source": "cassoojee-live",
         "note": "SAPS values in the supplied claims output are historical corroboration, not a live SAPS incident feed."

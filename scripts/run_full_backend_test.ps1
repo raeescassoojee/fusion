@@ -2,6 +2,24 @@ $ErrorActionPreference = "Stop"
 $Root = Split-Path -Parent $PSScriptRoot
 Set-Location $Root
 
+# Resolve Tesseract even when its installer did not add it to the current PATH.
+if (-not $env:TESSERACT_CMD) {
+    $tesseractCommand = Get-Command tesseract -ErrorAction SilentlyContinue
+    $candidatePaths = @(
+        if ($tesseractCommand) { $tesseractCommand.Source }
+        "$env:ProgramFiles\Tesseract-OCR\tesseract.exe"
+        "${env:ProgramFiles(x86)}\Tesseract-OCR\tesseract.exe"
+        "$env:LOCALAPPDATA\Programs\Tesseract-OCR\tesseract.exe"
+    ) | Where-Object { $_ -and (Test-Path $_) }
+    if ($candidatePaths) {
+        $env:TESSERACT_CMD = $candidatePaths[0]
+        Write-Host "Using Tesseract: $env:TESSERACT_CMD"
+    } else {
+        Write-Warning "Tesseract 5 is not installed. OCR-specific tests will be skipped; the rest of the suite will still run."
+        Write-Warning "Install it with: winget install --id UB-Mannheim.TesseractOCR -e"
+    }
+}
+
 if (-not (Test-Path ".venv")) {
     py -3.11 -m venv .venv
 }

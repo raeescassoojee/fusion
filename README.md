@@ -310,3 +310,7 @@ designed to fail visibly:
 - the system does not infer race, emotion, criminal intent or protected traits.
 
 See `THIRD_PARTY_MODELS.md` before adding or distributing weights.
+
+## Role-specific workspaces
+
+The dashboard now starts with a workspace chooser and displays different screens for Discovery members, fraud/claims investigators and security partners. See `ROLE_WORKSPACES_FIX.md` for the exact scope and validation results.

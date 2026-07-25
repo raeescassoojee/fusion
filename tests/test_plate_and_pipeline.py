@@ -12,6 +12,7 @@ from sentinel_camera_ai.synthetic import generate_demo_media
 
 import cv2
 import numpy as np
+import pytest
 
 
 def _test_config(tmp_path: Path) -> AppConfig:
@@ -19,7 +20,9 @@ def _test_config(tmp_path: Path) -> AppConfig:
     config.output_dir = str(tmp_path / "output")
     config.object_detection.backend = "heuristic"
     config.plate.backend = "contour"
-    config.plate.ocr_backend = "tesseract"
+    # Use automatic OCR discovery so tests unrelated to OCR still run when the
+    # optional system-level Tesseract executable is not installed.
+    config.plate.ocr_backend = "auto"
     config.face.backend = "haar"
     return config
 
@@ -28,6 +31,10 @@ def test_synthetic_plate_detects_and_reads(tmp_path):
     generate_demo_media(tmp_path / "media")
     frame = cv2.imread(str(tmp_path / "media" / "synthetic_reference.jpg"))
     system = PlateSystem(_test_config(tmp_path))
+    if not system.ocr_engines:
+        pytest.skip(
+            "No OCR engine is installed. Install Tesseract 5 or PaddleOCR to run the plate-read assertion."
+        )
     results = []
     for detection in system.detect(frame):
         results.append(system.read(detection.crop(frame, padding=0.04)))
@@ -52,6 +59,10 @@ def test_end_to_end_two_camera_match(tmp_path):
     clips = generate_demo_media(tmp_path / "media")
     config = _test_config(tmp_path)
     pipeline = CameraAIPipeline(config)
+    if not pipeline.plate_system.ocr_engines:
+        pytest.skip(
+            "No OCR engine is installed. Install Tesseract 5 or PaddleOCR to run the two-camera plate match."
+        )
     first = pipeline.process_media(
         clips[0],
         camera_id="CAM01",

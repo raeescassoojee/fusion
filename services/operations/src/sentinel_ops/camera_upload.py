@@ -124,6 +124,7 @@ async def upload_footage(
     longitude: float = Form(28.0281),
     mode: str = Form("HEIGHTENED"),
     ingest: bool = Form(True),
+    publish_aws: bool = Form(False),
 ):
     """Run real uploaded footage through the camera-AI pipeline and return event-v1 JSON.
 
@@ -176,6 +177,20 @@ async def upload_footage(
     events: list[dict[str, Any]] = []
     ingested = 0
     ingest_errors: list[dict[str, str]] = []
+    aws_published = 0
+    aws_errors: list[dict[str, str]] = []
+    aws_sink = None
+    aws_requested = publish_aws or bool(os.getenv("SENTINEL_EVIDENCE_BUCKET"))
+    if aws_requested:
+        try:
+            from sentinel_camera_ai.aws_sink import AwsSink
+
+            pipeline.config.aws.enabled = True
+            aws_sink = AwsSink(pipeline.config.aws)
+        except Exception as exc:
+            # AWS is an optional enhancement. A credential/network issue must never
+            # destroy the local judging demo. Report it clearly and continue locally.
+            aws_errors.append({"event_id": "setup", "error": str(exc)})
     for event, event_path in results:
         payload = json.loads(Path(event_path).read_text(encoding="utf-8"))
         media_base = f"/api/cameras/media/{batch}"
@@ -201,6 +216,21 @@ async def upload_footage(
                     "event_id": str(payload.get("event_id", "unknown")),
                     "error": str(exc),
                 })
+
+        if aws_sink is not None:
+            try:
+                published = aws_sink.publish(event, out_dir)
+                payload["_aws"] = {
+                    "event_object": published.event_object,
+                    "evidence_objects": published.evidence_objects,
+                    "api_status": published.api_status,
+                }
+                aws_published += 1
+            except Exception as exc:
+                aws_errors.append({
+                    "event_id": str(payload.get("event_id", "unknown")),
+                    "error": str(exc),
+                })
         events.append(payload)
 
     return {
@@ -210,6 +240,12 @@ async def upload_footage(
         "event_count": len(events),
         "ingested": ingested,
         "ingest_errors": ingest_errors,
+        "aws": {
+            "requested": aws_requested,
+            "published": aws_published,
+            "errors": aws_errors,
+            "bucket": os.getenv("SENTINEL_EVIDENCE_BUCKET") or None,
+        },
         "events": events,
         "note": "Events produced by sentinel-camera-ai from the uploaded media.",
     }

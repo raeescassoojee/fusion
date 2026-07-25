@@ -22,6 +22,15 @@ SAPS context ────┘                                    │             
 
 ## Run it
 
+**`RUNBOOK.md` has the full walkthrough and a guided tour.** Fastest path:
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+.\start.ps1
+```
+
+Manual:
+
 ```powershell
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 python -m venv .venv
@@ -116,9 +125,6 @@ Animations live on the welcome page only; the console stays calm.
 | `POST /api/patterns/ingest` | Event → signatures → matches → pattern |
 | `GET /api/patterns` | Registry, stats, false-positive rate |
 | `POST /api/patterns/{id}/review` | Confirm or dismiss; written reason required |
-| `POST /api/demo/seed` | Seed synthetic events and a claim before a live pitch |
-| `DELETE /api/demo/reset` | Reset operational demo state between runs |
-| `GET /api/aws/status` | Verify credentials, DynamoDB tables and evidence bucket |
 
 ---
 
@@ -126,7 +132,6 @@ Animations live on the welcome page only; the console stays calm.
 
 ```powershell
 python provision_aws.py --region af-south-1
-python scripts/aws_readiness_check.py
 python provision_aws.py --region af-south-1 --teardown   # after judging
 ```
 
