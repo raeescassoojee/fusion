@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sentinel — Community Safety</title>
+<style>
+  :root {
+    --blue:#0033A0; --blue2:#0a2a72; --cyan:#0090c8; --ink:#101828; --sub:#667085;
+    --edge:#e4e7ee; --edge2:#eef1f6; --panel:#fff; --wash:#f7f8fa; --thread:#f0f2f6;
+    --mine:#0033A0; --amber:#c9761a; --amberBg:#fbf3e6; --sec:#0b6b46; --staff:#5a2ea6;
+    --danger:#c0392b;
+  }
+  * { box-sizing:border-box; }
+  html,body { margin:0; }
+  body { font-family:'Inter','Segoe UI',system-ui,sans-serif; background:#dfe3ea;
+    color:var(--ink); display:flex; justify-content:center; padding:0; min-height:100vh; }
+  .app { display:flex; width:100%; max-width:1040px; height:100vh; max-height:100vh;
+    background:var(--panel); border-left:1px solid var(--edge); border-right:1px solid var(--edge); }
+
+  /* ---- left rail ---- */
+  .rail { width:340px; border-right:1px solid var(--edge); display:flex; flex-direction:column; background:var(--panel); }
+  .me { display:flex; align-items:center; gap:12px; padding:16px 18px; border-bottom:1px solid var(--edge); }
+  .me .av { width:40px; height:40px; border-radius:8px; background:var(--blue); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-weight:700; font-size:16px; }
+  .me .txt { flex:1; min-width:0; }
+  .me .nm { font-weight:650; font-size:14.5px; letter-spacing:-.01em; }
+  .me .rl { font-size:11.5px; color:var(--sub); margin-top:1px; }
+  .me .edit { border:1px solid var(--edge); background:#fff; width:32px; height:32px; border-radius:7px;
+    cursor:pointer; color:var(--sub); font-size:14px; }
+  .me .edit:hover { background:var(--wash); color:var(--ink); }
+
+  .find { padding:10px 14px; border-bottom:1px solid var(--edge); }
+  .find input { width:100%; padding:8px 12px; border:1px solid var(--edge); border-radius:8px;
+    font-size:13px; outline:none; background:var(--wash); }
+  .find input:focus { background:#fff; border-color:var(--cyan); }
+
+  .rooms { flex:1; overflow-y:auto; }
+  .sect { font-size:10.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--sub);
+    padding:14px 16px 6px; font-weight:700; }
+  .room { display:flex; gap:12px; padding:11px 16px; cursor:pointer; align-items:center;
+    border-left:3px solid transparent; }
+  .room:hover { background:var(--wash); }
+  .room.active { background:var(--edge2); border-left-color:var(--blue); }
+  .av { width:42px; height:42px; border-radius:8px; flex-shrink:0; color:#fff; font-weight:700;
+    font-size:15px; display:flex; align-items:center; justify-content:center; position:relative; }
+  .av .lk { position:absolute; bottom:-3px; right:-3px; background:#fff; border:1px solid var(--edge);
+    border-radius:5px; font-size:9px; width:15px; height:15px; display:flex; align-items:center; justify-content:center; }
+  .rmain { flex:1; min-width:0; }
+  .rtop { display:flex; justify-content:space-between; align-items:baseline; gap:8px; }
+  .rname { font-size:14px; font-weight:600; letter-spacing:-.01em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .rtime { font-size:11px; color:var(--sub); flex-shrink:0; }
+  .rprev { font-size:12.5px; color:var(--sub); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin-top:2px; }
+  .rprev .warn { color:var(--amber); font-weight:600; }
+  .joinrow { display:flex; gap:12px; padding:10px 16px; align-items:center; }
+  .joinrow:hover { background:var(--wash); }
+  .joinrow .rmain { flex:1; }
+  .jbtn { background:#fff; color:var(--blue); border:1px solid var(--blue); font-size:12px; font-weight:600;
+    padding:5px 14px; border-radius:7px; cursor:pointer; }
+  .jbtn:hover { background:var(--blue); color:#fff; }
+
+  .tools { border-top:1px solid var(--edge); padding:12px 14px; display:flex; flex-direction:column; gap:8px; }
+  .tool { display:flex; gap:8px; }
+  .tool input { flex:1; padding:8px 11px; border:1px solid var(--edge); border-radius:8px; font-size:12.5px; outline:none; background:var(--wash); }
+  .tool input:focus { background:#fff; border-color:var(--cyan); }
+  .tool button { border:none; border-radius:8px; padding:0 14px; font-size:12.5px; font-weight:600; cursor:pointer; color:#fff; }
+  .tool button.pri { background:var(--blue); } .tool button.sec { background:var(--cyan); }
+
+  /* ---- thread ---- */
+  .thread { flex:1; display:flex; flex-direction:column; min-width:0; background:var(--thread); }
+  .thead { display:flex; align-items:center; gap:12px; padding:12px 20px; background:var(--panel); border-bottom:1px solid var(--edge); }
+  .thead .av { width:38px; height:38px; font-size:14px; }
+  .ttl { font-size:14.5px; font-weight:650; letter-spacing:-.01em; }
+  .tsub { font-size:11.5px; color:var(--sub); margin-top:1px; }
+  .code { margin-left:10px; font-size:11px; font-weight:600; color:var(--blue); background:#eaf0fb;
+    border:1px solid #d5e0f5; padding:3px 9px; border-radius:6px; cursor:pointer; }
+  .live { margin-left:auto; font-size:10.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; display:flex; align-items:center; gap:6px; }
+  .live .d { width:7px; height:7px; border-radius:50%; }
+  .live.on { color:var(--sec); } .live.on .d { background:var(--sec); }
+  .live.off { color:var(--danger); } .live.off .d { background:var(--danger); }
+
+  .feed { flex:1; overflow-y:auto; padding:16px 22px; display:flex; flex-direction:column; gap:2px; }
+  .ph { margin:auto; text-align:center; color:var(--sub); font-size:13px; max-width:280px; line-height:1.6; }
+
+  .grp { font-size:11px; font-weight:700; color:var(--sub); margin:6px 0 2px; }
+  .m { max-width:70%; padding:7px 11px 6px; margin-top:3px; font-size:14px; line-height:1.42;
+    border:1px solid var(--edge); background:#fff; border-radius:4px 12px 12px 12px; }
+  .m.out { align-self:flex-end; background:var(--mine); color:#fff; border:none; border-radius:12px 4px 12px 12px; }
+  .m .hd { display:flex; align-items:center; gap:7px; margin-bottom:2px; }
+  .m .nm { font-size:12px; font-weight:700; color:var(--blue); letter-spacing:-.01em; }
+  .m.out .hd { display:none; }
+  .m .bd { word-wrap:break-word; }
+  .m .tm { font-size:10px; color:var(--sub); text-align:right; margin-top:2px; }
+  .m.out .tm { color:rgba(255,255,255,.7); }
+
+  .bdg { font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:.03em;
+    padding:1px 6px; border-radius:4px; border:1px solid; }
+  .bdg.Resident { color:#5a6b8c; border-color:#d6ddea; background:#f4f6fb; }
+  .bdg.Security { color:#fff; background:var(--sec); border-color:var(--sec); }
+  .bdg.Staff { color:#fff; background:var(--staff); border-color:var(--staff); }
+
+  .inc { align-self:stretch; display:flex; gap:10px; align-items:flex-start; margin:8px 0;
+    padding:9px 12px; background:var(--amberBg); border:1px solid #ecd5ac; border-left:3px solid var(--amber); border-radius:4px; }
+  .inc .ic { color:var(--amber); font-size:16px; line-height:1.2; }
+  .inc .ib { flex:1; }
+  .inc .it { font-size:12px; font-weight:700; color:#8a5410; text-transform:uppercase; letter-spacing:.03em; margin-bottom:2px; display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+  .inc .itxt { font-size:13.5px; color:#5c4622; }
+  .inc .imeta { font-size:11px; color:#a67a3c; margin-top:3px; }
+
+  .comp { background:var(--panel); border-top:1px solid var(--edge); }
+  .comp.hidden { display:none; }
+  .incfields { display:none; gap:8px; padding:9px 16px 0; }
+  .incfields.show { display:flex; }
+  .incfields select, .incfields input { padding:8px 10px; border:1px solid var(--edge); border-radius:8px; font-size:13px; outline:none; }
+  .incfields select { flex:0 0 170px; } .incfields input { flex:1; }
+  .cline { display:flex; gap:10px; align-items:center; padding:11px 16px; }
+  .plus { width:38px; height:38px; border-radius:8px; border:1px solid var(--edge); background:#fff;
+    color:var(--blue); font-size:20px; cursor:pointer; flex-shrink:0; }
+  .plus.on { background:var(--amber); color:#fff; border-color:var(--amber); }
+  .cin { flex:1; padding:10px 14px; border:1px solid var(--edge); border-radius:9px; font-size:14px; outline:none; }
+  .cin:focus { border-color:var(--cyan); }
+  .snd { width:38px; height:38px; border-radius:8px; border:none; background:var(--blue); color:#fff;
+    font-size:15px; cursor:pointer; flex-shrink:0; }
+  .snd.alert { background:var(--amber); }
+
+  /* toasts */
+  .toasts { position:fixed; top:18px; right:18px; display:flex; flex-direction:column; gap:8px; z-index:100; }
+  .tst { width:300px; background:#fff; border:1px solid var(--edge); border-left:4px solid var(--cyan);
+    border-radius:8px; padding:10px 12px; box-shadow:0 8px 26px rgba(16,24,40,.14);
+    animation:slidein .22s ease-out; }
+  .tst.err { border-left-color:var(--danger); }
+  .tst.warn { border-left-color:var(--amber); }
+  .tst .h { font-size:12px; font-weight:700; margin-bottom:2px; }
+  .tst.err .h { color:var(--danger); } .tst .b { font-size:12.5px; color:var(--sub); }
+  @keyframes slidein { from{opacity:0; transform:translateX(12px)} to{opacity:1; transform:translateX(0)} }
+
+  .av.c0{background:#0033A0}.av.c1{background:#0090c8}.av.c2{background:#5a2ea6}
+  .av.c3{background:#0b6b46}.av.c4{background:#b5641c}.av.c5{background:#a52f63}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="rail">
+    <div class="me">
+      <div class="av" id="meAvatar">Y</div>
+      <div class="txt"><div class="nm" id="meName">You</div><div class="rl" id="meRole">Resident</div></div>
+      <button class="edit" id="editMe" title="Edit name and role">&#9998;</button>
+    </div>
+    <div class="find"><input id="search" placeholder="Search groups" /></div>
+    <div class="rooms" id="rooms"></div>
+    <div class="tools">
+      <div class="tool"><input id="joinCode" placeholder="Enter share code" /><button class="sec" id="joinCodeBtn">Join</button></div>
+      <div class="tool"><input id="newGroup" placeholder="Create private group" /><button class="pri" id="createBtn">Create</button></div>
+    </div>
+  </div>
+
+  <div class="thread">
+    <div class="thead" id="thead" style="visibility:hidden">
+      <div class="av c0" id="tAvatar">#</div>
+      <div><div class="ttl" id="tTitle">—</div><div class="tsub" id="tSub"></div></div>
+      <span class="code" id="tCode" style="display:none"></span>
+      <div class="live off" id="live"><span class="d"></span><span id="liveTxt">connecting</span></div>
+    </div>
+    <div class="feed" id="feed"><div class="ph">Select a group to start chatting with your community.</div></div>
+    <div class="comp hidden" id="comp">
+      <div class="incfields" id="incfields">
+        <select id="peril"><option>Home Invasion</option><option>Vehicle Theft</option><option>Suspicious Activity</option></select>
+        <input id="location" placeholder="Street or landmark (optional)" />
+      </div>
+      <div class="cline">
+        <button class="plus" id="plus" title="Report incident">+</button>
+        <input class="cin" id="draft" placeholder="Type a message" />
+        <button class="snd" id="send" title="Send">&#10148;</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toasts" id="toasts"></div>
+
+<script>
+  // AUTH SEAM: replace getCurrentUser() to read name+role from Cognito later.
+  function getCurrentUser(){ let name="You",role="Resident";
+    if(location.hash.length>1){ const [n,r]=decodeURIComponent(location.hash.slice(1)).split("|"); if(n)name=n; if(r)role=r; }
+    return { name, role }; }
+  function setCurrentUser(n,r){ location.hash=encodeURIComponent(n+"|"+r); }
+
+  const ws = new WebSocket("ws://localhost:8080");
+  let groups=[], messages=[], myGroups=[], activeGroup=null, mode="chat", search="", codes={};
+  let user = getCurrentUser();
+  const $ = (id)=>document.getElementById(id);
+  const ROLES=["Resident","Security","Staff"];
+
+  function initials(s){ return (s||"?").trim().slice(0,1).toUpperCase(); }
+  function colorFor(id){ let h=0; for(const c of id) h=(h*31+c.charCodeAt(0))>>>0; return "c"+(h%6); }
+  function tShort(ts){ const d=new Date(ts); return d.getHours().toString().padStart(2,"0")+":"+d.getMinutes().toString().padStart(2,"0"); }
+  function esc(s){ return String(s).replace(/[&<>"']/g,(c)=>({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c])); }
+  function hello(){ ws.send(JSON.stringify({ type:"hello", name:user.name, role:user.role })); }
+  function isPriv(g){ return g && g.visibility==="private"; }
+
+  function pushToast(kind, head, body){
+    const el=document.createElement("div"); el.className="tst "+(kind||"");
+    el.innerHTML=`<div class="h">${esc(head)}</div><div class="b">${esc(body)}</div>`;
+    $("toasts").appendChild(el);
+    setTimeout(()=>{ el.style.opacity="0"; el.style.transition="opacity .3s"; setTimeout(()=>el.remove(),300); }, kind==="err"?3500:5000);
+  }
+
+  function renderMe(){ $("meAvatar").textContent=initials(user.name); $("meName").textContent=user.name; $("meRole").textContent=user.role; }
+
+  ws.onopen=()=>{ $("live").className="live on"; $("liveTxt").textContent="live"; hello(); };
+  ws.onclose=()=>{ $("live").className="live off"; $("liveTxt").textContent="offline"; };
+
+  ws.onmessage=(e)=>{
+    const d=JSON.parse(e.data);
+    if(d.type==="init"){ groups=d.groups; messages=d.messages; myGroups=d.myGroups||[];
+      groups.forEach(g=>{ if(g.code) codes[g.id]=g.code; });
+      if(!activeGroup && myGroups.length) activeGroup=myGroups[0]; renderAll(); }
+    if(d.type==="myGroups"){ myGroups=d.myGroups||[];
+      if(activeGroup && !myGroups.includes(activeGroup)) activeGroup=myGroups[0]||null;
+      if(!activeGroup && myGroups.length) activeGroup=myGroups[0]; renderAll(); }
+    if(d.type==="groupAdded"){ if(!groups.some(g=>g.id===d.group.id)) groups.push(d.group);
+      if(d.group.code) codes[d.group.id]=d.group.code; renderRooms(); }
+    if(d.type==="createdGroup"){ activeGroup=d.group.id; codes[d.group.id]=d.group.code;
+      pushToast("warn","Private group created","Share code "+d.group.code+". Anyone with it can join."); renderAll(); }
+    if(d.type==="joinResult"){ pushToast(d.ok?"":"err", d.ok?"Joined":"Couldn't join", d.message);
+      if(d.ok && d.groupId){ activeGroup=d.groupId; renderAll(); } }
+    if(d.type==="message"){ messages.push(d.message);
+      if(d.message.groupId===activeGroup) renderFeed();
+      if(d.message.kind==="incident" && d.message.groupId===activeGroup && d.message.author!==user.name){
+        const g=groups.find(x=>x.id===activeGroup);
+        pushToast("warn","Incident in "+(g?g.name:""), d.message.peril+(d.message.location?" • "+d.message.location:"")); }
+      renderRooms(); }
+  };
+
+  function renderAll(){ renderMe(); renderRooms(); renderHeader(); renderFeed(); }
+  function lastMsg(gid){ const l=messages.filter(m=>m.groupId===gid); return l[l.length-1]; }
+
+  function renderRooms(){
+    const box=$("rooms"); box.innerHTML="";
+    const joined=groups.filter(g=>myGroups.includes(g.id)).filter(g=>g.name.toLowerCase().includes(search));
+    const other=groups.filter(g=>!myGroups.includes(g.id) && g.visibility==="public").filter(g=>g.name.toLowerCase().includes(search));
+
+    if(joined.length){ const l=document.createElement("div"); l.className="sect"; l.textContent="Chats"; box.appendChild(l); }
+    joined.forEach(g=>{
+      const lm=lastMsg(g.id);
+      const prev=lm ? (lm.kind==="incident"?`<span class="warn">${esc(lm.peril)}</span> ${esc(lm.text)}`:`${esc(lm.author)}: ${esc(lm.text)}`):"No messages yet";
+      const row=document.createElement("div"); row.className="room"+(g.id===activeGroup?" active":"");
+      row.innerHTML=`<div class="av ${colorFor(g.id)}">${initials(g.name)}${isPriv(g)?'<span class="lk">🔒</span>':''}</div>
+        <div class="rmain"><div class="rtop"><span class="rname">${esc(g.name)}</span><span class="rtime">${lm?tShort(lm.ts):""}</span></div>
+        <div class="rprev">${prev}</div></div>`;
+      row.onclick=()=>{ activeGroup=g.id; renderAll(); };
+      box.appendChild(row);
+    });
+
+    if(other.length){ const l=document.createElement("div"); l.className="sect"; l.textContent="Location groups"; box.appendChild(l); }
+    other.forEach(g=>{
+      const row=document.createElement("div"); row.className="joinrow";
+      row.innerHTML=`<div class="av ${colorFor(g.id)}">${initials(g.name)}</div>
+        <div class="rmain"><div class="rname">${esc(g.name)}</div><div class="rprev">${esc(g.metro)}</div></div>
+        <button class="jbtn" data-join="${g.id}">Join</button>`;
+      row.querySelector("[data-join]").onclick=()=>{ ws.send(JSON.stringify({type:"join",groupId:g.id})); activeGroup=g.id; };
+      box.appendChild(row);
+    });
+  }
+
+  function renderHeader(){
+    const g=groups.find(x=>x.id===activeGroup); const head=$("thead"); const chip=$("tCode");
+    if(g){ head.style.visibility="visible";
+      $("tAvatar").className="av "+colorFor(g.id); $("tAvatar").textContent=initials(g.name);
+      $("tTitle").textContent=g.name; $("tSub").textContent=g.metro+(isPriv(g)?" • private":" • community group");
+      if(isPriv(g) && codes[g.id]){ chip.style.display="inline-block"; chip.textContent="Code "+codes[g.id]; chip.title="Copy share code";
+        chip.onclick=()=>{ navigator.clipboard && navigator.clipboard.writeText(codes[g.id]); pushToast("","Copied","Share code "+codes[g.id]+" copied."); };
+      } else chip.style.display="none";
+      $("comp").classList.remove("hidden");
+    } else { head.style.visibility="hidden"; $("comp").classList.add("hidden"); }
+  }
+
+  function renderFeed(){
+    const feed=$("feed"); feed.innerHTML="";
+    if(!activeGroup){ feed.innerHTML='<div class="ph">Select a group to start chatting.</div>'; return; }
+    const list=messages.filter(m=>m.groupId===activeGroup);
+    if(!list.length){ feed.innerHTML='<div class="ph">No messages yet. Say hello or report something you\'ve seen.</div>'; return; }
+    list.forEach(m=>{
+      const role=m.role||"Resident";
+      if(m.kind==="incident"){
+        const el=document.createElement("div"); el.className="inc";
+        el.innerHTML=`<div class="ic">&#9888;</div><div class="ib">
+          <div class="it">${esc(m.peril)} <span class="bdg ${role}">${role}</span>${m.location?`<span style="color:#9a5a12">${esc(m.location)}</span>`:""}</div>
+          <div class="itxt">${esc(m.text)}</div>
+          <div class="imeta">${esc(m.author)} • ${tShort(m.ts)}</div></div>`;
+        feed.appendChild(el);
+      } else {
+        const out=m.author===user.name;
+        const el=document.createElement("div"); el.className="m "+(out?"out":"");
+        el.innerHTML=`<div class="hd"><span class="nm">${esc(m.author)}</span><span class="bdg ${role}">${role}</span></div>
+          <div class="bd">${esc(m.text)}</div><div class="tm">${tShort(m.ts)}</div>`;
+        feed.appendChild(el);
+      }
+    });
+    feed.scrollTop=feed.scrollHeight;
+  }
+
+  function setMode(m){ mode=m; $("incfields").classList.toggle("show",m==="incident");
+    $("plus").classList.toggle("on",m==="incident"); $("send").classList.toggle("alert",m==="incident");
+    $("draft").placeholder = m==="incident" ? "Describe what you saw" : "Type a message"; }
+  $("plus").onclick=()=>setMode(mode==="incident"?"chat":"incident");
+
+  function submit(){
+    if(!activeGroup){ pushToast("err","No group selected","Pick or join a group first."); return; }
+    const text=$("draft").value.trim();
+    if(!text){ pushToast("err", mode==="incident"?"Description needed":"Message needed",
+      mode==="incident"?"Add a short description of what you saw.":"Type a message before sending."); return; }
+    ws.send(JSON.stringify({ type:"send", groupId:activeGroup, author:user.name, text, kind:mode,
+      peril:mode==="incident"?$("peril").value:undefined, location:mode==="incident"?$("location").value.trim():undefined }));
+    $("draft").value=""; $("location").value=""; setMode("chat");
+  }
+  $("send").onclick=submit; $("draft").addEventListener("keydown",(e)=>{ if(e.key==="Enter") submit(); });
+
+  $("createBtn").onclick=()=>{ const n=$("newGroup").value.trim();
+    if(!n){ pushToast("err","Name needed","Enter a name for your private group."); return; }
+    ws.send(JSON.stringify({type:"createGroup",name:n})); $("newGroup").value=""; };
+  $("joinCodeBtn").onclick=()=>{ const c=$("joinCode").value.trim();
+    if(!c){ pushToast("err","Code needed","Enter a share code to join a private group."); return; }
+    ws.send(JSON.stringify({type:"joinByCode",code:c})); $("joinCode").value=""; };
+  $("search").addEventListener("input",(e)=>{ search=e.target.value.toLowerCase().trim(); renderRooms(); });
+
+  $("editMe").onclick=()=>{ const name=prompt("Your name",user.name); if(name===null) return;
+    let role=prompt("Your role (Resident, Security, Staff)",user.role); if(!ROLES.includes(role)) role="Resident";
+    user={ name:name.trim()||"You", role }; setCurrentUser(user.name,user.role); renderMe(); hello(); renderFeed(); };
+
+  renderMe();
+</script>
+</body>
+</html>
