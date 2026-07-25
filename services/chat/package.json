@@ -1,15 +1,17 @@
 {
-  "name": "chat",
+  "name": "sentinel-community-chat",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "private": true,
+  "description": "Sentinel community safety chat",
+  "main": "server.js",
   "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "NODE_ENV=development node --watch server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
   "dependencies": {
     "ws": "^8.21.1"
   }
