@@ -14,6 +14,10 @@ from sentinel_ops import activity
 from sentinel_ops.community import announce_review
 from sentinel_ops.camera_upload import router as camera_router
 from sentinel_ops.patterns_api import router as patterns_router
+from sentinel_ops.roles_api import router as roles_router
+from sentinel_ops.member_mesh import router as member_mesh_router
+from sentinel_ops.claims_case import router as claims_case_router, initialise_claim_store
+from sentinel_ops.security_dispatch import router as security_dispatch_router, initialise_security_store
 from sentinel_ops.claims_bridge import (
     build_metro_patrol,
     find_claims_file,
@@ -78,6 +82,16 @@ app.add_middleware(
 # Camera intake (upload + roster) and evidence-pattern / height endpoints.
 app.include_router(camera_router)
 app.include_router(patterns_router)
+app.include_router(roles_router)
+app.include_router(member_mesh_router)
+app.include_router(claims_case_router)
+app.include_router(security_dispatch_router)
+
+
+@app.on_event("startup")
+def initialise_claim_workspace() -> None:
+    initialise_claim_store()
+    initialise_security_store()
 
 
 @app.get("/", include_in_schema=False)

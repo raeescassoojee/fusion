@@ -389,6 +389,56 @@ button,select,input{font-family:inherit}
 .trailrow .tm{font-family:var(--fm);font-size:.62rem;color:var(--muted);margin-top:4px}
 .legendbar{display:flex;gap:14px;flex-wrap:wrap;font-size:.66rem;color:var(--muted);padding:10px 4px 0}
 .legendbar .dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:5px;vertical-align:-1px}
+/* ---- live security operations ---- */
+.security-kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:14px}
+.security-kpi{background:#fff;border:1px solid var(--line);border-radius:11px;padding:12px 14px;position:relative;overflow:hidden}
+.security-kpi::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--grad)}
+.security-kpi b{display:block;font-family:var(--fd);font-size:1.45rem;color:var(--navy)}
+.security-kpi span{font:600 .56rem var(--fm);color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.securityopsgrid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(310px,.45fr);gap:14px}
+#securityMap{height:570px;border-radius:10px;background:#E9EEF1;z-index:1}
+.security-map-fallback{display:none;min-height:570px;border-radius:10px;background:#E9EEF1;place-items:center;padding:30px;text-align:center;color:var(--muted);font:600 .68rem var(--fm)}
+.security-toolbar{display:flex;align-items:end;gap:9px;flex-wrap:wrap}
+.security-toolbar .fld{min-width:120px}
+.simstate{display:inline-flex;align-items:center;gap:7px;padding:6px 10px;border:1px solid var(--line);border-radius:99px;font:700 .57rem var(--fm);color:var(--muted);background:#fff}
+.simstate i{width:8px;height:8px;border-radius:50%;background:var(--warn)}
+.simstate.on i{background:#3BD07F;box-shadow:0 0 0 3px rgba(59,208,127,.17)}
+.companylegend{display:flex;gap:8px;flex-wrap:wrap;margin-top:9px}
+.companychip{display:flex;align-items:center;gap:6px;border:1px solid var(--line);background:#fff;border-radius:99px;padding:5px 9px;font:600 .56rem var(--fm)}
+.companychip i{width:9px;height:9px;border-radius:50%;display:inline-block}
+.security-unit-icon{border:0;background:transparent;transition:transform 1.25s linear}
+.unitpin{min-width:42px;height:29px;border-radius:8px;border:2px solid #fff;box-shadow:0 2px 8px rgba(2,31,56,.35);display:flex;align-items:center;justify-content:center;color:#fff;font:800 .55rem var(--fm);position:relative}
+.unitpin::after{content:'';position:absolute;left:50%;bottom:-7px;transform:translateX(-50%);border-left:6px solid transparent;border-right:6px solid transparent;border-top:7px solid currentColor;filter:brightness(.8)}
+.unitpin.responding{animation:unitpulse 1.25s infinite}
+@keyframes unitpulse{50%{box-shadow:0 0 0 8px rgba(0,174,239,.15),0 2px 8px rgba(2,31,56,.35)}}
+.hotspotpin{width:24px;height:24px;border-radius:50%;border:3px solid #fff;display:grid;place-items:center;color:#fff;font:800 .48rem var(--fm);box-shadow:0 2px 8px rgba(2,31,56,.35)}
+.incidentpin{width:34px;height:34px;border-radius:50%;background:#B03A2E;border:4px solid #fff;box-shadow:0 0 0 0 rgba(176,58,46,.45);animation:incidentpulse 1.5s infinite;display:grid;place-items:center;color:#fff;font:800 .7rem var(--fd)}
+@keyframes incidentpulse{70%{box-shadow:0 0 0 12px rgba(176,58,46,0)}}
+.unitdetail{border:1px solid var(--line);border-radius:11px;background:#fff;padding:14px;min-height:260px}
+.unitdetail h3{font-family:var(--fd);text-transform:uppercase;font-size:1.25rem}
+.unitdetail .sub{font:.6rem var(--fm);color:var(--muted);margin-top:3px;line-height:1.6}
+.unitstatus{display:inline-flex;border-radius:99px;padding:4px 8px;font:800 .54rem var(--fm);margin-top:8px;background:#EDF2F5;color:#526677}
+.unitstatus.RESPONDING,.unitstatus.ON_SCENE{background:#FDE9E6;color:#A92B1D}.unitstatus.PATROLLING{background:#E8F8EF;color:#087A4B}.unitstatus.DISPATCH_PENDING,.unitstatus.BACKUP_ALERTED{background:#FFF4D9;color:#9A6500}
+.routekpis{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;margin:12px 0}
+.routekpi{border:1px solid var(--line);border-radius:8px;padding:8px;background:#F8FBFD}
+.routekpi b{font-family:var(--fd);display:block;font-size:1rem}.routekpi span{font:.52rem var(--fm);color:var(--muted)}
+.routeorder{margin:9px 0;padding-left:18px}.routeorder li{font-size:.69rem;line-height:1.65;color:var(--muted)}
+.dispatchcard{border:1px solid #E8B39A;background:#FFF4EE;border-radius:10px;padding:12px;margin-bottom:9px}
+.dispatchcard h4{font-family:var(--fd);text-transform:uppercase;font-size:1rem;color:#8A2D21}.dispatchcard p{font:.59rem var(--fm);line-height:1.65;color:#7C4935;margin-top:4px}
+.dispatchcard .actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}
+.securityfeeds{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.notificationfeed,.securitydbfeed{max-height:380px;overflow:auto}
+.notificationrow{padding:10px 0;border-bottom:1px solid var(--line)}.notificationrow:last-child{border-bottom:0}
+.notificationrow h5{font-size:.72rem}.notificationrow p{font:.56rem var(--fm);color:var(--muted);line-height:1.55;white-space:pre-line;margin-top:3px}
+.notificationrow .actions{display:flex;align-items:center;gap:7px;margin-top:7px}
+.notestatus{display:inline-flex;border-radius:99px;padding:3px 7px;font:800 .5rem var(--fm);background:#FFF4D9;color:#9A6500}.notestatus.DELIVERED_DEMO,.notestatus.ACKNOWLEDGED_IN_APP{background:#E8F8EF;color:#087A4B}
+.hotspotstats{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.hotstat{border:1px solid var(--line);border-radius:10px;padding:12px;background:#fff;border-top:4px solid var(--warn);cursor:pointer;transition:.15s}
+.hotstat:hover{border-color:var(--blue);transform:translateY(-1px)}.hotstat h4{font-family:var(--fd);text-transform:uppercase;font-size:1.02rem}.hotstat .score{float:right;font-family:var(--fd);font-size:1.4rem;color:var(--bad)}
+.hotstat .kv{display:flex;justify-content:space-between;gap:8px;font-size:.66rem;padding:3px 0}.hotstat .kv span{color:var(--muted)}
+.secdbcounts{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:9px}.secdbcount{border:1px solid var(--line);border-radius:8px;padding:7px;background:#F8FBFD}.secdbcount b{display:block;font-family:var(--fd);font-size:1.05rem}.secdbcount span{font:.48rem var(--fm);color:var(--muted);word-break:break-word}
+@media(max-width:1100px){.security-kpis{grid-template-columns:repeat(3,1fr)}.securityopsgrid,.securityfeeds{grid-template-columns:1fr}}
+@media(max-width:700px){.security-kpis{grid-template-columns:1fr 1fr}.secdbcounts{grid-template-columns:1fr 1fr}#securityMap{height:450px}}
 /* ---- security briefing ---- */
 .brief{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
 .bcard{border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;background:#fff;border-left:4px solid var(--line)}
@@ -408,7 +458,49 @@ button,select,input{font-family:inherit}
 .consent{grid-column:1/-1;display:flex;gap:10px;align-items:flex-start;background:#F8FBFD;border:1px dashed var(--line);border-radius:9px;padding:12px 14px;font-size:.74rem;line-height:1.6}
 .consent input{margin-top:3px;flex-shrink:0}
 .myprop{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.membergate{position:fixed;inset:0;z-index:10050;background:rgba(2,31,56,.88);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:24px}
+.membergate.on{display:flex}.memberbox{width:min(920px,96vw);background:#fff;border-radius:18px;padding:28px;box-shadow:0 30px 90px rgba(0,0,0,.35)}
+.memberbox h2{font-family:var(--fd);font-size:2rem;text-transform:uppercase}.memberbox>p{color:var(--muted);margin:6px 0 20px}
+.memberchoices{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.memberchoice{border:1px solid var(--line);border-radius:13px;background:#fff;padding:18px;text-align:left;cursor:pointer;transition:.15s ease}
+.memberchoice:hover{border-color:var(--blue);transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,174,239,.12)}
+.memberchoice .uid{font-family:var(--fm);font-size:.61rem;color:var(--blue);letter-spacing:.08em}.memberchoice h3{font-family:var(--fd);font-size:1.25rem;text-transform:uppercase;margin:5px 0}.memberchoice p{font-size:.74rem;color:var(--muted);line-height:1.5}
+.membernav{display:none;align-items:center;gap:6px}.membernav.on{display:flex}.membernav label{font-family:var(--fm);font-size:.55rem;color:#9FB3C2;text-transform:uppercase;letter-spacing:.08em}.membernav select{background:#062B49;color:#fff;border:1px solid #1B537A;border-radius:20px;padding:7px 28px 7px 12px;font:600 .69rem var(--fm)}
+.memberhero{display:grid;grid-template-columns:1.15fr .85fr;gap:16px;margin-bottom:16px}.memberidentity{background:linear-gradient(135deg,#032A49,#075F8F);color:#fff;border-radius:var(--r);padding:18px 20px;display:flex;justify-content:space-between;gap:16px;align-items:center}.memberidentity h3{font-family:var(--fd);font-size:1.45rem;text-transform:uppercase}.memberidentity p{font-family:var(--fm);font-size:.66rem;color:#B9D7E8;margin-top:4px}.memberidentity .memberpill{font-family:var(--fm);font-size:.62rem;padding:7px 10px;border:1px solid rgba(255,255,255,.3);border-radius:20px;white-space:nowrap}
+.geostatus{font:600 .62rem var(--fm);color:var(--muted);margin-top:7px;min-height:18px}.geostatus.ok{color:var(--ok)}.geostatus.bad{color:var(--bad)}
+.memberfeedgrid{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(260px,.6fr);gap:14px}.memberstage{position:relative;min-height:380px;background:#031C2E;border-radius:10px;overflow:hidden}.memberstage video,.memberstage canvas{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}.memberstage canvas{pointer-events:none}.memberstage .empty{position:absolute;inset:0;display:grid;place-items:center;color:#91A8B8;font:600 .72rem var(--fm);text-align:center;padding:30px}.memberstage .scanstate{position:absolute;left:12px;top:12px;padding:7px 10px;border-radius:8px;background:rgba(3,28,46,.86);color:#9FB3C2;font:700 .62rem var(--fm);z-index:4}.memberstage .scanstate.repeat{background:rgba(122,28,16,.9);color:#FFD6D1}.memberstage .scanstate.new{background:rgba(5,78,46,.9);color:#B9FFD8}
+.scanresult{border:1px solid var(--line);border-radius:10px;padding:13px;margin-bottom:10px;background:#fff}.scanresult.repeat{border-color:#E4A49B;background:#FFF5F3}.scanresult.new{border-color:#A9DCC0;background:#F4FBF7}.scanresult h4{font-family:var(--fd);font-size:1.05rem;text-transform:uppercase}.scanresult .mono{font-size:.61rem;line-height:1.6}.sightinglist{max-height:290px;overflow:auto}.sighting{display:grid;grid-template-columns:48px 1fr;gap:10px;padding:9px 0;border-bottom:1px solid var(--line)}.sighting img{width:48px;height:48px;object-fit:cover;border-radius:7px;background:#E9EEF1}.sighting b{font-size:.72rem}.sighting span{display:block;font:500 .59rem var(--fm);color:var(--muted);margin-top:2px}
+.meshgrid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(260px,.45fr);gap:14px}.meshmap{min-height:285px;border-radius:12px;background:radial-gradient(circle at 16% 18%,rgba(0,174,239,.16),transparent 28%),linear-gradient(145deg,#031C2E,#062D4B);overflow:hidden;position:relative}.meshmap svg{display:block;width:100%;height:100%;min-height:285px}.meshlegend{position:absolute;left:12px;bottom:10px;background:rgba(2,31,56,.88);border:1px solid rgba(255,255,255,.14);border-radius:8px;color:#D5E8F3;font:600 .58rem var(--fm);padding:7px 9px}.meshstatus{border:1px solid var(--line);border-radius:10px;padding:13px;background:#fff}.meshstatus h4{font-family:var(--fd);text-transform:uppercase;font-size:1.02rem}.meshnotice{padding:9px 0;border-bottom:1px solid var(--line)}.meshnotice:last-child{border-bottom:0}.meshnotice b{display:block;font-size:.72rem}.meshnotice span{font:500 .59rem var(--fm);color:var(--muted)}.status-watch{color:#C77B00}.status-hit{color:#B13223}.status-origin{color:#087A4B}.incidentbtn{margin-top:10px;width:100%}
+.memberwatch{display:none;margin-bottom:14px;border:1px solid #E8B39A;background:#FFF4EE;border-radius:11px;padding:12px 14px;align-items:center;justify-content:space-between;gap:12px}.memberwatch.on{display:flex}.memberwatch b{font-family:var(--fd);text-transform:uppercase}.memberwatch p{font:500 .62rem var(--fm);color:#7C4935;margin-top:3px}.memberwatch .pulse{width:10px;height:10px;border-radius:50%;background:#E8543D;box-shadow:0 0 0 0 rgba(232,84,61,.45);animation:watchpulse 1.6s infinite;flex:0 0 auto}@keyframes watchpulse{70%{box-shadow:0 0 0 10px rgba(232,84,61,0)}100%{box-shadow:0 0 0 0 rgba(232,84,61,0)}}
+.calgrid{display:grid;grid-template-columns:repeat(5,minmax(110px,1fr));gap:10px;align-items:end}.calstate{border:1px solid var(--line);border-radius:9px;padding:11px;background:#F8FBFD;font:.63rem var(--fm);line-height:1.7}.calstate.good{border-color:#A9DCC0;background:#F4FBF7}.calstate.warn{border-color:#E8CF9E;background:#FFFBF2}
+.visitorlayout{display:grid;grid-template-columns:minmax(300px,.8fr) minmax(0,1.2fr);gap:14px}.visitorgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;max-height:620px;overflow:auto;padding-right:3px}.visitorcard{appearance:none;text-align:left;border:1px solid var(--line);border-radius:11px;background:#fff;padding:11px;cursor:pointer;color:var(--ink);transition:.15s}.visitorcard:hover,.visitorcard.active{border-color:var(--blue);box-shadow:0 7px 20px rgba(0,174,239,.1)}.visitorcardtop{display:grid;grid-template-columns:58px 1fr;gap:10px}.visitorcard img,.visitorportrait{width:58px;height:58px;object-fit:cover;border-radius:9px;background:#E9EEF1}.visitorcard h4{font-family:var(--fd);text-transform:uppercase;font-size:.96rem}.visitorcard p{font:.58rem var(--fm);color:var(--muted);line-height:1.55;margin-top:3px}.statusbadge{display:inline-flex;margin-top:7px;border-radius:18px;padding:4px 7px;font:700 .54rem var(--fm);background:#EDF2F5;color:#526677}.statusbadge.TRUSTED{background:#E8F8EF;color:#087A4B}.statusbadge.CONFIRMED_INTRUDER,.statusbadge.ACTIVE_INCIDENT{background:#FDE9E6;color:#A92B1D}.statusbadge.REVIEW_REQUIRED{background:#FFF4D9;color:#9A6500}.statusbadge.CLEARED{background:#EAF3FF;color:#286296}.statusbadge.REPEAT_VISITOR{background:#F2EAFE;color:#68409A}
+.visitordetail{border:1px solid var(--line);border-radius:11px;background:#fff;min-height:280px;padding:15px}.actionfeedback{display:none;margin-top:11px;border:1px solid var(--line);border-radius:9px;padding:10px 12px;font:.62rem var(--fm);line-height:1.6}.actionfeedback.on{display:block}.actionfeedback.saving{background:#EEF7FC;border-color:#A9D8EE;color:#07527B}.actionfeedback.success{background:#EAF8F0;border-color:#9FD5B8;color:#07653E}.actionfeedback.error{background:#FDECEA;border-color:#E4A69E;color:#9C261C}.visitoractions .btn.selected{outline:3px solid rgba(0,174,239,.22);outline-offset:2px}.visitoractions .btn[disabled]{opacity:.55;cursor:wait}.visitorhead{display:flex;gap:13px;align-items:flex-start}.visitorhead .visitorportrait{width:82px;height:82px}.visitorhead h3{font-family:var(--fd);font-size:1.3rem;text-transform:uppercase}.visitormetrics{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:13px 0}.visitormetric{border:1px solid var(--line);border-radius:8px;padding:8px;background:#F8FBFD}.visitormetric b{display:block;font-family:var(--fd);font-size:1rem}.visitormetric span{font:.54rem var(--fm);color:var(--muted)}.visitorforms{display:grid;grid-template-columns:1fr 1fr;gap:10px}.visitoractions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.btn.trusted{background:#087A4B}.btn.intruder{background:#B13223}.btn.review{background:#C77B00}.evidencebox{border:1px solid var(--line);border-radius:9px;padding:10px;margin-top:10px;background:#F8FBFD}.evidencebox h4{font-family:var(--fd);text-transform:uppercase;font-size:.9rem}.evidencechips{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px}.evidencechip{padding:4px 7px;border-radius:15px;background:#EAF1F5;font:.55rem var(--fm)}.profilesight{display:grid;grid-template-columns:45px 1fr auto;gap:9px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line)}.profilesight img{width:45px;height:45px;object-fit:cover;border-radius:7px}.profilesight p{font:.57rem var(--fm);color:var(--muted);line-height:1.55}.profilesight .btn{padding:6px 8px;font-size:.56rem}
+.dbgrid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:14px}.dbcounts{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.dbcount{border:1px solid var(--line);border-radius:9px;padding:9px;background:#F8FBFD}.dbcount b{font-family:var(--fd);font-size:1.25rem;display:block}.dbcount span{font:.53rem var(--fm);color:var(--muted);word-break:break-word}.dbfeed{max-height:360px;overflow:auto;border:1px solid var(--line);border-radius:9px;background:#021F38;color:#D4E9F5;padding:9px}.dbwrite{padding:7px 5px;border-bottom:1px solid rgba(255,255,255,.08);font:.57rem var(--fm);line-height:1.6}.dbwrite:last-child{border-bottom:0}.dbwrite b{color:#6EE7B7}.dbwrite .aws{color:#F2C66D}.dbpath{font:.56rem var(--fm);word-break:break-all;color:var(--muted);margin-top:8px}.outboxbar{height:8px;background:#E7EDF1;border-radius:5px;overflow:hidden;margin-top:8px}.outboxbar i{height:100%;display:block;background:var(--grad)}
+@media(max-width:1000px){.calgrid{grid-template-columns:repeat(2,1fr)}.visitorlayout,.dbgrid{grid-template-columns:1fr}.visitormetrics{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){.memberchoices{grid-template-columns:1fr}.memberhero,.memberfeedgrid,.meshgrid{grid-template-columns:1fr}.memberstage{min-height:300px}.visitorforms{grid-template-columns:1fr}}
+
 @media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}.mt,.scrollhint .bar,.camthumb .live i{animation:none}}
+
+/* ---- claim-centred investigation workspace ---- */
+.casequeuehead{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;flex-wrap:wrap;margin-bottom:14px}
+.casequeuehead .actions{display:flex;gap:8px;flex-wrap:wrap;align-items:flex-end}
+.casequeuehead .actions .fld{min-width:145px}
+.case-status{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:5px 9px;font:700 .63rem var(--mono);letter-spacing:.05em;text-transform:uppercase;background:#edf2f6;color:#34495e}
+.case-status.OPEN,.case-status.UNDER_REVIEW{background:#fff5dd;color:#8a5700}.case-status.READY_FOR_DECISION{background:#e4f6ed;color:#087647}.case-status.CLOSED{background:#edf1f3;color:#54616a}.case-status.AWAITING_INFORMATION{background:#fdecea;color:#a22b21}
+.caseprio{display:inline-flex;border-radius:999px;padding:4px 8px;font:700 .6rem var(--mono);letter-spacing:.04em}.caseprio.HIGH{background:#fde3df;color:#a82318}.caseprio.MEDIUM{background:#fff0cd;color:#936000}.caseprio.LOW,.caseprio.ROUTINE{background:#e6f5ed;color:#0a7347}.caseprio.UNASSESSED{background:#eef2f5;color:#65727a}
+.casework{display:none}.casework.on{display:block}
+.casebar{position:sticky;top:74px;z-index:8;background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px 15px;margin-bottom:12px;display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap;box-shadow:0 5px 18px rgba(2,31,56,.06)}
+.casebar .identity{display:flex;gap:13px;align-items:center;flex-wrap:wrap}.casebar h3{margin:0;font-size:1rem}.casebar .sub{font:.67rem var(--mono);color:var(--muted);margin-top:3px}.casebar .metrics{display:flex;gap:16px;flex-wrap:wrap}.casebar .metric b{display:block;font:.54rem var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}.casebar .metric span{font-weight:700;font-size:.82rem}
+.casetabs{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 12px}.casetabs button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 13px;font-weight:700;font-size:.72rem;cursor:pointer}.casetabs button.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.casepane{display:none}.casepane.on{display:block}
+.casegrid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(300px,.9fr);gap:14px}.casegrid.three{grid-template-columns:repeat(3,minmax(0,1fr))}@media(max-width:1000px){.casegrid,.casegrid.three{grid-template-columns:1fr}.casebar{position:static}}
+.casecard{border:1px solid var(--line);border-radius:12px;background:#fff;padding:14px}.casecard h4{margin:0 0 10px;font-size:.84rem}.casecard .hint{font:.67rem var(--mono);color:var(--muted);line-height:1.55}
+.casehero{border-left:5px solid var(--blue);padding-left:14px}.casehero .score{font-size:2.1rem;font-weight:800;color:var(--navy)}.casehero .recommend{font-weight:800;margin:4px 0}.casehero .explain{font-size:.76rem;color:#46535c;line-height:1.55}
+.taskrow,.evrow,.actrow,.platerow{border-top:1px solid #edf1f4;padding:10px 0}.taskrow:first-child,.evrow:first-child,.actrow:first-child,.platerow:first-child{border-top:0}.taskrow .top,.evrow .top,.platerow .top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.taskrow .title,.evrow .title,.platerow .title{font-weight:800;font-size:.77rem}.taskrow .why,.evrow .why,.platerow .why,.actrow .why{font:.66rem var(--mono);color:var(--muted);line-height:1.5;margin-top:4px}.actrow .time{font:.6rem var(--mono);color:var(--muted)}
+.validationtable{width:100%;border-collapse:collapse}.validationtable th,.validationtable td{border-bottom:1px solid #edf1f4;padding:9px 7px;text-align:left;font-size:.72rem;vertical-align:middle}.validationtable th{font:.58rem var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}.validationtable select,.validationtable input{width:100%;min-width:120px;border:1px solid var(--line);border-radius:7px;padding:7px;background:#fff}.validationtable .saveval{white-space:nowrap}
+.uploadzone{border:1px dashed #9db4c4;border-radius:12px;padding:14px;background:#f7fafc}.uploadzone input[type=file]{width:100%;margin:8px 0}.platebig{font:800 1.15rem var(--mono);letter-spacing:.08em}.match-MATCH{color:#087647}.match-MISMATCH{color:#b22b1f}.match-CANDIDATE{color:#8a5700}.match-NO_READ{color:#65727a}
+.dbgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin-bottom:12px}@media(max-width:760px){.dbgrid{grid-template-columns:repeat(2,1fr)}}.dbstat{border:1px solid var(--line);border-radius:10px;padding:10px}.dbstat b{display:block;font:.55rem var(--mono);text-transform:uppercase;color:var(--muted);margin-bottom:4px}.dbstat span{font-weight:800;font-size:1.05rem}.lineage{display:flex;align-items:center;gap:7px;flex-wrap:wrap;font:.65rem var(--mono)}.lineage i{font-style:normal;border:1px solid var(--line);border-radius:8px;padding:7px 9px;background:#fff}.lineage .arrow{color:var(--blue);font-weight:900}
+.caseflash{display:none;border-radius:9px;padding:9px 11px;margin-bottom:10px;font:.68rem var(--mono)}.caseflash.on{display:block}.caseflash.ok{background:#e6f5ed;color:#087647}.caseflash.busy{background:#e8f4fb;color:#005b8f}.caseflash.err{background:#fdecea;color:#a22b21}
+
 </style>
 </head>
 <body>
@@ -481,6 +573,14 @@ button,select,input{font-family:inherit}
     <div class="rolefoot"><b>Demo note:</b> the role selector controls what is displayed. Production enforcement still requires authenticated identities and API authorisation, planned for AWS Cognito/RBAC.</div>
   </div>
 </div>
+<div class="membergate" id="memberGate" role="dialog" aria-modal="true" aria-labelledby="memberGateTitle">
+  <div class="memberbox">
+    <div class="eyebrow">Member demo identity</div>
+    <h2 id="memberGateTitle">Choose a household</h2>
+    <p>Each demo member has a separate property, camera list and sightings. Use the same face at two households to demonstrate anonymous repeat matching across the mesh.</p>
+    <div class="memberchoices" id="memberChoices"></div>
+  </div>
+</div>
 <nav class="nav">
   <span class="wm" id="wmHome"><span class="d">Discovery</span><span class="p">·&nbsp;SENTINEL</span></span>
   <div class="tabs" id="tabs">
@@ -493,6 +593,7 @@ button,select,input{font-family:inherit}
     <button data-v="claims">Claims</button>
     <button data-v="movement">Movement</button>
     <button data-v="patterns">Patterns</button>
+    <button data-v="dispatch">Live operations</button>
     <button data-v="briefing">Briefing</button>
     <button data-v="property">My property</button>
   </div>
@@ -503,6 +604,7 @@ button,select,input{font-family:inherit}
     <button data-r="fraud">Claims</button>
     <button data-r="security">Security</button>
   </div>
+  <div class="membernav" id="memberNav"><label for="memberUserSelect">Household</label><select id="memberUserSelect" aria-label="Active member"></select></div>
   <span class="aistat"><span class="d" id="aiDot"></span><span id="aiTxt">AI loading…</span></span>
   <span class="aistat" title="S3 evidence storage and DynamoDB pattern registry"><span class="d" id="awsDot"></span><span id="awsTxt">AWS checking…</span></span>
   <select id="metro" aria-label="Pilot metro"></select>
@@ -695,6 +797,74 @@ button,select,input{font-family:inherit}
     </div>
   </section>
 
+  <!-- ---------- LIVE SECURITY OPERATIONS ---------- -->
+  <section class="view" id="v-dispatch">
+    <div class="vhead"><h2>Live security network</h2><span class="tag">Benoni / Lakefield pilot · <b>multi-company dispatch + moving patrols</b></span></div>
+    <p class="vlead">A simulated control-room view across three partner companies. Patrol positions move along approximate Benoni road points, routes avoid duplicated hotspot coverage, and confirmed Member incidents queue WhatsApp-ready alerts to the closest available units.</p>
+    <div class="security-kpis">
+      <div class="security-kpi"><b id="secCompanies">—</b><span>companies connected</span></div>
+      <div class="security-kpi"><b id="secUnits">—</b><span>patrol units online</span></div>
+      <div class="security-kpi"><b id="secDispatches">—</b><span>active dispatches</span></div>
+      <div class="security-kpi"><b id="secCoverage">—</b><span>hotspot risk covered</span></div>
+      <div class="security-kpi"><b id="secOutbox">—</b><span>AWS records pending</span></div>
+    </div>
+    <div class="panel" style="margin-bottom:14px">
+      <div class="ph">
+        <div><h3>Simulation controls</h3><span class="mono" id="secMeta">Loading security partner network…</span></div>
+        <div class="security-toolbar">
+          <span class="simstate" id="secSimState"><i></i><span>movement paused</span></span>
+          <div class="fld"><label for="secSpeed">Movement speed</label><select id="secSpeed"><option value="1">Normal</option><option value="2">Fast</option><option value="3">Demo sprint</option></select></div>
+          <button class="btn" id="secToggle">Start patrol movement</button>
+          <button class="btn intruder" id="secDispatchLatest">Dispatch latest Member incident</button>
+          <button class="btn gh" id="secReset">Reset simulation</button>
+        </div>
+      </div>
+      <div class="pb" style="padding:10px 10px 12px">
+        <div class="companylegend" id="secCompanyLegend"></div>
+      </div>
+    </div>
+    <div class="securityopsgrid">
+      <div class="panel">
+        <div class="ph"><h3>Benoni operations map</h3><span class="mono">Click a patrol dot for the best route relative to other cars</span></div>
+        <div class="pb" style="padding:10px">
+          <div id="securityMap"></div>
+          <div class="security-map-fallback" id="securityMapFallback">OpenStreetMap tiles or Leaflet could not load. The patrol units, routes and dispatch logic remain available in the panel.</div>
+          <div class="legendbar">
+            <span><i class="dot" style="background:#B03A2E"></i>Active incident</span>
+            <span><i class="dot" style="background:#D68100"></i>High-priority hotspot</span>
+            <span><i class="dot" style="background:#005BAA"></i>Selected optimised route</span>
+            <span>Unit colours = partner company</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="unitdetail" id="secUnitDetail"><h3>Select a patrol unit</h3><p class="sub">Click any moving unit on the map. Sentinel will calculate a route that balances response distance, fuel use, hotspot priority and overlap with the other patrol cars.</p></div>
+        <div class="panel" style="margin-top:14px">
+          <div class="ph"><h3>Active dispatches</h3><span class="mono" id="secDispatchMeta"></span></div>
+          <div class="pb" id="secDispatchList"><p class="mono">No active dispatches.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="panel" style="margin-top:14px">
+      <div class="ph"><div><h3>Claims-style hotspot statistics</h3><span class="mono">Illustrative Benoni POC values — not live crime data</span></div><button class="btn gh" id="secRefresh">Refresh</button></div>
+      <div class="pb"><div class="hotspotstats" id="secHotspots"></div></div>
+    </div>
+    <div class="securityfeeds">
+      <div class="panel">
+        <div class="ph"><h3>Notification centre</h3><span class="mono">WhatsApp-ready local outbox</span></div>
+        <div class="pb notificationfeed" id="secNotifications"><p class="mono">Notifications appear after a Member incident is confirmed.</p></div>
+      </div>
+      <div class="panel">
+        <div class="ph"><h3>Security database writes</h3><button class="btn gh" id="secDbRefresh">Refresh</button></div>
+        <div class="pb">
+          <div class="secdbcounts" id="secDbCounts"></div>
+          <div class="dbfeed securitydbfeed" id="secDbFeed"><div class="dbwrite">Loading SQLite activity…</div></div>
+          <div class="dbpath" id="secDbPath"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ---------- PATROL ---------- -->
   <section class="view" id="v-patrol">
     <div class="vhead"><h2>Patrol optimisation</h2><span class="tag">USP 04 · <b>protected risk per kilometre</b></span></div>
@@ -751,27 +921,119 @@ button,select,input{font-family:inherit}
 
   <!-- ---------- CLAIMS (fraud) ---------- -->
   <section class="view" id="v-claims">
-    <div class="vhead"><h2>Claims</h2><span class="tag">fraud &amp; claims · <b>15 712 claims, five years</b></span></div>
-    <p class="vlead">Every claim in the supplied Discovery workbook. Open one for an analytical report that places it against its suburb and against the whole book — computed figures an investigator can trace, not a generated opinion.</p>
-    <div class="claimfilters">
-      <div class="fld"><label for="cq">Search</label><input id="cq" type="text" placeholder="suburb, make, incident id"></div>
-      <div class="fld"><label for="cPeril">Peril</label><select id="cPeril"><option value="">All</option></select></div>
-      <div class="fld"><label for="cItem">Item</label><select id="cItem"><option value="">All</option><option>Vehicle</option><option>Contents</option></select></div>
-      <div class="fld"><label for="cMin">Min amount</label><input id="cMin" type="number" step="10000" placeholder="0" style="width:120px"></div>
-      <div class="fld"><label for="cSort">Sort</label><select id="cSort"><option value="recent">Most recent</option><option value="amount">Highest value</option><option value="suburb">By suburb</option></select></div>
-      <button class="btn" id="cSearch">Search</button>
-    </div>
-    <div class="grid2">
+    <div class="vhead"><h2>Claims investigation</h2><span class="tag">claim-centred flow · <b>queue first, tools after selection</b></span></div>
+    <p class="vlead" id="claimsLead">Start in the claims queue. Once a claim is selected, Sentinel opens one case workspace containing validation, camera evidence, number-plate OCR, the activity stream, AI-assisted next actions, reporting and database lineage.</p>
+    <div class="caseflash" id="caseFlash"></div>
+
+    <div id="claimQueue">
+      <div class="casequeuehead">
+        <div>
+          <h3 style="margin:0 0 5px">Claims queue</h3>
+          <p class="mono" style="margin:0;line-height:1.55">The supplied workbook remains the historical source. A persistent case row is created only when an investigator opens a claim.</p>
+        </div>
+        <div class="actions">
+          <div class="fld"><label for="liveClaimAmount">Live demo amount</label><input id="liveClaimAmount" type="number" value="185000" step="5000"></div>
+          <div class="fld"><label for="liveClaimType">Incident</label><select id="liveClaimType"><option>Home Invasion</option><option>Vehicle Theft</option><option>Trespassing</option></select></div>
+          <button class="btn gh" id="createLiveClaim">Create from latest Member incident</button>
+        </div>
+      </div>
+      <div class="claimfilters">
+        <div class="fld"><label for="cq">Search</label><input id="cq" type="text" placeholder="suburb, make, incident id, assignee"></div>
+        <div class="fld"><label for="cPeril">Peril</label><select id="cPeril"><option value="">All</option></select></div>
+        <div class="fld"><label for="cItem">Item</label><select id="cItem"><option value="">All</option><option>Vehicle</option><option>Contents</option></select></div>
+        <div class="fld"><label for="cMin">Min amount</label><input id="cMin" type="number" step="10000" placeholder="0" style="width:120px"></div>
+        <div class="fld"><label for="cSort">Sort</label><select id="cSort"><option value="recent">Most recent</option><option value="priority">Case priority</option><option value="amount">Highest value</option><option value="suburb">By suburb</option></select></div>
+        <button class="btn" id="cSearch">Search</button>
+      </div>
       <div class="panel">
         <div class="ph"><h3>Results</h3><span class="mono" id="cMeta"></span></div>
-        <div style="max-height:520px;overflow:auto">
-          <table class="ctable"><thead><tr><th>Incident</th><th>Suburb</th><th>Peril</th><th>Item</th><th style="text-align:right">Amount</th></tr></thead>
+        <div style="max-height:570px;overflow:auto">
+          <table class="ctable"><thead><tr><th>Incident / case</th><th>Suburb</th><th>Peril</th><th>Item</th><th>Status</th><th style="text-align:right">Amount</th></tr></thead>
           <tbody id="cRows"></tbody></table>
         </div>
       </div>
-      <div class="panel">
-        <div class="ph"><h3 id="crTitle">Claim report</h3><span class="mono" id="crMeta"></span></div>
-        <div class="pb" id="crBody"><p class="mono">Select a claim to generate its report.</p></div>
+    </div>
+
+    <div class="casework" id="caseWorkspace">
+      <div class="casebar">
+        <div class="identity">
+          <button class="btn gh" id="caseBack">← Queue</button>
+          <div><h3 id="caseTitle">Case</h3><div class="sub" id="caseSub"></div></div>
+          <span class="case-status" id="caseStatus"></span><span class="caseprio" id="casePriority"></span>
+        </div>
+        <div class="metrics">
+          <div class="metric"><b>Amount</b><span id="caseAmount">—</span></div>
+          <div class="metric"><b>Assigned</b><span id="caseAssigned">Unassigned</span></div>
+          <div class="metric"><b>Evidence</b><span id="caseEvidenceCount">0</span></div>
+          <div class="metric"><b>AWS outbox</b><span id="caseOutbox">0 pending</span></div>
+        </div>
+      </div>
+      <div class="casetabs" id="caseTabs">
+        <button class="on" data-case-tab="overview">Overview</button>
+        <button data-case-tab="validate">Validate</button>
+        <button data-case-tab="evidence">Evidence</button>
+        <button data-case-tab="plate">Number plate</button>
+        <button data-case-tab="activity">Activity</button>
+        <button data-case-tab="agent">Case agent</button>
+        <button data-case-tab="report">Report</button>
+        <button data-case-tab="database">Database</button>
+      </div>
+
+      <div class="casepane on" id="case-overview">
+        <div class="casegrid">
+          <div class="casecard casehero" id="caseAssessment"></div>
+          <div class="casecard"><h4>Case controls</h4><div class="claimfilters" style="margin:0">
+            <div class="fld" style="flex:1"><label for="caseAssigneeInput">Assigned investigator</label><input id="caseAssigneeInput" type="text" placeholder="name or team"></div>
+            <div class="fld"><label for="caseStageInput">Stage</label><select id="caseStageInput"><option>TRIAGE</option><option>VALIDATION</option><option>EVIDENCE</option><option>INVESTIGATION</option><option>DECISION</option></select></div>
+            <button class="btn gh" id="caseSaveDetails">Save</button>
+          </div><p class="hint" style="margin-top:10px">The agent can update stage and priority, but only the investigator can record the final case decision.</p></div>
+        </div>
+        <div class="casegrid" style="margin-top:14px">
+          <div class="casecard"><h4>Next actions</h4><div id="caseTasks"></div></div>
+          <div class="casecard"><h4>Traceable findings</h4><div id="caseFindings"></div></div>
+        </div>
+      </div>
+
+      <div class="casepane" id="case-validate">
+        <div class="casecard"><h4>Validation checklist</h4><p class="hint">Each line is written to <b>claim_case_validations</b>, logged in the audit trail and queued for AWS. A mismatch is a review trigger, not an automatic repudiation.</p>
+          <div style="overflow:auto"><table class="validationtable"><thead><tr><th>Check</th><th>Status</th><th>Value / reference</th><th>Note</th><th></th></tr></thead><tbody id="validationRows"></tbody></table></div>
+        </div>
+      </div>
+
+      <div class="casepane" id="case-evidence">
+        <div class="casegrid">
+          <div class="casecard"><div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><h4>Claim-linked evidence</h4><button class="btn" id="caseRefreshEvidence">Search incident window</button></div><p class="hint">Sentinel searches operations events around the claim time and location and links the Member incident trail when available.</p><div id="caseEvidence"></div></div>
+          <div class="casecard"><h4>Evidence flow</h4><div class="lineage"><i>Member incident / upload</i><span class="arrow">→</span><i>Camera AI event</i><span class="arrow">→</span><i>Claim evidence link</i><span class="arrow">→</span><i>Human review</i><span class="arrow">→</span><i>Report</i></div><p class="hint" style="margin-top:12px">Raw media is referenced by URL; structured metadata and decisions are stored in SQLite and staged for S3/DynamoDB.</p></div>
+        </div>
+      </div>
+
+      <div class="casepane" id="case-plate">
+        <div class="casegrid">
+          <div class="casecard"><h4>Reported vehicle registration</h4><div class="claimfilters"><div class="fld" style="flex:1"><label for="reportedPlate">Plate supplied on claim</label><input id="reportedPlate" type="text" placeholder="e.g. AB 12 CD GP"></div><button class="btn gh" id="saveReportedPlate">Save plate</button></div><p class="hint">The stored plate is normalised for comparison while the original text remains visible.</p></div>
+          <div class="casecard uploadzone"><h4>Run number-plate OCR</h4><input id="plateFile" type="file" accept="image/*,video/*"><div class="claimfilters" style="margin-bottom:0"><div class="fld"><label for="plateCamera">Source camera</label><input id="plateCamera" value="CLAIMS-DESK-UPLOAD"></div><button class="btn" id="runPlateScan">Process footage</button></div><p class="hint">Use a real plate, a printed plate, a phone screen or the supplied video. The pipeline stores every OCR observation and confidence value.</p></div>
+        </div>
+        <div class="casecard" style="margin-top:14px"><h4>Plate observations</h4><div id="plateRows"></div></div>
+      </div>
+
+      <div class="casepane" id="case-activity"><div class="casecard"><h4>Continuous case activity stream</h4><p class="hint">This is the single chronological record across Member, camera AI, OCR, validations, investigator actions, agent tools, reports and AWS staging.</p><div id="caseActivity"></div></div></div>
+
+      <div class="casepane" id="case-agent">
+        <div class="casegrid">
+          <div class="casecard casehero" id="agentSummary"></div>
+          <div class="casecard"><h4>Run transparent case agent</h4><p class="hint">The agent orchestrates traceable tools: claims statistics, incident-window retrieval, validation completeness, OCR reconciliation and task creation. It does not use a hidden fraud score and cannot accept or reject a claim.</p><button class="btn" id="runCaseAgent">Run case agent</button><div id="agentTools" style="margin-top:12px"></div></div>
+        </div>
+      </div>
+
+      <div class="casepane" id="case-report">
+        <div class="casegrid">
+          <div class="casecard"><h4>Investigation pack</h4><p class="hint">Build a versioned report containing claim facts, traceable statistical context, validations, evidence, plate reads, agent assistance, activity and governance limitations.</p><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" id="generateCaseReport">Generate report</button><button class="btn gh" id="downloadCaseReport">Download latest JSON</button></div></div>
+          <div class="casecard"><h4>Human decision</h4><div class="fld"><label for="caseDecision">Decision</label><select id="caseDecision"><option value="REQUEST_INFORMATION">Request information</option><option value="REFER_SPECIALIST">Refer specialist</option><option value="READY_FOR_SETTLEMENT">Ready for settlement</option><option value="CLOSE_NO_ACTION">Close — no further action</option></select></div><div class="fld"><label for="caseDecisionReason">Rationale</label><input id="caseDecisionReason" type="text" placeholder="Required human rationale"></div><button class="btn gh" id="saveCaseDecision">Record human decision</button></div>
+        </div>
+        <div class="casecard" style="margin-top:14px"><h4>Latest report preview</h4><pre id="reportPreview" style="white-space:pre-wrap;max-height:430px;overflow:auto;font:.65rem var(--mono);margin:0">No report generated yet.</pre></div>
+      </div>
+
+      <div class="casepane" id="case-database">
+        <div class="casecard"><h4>Live database writes</h4><div class="dbgrid" id="caseDbCounts"></div><div class="lineage"><i>SQLite WAL</i><span class="arrow">→</span><i>Audit log</i><span class="arrow">→</span><i>AWS sync outbox</i><span class="arrow">→</span><i>DynamoDB + S3 later</i></div><p class="hint" id="caseDbPath" style="margin-top:12px"></p><div id="caseDbWrites"></div></div>
       </div>
     </div>
   </section>
@@ -835,52 +1097,111 @@ button,select,input{font-family:inherit}
 
   <!-- ---------- MY PROPERTY (member) ---------- -->
   <section class="view" id="v-property">
-    <div class="vhead"><h2>My property</h2><span class="tag">member · <b>your devices, your area</b></span></div>
-    <p class="vlead">Add a doorbell camera to the mesh and see the risk pattern for your own suburb. Members never see other households, individual claims, or anyone else's evidence.</p>
+    <div class="vhead"><h2>My property</h2><span class="tag">member · <b>persistent cameras + anonymous repeat matching</b></span></div>
+    <p class="vlead">The three demo members are neighbouring homes at 17, 18 and 19 Sher Avenue. Attach this laptop webcam to each household in turn. The bundled local OpenCV model draws the green face box even when the internet/CDN is unavailable; SFace stores an anonymous embedding in SQLite and links repeat sightings across cameras.</p>
+    <div class="memberwatch" id="mWatchBanner"><span class="pulse"></span><div style="flex:1"><b id="mWatchTitle">Neighbourhood watch active</b><p id="mWatchText">A confirmed incident has armed this household camera.</p></div><button class="btn gh" id="mWatchOpen" type="button">Open incident</button></div>
+    <div class="memberhero">
+      <div class="memberidentity"><div><h3 id="mActiveName">Choose a member</h3><p id="mActiveMeta">No household selected</p></div><span class="memberpill" id="mActiveId">—</span></div>
+      <div class="panel"><div class="pb" style="display:flex;gap:10px;align-items:center;justify-content:space-between;height:100%"><div><b style="font-family:var(--fd);text-transform:uppercase">Demo scope</b><p class="mono" style="margin-top:4px">3 isolated members · shared anonymous match registry</p></div><button class="btn gh" id="changeMember">Change member</button></div></div>
+    </div>
     <div class="grid2">
       <div class="panel">
-        <div class="ph"><h3>Register a camera</h3></div>
+        <div class="ph"><h3>Register a camera</h3><span class="mono">saved in SQLite</span></div>
         <div class="pb">
           <div class="addform">
-            <div class="fld"><label for="mHouse">Street address</label><input id="mHouse" placeholder="14 Hillcrest Ave"></div>
-            <div class="fld"><label for="mSuburb">Suburb</label><input id="mSuburb" placeholder="Bryanston"></div>
-            <div class="fld"><label for="mLat">Latitude</label><input id="mLat" type="number" step="0.0001" value="-26.0514"></div>
-            <div class="fld"><label for="mLon">Longitude</label><input id="mLon" type="number" step="0.0001" value="28.0281"></div>
-            <div class="fld"><label for="mLabel">Device</label><input id="mLabel" value="Doorbell camera"></div>
+            <div class="fld"><label for="mHouse">Street address</label><input id="mHouse" placeholder="17 Sher Avenue" autocomplete="street-address"><div class="geostatus" id="mGeoStatus">17, 18 and 19 Sher Avenue work offline; other full addresses use online geocoding.</div></div>
+            <div class="fld"><label for="mSuburb">Suburb</label><input id="mSuburb" placeholder="Lakefield"></div>
+            <div class="fld"><label for="mLat">Latitude</label><input id="mLat" type="number" step="0.000001" readonly></div>
+            <div class="fld"><label for="mLon">Longitude</label><input id="mLon" type="number" step="0.000001" readonly></div>
+            <div class="fld"><label for="mLabel">Device</label><input id="mLabel" value="Laptop / doorbell demo camera"></div>
             <div class="fld"><label for="mMetro">Metro</label><select id="mMetro"><option>Gauteng</option><option>Cape Town</option></select></div>
             <label class="consent"><input type="checkbox" id="mConsent">
-              <span>Every adult at this property has agreed to the camera. It points at my own entrance, not a neighbour's property. Routine video stays on the device — only event clips are uploaded.</span></label>
+              <span>Every adult at this property has agreed to the camera. It points at my own entrance, not a neighbour's property. Routine video stays on the device; only demo face crops and event metadata are stored.</span></label>
           </div>
-          <button class="btn" id="mAdd" style="margin-top:12px">Add camera</button>
+          <button class="btn" id="mAdd" style="margin-top:12px">Save camera</button>
           <div id="mResult" style="margin-top:12px"></div>
         </div>
       </div>
       <div class="panel">
         <div class="ph"><h3 id="mAreaTitle">My area</h3><span class="mono" id="mAreaMeta"></span></div>
-        <div class="pb" id="mArea"><p class="mono">Enter your suburb to see its pattern.</p></div>
+        <div class="pb" id="mArea"><p class="mono">Choose a member to load the area's claims pattern.</p></div>
       </div>
     </div>
     <div class="panel" style="margin-top:16px">
       <div class="ph"><h3>My cameras</h3><span class="mono" id="mCamMeta"></span></div>
       <div class="pb"><div class="myprop" id="mCams"></div></div>
     </div>
+    <div class="panel" style="margin-top:16px">
+      <div class="ph"><h3>Camera calibration &amp; height</h3><span class="mono">persistent geometry · height is a range, never an identity</span></div>
+      <div class="pb">
+        <div class="calgrid">
+          <div class="fld"><label for="mCalMount">Camera height (m)</label><input id="mCalMount" type="number" step="0.01" value="1.25"></div>
+          <div class="fld"><label for="mCalTilt">Downward tilt (°)</label><input id="mCalTilt" type="number" step="0.5" value="8"></div>
+          <div class="fld"><label for="mCalFov">Horizontal FOV (°)</label><input id="mCalFov" type="number" step="1" value="78"></div>
+          <div class="fld"><label for="mCalScore">Calibration trust</label><input id="mCalScore" type="number" min="70" max="100" value="95"></div>
+          <button class="btn" id="mCalSave" type="button">Save calibration</button>
+        </div>
+        <div class="calstate warn" id="mCalResult" style="margin-top:10px">Select a saved camera, start the feed, then save its fixed-camera geometry. Height is stored only when a full body is visible across at least three usable frames.</div>
+      </div>
+    </div>
+    <div class="panel" style="margin-top:16px">
+      <div class="ph"><h3>Live household camera</h3><span class="mono">local OpenCV fallback · green tracking box · SFace matching</span></div>
+      <div class="pb">
+        <div style="display:flex;gap:9px;flex-wrap:wrap;margin-bottom:12px">
+          <select id="mFeedCamera" class="device-select" aria-label="Member camera"></select>
+          <select id="mPhysicalCam" class="device-select" aria-label="Physical webcam"><option value="">Default / selfie camera</option></select>
+          <button class="btn gh" id="mRefreshPhysical" type="button">Refresh webcams</button>
+          <button class="btn" id="mStartFeed" type="button">Start camera + recognition</button>
+          <button class="btn gh" id="mStopFeed" type="button" disabled>Stop</button>
+          <button class="btn gh" id="mScanNow" type="button" disabled>Scan now</button>
+          <button class="btn gh" id="mResetFaces" type="button">Reset face demo</button>
+        </div>
+        <div class="memberfeedgrid">
+          <div class="memberstage" id="mStage"><div class="empty">SELECT A MEMBER AND START THE LAPTOP CAMERA</div></div>
+          <div>
+            <div id="mScanResult"><div class="scanresult"><h4>Recognition ready</h4><p class="mono">The first stable scan creates an anonymous visitor profile. Switch to another member and show the same face again to create a repeat-visitor match and cross-property trail.</p></div></div>
+            <div class="ph" style="padding:8px 0"><h3 style="font-size:1rem">Recent mesh sightings</h3><span class="mono" id="mSightMeta"></span></div>
+            <div class="sightinglist" id="mSightings"><p class="mono">No sightings yet.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel" style="margin-top:16px">
+      <div class="ph"><h3>Visitor profiles</h3><span class="mono" id="mVisitorMeta">trusted per household · reviewed incident labels</span></div>
+      <div class="pb">
+        <div class="visitorlayout">
+          <div class="visitorgrid" id="mVisitors"><p class="mono">Scan a visitor to create the first profile.</p></div>
+          <div class="visitordetail" id="mVisitorDetail"><p class="mono">Choose a visitor profile to review its evidence, mark it trusted, keep it unknown, clear it or confirm an incident.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="panel" style="margin-top:16px">
+      <div class="ph"><h3>Live mesh trail</h3><span class="mono">17 → 18 → 19 Sher Avenue · Strava-style continuity</span></div>
+      <div class="pb">
+        <div class="meshgrid">
+          <div class="meshmap" id="mMeshMap"><div class="empty">SCAN THE SAME FACE AT TWO CAMERAS TO DRAW A MOVEMENT TRAIL</div></div>
+          <div class="meshstatus" id="mMeshStatus"><h4>Neighbour cameras ready</h4><p class="mono" style="margin-top:6px;line-height:1.65">Face similarity alone does not call someone an offender. After a person confirms an intrusion event, the other two demo cameras enter watch mode and matched sightings extend the route.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="panel" style="margin-top:16px">
+      <div class="ph"><h3>Live database writes</h3><span class="mono" id="mDbMeta">SQLite now · DynamoDB/S3 outbox next</span></div>
+      <div class="pb">
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px"><button class="btn gh" id="mDbRefresh" type="button">Refresh database</button><a class="btn gh" id="mDbDownload" href="/api/member/database/download">Download SQLite snapshot</a></div>
+        <div class="dbgrid">
+          <div><div class="dbcounts" id="mDbCounts"></div><div class="dbpath" id="mDbPath"></div><div class="outboxbar"><i id="mOutboxBar" style="width:0%"></i></div><p class="mono" id="mOutboxText" style="margin-top:6px"></p></div>
+          <div class="dbfeed" id="mDbWrites"><div class="dbwrite">No member writes yet. Register, calibrate, scan or classify a visitor to watch rows appear.</div></div>
+        </div>
+      </div>
+    </div>
     <div class="grid2" style="margin-top:16px">
       <div class="panel">
         <div class="ph"><h3>Community Watch contribution</h3><span class="mono">opt-in only</span></div>
-        <div class="pb" id="mContribution">
-          <p class="mono">Register a camera to begin contributing event-level coverage. Routine footage remains on the device.</p>
-        </div>
+        <div class="pb" id="mContribution"><p class="mono">Choose a member to load contribution status.</p></div>
       </div>
       <div class="panel">
         <div class="ph"><h3>Vitality Secure</h3><span class="mono">concept integration</span></div>
-        <div class="pb">
-          <div class="claimhead">
-            <div><b>Provisional points</b><span id="mPoints">0</span></div>
-            <div><b>Status</b><span id="mPointStatus">Not eligible yet</span></div>
-            <div><b>Privacy</b><span>Consent + verified events</span></div>
-          </div>
-          <p class="mono" style="margin-top:12px;line-height:1.7">Illustrative only: no live Vitality API is connected. A production rewards rule would credit verified participation, not the reporting of a person as “suspicious”.</p>
-        </div>
+        <div class="pb"><div class="claimhead"><div><b>Provisional points</b><span id="mPoints">0</span></div><div><b>Status</b><span id="mPointStatus">Not eligible yet</span></div><div><b>Privacy</b><span>Consent + verified events</span></div></div><p class="mono" style="margin-top:12px;line-height:1.7">Illustrative only: no live Vitality API is connected. A production rule would reward verified participation, never the reporting of a person as “suspicious”.</p></div>
       </div>
     </div>
   </section>
@@ -909,15 +1230,20 @@ let CAMERAS=[],selCamera=null,EVENTS=[],selEvent=null,LINK=null,ALERT=null;
 let objModel=null,faceModel=null,aiReady=false;
 let stream=null,rafId=null,liveEl=null,lastFile=null,liveDetections=[],fpsAvg=0;
 let faceStableFrames=0,faceCaptureCount=0,lastFaceCaptureAt=0;
+let MEMBERS=[],ACTIVE_MEMBER=null,MEMBER_CAMERAS=[];
+let memberStream=null,memberRaf=null,memberVideo=null,memberOverlay=null,memberWork=document.createElement('canvas'),memberDetectCanvas=document.createElement('canvas');
+let memberWorkCtx=memberWork.getContext('2d',{willReadFrequently:true}),memberLastFaces=[],memberLastPersons=[],memberPersonTrack=[],memberLastAppearance={},memberStable=0,memberCooldown=0,memberDetectBusy=false,memberLastDetect=0,memberDetectorMode='server';
+let memberVisitors=[],memberSelectedProfile=null,memberMeshState=null,memberLatestSighting=null,memberLastNoticeKey='',memberActionFlash=null;
+let memberFaceResults=[],memberFaceScanIndex=0;
+let SEC=null,secMap=null,secUnitLayer=null,secHotspotLayer=null,secDispatchLayer=null,secRouteLayer=null,secUnitMarkers={},secSelectedUnit=null,secPreview=null,secSimTimer=null,secSimRunning=false;
 
 /* per-house cameras (fallback roster mirrors the backend router) */
 const ROSTER=[
- {camera_id:'CAM-BRY-01',household:'14 Hillcrest Ave',suburb:'Bryanston',metro:'Gauteng',latitude:-26.0514,longitude:28.0281},
- {camera_id:'CAM-BRY-02',household:'22 Kei Rd',suburb:'Bryanston',metro:'Gauteng',latitude:-26.0538,longitude:28.0309},
- {camera_id:'CAM-FOU-01',household:'8 Montrose Ave',suburb:'Fourways',metro:'Gauteng',latitude:-26.0186,longitude:28.0104},
+ {camera_id:'CAM-U1-01',household:'17 Sher Avenue',suburb:'Lakefield',metro:'Gauteng',latitude:-26.198020,longitude:28.310300},
+ {camera_id:'CAM-U2-01',household:'18 Sher Avenue',suburb:'Lakefield',metro:'Gauteng',latitude:-26.198090,longitude:28.310420},
+ {camera_id:'CAM-U3-01',household:'19 Sher Avenue',suburb:'Lakefield',metro:'Gauteng',latitude:-26.198160,longitude:28.310540},
  {camera_id:'CAM-GAR-01',household:'51 Rooibok St',suburb:'Garsfontein',metro:'Gauteng',latitude:-25.8110,longitude:28.2960},
  {camera_id:'CAM-MEN-01',household:'3 Dely Rd',suburb:'Menlo Park',metro:'Gauteng',latitude:-25.7797,longitude:28.2611},
- {camera_id:'CAM-BED-01',household:'17 Van Buuren Rd',suburb:'Bedfordview',metro:'Gauteng',latitude:-26.1795,longitude:28.1345},
  {camera_id:'CAM-SEA-01',household:'9 Marine Dr',suburb:'Sea Point',metro:'Cape Town',latitude:-33.9172,longitude:18.3922},
  {camera_id:'CAM-RON-01',household:'40 Campground Rd',suburb:'Rondebosch',metro:'Cape Town',latitude:-33.9681,longitude:18.4878},
 ];
@@ -953,20 +1279,21 @@ $('tabs').addEventListener('click',e=>{
   if(b.dataset.v==='claims'&&!CLAIMS_ROWS.length)searchClaims();
   if(b.dataset.v==='movement')loadMovement();
   if(b.dataset.v==='briefing')loadBriefing();
+  if(b.dataset.v==='dispatch')loadSecurityOps();
   if(b.dataset.v==='property')refreshMemberCams();
   scrollTo({top:0,behavior:'smooth'});
 });
 
 /* ================= TENSORFLOW MODELS ================= */
 async function loadAI(){
-  if(!window.tf||!window.cocoSsd){$('aiTxt').textContent='AI offline (CDN blocked)';return;}
+  if(!window.tf||!window.cocoSsd){$('aiDot').classList.add('ready');$('aiTxt').textContent='member local face AI ready';return;}
   try{
     $('aiTxt').textContent='loading vision models…';
     objModel=await cocoSsd.load({base:'lite_mobilenet_v2'});
     try{faceModel=await blazeface.load();}catch(e){faceModel=null;}
     aiReady=true;$('aiDot').classList.add('ready');
-    $('aiTxt').textContent='vision AI ready'+(faceModel?' · objects + faces':' · objects');
-  }catch(e){$('aiTxt').textContent='AI load failed';}
+    $('aiTxt').textContent=faceModel?'vision AI ready · objects + faces':'objects ready · local face fallback';
+  }catch(e){$('aiDot').classList.add('ready');$('aiTxt').textContent='member local face AI ready';}
 }
 
 /* ================= LIVE / UPLOAD DETECTION ================= */
@@ -1099,6 +1426,7 @@ function snapshot(canvas){
 <script>
 /* ================= CAMERA WALL ================= */
 function camerasForMetro(){
+  if(ROLE==='member'&&MEMBER_CAMERAS.length)return MEMBER_CAMERAS;
   const m=$('metro').value;
   return CAMERAS.filter(c=>!m||c.metro===m);
 }
@@ -1175,7 +1503,7 @@ function renderCamDetail(){
 }
 
 /* ================= LIVE FEED ================= */
-function currentFeedCam(){return CAMERAS.find(c=>c.camera_id===$('feedCam').value)||CAMERAS[0];}
+function currentFeedCam(){const pool=(ROLE==='member'&&MEMBER_CAMERAS.length)?MEMBER_CAMERAS:CAMERAS;return pool.find(c=>c.camera_id===$('feedCam').value)||pool[0]||CAMERAS[0];}
 function ensureStage(el){
   const st=$('stage');st.innerHTML='';
   st.appendChild(el);
@@ -2118,13 +2446,13 @@ document.addEventListener('click',e=>{if(e.target.id==='toRegistry')sendToRegist
 const ROLE_TABS={
   member:['property','live'],
   fraud:['claims','evidence','movement','rewind','patterns'],
-  security:['briefing','patrol'],
+  security:['dispatch','briefing','patrol'],
 };
-const ROLE_HOME={member:'property',fraud:'claims',security:'briefing'};
+const ROLE_HOME={member:'property',fraud:'claims',security:'dispatch'};
 const ROLE_SCOPE={
   member:['MEMBER WORKSPACE','Add your own cameras, use your phone as a sensor, and view your suburb-level pattern. Other households, claims and evidence intelligence are not displayed.'],
   fraud:['FRAUD & CLAIMS WORKSPACE','Browse every claim, open a traceable analytical report, reconstruct claim-linked evidence and inspect anonymous aggregate movement corridors. Live member camera control is not displayed.'],
-  security:['SECURITY PARTNER WORKSPACE','Generate hotspot briefings, optimise patrol routes and add coverage locations. Claim values, member identities and raw footage are not displayed.'],
+  security:['SECURITY PARTNER WORKSPACE','Monitor simulated partner patrols across Benoni, dispatch the nearest units to confirmed Member incidents, optimise fuel-aware hotspot coverage and review WhatsApp-ready notifications. Claim values, member identities and raw footage are not displayed.'],
 };
 let ROLE=null;
 function showRoleGate(){
@@ -2142,12 +2470,14 @@ function applyRole(r,{navigate=true}={}){
     b.style.display=allowed.includes(b.dataset.v)?'':'none';
   });
   $('metro').style.display=r==='security'?'':'none';
+  $('memberNav').classList.toggle('on',r==='member');
+  if(r!=='member')stopMemberFeed();
   const [tag,txt]=ROLE_SCOPE[r];
   $('scopebar').innerHTML=`<span class="tagr">${tag}</span><span><b>Scope.</b> ${txt}</span>`;
   if(navigate)showView(ROLE_HOME[r]);
-  if(r==='security'){loadBriefing();renderPatrol(DATA.patrol,false);}
-  if(r==='member'){refreshMemberCams();}
-  if(r==='fraud'){searchClaims();loadMovement();}
+  if(r==='security'){loadSecurityOps();loadBriefing();renderPatrol(DATA.patrol,false);}
+  if(r==='member'){loadMembers().then(()=>{if(ACTIVE_MEMBER)selectMember(ACTIVE_MEMBER.user_id);else showMemberGate();});}
+  if(r==='fraud'){ACTIVE_CASE=null;refreshFraudNav();searchClaims();}
 }
 function showView(v){
   if(ROLE && !ROLE_TABS[ROLE].includes(v))return;
@@ -2161,73 +2491,98 @@ $('roleGate').addEventListener('click',e=>{
 });
 
 /* ================= CLAIMS (fraud) ================= */
-let CLAIMS_ROWS=[],selClaimId=null;
+let CLAIMS_ROWS=[],selClaimId=null,ACTIVE_CASE=null,LATEST_CASE_REPORT=null;
+const cEsc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function caseFlash(msg,type='ok'){$('caseFlash').className=`caseflash on ${type}`;$('caseFlash').textContent=msg;clearTimeout(caseFlash.t);caseFlash.t=setTimeout(()=>$('caseFlash').className='caseflash',4200);}
+function setCaseBusy(msg){caseFlash(msg,'busy');}
+function refreshFraudNav(){
+  if(ROLE!=='fraud')return;
+  const unlocked=!!ACTIVE_CASE;
+  document.querySelectorAll('#tabs button[data-v]').forEach(b=>{
+    const v=b.dataset.v;
+    if(v==='claims')b.style.display='';
+    else if(['evidence','movement','rewind','patterns'].includes(v))b.style.display=unlocked?'':'none';
+  });
+}
+function showCaseTab(tab){
+  document.querySelectorAll('#caseTabs button').forEach(b=>b.classList.toggle('on',b.dataset.caseTab===tab));
+  document.querySelectorAll('.casepane').forEach(p=>p.classList.toggle('on',p.id===`case-${tab}`));
+}
+$('caseTabs').addEventListener('click',e=>{const b=e.target.closest('[data-case-tab]');if(b)showCaseTab(b.dataset.caseTab);});
 async function searchClaims(){
-  if(!LIVE){
-    $('cMeta').textContent='backend required';
-    $('cRows').innerHTML='<tr><td colspan="5" class="mono" style="padding:14px">The claims browser reads the workbook server-side. Start the backend to use it.</td></tr>';
-    return;
-  }
+  if(!LIVE){$('cMeta').textContent='backend required';$('cRows').innerHTML='<tr><td colspan="6" class="mono" style="padding:14px">Start the backend to load the claims queue.</td></tr>';return;}
   $('cMeta').textContent='searching…';
-  const q=new URLSearchParams({sort:$('cSort').value,limit:'120'});
-  if($('cq').value.trim())q.set('q',$('cq').value.trim());
-  if($('cPeril').value)q.set('peril',$('cPeril').value);
-  if($('cItem').value)q.set('item_type',$('cItem').value);
-  if($('cMin').value)q.set('min_amount',$('cMin').value);
+  const q=new URLSearchParams({sort:$('cSort').value,limit:'160'});
+  if($('cq').value.trim())q.set('q',$('cq').value.trim());if($('cPeril').value)q.set('peril',$('cPeril').value);if($('cItem').value)q.set('item_type',$('cItem').value);if($('cMin').value)q.set('min_amount',$('cMin').value);
   try{
-    const d=await j('/api/fraud/claims?'+q);
-    CLAIMS_ROWS=d.claims;
+    const d=await j('/api/fraud/cases/queue?'+q);CLAIMS_ROWS=d.claims;
     $('cMeta').textContent=`${d.total.toLocaleString('en-ZA')} claims · ${money.format(d.value)}`;
-    if(!$('cPeril').options.length||$('cPeril').options.length===1){
-      $('cPeril').innerHTML='<option value="">All</option>'+
-        Object.keys(d.facets.perils).map(x=>`<option>${x}</option>`).join('');
-    }
-    $('cRows').innerHTML=d.claims.map(c=>`
-      <tr class="crow ${c.incident_id===selClaimId?'sel':''}" data-c="${c.incident_id}">
-        <td class="mono">${c.incident_id}</td>
-        <td>${c.suburb||'—'}</td>
-        <td><span class="perilpill ${c.peril}">${c.peril}</span></td>
-        <td>${c.item_type||''}${c.vehicle_make?`<br><span class="mono" style="font-size:.62rem">${c.vehicle_make}</span>`:''}</td>
-        <td class="amt">${money.format(c.amount)}</td></tr>`).join('');
-    $('cRows').querySelectorAll('.crow').forEach(r=>r.onclick=()=>{selClaimId=r.dataset.c;searchClaims();openClaim(r.dataset.c);});
-  }catch(e){$('cMeta').textContent='error: '+e.message.slice(0,60);}
+    if($('cPeril').options.length===1)$('cPeril').innerHTML='<option value="">All</option>'+Object.keys(d.facets.perils).map(x=>`<option>${cEsc(x)}</option>`).join('');
+    $('cRows').innerHTML=d.claims.map(c=>`<tr class="crow" data-c="${cEsc(c.incident_id)}">
+      <td><span class="mono">${cEsc(c.incident_id)}</span>${c.case_id?`<br><span class="mono" style="font-size:.58rem">${cEsc(c.case_id)} · ${cEsc(c.case_stage)}</span>`:'<br><span class="mono" style="font-size:.58rem">not opened</span>'}</td>
+      <td>${cEsc(c.suburb||'—')}</td><td><span class="perilpill ${cEsc(c.peril||'')}">${cEsc(c.peril||'—')}</span></td>
+      <td>${cEsc(c.item_type||'—')}${c.vehicle_make?`<br><span class="mono" style="font-size:.62rem">${cEsc(c.vehicle_make)} ${cEsc(c.vehicle_model||'')}</span>`:''}</td>
+      <td><span class="case-status ${cEsc(c.case_status)}">${cEsc(c.case_status.replaceAll('_',' '))}</span><br><span class="caseprio ${cEsc(c.case_priority)}">${cEsc(c.case_priority)}</span></td>
+      <td class="amt">${money.format(c.amount||0)}</td></tr>`).join('');
+    $('cRows').querySelectorAll('.crow').forEach(r=>r.onclick=()=>openClaim(r.dataset.c));
+  }catch(e){$('cMeta').textContent='error: '+e.message.slice(0,90);}
 }
 async function openClaim(id){
-  $('crBody').innerHTML='<p class="mono">Building report from five years of claims…</p>';
-  try{
-    const r=await j(`/api/fraud/claims/${encodeURIComponent(id)}/report`);
-    const c=r.claim,ctx=r.context,a=r.assessment;
-    $('crTitle').textContent=c.incident_id;
-    $('crMeta').textContent=`${c.suburb||'unknown suburb'} · ${c.peril}`;
-    $('crBody').innerHTML=`
-      <div class="claimhead">
-        <div><b>Amount</b>${money.format(c.amount)}</div>
-        <div><b>Incident</b>${c.incident_at?new Date(c.incident_at).toLocaleString('en-ZA'):'—'}</div>
-        <div><b>Item</b>${c.item_type||'—'}</div>
-        ${c.vehicle_make?`<div><b>Vehicle</b>${c.vehicle_make} ${c.vehicle_model||''} ${c.vehicle_year||''}</div>`:''}
-        <div><b>Suburb history</b>${(ctx.suburb_incidents_5y||0).toLocaleString('en-ZA')} claims · median ${money.format(ctx.suburb_median||0)}</div>
-      </div>
-      <div class="assess"><div class="p">${a.priority}</div><div class="r">${a.recommendation}</div></div>
-      ${r.findings.map(f=>`<div class="finding ${f.level}">
-        <h5><span class="lv">${f.level}</span>${f.title}</h5><p>${f.detail}</p></div>`).join('')}
-      ${r.cluster.length?`<div style="margin-top:12px"><div class="mono" style="margin-bottom:6px">${r.cluster.length} claim(s) in the same suburb within 72 hours</div>
-        ${r.cluster.slice(0,6).map(x=>`<div class="mono" style="padding:4px 0;border-bottom:1px dashed #EDF1F4">${x.incident_id} · ${new Date(x.incident_at).toLocaleString('en-ZA')} · ${money.format(x.amount)}</div>`).join('')}</div>`:''}
-      <div style="margin-top:14px;display:flex;gap:9px;flex-wrap:wrap">
-        ${r.coverage.cameras.length?`<button class="btn" id="crRewind">Reconstruct incident window</button>`:''}
-        <button class="btn gh" id="crCopy">Copy report</button>
-      </div>
-      <p class="mono" style="margin-top:12px;line-height:1.7">${r.disclaimer}</p>`;
-    if($('crRewind'))$('crRewind').onclick=()=>showView('rewind');
-    if($('crCopy'))$('crCopy').onclick=()=>{
-      const txt=`${c.incident_id} · ${c.suburb} · ${money.format(c.amount)}\n${a.priority}: ${a.recommendation}\n\n`+
-        r.findings.map(f=>`[${f.level}] ${f.title}\n  ${f.detail}`).join('\n\n');
-      navigator.clipboard?.writeText(txt);
-      $('crCopy').textContent='Copied';setTimeout(()=>$('crCopy').textContent='Copy report',1400);
-    };
-  }catch(e){$('crBody').innerHTML=`<p class="mono">Could not build report: ${e.message.slice(0,120)}</p>`;}
+  setCaseBusy('Opening a persistent case workspace and loading its audit trail…');
+  try{const d=await j(`/api/fraud/cases/open/${encodeURIComponent(id)}`,{method:'POST'});ACTIVE_CASE=d;selClaimId=id;$('claimQueue').style.display='none';$('caseWorkspace').classList.add('on');refreshFraudNav();renderCaseWorkspace(d);showCaseTab('overview');caseFlash('Case opened. Every action from here is written to SQLite and the AWS outbox.');}
+  catch(e){caseFlash('Could not open case: '+e.message.slice(0,130),'err');}
 }
-$('cSearch').onclick=searchClaims;
-$('cq').addEventListener('keydown',e=>{if(e.key==='Enter')searchClaims();});
+function renderCaseWorkspace(d){
+  ACTIVE_CASE=d;const cs=d.case,c=cs.claim,stat=d.statistical_report||{},ass=(stat.assessment||{}),db=d.database||{};
+  $('caseTitle').textContent=`${cs.source_claim_id}`;$('caseSub').textContent=`${cs.case_id} · ${c.suburb||'unknown suburb'} · ${c.peril||'unknown peril'} · ${cs.source_type.replaceAll('_',' ')}`;
+  $('caseStatus').className=`case-status ${cs.status}`;$('caseStatus').textContent=cs.status.replaceAll('_',' ');$('casePriority').className=`caseprio ${cs.priority}`;$('casePriority').textContent=cs.priority;
+  $('caseAmount').textContent=money.format(c.amount||0);$('caseAssigned').textContent=cs.assigned_to||'Unassigned';$('caseEvidenceCount').textContent=d.evidence.length;$('caseOutbox').textContent=`${db.pending_aws_records||0} pending`;
+  $('caseAssigneeInput').value=cs.assigned_to||'';$('caseStageInput').value=[...$('caseStageInput').options].some(o=>o.value===cs.stage)?cs.stage:'TRIAGE';$('reportedPlate').value=cs.reported_plate||'';
+  const agent=d.agent;const score=agent?agent.readiness_score:null;const rec=agent?agent.recommendation:(ass.recommendation||'Run the Case Agent to create an auditable next-action plan.');
+  $('caseAssessment').innerHTML=`<h4>Current assessment</h4><div class="score">${score==null?'—':Math.round(score)+'/100'}</div><div class="recommend">${cEsc(String(rec).replaceAll('_',' '))}</div><div class="explain">Claims context priority: <b>${cEsc(ass.priority||'not assessed')}</b>. The readiness score measures information and evidence completeness; it is not a probability of fraud.</div>`;
+  $('caseTasks').innerHTML=d.tasks.length?d.tasks.map(t=>`<div class="taskrow"><div class="top"><div><div class="title">${cEsc(t.title)}</div><div class="why">${cEsc(t.category)} · ${cEsc(t.priority)} · ${cEsc(t.rationale||'')}</div></div>${t.status==='OPEN'?`<button class="btn gh taskdone" data-task="${cEsc(t.task_id)}">Done</button>`:`<span class="case-status CLOSED">DONE</span>`}</div></div>`).join(''):'<p class="mono">No tasks yet. Run the Case Agent.</p>';
+  $('caseFindings').innerHTML=(stat.findings||[]).map(f=>`<div class="finding ${cEsc(f.level)}"><h5><span class="lv">${cEsc(f.level)}</span>${cEsc(f.title)}</h5><p>${cEsc(f.detail)}</p></div>`).join('')||'<p class="mono">No statistical findings available.</p>';
+  renderValidations(d.validations);renderEvidence(d.evidence);renderPlates(d.plates);renderActivity(d.activity);renderAgent(d.agent);renderReport(d.latest_report);renderCaseDatabase(db);
+}
+function renderValidations(rows){
+  $('validationRows').innerHTML=rows.map(v=>`<tr data-code="${cEsc(v.check_code)}"><td><b>${cEsc(v.label)}</b><br><span class="mono">${cEsc(v.check_code)}</span></td><td><select class="vstatus">${['PENDING','VERIFIED','MISSING','MISMATCH','NOT_APPLICABLE'].map(x=>`<option ${x===v.status?'selected':''}>${x}</option>`).join('')}</select></td><td><input class="vvalue" value="${cEsc(v.value||'')}" placeholder="reference / value"></td><td><input class="vnote" value="${cEsc(v.note||'')}" placeholder="review note"></td><td><button class="btn gh saveval">Save</button></td></tr>`).join('');
+}
+function renderEvidence(rows){
+  $('caseEvidence').innerHTML=rows.length?rows.map(e=>`<div class="evrow"><div class="top"><div><div class="title">${cEsc(e.evidence_type.replaceAll('_',' '))} · ${cEsc(e.evidence_id)}</div><div class="why">${cEsc(e.summary)} · ${e.confidence==null?'confidence unavailable':Math.round(e.confidence)+'%'}</div></div><span class="case-status ${cEsc(e.status)}">${cEsc(e.status)}</span></div>${e.media_url?`<a class="mono" target="_blank" href="${cEsc(e.media_url)}">Open evidence media</a>`:''}</div>`).join(''):'<p class="mono">No evidence linked yet.</p>';
+}
+function renderPlates(rows){
+  $('plateRows').innerHTML=rows.length?rows.map(p=>`<div class="platerow"><div class="top"><div><div class="platebig match-${cEsc(p.match_status)}">${cEsc(p.plate_text||'NO READ')}</div><div class="why">${cEsc(p.camera_id||'camera')} · OCR ${Math.round((p.ocr_confidence||0)*100)}% · detection ${Math.round((p.detection_confidence||0)*100)}% · ${cEsc(p.captured_at?new Date(p.captured_at).toLocaleString('en-ZA'):'time unavailable')}</div></div><span class="case-status ${cEsc(p.match_status)}">${cEsc(p.match_status.replaceAll('_',' '))}</span></div>${p.media_url?`<a class="mono" target="_blank" href="${cEsc(p.media_url)}">Open crop</a>`:''}</div>`).join(''):'<p class="mono">No number-plate observations yet.</p>';
+}
+function renderActivity(rows){
+  $('caseActivity').innerHTML=rows.length?rows.map(a=>`<div class="actrow"><div class="time">${new Date(a.created_at).toLocaleString('en-ZA')} · ${cEsc(a.actor)} · ${cEsc(a.event_type)}</div><b>${cEsc(a.title)}</b><div class="why">${cEsc(a.detail)}</div></div>`).join(''):'<p class="mono">No activity yet.</p>';
+}
+function renderAgent(agent){
+  if(!agent){$('agentSummary').innerHTML='<h4>Case Agent</h4><div class="score">—</div><div class="recommend">Not run yet</div><div class="explain">Run it after reviewing the claim to create tasks and a transparent next-action recommendation.</div>';$('agentTools').innerHTML='';return;}
+  $('agentSummary').innerHTML=`<h4>Latest agent run</h4><div class="score">${Math.round(agent.readiness_score)}/100</div><div class="recommend">${cEsc(agent.recommendation.replaceAll('_',' '))}</div><div class="explain">${(agent.rationale||[]).map(x=>cEsc(x.reason)).join(' ')||'No additional rationale.'}</div>`;
+  $('agentTools').innerHTML=(agent.tools||[]).map(t=>`<div class="evrow"><div class="title">${cEsc(t.tool.replaceAll('_',' '))}</div><div class="why">${cEsc(t.status)}${t.events!=null?' · '+t.events+' event(s)':''}</div></div>`).join('');
+}
+function renderReport(rep){
+  LATEST_CASE_REPORT=rep?.report||null;$('reportPreview').textContent=LATEST_CASE_REPORT?JSON.stringify(LATEST_CASE_REPORT,null,2):'No report generated yet.';
+}
+function renderCaseDatabase(db){
+  const counts=db.counts||{};$('caseDbCounts').innerHTML=Object.entries(counts).map(([k,v])=>`<div class="dbstat"><b>${cEsc(k.replaceAll('_',' '))}</b><span>${Number(v).toLocaleString('en-ZA')}</span></div>`).join('');
+  $('caseDbPath').textContent=`${db.engine||'SQLite'} · ${db.database_path||''} · ${(db.database_size_bytes/1024).toFixed(1)} KB · ${db.pending_aws_records||0} case-related outbox record(s) pending`;
+  $('caseDbWrites').innerHTML=(db.recent_writes||[]).map(w=>`<div class="actrow"><div class="time">${new Date(w.created_at).toLocaleString('en-ZA')} · ${cEsc(w.table_name)} · ${cEsc(w.action)}</div><b>${cEsc(w.summary)}</b></div>`).join('')||'<p class="mono">No writes yet.</p>';
+}
+async function reloadActiveCase(tab){if(!ACTIVE_CASE)return;const d=await j(`/api/fraud/cases/${encodeURIComponent(ACTIVE_CASE.case.case_id)}`);renderCaseWorkspace(d);if(tab)showCaseTab(tab);}
+$('caseBack').onclick=()=>{ACTIVE_CASE=null;$('caseWorkspace').classList.remove('on');$('claimQueue').style.display='';refreshFraudNav();searchClaims();};
+$('cSearch').onclick=searchClaims;$('cq').addEventListener('keydown',e=>{if(e.key==='Enter')searchClaims();});
+$('createLiveClaim').onclick=async()=>{setCaseBusy('Creating a claim from the latest confirmed Member incident…');try{const d=await j('/api/fraud/cases/from-member/latest',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({claim_amount:Number($('liveClaimAmount').value||0),claim_type:$('liveClaimType').value,item_type:$('liveClaimType').value==='Vehicle Theft'?'Vehicle':'Contents',assigned_to:'Demo investigator'})});ACTIVE_CASE=d;$('claimQueue').style.display='none';$('caseWorkspace').classList.add('on');refreshFraudNav();renderCaseWorkspace(d);caseFlash('Live Member incident imported into Claims with its camera trail.');}catch(e){caseFlash(e.message.slice(0,150),'err');}};
+$('caseSaveDetails').onclick=async()=>{if(!ACTIVE_CASE)return;setCaseBusy('Writing case details…');try{const d=await j(`/api/fraud/cases/${ACTIVE_CASE.case.case_id}`,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({assigned_to:$('caseAssigneeInput').value.trim()||null,stage:$('caseStageInput').value})});renderCaseWorkspace(d);caseFlash('Case details committed to the database.');}catch(e){caseFlash(e.message,'err');}};
+$('saveReportedPlate').onclick=async()=>{if(!ACTIVE_CASE)return;setCaseBusy('Saving reported plate…');try{const d=await j(`/api/fraud/cases/${ACTIVE_CASE.case.case_id}`,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({reported_plate:$('reportedPlate').value.trim()||null})});renderCaseWorkspace(d);showCaseTab('plate');caseFlash('Reported plate saved and queued for AWS sync.');}catch(e){caseFlash(e.message,'err');}};
+$('validationRows').addEventListener('click',async e=>{const b=e.target.closest('.saveval');if(!b||!ACTIVE_CASE)return;const r=b.closest('tr');setCaseBusy('Saving validation…');try{const d=await j(`/api/fraud/cases/${ACTIVE_CASE.case.case_id}/validations`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({check_code:r.dataset.code,status:r.querySelector('.vstatus').value,value:r.querySelector('.vvalue').value||null,note:r.querySelector('.vnote').value})});renderCaseWorkspace(d);showCaseTab('validate');caseFlash('Validation saved to SQLite and the AWS outbox.');}catch(err){caseFlash(err.message,'err');}});
+$('caseTasks').addEventListener('click',async e=>{const b=e.target.closest('.taskdone');if(!b||!ACTIVE_CASE)return;const d=await j(`/api/fraud/cases/${ACTIVE_CASE.case.case_id}/tasks/${b.dataset.task}/complete`,{method:'POST',headers:{'Content-Type':'application/json'},body:'{}'});renderCaseWorkspace(d);caseFlash('Task completed.');});
+$('caseRefreshEvidence').onclick=async()=>{if(!ACTIVE_CASE)return;setCaseBusy('Searching the incident window and linking eligible camera events…');try{const d=await j(`/api/fraud/cases/${ACTIVE_CASE.case.case_id}/evidence/refresh`,{method:'POST'});renderCaseWorkspace(d);showCaseTab('evidence');caseFlash('Evidence search complete.');}catch(e){caseFlash(e.message,'err');}};
+$('runPlateScan').onclick=async()=>{if(!ACTIVE_CASE)return;const f=$('plateFile').files[0];if(!f){caseFlash('Choose an image or video first.','err');return;}setCaseBusy('Running detection and OCR through the local camera AI pipeline…');const fd=new FormData();fd.append('file',f);fd.append('camera_id',$('plateCamera').value||'CLAIMS-DESK-UPLOAD');try{const r=await fetch(`/api/fraud/cases/${ACTIVE_CASE.case.case_id}/plate-scan`,{method:'POST',body:fd});if(!r.ok)throw new Error(await r.text());const d=await r.json();renderCaseWorkspace(d.workspace);showCaseTab('plate');caseFlash(`${d.observations.length} plate observation(s) stored.`);}catch(e){caseFlash(('Plate scan failed: '+e.message).slice(0,170),'err');}};
+$('runCaseAgent').onclick=async()=>{if(!ACTIVE_CASE)return;setCaseBusy('Case Agent is running claims context, evidence retrieval, validations and OCR reconciliation…');try{const d=await j(`/api/fraud/cases/${ACTIVE_CASE.case.case_id}/agent/run`,{method:'POST'});renderCaseWorkspace(d);showCaseTab('agent');caseFlash('Case Agent completed and wrote its tools, tasks and recommendation to the database.');}catch(e){caseFlash(e.message,'err');}};
+$('generateCaseReport').onclick=async()=>{if(!ACTIVE_CASE)return;setCaseBusy('Generating a versioned investigation pack…');try{const d=await j(`/api/fraud/cases/${ACTIVE_CASE.case.case_id}/report/generate`,{method:'POST'});LATEST_CASE_REPORT=d.report;renderCaseWorkspace(d.workspace);showCaseTab('report');caseFlash(`Report v${d.version} generated and staged for AWS.`);}catch(e){caseFlash(e.message,'err');}};
+$('downloadCaseReport').onclick=()=>{if(!LATEST_CASE_REPORT){caseFlash('Generate a report first.','err');return;}const blob=new Blob([JSON.stringify(LATEST_CASE_REPORT,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`${ACTIVE_CASE.case.case_id}-investigation-report.json`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);};
+$('saveCaseDecision').onclick=async()=>{if(!ACTIVE_CASE)return;const rationale=$('caseDecisionReason').value.trim();if(rationale.length<5){caseFlash('Enter a human rationale before saving the decision.','err');return;}setCaseBusy('Recording human decision…');try{const d=await j(`/api/fraud/cases/${ACTIVE_CASE.case.case_id}/decision`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({decision:$('caseDecision').value,rationale})});renderCaseWorkspace(d);showCaseTab('report');caseFlash('Human decision recorded in the case activity and audit log.');}catch(e){caseFlash(e.message,'err');}};
 
 /* ================= MOVEMENT (fraud) ================= */
 let moveLeaf=null,moveLayer=null,TRAILS=[],selTrail=null;
@@ -2326,6 +2681,189 @@ function localTrails(){
 }
 $('mvRefresh').onclick=loadMovement;
 
+/* ================= LIVE SECURITY OPERATIONS ================= */
+const secEsc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function secCompanyById(id){return (SEC?.companies||[]).find(c=>c.company_id===id)||{};}
+function secUnitById(id){return (SEC?.units||[]).find(u=>u.unit_id===id)||null;}
+function secStatusText(v){return String(v||'UNKNOWN').replaceAll('_',' ');}
+function secInitMap(){
+  if(secMap||!window.L)return;
+  try{
+    secMap=L.map('securityMap',{scrollWheelZoom:false,zoomControl:true}).setView([-26.18848,28.32078],13);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+      maxZoom:19,attribution:'&copy; OpenStreetMap contributors'
+    }).addTo(secMap);
+    secHotspotLayer=L.layerGroup().addTo(secMap);
+    secUnitLayer=L.layerGroup().addTo(secMap);
+    secDispatchLayer=L.layerGroup().addTo(secMap);
+    secRouteLayer=L.layerGroup().addTo(secMap);
+  }catch(e){
+    secMap=null;$('securityMap').style.display='none';$('securityMapFallback').style.display='grid';
+  }
+}
+function secUnitIcon(unit){
+  const c=unit.company||secCompanyById(unit.company_id);
+  const responding=['RESPONDING','DISPATCH_PENDING','ON_SCENE','BACKUP_ALERTED'].includes(unit.status);
+  return L.divIcon({className:'security-unit-icon',html:`<div class="unitpin ${responding?'responding':''}" style="background:${c.display_colour||'#005BAA'};color:${c.display_colour||'#005BAA'}"><span style="color:#fff">${secEsc(c.short_name||'SEC')}</span></div>`,iconSize:[44,36],iconAnchor:[22,30]});
+}
+function secHotspotIcon(h){
+  const colour=h.priority>=80?'#B03A2E':h.priority>=65?'#D68100':'#2E7D4F';
+  return L.divIcon({className:'security-unit-icon',html:`<div class="hotspotpin" style="background:${colour}">${Math.round(h.priority)}</div>`,iconSize:[28,28],iconAnchor:[14,14]});
+}
+function secIncidentIcon(){return L.divIcon({className:'security-unit-icon',html:'<div class="incidentpin">!</div>',iconSize:[38,38],iconAnchor:[19,19]});}
+function secRenderMap(){
+  secInitMap();if(!secMap||!SEC)return;
+  secHotspotLayer.clearLayers();secDispatchLayer.clearLayers();
+  (SEC.hotspots||[]).forEach(h=>{
+    const m=L.marker([h.latitude,h.longitude],{icon:secHotspotIcon(h)}).addTo(secHotspotLayer);
+    m.bindTooltip(`${secEsc(h.area)} · priority ${h.priority}`,{direction:'top'});
+    m.on('click',()=>secShowHotspot(h.hotspot_id));
+  });
+  const activeUnitIds=new Set();
+  (SEC.units||[]).forEach(u=>{
+    activeUnitIds.add(u.unit_id);
+    let m=secUnitMarkers[u.unit_id];
+    if(!m){
+      m=L.marker([u.latitude,u.longitude],{icon:secUnitIcon(u),zIndexOffset:600}).addTo(secUnitLayer);
+      m.on('click',()=>secSelectUnit(u.unit_id));
+      secUnitMarkers[u.unit_id]=m;
+    }else{
+      m.setLatLng([u.latitude,u.longitude]);m.setIcon(secUnitIcon(u));
+    }
+    m.unbindTooltip();m.bindTooltip(`${secEsc(u.callsign)} · ${secStatusText(u.status)} · ${secEsc(u.current_street)}`,{direction:'top'});
+  });
+  Object.entries(secUnitMarkers).forEach(([id,m])=>{if(!activeUnitIds.has(id)){secUnitLayer.removeLayer(m);delete secUnitMarkers[id];}});
+  (SEC.dispatches||[]).forEach(d=>{
+    const m=L.marker([d.latitude,d.longitude],{icon:secIncidentIcon(),zIndexOffset:900}).addTo(secDispatchLayer);
+    m.bindTooltip(`${secEsc(d.priority)} · ${secEsc(d.incident_type)} · ${secEsc(d.address)}`,{direction:'top'});
+    m.on('click',()=>{
+      const u=d.selected_unit_id&&secUnitById(d.selected_unit_id);
+      if(u)secSelectUnit(u.unit_id,d.dispatch_id);else secShowDispatch(d.dispatch_id);
+    });
+  });
+  secRenderRoute();
+}
+function secRenderRoute(){
+  if(!secMap||!secRouteLayer)return;secRouteLayer.clearLayers();
+  const pts=secPreview?.points||[];if(pts.length<2)return;
+  const latlngs=pts.map(p=>[p.latitude,p.longitude]);
+  L.polyline(latlngs,{color:'#005BAA',weight:5,opacity:.9}).addTo(secRouteLayer);
+  pts.forEach((p,i)=>L.circleMarker([p.latitude,p.longitude],{radius:i===0?6:5,color:'#fff',weight:2,fillColor:p.kind==='INCIDENT'?'#B03A2E':p.kind==='HOTSPOT'?'#D68100':'#005BAA',fillOpacity:1}).addTo(secRouteLayer).bindTooltip(`${i}. ${secEsc(p.street||p.kind||'route point')}`));
+}
+function secRenderKpis(){
+  const s=SEC?.statistics||{},db=SEC?.database||{};
+  $('secCompanies').textContent=s.companies_connected??0;
+  $('secUnits').textContent=`${s.units_available??0}/${s.units_total??0}`;
+  $('secDispatches').textContent=s.active_dispatches??0;
+  $('secCoverage').textContent=`${fmt(s.risk_coverage_percent,0)}%`;
+  $('secOutbox').textContent=(db.aws_outbox_pending??0).toLocaleString('en-ZA');
+  $('secMeta').textContent=`${SEC?.pilot||'Benoni'} · ${s.hotspots_covered||0}/${s.hotspots_total||0} hotspots currently covered · simulated GPS`;
+  $('secCompanyLegend').innerHTML=(SEC?.companies||[]).map(c=>`<span class="companychip"><i style="background:${c.display_colour}"></i>${secEsc(c.name)} · ${(c.unit_status_counts&&Object.values(c.unit_status_counts).reduce((a,b)=>a+b,0))||0} units</span>`).join('');
+}
+function secRenderHotspots(){
+  $('secHotspots').innerHTML=(SEC?.hotspots||[]).map(h=>`<button type="button" class="hotstat" data-sec-hotspot="${h.hotspot_id}"><span class="score">${fmt(h.priority,0)}</span><h4>${secEsc(h.area)}</h4><div class="kv"><span>5-year incidents</span><b>${Number(h.incidents_5y||0).toLocaleString('en-ZA')}</b></div><div class="kv"><span>Recent 90 days</span><b>${h.recent_90d}</b></div><div class="kv"><span>Dominant event</span><b>${secEsc(h.dominant_peril)}</b></div><div class="kv"><span>Peak window</span><b>${secEsc(h.peak_window)}</b></div><div class="kv"><span>Trend</span><b>${secEsc(h.trend)}</b></div></button>`).join('');
+}
+function secShowHotspot(id){
+  const h=(SEC?.hotspots||[]).find(x=>x.hotspot_id===id);if(!h)return;
+  if(secMap){secMap.flyTo([h.latitude,h.longitude],15,{duration:.5});}
+  const nearest=(SEC.units||[]).map(u=>({u,km:hav({latitude:u.latitude,longitude:u.longitude},{latitude:h.latitude,longitude:h.longitude})})).sort((a,b)=>a.km-b.km).slice(0,3);
+  $('secUnitDetail').innerHTML=`<h3>${secEsc(h.area)}</h3><p class="sub">Hotspot ${h.hotspot_id} · ${secEsc(h.dominant_peril)} · ${secEsc(h.peak_window)}</p><span class="unitstatus ${h.priority>=80?'RESPONDING':'PATROLLING'}">PRIORITY ${fmt(h.priority,0)}</span><div class="routekpis"><div class="routekpi"><b>${h.incidents_5y}</b><span>illustrative 5-year incidents</span></div><div class="routekpi"><b>${h.recent_90d}</b><span>recent 90 days</span></div><div class="routekpi"><b>${h.trend}</b><span>trend</span></div><div class="routekpi"><b>${h.geofence_radius_km} km</b><span>geofence radius</span></div></div><h4 style="font-family:var(--fd);text-transform:uppercase">Nearest patrols</h4><ol class="routeorder">${nearest.map(x=>`<li><b>${secEsc(x.u.callsign)}</b> · ${fmt(x.km,2)} km · ${secEsc(secCompanyById(x.u.company_id).name||'')}</li>`).join('')}</ol><p class="mono">${secEsc(h.source_note)}</p>`;
+}
+async function secSelectUnit(unitId,dispatchId=null){
+  secSelectedUnit=unitId;
+  const unit=secUnitById(unitId);if(!unit)return;
+  $('secUnitDetail').innerHTML=`<h3>${secEsc(unit.callsign)}</h3><p class="sub">Calculating the best route relative to the other patrol cars…</p>`;
+  try{
+    const linked=dispatchId||(SEC?.dispatches||[]).find(d=>d.selected_unit_id===unitId||d.backup_unit_ids?.includes(unitId))?.dispatch_id||'';
+    const q=new URLSearchParams({max_stops:'4'});if(linked)q.set('dispatch_id',linked);
+    secPreview=await j(`/api/security/units/${encodeURIComponent(unitId)}/route-preview?${q}`);
+    secRenderRoute();secRenderUnitDetail(unit,secPreview,linked);
+    if(secMap)secMap.flyTo([unit.latitude,unit.longitude],14,{duration:.4});
+  }catch(e){$('secUnitDetail').innerHTML=`<h3>${secEsc(unit.callsign)}</h3><p class="sub">Route preview failed: ${secEsc(e.message)}</p>`;}
+}
+function secRenderUnitDetail(unit,route,dispatchId=''){
+  const c=unit.company||secCompanyById(unit.company_id),pts=route.points||[];
+  $('secUnitDetail').innerHTML=`<h3>${secEsc(unit.callsign)}</h3><p class="sub">${secEsc(c.name||'Security partner')} · ${secEsc(unit.vehicle_type)} · ${secEsc(unit.current_street)}</p><span class="unitstatus ${unit.status}">${secStatusText(unit.status)}</span><div class="routekpis"><div class="routekpi"><b>${fmt(route.distance_km,2)} km</b><span>route distance</span></div><div class="routekpi"><b>${fmt(route.estimated_fuel_litres,3)} L</b><span>estimated fuel</span></div><div class="routekpi"><b>${fmt(route.coverage_percent,0)}%</b><span>hotspot risk coverage</span></div><div class="routekpi"><b>${fmt(route.protected_risk_per_km,1)}</b><span>protected risk / km</span></div><div class="routekpi"><b>${fmt(route.fuel_saved_litres,3)} L</b><span>fuel saved vs nearest-first</span></div><div class="routekpi"><b>${fmt(route.efficiency_improvement_percent,0)}%</b><span>efficiency improvement</span></div></div><h4 style="font-family:var(--fd);text-transform:uppercase">Recommended street sequence</h4><ol class="routeorder">${pts.map((p,i)=>`<li>${i===0?'Start':secEsc(p.kind||'Stop')} · <b>${secEsc(p.street||'route point')}</b>${p.priority?` · priority ${fmt(p.priority,0)}`:''}</li>`).join('')}</ol><div class="actions" style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" data-sec-assign="${unit.unit_id}" data-dispatch-id="${dispatchId||''}">Assign optimised route</button>${dispatchId?`<button class="btn intruder" data-sec-ack="${dispatchId}">Acknowledge dispatch</button>`:''}</div><p class="mono" style="margin-top:10px;line-height:1.65">${secEsc(route.method||'')}</p>`;
+}
+function secShowDispatch(id){
+  const d=(SEC?.dispatches||[]).find(x=>x.dispatch_id===id);if(!d)return;
+  const u=d.selected_unit_id&&secUnitById(d.selected_unit_id);
+  if(u)return secSelectUnit(u.unit_id,id);
+}
+function secRenderDispatches(){
+  const list=SEC?.dispatches||[];$('secDispatchMeta').textContent=`${list.length} active`;
+  $('secDispatchList').innerHTML=list.length?list.map(d=>`<div class="dispatchcard"><h4>${secEsc(d.priority)} · ${secEsc(d.incident_type).replaceAll('_',' ')}</h4><p>${secEsc(d.address)}<br>${secEsc(d.dispatch_id)} · primary ${secEsc(d.selected_unit_id||'unassigned')} · ETA ${fmt(d.eta_minutes,1)} min<br>Backups: ${(d.backup_unit_ids||[]).map(secEsc).join(', ')||'—'}<br>Status: ${secStatusText(d.status)}</p><div class="actions"><button class="btn" data-sec-dispatch-open="${d.dispatch_id}">Show route</button>${d.status==='AWAITING_ACKNOWLEDGEMENT'?`<button class="btn intruder" data-sec-ack="${d.dispatch_id}">Acknowledge</button>`:''}<button class="btn gh" data-sec-close="${d.dispatch_id}">Close response</button></div></div>`).join(''):'<p class="mono">No active dispatches. Confirm an intrusion in the Member workspace or use “Dispatch latest Member incident”.</p>';
+}
+function secRenderNotifications(){
+  const list=SEC?.notifications||[];
+  $('secNotifications').innerHTML=list.length?list.map(n=>`<div class="notificationrow"><h5>${secEsc(n.channel)} · ${secEsc(n.unit_id||n.company_id||'partner')}</h5><p>${secEsc(n.message)}</p><div class="actions"><span class="notestatus ${n.status}">${secStatusText(n.status)}</span>${n.status==='QUEUED_LOCAL'?`<button class="btn gh" data-sec-send="${n.notification_id}">Simulate WhatsApp send</button>`:''}</div></div>`).join(''):'<p class="mono">No messages queued. The POC stores WhatsApp-ready payloads locally; no external message is sent without provider credentials.</p>';
+}
+function secRenderDbFromState(){
+  const db=SEC?.database||{},counts=db.tables||{};
+  $('secDbCounts').innerHTML=Object.entries(counts).map(([k,v])=>`<div class="secdbcount"><b>${Number(v).toLocaleString('en-ZA')}</b><span>${secEsc(k)}</span></div>`).join('');
+  $('secDbFeed').innerHTML=(SEC?.activity||[]).map(a=>`<div class="dbwrite"><b>${secEsc(a.event_type)}</b> · ${secEsc(a.title)}<br>${secEsc(a.detail)}<br><span class="aws">${secEsc(a.created_at)}</span></div>`).join('')||'<div class="dbwrite">No security writes yet.</div>';
+  $('secDbPath').textContent=`${db.engine||'SQLite'} · ${db.path||''} · ${db.aws_outbox_pending||0} shared AWS-outbox rows pending`;
+}
+async function loadSecurityDatabase(){
+  if(!LIVE)return;
+  try{
+    const d=await j('/api/security/database');
+    $('secDbCounts').innerHTML=Object.entries(d.tables||{}).map(([k,v])=>`<div class="secdbcount"><b>${Number(v).toLocaleString('en-ZA')}</b><span>${secEsc(k)}</span></div>`).join('');
+    $('secDbFeed').innerHTML=(d.recent_writes||[]).map(a=>`<div class="dbwrite"><b>${secEsc(a.event_type)}</b> · ${secEsc(a.title)}<br>${secEsc(a.detail)}<br><span class="aws">${secEsc(a.created_at)}</span></div>`).join('')||'<div class="dbwrite">No security writes yet.</div>';
+    $('secDbPath').textContent=`${d.engine} · ${d.database} · ${d.aws_outbox_pending} AWS-outbox rows pending`;
+  }catch(e){$('secDbFeed').innerHTML=`<div class="dbwrite">${secEsc(e.message)}</div>`;}
+}
+async function loadSecurityOps({keepSelection=true}={}){
+  if(!LIVE){$('secMeta').textContent='Backend required for the security simulation.';return;}
+  try{
+    SEC=await j('/api/security/operations');
+    secRenderKpis();secRenderHotspots();secRenderDispatches();secRenderNotifications();secRenderDbFromState();secRenderMap();
+    if(keepSelection&&secSelectedUnit){
+      const unit=secUnitById(secSelectedUnit);
+      if(unit&&secPreview)secRenderUnitDetail(unit,secPreview,(SEC.dispatches||[]).find(d=>d.selected_unit_id===unit.unit_id)?.dispatch_id||'');
+    }
+    setTimeout(()=>secMap&&secMap.invalidateSize(),100);
+  }catch(e){$('secMeta').textContent='Security operations error: '+e.message.slice(0,100);}
+}
+async function secTick(){
+  if(!secSimRunning||!LIVE)return;
+  try{await j('/api/security/simulation/tick',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({steps:parseInt($('secSpeed').value)||1})});await loadSecurityOps();}
+  catch(e){$('secMeta').textContent='Simulation tick failed: '+e.message.slice(0,80);}
+}
+function secSetRunning(on){
+  secSimRunning=on;$('secSimState').classList.toggle('on',on);$('secSimState').querySelector('span').textContent=on?'patrols moving':'movement paused';$('secToggle').textContent=on?'Pause patrol movement':'Start patrol movement';
+  if(secSimTimer){clearInterval(secSimTimer);secSimTimer=null;}
+  if(on)secSimTimer=setInterval(secTick,1800);
+}
+$('secToggle').onclick=()=>secSetRunning(!secSimRunning);
+$('secRefresh').onclick=()=>loadSecurityOps({keepSelection:false});
+$('secDbRefresh').onclick=loadSecurityDatabase;
+$('secDispatchLatest').onclick=async()=>{
+  $('secMeta').textContent='Linking the latest confirmed Member incident to the nearest partner units…';
+  try{const d=await j('/api/security/dispatch/from-latest-member',{method:'POST'});secSelectedUnit=d.selected_unit_id;await loadSecurityOps({keepSelection:false});if(d.selected_unit_id)secSelectUnit(d.selected_unit_id,d.dispatch_id);}
+  catch(e){$('secMeta').textContent='Dispatch could not be created: '+e.message.replace(/^[^{]*detail[^:]*:/,'').slice(0,120);}
+};
+$('secReset').onclick=async()=>{if(!confirm('Reset security patrol positions, dispatches and notification demo data?'))return;secSetRunning(false);await j('/api/security/reset-demo',{method:'POST'});secSelectedUnit=null;secPreview=null;await loadSecurityOps({keepSelection:false});};
+document.addEventListener('click',async e=>{
+  const hot=e.target.closest('[data-sec-hotspot]');if(hot){secShowHotspot(hot.dataset.secHotspot);return;}
+  const open=e.target.closest('[data-sec-dispatch-open]');if(open){secShowDispatch(open.dataset.secDispatchOpen);return;}
+  const assign=e.target.closest('[data-sec-assign]');if(assign){
+    assign.disabled=true;assign.textContent='Assigning…';
+    try{secPreview=await j(`/api/security/units/${encodeURIComponent(assign.dataset.secAssign)}/assign-route`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({max_stops:4,dispatch_id:assign.dataset.dispatchId||null})});await loadSecurityOps();secSelectUnit(assign.dataset.secAssign,assign.dataset.dispatchId||null);}catch(err){alert(err.message);}finally{assign.disabled=false;assign.textContent='Assign optimised route';}
+    return;
+  }
+  const ack=e.target.closest('[data-sec-ack]');if(ack){
+    ack.disabled=true;try{await j(`/api/security/dispatches/${encodeURIComponent(ack.dataset.secAck)}/acknowledge`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({acknowledged_by:'Demo control room'})});await loadSecurityOps();}catch(err){alert(err.message);}finally{ack.disabled=false;}return;
+  }
+  const close=e.target.closest('[data-sec-close]');if(close){
+    if(!confirm('Close this security response and return the units to patrol?'))return;
+    close.disabled=true;try{await j(`/api/security/dispatches/${encodeURIComponent(close.dataset.secClose)}/close`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({closed_by:'Demo control room',reason:'Closed from the security operations workspace'})});await loadSecurityOps({keepSelection:false});secPreview=null;}catch(err){alert(err.message);}finally{close.disabled=false;}return;
+  }
+  const send=e.target.closest('[data-sec-send]');if(send){
+    send.disabled=true;try{await j(`/api/security/notifications/${encodeURIComponent(send.dataset.secSend)}/simulate-send`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sent_by:'Demo control room'})});await loadSecurityOps();}catch(err){alert(err.message);}finally{send.disabled=false;}return;
+  }
+});
+
 /* ================= BRIEFING (security) ================= */
 async function loadBriefing(){
   if(!LIVE){
@@ -2369,66 +2907,242 @@ $('sAdd').onclick=async()=>{
 };
 
 /* ================= MEMBER ================= */
-$('mAdd').onclick=async()=>{
-  const body={household:$('mHouse').value.trim(),suburb:$('mSuburb').value.trim(),
-    metro:$('mMetro').value,latitude:parseFloat($('mLat').value),longitude:parseFloat($('mLon').value),
-    device_label:$('mLabel').value,consent_acknowledged:$('mConsent').checked};
-  if(!body.household||!body.suburb){$('mResult').innerHTML='<p class="mono" style="color:var(--bad)">Address and suburb are required.</p>';return;}
-  if(!body.consent_acknowledged){
-    $('mResult').innerHTML='<div class="gapcard"><b>Consent required</b><br>A camera cannot join the mesh until the household confirms agreement. This is not a formality — the device will record people who never opted in.</div>';return;}
+const mEsc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const mStatus=v=>String(v||'UNKNOWN').replaceAll('_',' ');
+const memberDisplayName=v=>v?.viewer_display_label||v?.viewer_classification?.display_label||v?.effective_label||v?.anonymous_label||'Anonymous visitor';
+const memberDisplayStatus=v=>v?.viewer_status||v?.viewer_classification?.status||v?.effective_status||v?.profile_status||'UNKNOWN';
+function showMemberGate(){if(ROLE==='member')$('memberGate').classList.add('on');}
+async function loadMembers(){
+  if(MEMBERS.length)return MEMBERS;
   if(!LIVE){
-    const cam={camera_id:'CAM-LOCAL-'+(CAMERAS.length+1),...body,status:'PENDING_ACTIVATION',mode:'NORMAL'};
-    CAMERAS.push(cam);renderWall();refreshMemberCams();
-    $('mResult').innerHTML='<div class="gapcard" style="background:#F3F9F5;border-color:#BFD9CB"><b>Added locally</b><br>Start the backend to register it properly.</div>';
-    return;
+    MEMBERS=[
+      {user_id:'USR-001',display_name:'User 1',member_number:'DISC-1001',household:'17 Sher Avenue',suburb:'Lakefield',metro:'Gauteng',latitude:-26.198020,longitude:28.310300,camera_count:1},
+      {user_id:'USR-002',display_name:'User 2',member_number:'DISC-1002',household:'18 Sher Avenue',suburb:'Lakefield',metro:'Gauteng',latitude:-26.198090,longitude:28.310420,camera_count:1},
+      {user_id:'USR-003',display_name:'User 3',member_number:'DISC-1003',household:'19 Sher Avenue',suburb:'Lakefield',metro:'Gauteng',latitude:-26.198160,longitude:28.310540,camera_count:1},
+    ];
+  }else{
+    try{MEMBERS=(await j('/api/members')).users;}catch(e){console.warn(e);MEMBERS=[];}
   }
-  try{
-    const d=await j('/api/member/cameras',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
-    const c=d.camera;
-    $('mResult').innerHTML=`<div class="gapcard" style="background:#F3F9F5;border-color:#BFD9CB">
-      <b>${c.camera_id} registered</b><br>${c.household}, ${c.suburb} · mode ${c.mode}${
-      c.geofence_risk!=null?` (geofence risk ${c.geofence_risk})`:''}</div>
-      <ul class="reasons" style="margin-top:10px">${d.next_steps.map(x=>`<li>${x}</li>`).join('')}</ul>`;
-    await loadCameras();renderWall();refreshMemberCams();loadMemberArea(c.suburb);
-  }catch(e){$('mResult').innerHTML=`<p class="mono" style="color:var(--bad)">${e.message.slice(0,160)}</p>`;}
+  $('memberChoices').innerHTML=MEMBERS.map(u=>`<button class="memberchoice" data-member-id="${u.user_id}"><span class="uid">${mEsc(u.member_number)} · ${mEsc(u.user_id)}</span><h3>${mEsc(u.display_name)}</h3><p>${mEsc(u.household)}<br>${mEsc(u.suburb)} · ${u.camera_count||0} camera(s)</p></button>`).join('');
+  $('memberUserSelect').innerHTML=MEMBERS.map(u=>`<option value="${u.user_id}">${mEsc(u.display_name)} · ${mEsc(u.household)}</option>`).join('');
+  return MEMBERS;
+}
+async function selectMember(userId){
+  await loadMembers();const user=MEMBERS.find(u=>u.user_id===userId);if(!user)return;
+  stopMemberFeed();ACTIVE_MEMBER=user;memberSelectedProfile=null;memberActionFlash=null;$('memberGate').classList.remove('on');
+  $('memberUserSelect').value=user.user_id;$('mActiveName').textContent=user.display_name;
+  $('mActiveMeta').textContent=`${user.member_number} · ${user.household}, ${user.suburb}`;$('mActiveId').textContent=user.user_id;
+  $('mHouse').value=user.household||'';$('mSuburb').value=user.suburb||'';$('mLat').value=Number(user.latitude).toFixed(6);$('mLon').value=Number(user.longitude).toFixed(6);$('mMetro').value=user.metro||'Gauteng';
+  $('mGeoStatus').textContent='Loaded saved property coordinates.';$('mGeoStatus').className='geostatus ok';
+  await refreshMemberCams();await Promise.all([loadMemberArea(),loadMemberSightings(),loadMemberMesh(),loadMemberVisitors(),loadMemberDatabase(),loadMemberCalibration()]);
+}
+$('memberGate').addEventListener('click',e=>{const b=e.target.closest('[data-member-id]');if(b)selectMember(b.dataset.memberId);});
+$('changeMember').onclick=showMemberGate;$('memberUserSelect').onchange=e=>selectMember(e.target.value);
+
+let geoTimer=null;
+$('mHouse').addEventListener('input',()=>{clearTimeout(geoTimer);const q=$('mHouse').value.trim();$('mGeoStatus').className='geostatus';if(q.length<3){$('mGeoStatus').textContent='Type at least 3 characters.';return;}$('mGeoStatus').textContent='Finding coordinates…';geoTimer=setTimeout(()=>geocodeMemberAddress(q),650);});
+async function geocodeMemberAddress(q){
+  if(!LIVE){$('mGeoStatus').textContent='Backend required for automatic geocoding.';$('mGeoStatus').className='geostatus bad';return;}
+  try{const d=await j('/api/member/geocode?q='+encodeURIComponent(q));$('mLat').value=Number(d.latitude).toFixed(6);$('mLon').value=Number(d.longitude).toFixed(6);if(d.suburb)$('mSuburb').value=d.suburb;if(d.metro)$('mMetro').value=d.metro;$('mGeoStatus').textContent=`✓ ${d.display_name} · ${d.source}`;$('mGeoStatus').className='geostatus ok';loadMemberAreaPreview(d.suburb);}
+  catch(e){$('mGeoStatus').textContent='Address not found. Try the full address or a preloaded demo address.';$('mGeoStatus').className='geostatus bad';}
+}
+function loadMemberAreaPreview(suburb){if(ACTIVE_MEMBER&&suburb&&suburb!==ACTIVE_MEMBER.suburb)$('mAreaMeta').textContent='Save the camera to update this member property.';}
+$('mAdd').onclick=async()=>{
+  if(!ACTIVE_MEMBER){showMemberGate();return;}
+  const body={user_id:ACTIVE_MEMBER.user_id,household:$('mHouse').value.trim(),suburb:$('mSuburb').value.trim(),metro:$('mMetro').value,latitude:parseFloat($('mLat').value),longitude:parseFloat($('mLon').value),device_label:$('mLabel').value,consent_acknowledged:$('mConsent').checked};
+  if(!body.household||!body.suburb||!Number.isFinite(body.latitude)||!Number.isFinite(body.longitude)){$('mResult').innerHTML='<p class="mono" style="color:var(--bad)">A geocoded address and suburb are required.</p>';return;}
+  if(!body.consent_acknowledged){$('mResult').innerHTML='<div class="gapcard"><b>Consent required</b><br>Confirm household consent before the camera joins the mesh.</div>';return;}
+  if(!LIVE){$('mResult').innerHTML='<p class="mono" style="color:var(--bad)">Start the backend to save the camera.</p>';return;}
+  try{const d=await j('/api/member/cameras/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});const c=d.camera;$('mResult').innerHTML=`<div class="gapcard" style="background:#F3F9F5;border-color:#BFD9CB"><b>${mEsc(c.camera_id)} saved</b><br>${mEsc(c.household)}, ${mEsc(c.suburb)} · ${mEsc(c.status)} · ${mEsc(c.mode)}</div><ul class="reasons" style="margin-top:10px">${d.next_steps.map(x=>`<li>${mEsc(x)}</li>`).join('')}</ul>`;Object.assign(ACTIVE_MEMBER,{household:c.household,suburb:c.suburb,metro:c.metro,latitude:c.latitude,longitude:c.longitude});await refreshMemberCams();await loadMemberArea();await loadMemberDatabase();}
+  catch(e){$('mResult').innerHTML=`<p class="mono" style="color:var(--bad)">${mEsc(e.message.slice(0,180))}</p>`;}
 };
 async function refreshMemberCams(){
-  let mine=[];
-  if(LIVE){try{mine=(await j('/api/member/cameras')).cameras;}catch(e){}}
-  if(!mine.length)mine=CAMERAS.filter(c=>c.owner==='member'||String(c.camera_id).includes('LOCAL'));
-  $('mCamMeta').textContent=`${mine.length} device(s)`;
-  $('mCams').innerHTML=mine.length?mine.map(c=>`
-    <div class="camcard"><div class="caminfo">
-      <div class="hh">${c.household}</div><div class="sb">${c.suburb} · ${c.camera_id}</div>
-      <div class="row"><span class="modechip ${c.mode}">${c.mode}</span><span>${c.status||'ONLINE'}</span></div>
-    </div></div>`).join('')
-    :'<p class="mono">No cameras registered yet.</p>';
-  const provisional=mine.length*10;
-  $('mPoints').textContent=provisional;
-  $('mPointStatus').textContent=mine.length?'Verification pending':'Not eligible yet';
-  $('mContribution').innerHTML=mine.length
-    ? `<div class="claimhead"><div><b>Registered devices</b>${mine.length}</div><div><b>Contribution mode</b>Event crops only</div><div><b>Sync state</b>Ready</div></div>
-       <p class="mono" style="margin-top:12px;line-height:1.7">Open <b>Live AI</b> to use this phone as a temporary community camera. Only verified, consented event contributions would qualify for rewards.</p>`
-    : '<p class="mono">Register a camera to begin contributing event-level coverage. Routine footage remains on the device.</p>';
+  if(!ACTIVE_MEMBER){$('mCamMeta').textContent='0 device(s)';$('mCams').innerHTML='<p class="mono">Choose a member.</p>';return;}
+  if(LIVE){try{const d=await j(`/api/member/${ACTIVE_MEMBER.user_id}/cameras`);MEMBER_CAMERAS=d.cameras;Object.assign(ACTIVE_MEMBER,d.user);}catch(e){MEMBER_CAMERAS=[];}}
+  if(!LIVE)MEMBER_CAMERAS=[{camera_id:`CAM-U${ACTIVE_MEMBER.user_id.slice(-1)}-01`,user_id:ACTIVE_MEMBER.user_id,household:ACTIVE_MEMBER.household,suburb:ACTIVE_MEMBER.suburb,metro:ACTIVE_MEMBER.metro,latitude:ACTIVE_MEMBER.latitude,longitude:ACTIVE_MEMBER.longitude,device_label:'Laptop demo camera',status:'READY_FOR_LIVE_FEED',mode:'NORMAL',calibrated:0,camera_trust:100}];
+  $('mCamMeta').textContent=`${MEMBER_CAMERAS.length} device(s) · ${ACTIVE_MEMBER.display_name}`;
+  $('mCams').innerHTML=MEMBER_CAMERAS.length?MEMBER_CAMERAS.map(c=>`<div class="camcard" data-member-camera="${c.camera_id}"><div class="caminfo"><div class="hh">${mEsc(c.device_label||c.household)}</div><div class="sb">${mEsc(c.household)} · ${mEsc(c.suburb)}<br>${mEsc(c.camera_id)}</div><div class="row"><span class="modechip ${c.mode}">${mEsc(c.mode)}</span><span>${mEsc(c.status||'ONLINE')}</span></div><div class="row"><span>${c.calibrated?'HEIGHT CALIBRATED':'HEIGHT NOT CALIBRATED'}</span><span>trust ${Math.round(c.camera_trust||100)}%</span></div></div></div>`).join(''):'<p class="mono">No cameras registered.</p>';
+  const current=$('mFeedCamera').value;$('mFeedCamera').innerHTML=MEMBER_CAMERAS.map(c=>`<option value="${c.camera_id}">${mEsc(c.device_label||c.camera_id)} · ${mEsc(c.household)}</option>`).join('');if(MEMBER_CAMERAS.some(c=>c.camera_id===current))$('mFeedCamera').value=current;
+  const provisional=MEMBER_CAMERAS.length*10;$('mPoints').textContent=provisional;$('mPointStatus').textContent=MEMBER_CAMERAS.length?'Verification pending':'Not eligible yet';
+  $('mContribution').innerHTML=MEMBER_CAMERAS.length?`<div class="claimhead"><div><b>Registered devices</b>${MEMBER_CAMERAS.length}</div><div><b>Contribution mode</b>Event crops only</div><div><b>Recognition</b>Anonymous embeddings</div></div><p class="mono" style="margin-top:12px;line-height:1.7">Each registration, calibration, sighting and review is committed to SQLite and copied into the AWS sync outbox.</p>`:'<p class="mono">Register a camera to contribute.</p>';
+  renderWall();
 }
-async function loadMemberArea(suburb){
-  if(!suburb||!LIVE){$('mArea').innerHTML='<p class="mono">Enter your suburb and register a camera to see its pattern.</p>';return;}
+async function loadMemberArea(){
+  if(!ACTIVE_MEMBER||!LIVE){$('mArea').innerHTML='<p class="mono">Choose a member and start the backend.</p>';return;}
+  try{const d=await j(`/api/member/${ACTIVE_MEMBER.user_id}/summary`);Object.assign(ACTIVE_MEMBER,d.user);$('mAreaTitle').textContent='My area · '+d.user.suburb;if(!d.known){$('mArea').innerHTML=`<p class="mono">${mEsc(d.message)}</p>`;return;}$('mAreaMeta').textContent=`${d.incidents_5y} incidents on record`;$('mArea').innerHTML=`<div class="claimhead"><div><b>Incidents (5 years)</b>${d.incidents_5y.toLocaleString('en-ZA')}</div><div><b>Busiest hours</b>${d.peak_hours.map(h=>String(h).padStart(2,'0')+':00').join(', ')}</div><div><b>Busiest days</b>${d.peak_days.join(', ')}</div></div><div class="cueprofile">${Object.entries(d.common_perils).map(([k,v])=>`<span class="cuepill">${mEsc(k)}: ${v}</span>`).join('')}</div><p class="mono" style="margin-top:12px;line-height:1.7">${mEsc(d.privacy_note)}</p>`;}
+  catch(e){$('mArea').innerHTML=`<p class="mono">${mEsc(e.message.slice(0,120))}</p>`;}
+}
+
+async function loadMemberCalibration(){
+  const camId=$('mFeedCamera').value||MEMBER_CAMERAS[0]?.camera_id;if(!camId||!LIVE)return;
+  try{const d=await j(`/api/member/cameras/${camId}/calibration`);$('mCalMount').value=d.mount_height_m??1.25;$('mCalTilt').value=d.tilt_deg??8;$('mCalFov').value=d.horizontal_fov_deg??78;$('mCalScore').value=d.calibration_score??95;$('mCalResult').className='calstate good';$('mCalResult').innerHTML=`<b>${mEsc(camId)} calibrated</b><br>${mEsc(d.mode)} · ${d.image_width}×${d.image_height} · updated ${new Date(d.updated_at).toLocaleString('en-ZA')}<br>Height will be stored only when the full head-to-feet box is visible in at least three frames.`;}
+  catch(e){$('mCalResult').className='calstate warn';$('mCalResult').textContent='No stored calibration for this camera. Start the feed and save the fixed camera geometry.';}
+}
+$('mFeedCamera').onchange=()=>loadMemberCalibration();
+$('mCalSave').onclick=async()=>{
+  const camId=$('mFeedCamera').value||MEMBER_CAMERAS[0]?.camera_id;if(!camId||!LIVE){$('mCalResult').textContent='Select a saved camera and start the backend.';return;}
+  const width=memberVideo?.videoWidth||960,height=memberVideo?.videoHeight||540;
+  const body={mode:'INTRINSIC',image_width:width,image_height:height,mount_height_m:parseFloat($('mCalMount').value),tilt_deg:parseFloat($('mCalTilt').value),horizontal_fov_deg:parseFloat($('mCalFov').value),calibration_score:parseFloat($('mCalScore').value),updated_by:ACTIVE_MEMBER?.display_name||'Member demo operator'};
+  try{const d=await j(`/api/member/cameras/${camId}/calibration`,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});$('mCalResult').className='calstate good';$('mCalResult').innerHTML=`<b>Calibration stored in SQLite</b><br>${mEsc(camId)} · ${width}×${height} · mount ${body.mount_height_m} m · tilt ${body.tilt_deg}° · FOV ${body.horizontal_fov_deg}°`;await refreshMemberCams();await loadMemberDatabase();}
+  catch(e){$('mCalResult').className='calstate warn';$('mCalResult').textContent=e.message.slice(0,180);}
+};
+
+async function refreshMemberPhysicalCameras(){
+  const sel=$('mPhysicalCam');if(!navigator.mediaDevices?.enumerateDevices)return;
+  try{const ds=(await navigator.mediaDevices.enumerateDevices()).filter(d=>d.kind==='videoinput');const cur=sel.value;sel.innerHTML='<option value="">Default / selfie camera</option>'+ds.map((d,i)=>`<option value="${d.deviceId}">${mEsc(d.label||`Camera ${i+1}`)}</option>`).join('');if(ds.some(d=>d.deviceId===cur))sel.value=cur;}catch(e){}
+}
+$('mRefreshPhysical').onclick=async()=>{try{const probe=await navigator.mediaDevices.getUserMedia({video:true,audio:false});probe.getTracks().forEach(t=>t.stop());}catch(e){}await refreshMemberPhysicalCameras();};
+async function startMemberFeed(){
+  if(!ACTIVE_MEMBER){showMemberGate();return;}if(!MEMBER_CAMERAS.length){$('mStage').innerHTML='<div class="empty">REGISTER A CAMERA FIRST</div>';return;}stopMemberFeed();
+  if(!navigator.mediaDevices?.getUserMedia){$('mStage').innerHTML='<div class="empty">THIS BROWSER DOES NOT EXPOSE A WEBCAM API</div>';return;}
+  memberDetectorMode=faceModel?'browser':'server';const deviceId=$('mPhysicalCam').value;const vc=deviceId?{deviceId:{exact:deviceId},width:{ideal:960},height:{ideal:540}}:{width:{ideal:960},height:{ideal:540},facingMode:'user'};
+  try{memberStream=await navigator.mediaDevices.getUserMedia({video:vc,audio:false});}catch(e){$('mStage').innerHTML=`<div class="empty">CAMERA ACCESS DENIED<br>${mEsc(String(e.message||e).slice(0,90))}</div>`;return;}
+  await refreshMemberPhysicalCameras();const st=$('mStage');st.innerHTML='';memberVideo=document.createElement('video');memberVideo.autoplay=true;memberVideo.muted=true;memberVideo.playsInline=true;memberVideo.srcObject=memberStream;st.appendChild(memberVideo);memberOverlay=document.createElement('canvas');st.appendChild(memberOverlay);const state=document.createElement('div');state.className='scanstate';state.id='mScanState';state.textContent=memberDetectorMode==='browser'?'BROWSER FACE AI READY':'LOCAL OPENCV FACE AI READY';st.appendChild(state);
+  await memberVideo.play().catch(()=>{});memberStable=0;memberCooldown=0;memberLastFaces=[];memberLastPersons=[];memberPersonTrack=[];memberLastAppearance={};memberFaceResults=[];memberFaceScanIndex=0;memberLastDetect=0;$('mStartFeed').disabled=true;$('mStopFeed').disabled=false;$('mScanNow').disabled=false;memberLoop();
+}
+function stopMemberFeed(){
+  if(memberRaf)cancelAnimationFrame(memberRaf);memberRaf=null;if(memberStream){memberStream.getTracks().forEach(t=>t.stop());memberStream=null;}memberVideo=null;memberOverlay=null;memberStable=0;memberDetectBusy=false;memberLastFaces=[];memberLastPersons=[];memberPersonTrack=[];memberFaceResults=[];memberFaceScanIndex=0;
+  const a=$('mStartFeed'),b=$('mStopFeed'),c=$('mScanNow');if(a)a.disabled=false;if(b)b.disabled=true;if(c)c.disabled=true;
+}
+$('mStartFeed').onclick=startMemberFeed;$('mStopFeed').onclick=()=>{stopMemberFeed();$('mStage').innerHTML='<div class="empty">FEED STOPPED</div>';};$('mScanNow').onclick=()=>sendMemberFaceSighting(true);
+function memberFaceBox(face){
+  const [x1,y1]=face.topLeft,[x2,y2]=face.bottomRight;
+  return{x:x1,y:y1,width:Math.max(1,x2-x1),height:Math.max(1,y2-y1)};
+}
+function memberBoxIou(a,b){
+  const x1=Math.max(a.x,b.x),y1=Math.max(a.y,b.y),x2=Math.min(a.x+a.width,b.x+b.width),y2=Math.min(a.y+a.height,b.y+b.height);
+  const inter=Math.max(0,x2-x1)*Math.max(0,y2-y1),union=Math.max(1,a.width*a.height+b.width*b.height-inter);
+  return inter/union;
+}
+function memberFaceResultFor(box){
+  const now=Date.now();memberFaceResults=memberFaceResults.filter(r=>now-r.seenAt<12000);
+  let best=null,bestScore=0;
+  memberFaceResults.forEach(r=>{const overlap=memberBoxIou(box,r.box);const acx=box.x+box.width/2,acy=box.y+box.height/2,bcx=r.box.x+r.box.width/2,bcy=r.box.y+r.box.height/2;const distance=Math.hypot(acx-bcx,acy-bcy)/Math.max(box.width,box.height,1);const score=overlap>0?overlap:Math.max(0,.45-distance);if(score>bestScore){bestScore=score;best=r;}});
+  if(best&&bestScore>.12){best.box={...box};best.seenAt=now;return best.result;}
+  return null;
+}
+function memberOverlayStyle(status){
+  const value=String(status||'UNKNOWN');
+  if(value==='CONFIRMED_INTRUDER'||value==='ACTIVE_INCIDENT')return{stroke:'#FF665A',fill:'rgba(74,12,8,.9)',text:'#FFD8D4'};
+  if(value==='REVIEW_REQUIRED')return{stroke:'#FFB020',fill:'rgba(76,45,0,.9)',text:'#FFE1A1'};
+  if(value==='TRUSTED'||value==='CLEARED')return{stroke:'#26E67E',fill:'rgba(5,35,23,.9)',text:'#72F3AD'};
+  return{stroke:'#26E67E',fill:'rgba(5,35,23,.88)',text:'#72F3AD'};
+}
+function drawMemberFaces(){
+  if(!memberOverlay||!memberVideo)return;const W=memberVideo.videoWidth,H=memberVideo.videoHeight;if(!W||!H)return;memberOverlay.width=W;memberOverlay.height=H;const ctx=memberOverlay.getContext('2d');ctx.clearRect(0,0,W,H);ctx.lineWidth=Math.max(3,W/240);ctx.font=`700 ${Math.max(13,W/55)}px IBM Plex Mono`;
+  memberLastPersons.slice(0,1).forEach(p=>{ctx.strokeStyle='#4EC9F5';ctx.setLineDash([10,7]);ctx.strokeRect(p.x,p.y,p.width,p.height);ctx.setLineDash([]);ctx.fillStyle='rgba(3,42,73,.88)';ctx.fillRect(p.x,Math.max(0,p.y-23),Math.min(300,p.width),22);ctx.fillStyle='#8DE5FF';ctx.fillText(`FULL BODY · ${memberPersonTrack.length} FRAME(S)`,p.x+5,Math.max(16,p.y-6));});
+  memberLastFaces.forEach(f=>{const box=memberFaceBox(f),result=memberFaceResultFor(box),status=result?memberDisplayStatus(result):'PENDING_SCAN',style=memberOverlayStyle(status);const x1=box.x,y1=box.y,x2=x1+box.width,y2=y1+box.height;ctx.strokeStyle=style.stroke;ctx.strokeRect(x1,y1,box.width,box.height);let label=result?`${memberDisplayName(result)} · ${mStatus(status)}`:'FACE TRACKED · PENDING INDIVIDUAL SCAN';if(result?.height?.height_band)label+=` · ${result.height.height_band}`;const labelWidth=Math.min(W-x1-2,Math.max(300,ctx.measureText(label).width+14));ctx.fillStyle=style.fill;ctx.fillRect(x1,Math.max(0,y1-25),labelWidth,24);ctx.fillStyle=style.text;ctx.fillText(label,x1+6,Math.max(17,y1-7));});
+}
+async function detectMemberFrameServer(){
+  if(!LIVE||!memberWork.width||!memberWork.height)return{faces:[],persons:[],appearance:{}};const scale=Math.min(1,640/memberWork.width);memberDetectCanvas.width=Math.max(1,Math.round(memberWork.width*scale));memberDetectCanvas.height=Math.max(1,Math.round(memberWork.height*scale));memberDetectCanvas.getContext('2d').drawImage(memberWork,0,0,memberDetectCanvas.width,memberDetectCanvas.height);const blob=await new Promise(r=>memberDetectCanvas.toBlob(r,'image/jpeg',.72));if(!blob)return{faces:[],persons:[],appearance:{}};const fd=new FormData();fd.append('image',blob,'live-frame.jpg');const d=await j('/api/member/face-detect',{method:'POST',body:fd});const sx=memberWork.width/Math.max(1,d.width),sy=memberWork.height/Math.max(1,d.height);return{faces:(d.faces||[]).map(f=>({topLeft:[f.x*sx,f.y*sy],bottomRight:[(f.x+f.width)*sx,(f.y+f.height)*sy],probability:[f.confidence],detector:d.detector})),persons:(d.persons||[]).map(p=>({x:p.x*sx,y:p.y*sy,width:p.width*sx,height:p.height*sy,confidence:p.confidence})),appearance:d.appearance||{}};
+}
+async function detectMemberFrame(){
+  if(memberDetectorMode==='browser'&&faceModel){
+    try{const faces=(await faceModel.estimateFaces(memberVideo,false))||[];let persons=[];if(objModel){const preds=await objModel.detect(memberVideo);persons=preds.filter(p=>p.class==='person'&&p.score>=.35).map(p=>({x:p.bbox[0],y:p.bbox[1],width:p.bbox[2],height:p.bbox[3],confidence:p.score}));}return{faces,persons,appearance:{}};}catch(e){memberDetectorMode='server';}
+  }
+  return detectMemberFrameServer();
+}
+function memberLoop(){
+  const step=t=>{if(!memberVideo||!memberVideo.isConnected)return;const W=memberVideo.videoWidth,H=memberVideo.videoHeight;if(W&&H){memberWork.width=W;memberWork.height=H;memberWorkCtx.drawImage(memberVideo,0,0,W,H);const interval=memberDetectorMode==='browser'?420:650;if(!memberDetectBusy&&t-memberLastDetect>interval){memberDetectBusy=true;memberLastDetect=t;detectMemberFrame().then(result=>{memberLastFaces=result.faces||[];memberLastPersons=result.persons||[];memberLastAppearance=result.appearance||{};memberStable=memberLastFaces.length?Math.min(20,memberStable+1):0;if(memberLastPersons.length){const p=memberLastPersons[0];memberPersonTrack.push({x:p.x,y:p.y,width:p.width,height:p.height});if(memberPersonTrack.length>12)memberPersonTrack.shift();}}).catch(()=>{memberLastFaces=[];memberLastPersons=[];memberStable=0;}).finally(()=>{memberDetectBusy=false;});}drawMemberFaces();const st=$('mScanState');if(st){const mode=memberDetectorMode==='browser'?'BROWSER':'LOCAL OPENCV';const body=memberPersonTrack.length>=3?' · HEIGHT FRAMES READY':'';st.textContent=memberLastFaces.length?(memberStable>=3?`FACE LOCKED · ${mode} MATCHING ACTIVE${body}`:`FACE FOUND · ${mode} ACQUIRING`):`SEARCHING · ${mode}`;}if(memberStable>=3&&Date.now()>memberCooldown){memberCooldown=Date.now()+9000;sendMemberFaceSighting(false);}}memberRaf=requestAnimationFrame(step);};memberRaf=requestAnimationFrame(step);
+}
+async function sendMemberFaceSighting(manual){
+  if(!ACTIVE_MEMBER||!memberVideo||!LIVE)return;if(!memberLastFaces.length){if(manual)$('mScanResult').innerHTML='<div class="scanresult"><h4>No face locked</h4><p class="mono">Look at the camera until the green box appears, then scan again.</p></div>';return;}const cam=MEMBER_CAMERAS.find(c=>c.camera_id===$('mFeedCamera').value)||MEMBER_CAMERAS[0];if(!cam)return;memberCooldown=Date.now()+9000;const index=manual?0:(memberFaceScanIndex%memberLastFaces.length);memberFaceScanIndex=(index+1)%Math.max(1,memberLastFaces.length);const f=memberLastFaces[index],targetBox=memberFaceBox(f);const state=$('mScanState');if(state)state.textContent=`SCANNING FACE ${index+1} OF ${memberLastFaces.length} · WRITING DATABASE…`;const blob=await new Promise(r=>memberWork.toBlob(r,'image/jpeg',.86));if(!blob)return;const fd=new FormData();fd.append('image',blob,'camera-frame.jpg');fd.append('user_id',ACTIVE_MEMBER.user_id);fd.append('camera_id',cam.camera_id);fd.append('browser_confidence',String(f.probability?.[0]??f.probability??0));fd.append('target_face_box_json',JSON.stringify(targetBox));fd.append('person_boxes_json',JSON.stringify(memberPersonTrack));fd.append('image_width',String(memberWork.width));fd.append('image_height',String(memberWork.height));
+  try{const d=await j('/api/member/face-sightings',{method:'POST',body:fd});memberLatestSighting=d;memberFaceResults=memberFaceResults.filter(r=>memberBoxIou(r.box,targetBox)<.18);memberFaceResults.push({box:targetBox,result:d,seenAt:Date.now()});memberSelectedProfile=d.profile_id;renderMemberScan(d);await Promise.all([loadMemberSightings(),loadMemberMesh(),loadMemberVisitors(d.profile_id),loadMemberDatabase()]);if(state){state.textContent=d.incident_watch?'MESH WATCH · MATCH CAPTURED':(d.classification==='REPEAT_VISITOR_CANDIDATE'?'REPEAT VISITOR CANDIDATE':'NEW ANONYMOUS VISITOR');state.className='scanstate '+(d.matched?'repeat':'new');}}
+  catch(e){$('mScanResult').innerHTML=`<div class="scanresult repeat"><h4>Recognition failed</h4><p class="mono">${mEsc(e.message.slice(0,180))}</p></div>`;if(state)state.textContent='MATCHING ERROR';}
+}
+function renderMemberScan(d){
+  const cross=(d.seen_at_other_properties||[]).length>0;const named=Boolean(d.viewer_classification?.display_label||d.viewer_display_label);const title=named?`${memberDisplayName(d)} recognised here`:(d.matched?(cross?'Cross-property repeat candidate':'Repeat visitor at this property'):'New anonymous visitor');const h=d.height?.height_band||d.height?.height_status||'Height unavailable';const ap=`${d.appearance?.upper_colour||'Unknown'} upper · ${d.appearance?.lower_colour||'Unknown'} lower`;const ev=d.match_breakdown||{};const watch=d.incident_watch?`<br><b>Incident watch:</b> ${d.incident_watch.notifications.filter(n=>n.status==='MATCH_CAPTURED').length} captured · ${d.incident_watch.notifications.filter(n=>n.status==='WATCH_ACTIVE').length} still watching.`:'';
+  $('mScanResult').innerHTML=`<div class="scanresult ${d.matched?'repeat':'new'}"><h4>${mEsc(title)}</h4><p class="mono"><b>${mEsc(memberDisplayName(d))}</b> · ${mEsc(mStatus(memberDisplayStatus(d)))}${named?`<br><span style="opacity:.72">System profile: ${mEsc(d.anonymous_label)}</span>`:''}<br>face ${Math.round(d.similarity*100)}% · combined evidence ${Math.round(ev.overall||d.similarity*100)}% · ${d.sighting_count} sighting(s)<br>${mEsc(h)} · ${mEsc(ap)}${cross?`<br>previously seen at ${mEsc(d.seen_at_other_properties.join(', '))}`:''}${watch}<br><br>${mEsc(d.notice)}</p><div class="evidencechips">${Object.entries(ev.components||{}).map(([k,v])=>`<span class="evidencechip">${mEsc(k.replaceAll('_',' '))}: ${v==null?'n/a':Math.round(v)+'%'}</span>`).join('')}</div><button class="btn incidentbtn" data-open-profile="${d.profile_id}">Review visitor · trusted / unknown / incident</button></div>`;
+}
+$('mScanResult').addEventListener('click',e=>{const b=e.target.closest('[data-open-profile]');if(b){memberSelectedProfile=b.dataset.openProfile;loadMemberVisitors(memberSelectedProfile).then(()=>$('mVisitorDetail').scrollIntoView({behavior:'smooth',block:'center'}));}});
+async function loadMemberSightings(){
+  if(!ACTIVE_MEMBER||!LIVE)return;try{const d=await j(`/api/member/${ACTIVE_MEMBER.user_id}/face-sightings`);$('mSightMeta').textContent=`${d.count} linked sighting(s)`;$('mSightings').innerHTML=d.sightings.length?d.sightings.map(s=>{const name=memberDisplayName(s),status=memberDisplayStatus(s),systemName=name!==s.anonymous_label?`<br><span style="opacity:.65">${mEsc(s.anonymous_label)}</span>`:'';return`<div class="sighting">${s.media_url?`<img src="${s.media_url}" alt="visitor face crop">`:'<div></div>'}<div><b>${mEsc(name)} · ${mEsc(s.display_name)}</b><span class="statusbadge ${mEsc(status)}" style="margin:4px 0 5px">${mEsc(mStatus(status))}</span><span>${mEsc(s.household)}, ${mEsc(s.suburb)}${systemName}<br>${new Date(s.captured_at).toLocaleString('en-ZA')} · face ${Math.round((s.similarity||0)*100)}%${s.height_low_m!=null?` · ${Number(s.height_low_m).toFixed(2)}–${Number(s.height_high_m).toFixed(2)} m`:''}<br>${mEsc(s.upper_colour||'Unknown')} upper · ${mEsc(s.lower_colour||'Unknown')} lower</span></div></div>`;}).join(''):'<p class="mono">No sightings yet. Start the camera and hold a face steady.</p>';}
+  catch(e){$('mSightings').innerHTML='<p class="mono">Could not load sightings.</p>';}
+}
+
+async function loadMemberVisitors(preferredProfile=null){
+  if(!ACTIVE_MEMBER||!LIVE)return;try{const d=await j(`/api/member/visitors?user_id=${encodeURIComponent(ACTIVE_MEMBER.user_id)}`);memberVisitors=d.visitors||[];$('mVisitorMeta').textContent=`${d.count} profile(s) · trusted labels stay household-specific`;$('mVisitors').innerHTML=memberVisitors.length?memberVisitors.map(v=>{const pic=v.latest_sighting?.media_url||'';const height=v.height?`${v.height.low_m.toFixed(2)}–${v.height.high_m.toFixed(2)} m`:'height unavailable';return`<button class="visitorcard ${v.profile_id===(preferredProfile||memberSelectedProfile)?'active':''}" data-profile="${v.profile_id}"><div class="visitorcardtop">${pic?`<img src="${pic}" alt="anonymous visitor crop">`:'<div class="visitorportrait"></div>'}<div><h4>${mEsc(v.viewer_classification?.display_label||v.anonymous_label)}</h4><p>${v.sighting_count} sighting(s) · ${v.property_count} property/properties<br>${mEsc(height)}<br>${mEsc(v.appearance?.upper_colour||'Unknown')} upper · ${mEsc(v.appearance?.lower_colour||'Unknown')} lower</p><span class="statusbadge ${v.status}">${mEsc(mStatus(v.status))}</span></div></div></button>`;}).join(''):'<p class="mono">Scan a visitor to create the first profile.</p>';const target=preferredProfile||memberSelectedProfile||memberVisitors[0]?.profile_id;if(target){memberSelectedProfile=target;await openMemberVisitor(target);}else $('mVisitorDetail').innerHTML='<p class="mono">Choose a visitor profile to review it.</p>';}
+  catch(e){$('mVisitors').innerHTML=`<p class="mono">${mEsc(e.message.slice(0,130))}</p>`;}
+}
+$('mVisitors').addEventListener('click',e=>{const b=e.target.closest('[data-profile]');if(b){memberActionFlash=null;memberSelectedProfile=b.dataset.profile;loadMemberVisitors(memberSelectedProfile);}});
+function memberActionFeedbackHtml(){
+  if(!memberActionFlash)return '<div id="mActionFeedback" class="actionfeedback" aria-live="polite"></div>';
+  return `<div id="mActionFeedback" class="actionfeedback on ${mEsc(memberActionFlash.kind||'success')}" aria-live="polite"><b>${mEsc(memberActionFlash.title||'Saved')}</b><br>${mEsc(memberActionFlash.message||'')}</div>`;
+}
+function setMemberActionFeedback(kind,title,message){
+  memberActionFlash={kind,title,message};
+  const box=$('mActionFeedback');
+  if(box){box.className=`actionfeedback on ${kind}`;box.innerHTML=`<b>${mEsc(title)}</b><br>${mEsc(message)}`;}
+}
+function setVisitorActionBusy(busy,activeButton=null){
+  document.querySelectorAll('#mVisitorDetail [data-vstatus],#mVisitorDetail [data-close-incident],#mVisitorDetail [data-false-match]').forEach(btn=>{btn.disabled=busy;});
+  if(activeButton){if(busy){activeButton.dataset.originalText=activeButton.textContent;activeButton.textContent='Saving to database…';}else if(activeButton.dataset.originalText){activeButton.textContent=activeButton.dataset.originalText;delete activeButton.dataset.originalText;}}
+}
+async function openMemberVisitor(profileId){
+  if(!ACTIVE_MEMBER||!LIVE)return;try{const v=await j(`/api/member/visitors/${profileId}?user_id=${encodeURIComponent(ACTIVE_MEMBER.user_id)}`);const pic=v.latest_sighting?.media_url||'';const local=v.viewer_classification||{};const height=v.height?`${v.height.low_m.toFixed(2)}–${v.height.high_m.toFixed(2)} m (${v.height.samples} sample${v.height.samples===1?'':'s'})`:'Unavailable — calibrate the camera and show the full body';const breakdown=v.latest_sighting?.match_breakdown;const incident=v.active_incident;const valid=local.valid_until?String(local.valid_until).slice(0,16):'';
+    $('mVisitorDetail').innerHTML=`<div class="visitorhead">${pic?`<img class="visitorportrait" src="${pic}" alt="anonymous visitor crop">`:'<div class="visitorportrait"></div>'}<div><h3>${mEsc(local.display_label||v.anonymous_label)}</h3><span class="statusbadge ${v.status}">${mEsc(mStatus(v.status))}</span><p class="mono" style="margin-top:6px">${mEsc(v.profile_id)} · first ${new Date(v.first_seen).toLocaleString('en-ZA')}<br>last ${new Date(v.last_seen).toLocaleString('en-ZA')}</p></div></div><div class="visitormetrics"><div class="visitormetric"><b>${v.sighting_count}</b><span>sightings</span></div><div class="visitormetric"><b>${v.camera_count}</b><span>cameras</span></div><div class="visitormetric"><b>${v.property_count}</b><span>properties</span></div><div class="visitormetric"><b>${mEsc(height)}</b><span>stored height band</span></div></div><div class="evidencebox"><h4>Why Sentinel linked this profile</h4><div class="evidencechips">${breakdown?Object.entries(breakdown.components||{}).map(([k,val])=>`<span class="evidencechip">${mEsc(k.replaceAll('_',' '))}: ${val==null?'n/a':Math.round(val)+'%'}</span>`).join(''):'<span class="evidencechip">First sighting — no earlier comparison</span>'}</div><ul class="reasons">${(breakdown?.reasons||['Face profile created from the first reviewed crop']).map(r=>`<li>${mEsc(r)}</li>`).join('')}</ul></div><div class="visitorforms" style="margin-top:12px"><div class="fld"><label for="mVLabel">Household label</label><input id="mVLabel" value="${mEsc(local.display_label||'')}" placeholder="e.g. Gardener or Family"></div><div class="fld"><label for="mVCategory">Category</label><select id="mVCategory"><option>Family</option><option>Friend</option><option>Domestic worker</option><option>Gardener</option><option>Delivery</option><option>Contractor</option><option>Other approved visitor</option></select></div><div class="fld"><label for="mVExpiry">Trusted until (optional)</label><input id="mVExpiry" type="datetime-local" value="${mEsc(valid)}"></div><div class="fld"><label for="mVIncidentType">Incident type</label><select id="mVIncidentType"><option value="FORCED_ENTRY">Forced entry</option><option value="ATTEMPTED_VEHICLE_THEFT">Attempted vehicle theft</option><option value="TRESPASSING">Trespassing</option><option value="PROPERTY_DAMAGE">Property damage</option><option value="OTHER">Other</option></select></div><div class="fld"><label for="mVDuration">Neighbour watch period</label><select id="mVDuration"><option value="15">15 minutes</option><option value="30" selected>30 minutes</option><option value="60">1 hour</option></select></div><div class="fld"><label for="mVNotes">Review reason / notes</label><textarea id="mVNotes" style="width:100%;min-height:70px;border:1px solid var(--line);border-radius:8px;padding:9px">${mEsc(local.notes||'')}</textarea></div></div>${memberActionFeedbackHtml()}<div class="visitoractions"><button type="button" class="btn trusted ${local.status==='TRUSTED'?'selected':''}" data-vstatus="TRUSTED">Mark trusted here</button><button type="button" class="btn gh ${local.status==='UNKNOWN'?'selected':''}" data-vstatus="UNKNOWN">Keep unknown</button><button type="button" class="btn review ${local.status==='REVIEW_REQUIRED'?'selected':''}" data-vstatus="REVIEW_REQUIRED">Needs review</button><button type="button" class="btn gh ${local.status==='CLEARED'?'selected':''}" data-vstatus="CLEARED">Clear / harmless</button><button type="button" class="btn intruder ${local.status==='CONFIRMED_INTRUDER'?'selected':''}" data-vstatus="CONFIRMED_INTRUDER">Confirm incident + arm neighbours</button>${incident?`<button type="button" class="btn gh" data-close-incident="${incident.incident_id}">Close incident</button><a class="btn gh" href="/api/member/incidents/${incident.incident_id}/report" target="_blank" rel="noopener">Export evidence JSON</a>`:''}</div><div class="evidencebox"><h4>Sighting timeline</h4>${v.sightings.map(s=>`<div class="profilesight">${s.media_url?`<img src="${s.media_url}" alt="sighting crop">`:'<div></div>'}<p><b>${mEsc(s.household)} · ${new Date(s.captured_at).toLocaleString('en-ZA')}</b><br>face ${Math.round((s.similarity||0)*100)}% · ${mEsc(s.journey_direction||'FIRST SIGHTING')} · ${Math.round(s.journey_distance_m||0)} m${s.height_low_m!=null?` · ${Number(s.height_low_m).toFixed(2)}–${Number(s.height_high_m).toFixed(2)} m`:''}<br>${mEsc(s.upper_colour||'Unknown')} upper · ${mEsc(s.lower_colour||'Unknown')} lower</p>${v.sighting_count>1?`<button class="btn gh" data-false-match="${s.sighting_id}">False match</button>`:''}</div>`).join('')}</div>`;
+  }catch(e){$('mVisitorDetail').innerHTML=`<p class="mono">${mEsc(e.message.slice(0,150))}</p>`;}
+}
+$('mVisitorDetail').addEventListener('click',async e=>{
+  const statusButton=e.target.closest('[data-vstatus]');
+  if(statusButton){await classifyMemberVisitor(statusButton.dataset.vstatus,statusButton);return;}
+  const falseButton=e.target.closest('[data-false-match]');
+  if(falseButton){await dismissMemberMatch(falseButton.dataset.falseMatch,falseButton);return;}
+  const closeButton=e.target.closest('[data-close-incident]');
+  if(closeButton)await closeMemberIncident(closeButton.dataset.closeIncident,closeButton);
+});
+async function classifyMemberVisitor(status,clickedButton=null){
+  if(!memberSelectedProfile||!ACTIVE_MEMBER){setMemberActionFeedback('error','No visitor selected','Choose a visitor profile first.');return;}
+  const label=$('mVLabel')?.value.trim()||'';
+  const notes=$('mVNotes')?.value.trim()||'';
+  if(status==='TRUSTED'&&!label){setMemberActionFeedback('error','Label required','Enter a household label such as Family, Gardener or Delivery, then press Mark trusted here again.');$('mVLabel')?.focus();return;}
+  if(status==='CONFIRMED_INTRUDER'&&notes.length<3){setMemberActionFeedback('error','Incident reason required','Add a short reason in Review reason / notes before confirming an incident.');$('mVNotes')?.focus();return;}
+  if(status==='CONFIRMED_INTRUDER'&&!confirm('Confirm that an actual incident occurred? This human decision will arm the other Sher Avenue cameras for the chosen period.'))return;
+  const v=memberVisitors.find(x=>x.profile_id===memberSelectedProfile);
+  const body={user_id:ACTIVE_MEMBER.user_id,status,display_label:label||null,category:$('mVCategory')?.value||null,valid_until:$('mVExpiry')?.value?new Date($('mVExpiry').value).toISOString():null,notes,updated_by:ACTIVE_MEMBER.display_name,sighting_id:v?.latest_sighting?.sighting_id||null,start_incident_watch:status==='CONFIRMED_INTRUDER',incident_type:$('mVIncidentType')?.value||'TRESPASSING',duration_minutes:parseInt($('mVDuration')?.value||'30',10)};
+  setMemberActionFeedback('saving','Writing to database',`${mStatus(status)} for ${ACTIVE_MEMBER.household}…`);
+  setVisitorActionBusy(true,clickedButton);
   try{
-    const d=await j('/api/member/summary?suburb='+encodeURIComponent(suburb));
-    $('mAreaTitle').textContent='My area · '+d.suburb;
-    if(!d.known){$('mArea').innerHTML=`<p class="mono">${d.message}</p>`;return;}
-    $('mAreaMeta').textContent=`${d.incidents_5y} incidents on record`;
-    $('mArea').innerHTML=`
-      <div class="claimhead">
-        <div><b>Incidents (5 years)</b>${d.incidents_5y.toLocaleString('en-ZA')}</div>
-        <div><b>Busiest hours</b>${d.peak_hours.map(h=>String(h).padStart(2,'0')+':00').join(', ')}</div>
-        <div><b>Busiest days</b>${d.peak_days.join(', ')}</div>
-      </div>
-      <div class="cueprofile">${Object.entries(d.common_perils).map(([k,v])=>`<span class="cuepill">${k}: ${v}</span>`).join('')}</div>
-      <p class="mono" style="margin-top:12px;line-height:1.7">${d.privacy_note}</p>`;
-  }catch(e){$('mArea').innerHTML=`<p class="mono">${e.message.slice(0,120)}</p>`;}
+    const result=await j(`/api/member/visitors/${memberSelectedProfile}/classify`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+    const incidentText=result.incident?` Incident ${result.incident.incident_id} created and neighbouring cameras armed.${result.security_dispatch?.dispatch_id?` Security dispatch ${result.security_dispatch.dispatch_id} queued to ${result.security_dispatch.selected_unit_id} with ${result.security_dispatch.notifications?.length||0} WhatsApp-ready alerts.`:''}`:'';
+    const record=result.database_write?.record_id||`${memberSelectedProfile}:${ACTIVE_MEMBER.user_id}`;
+    memberActionFlash={kind:'success',title:'Database write confirmed',message:`${mStatus(status)} saved at ${ACTIVE_MEMBER.household}. Row ${record} committed to SQLite and queued for AWS sync.${incidentText}`};
+    if(memberLatestSighting?.profile_id===memberSelectedProfile){memberLatestSighting={...memberLatestSighting,viewer_classification:result.profile?.viewer_classification||{status,display_label:label||null},profile_status:status};renderMemberScan(memberLatestSighting);}memberFaceResults=memberFaceResults.map(item=>item.result?.profile_id===memberSelectedProfile?{...item,result:{...item.result,viewer_classification:result.profile?.viewer_classification||{status,display_label:label||null},profile_status:status},seenAt:Date.now()}:item);
+    await Promise.all([loadMemberVisitors(memberSelectedProfile),loadMemberSightings(),loadMemberMesh(),loadMemberDatabase()]);
+  }catch(e){setMemberActionFeedback('error','Save failed',e.message.slice(0,180));}
+  finally{setVisitorActionBusy(false,clickedButton);}
 }
-$('mSuburb').addEventListener('change',()=>loadMemberArea($('mSuburb').value.trim()));
+async function dismissMemberMatch(sightingId,clickedButton=null){
+  const reason=prompt('Why is this a false match? The sighting will be split into a new anonymous profile.');if(!reason)return;
+  setMemberActionFeedback('saving','Correcting match','Splitting the reviewed sighting into a new visitor profile…');setVisitorActionBusy(true,clickedButton);
+  try{const result=await j(`/api/member/sightings/${sightingId}/false-match`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({reason,reviewer:ACTIVE_MEMBER?.display_name||'Member demo operator'})});memberSelectedProfile=result.new_profile_id||null;memberActionFlash={kind:'success',title:'False match corrected',message:`Sighting ${sightingId} moved to ${result.new_profile_id}. SQLite and the AWS outbox were updated.`};await Promise.all([loadMemberVisitors(memberSelectedProfile),loadMemberSightings(),loadMemberMesh(),loadMemberDatabase()]);}catch(e){setMemberActionFeedback('error','Correction failed',e.message.slice(0,180));}finally{setVisitorActionBusy(false,clickedButton);}}
+async function closeMemberIncident(incidentId,clickedButton=null){
+  if(!confirm('Close this active neighbourhood watch?'))return;
+  setMemberActionFeedback('saving','Closing incident',`${incidentId} is being closed in the database…`);setVisitorActionBusy(true,clickedButton);
+  try{await j(`/api/member/incidents/${incidentId}/close`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({outcome:'CLOSED_BY_MEMBER',notes:'Closed from Member visitor profile',closed_by:ACTIVE_MEMBER?.display_name||'Member demo operator'})});memberActionFlash={kind:'success',title:'Incident closed',message:`${incidentId} is CLOSED. Neighbour camera watches and the SQLite incident row were updated.`};await Promise.all([loadMemberVisitors(memberSelectedProfile),loadMemberMesh(),loadMemberDatabase()]);}catch(e){setMemberActionFeedback('error','Close failed',e.message.slice(0,180));}finally{setVisitorActionBusy(false,clickedButton);}}
+
+
+function renderMemberMeshMap(d){
+  const cams=d.cameras||[],active=(d.active_incidents||[])[0]||null;const trail=active?(d.trails||[]).find(t=>t.profile_id===active.profile_id):((d.trails||[])[0]||null);if(!cams.length){$('mMeshMap').innerHTML='<div class="empty">NO CAMERAS IN THE MESH</div>';return;}const all=[...cams,...((trail?.points)||[])];let minLon=Math.min(...all.map(x=>Number(x.longitude))),maxLon=Math.max(...all.map(x=>Number(x.longitude))),minLat=Math.min(...all.map(x=>Number(x.latitude))),maxLat=Math.max(...all.map(x=>Number(x.latitude)));if(maxLon-minLon<.00005){minLon-=.00005;maxLon+=.00005;}if(maxLat-minLat<.00005){minLat-=.00005;maxLat+=.00005;}const W=900,H=285,pad=75,x=v=>pad+(Number(v)-minLon)/(maxLon-minLon)*(W-2*pad),y=v=>H-pad-(Number(v)-minLat)/(maxLat-minLat)*(H-2*pad);const grid=Array.from({length:12},(_,i)=>`<line x1="${i*82}" y1="0" x2="${i*82}" y2="285" stroke="rgba(255,255,255,.035)"/>`).join('')+Array.from({length:6},(_,i)=>`<line x1="0" y1="${i*57}" x2="900" y2="${i*57}" stroke="rgba(255,255,255,.035)"/>`).join('');const pts=(trail?.points||[]).map(p=>`${x(p.longitude)},${y(p.latitude)}`).join(' ');const route=pts?`<polyline points="${pts}" fill="none" stroke="rgba(38,230,126,.22)" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/><polyline points="${pts}" fill="none" stroke="#26E67E" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>`:'';const activeNotes=new Map((active?.notifications||[]).map(n=>[n.camera_id,n.status]));const houses=cams.map(c=>{const st=activeNotes.get(c.camera_id);const stroke=st==='MATCH_CAPTURED'?'#FF6B5A':st==='WATCH_ACTIVE'?'#F2C14E':'#00AEEF';return`<g><circle cx="${x(c.longitude)}" cy="${y(c.latitude)}" r="18" fill="#073A5D" stroke="${stroke}" stroke-width="4"/><circle cx="${x(c.longitude)}" cy="${y(c.latitude)}" r="5" fill="#8DE5FF"/><text x="${x(c.longitude)}" y="${y(c.latitude)+34}" text-anchor="middle" fill="#E8F6FC" font-family="IBM Plex Mono" font-size="13" font-weight="700">${mEsc(c.household)}</text><text x="${x(c.longitude)}" y="${y(c.latitude)+50}" text-anchor="middle" fill="#91A8B8" font-family="IBM Plex Mono" font-size="10">${mEsc(st||c.camera_id)}</text></g>`;}).join('');const captures=(trail?.points||[]).map((p,i)=>`<g><circle cx="${x(p.longitude)}" cy="${y(p.latitude)}" r="${i===(trail.points.length-1)?13:9}" fill="${i===(trail.points.length-1)?'#FF6B5A':'#26E67E'}" stroke="#fff" stroke-width="3"/><text x="${x(p.longitude)}" y="${y(p.latitude)-18}" text-anchor="middle" fill="#fff" font-family="IBM Plex Mono" font-size="11" font-weight="700">${i+1} · ${new Date(p.captured_at).toLocaleTimeString('en-ZA',{hour:'2-digit',minute:'2-digit'})}${p.journey_direction&&p.journey_direction!=='FIRST_SIGHTING'?` · ${p.journey_direction}`:''}</text></g>`).join('');$('mMeshMap').innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Sher Avenue camera movement trail">${grid}${route}${houses}${captures}</svg><div class="meshlegend">BLUE = NORMAL · AMBER = WATCHING · RED = MATCH / LATEST</div>`;
+}
+function renderMemberMeshStatus(d){
+  const active=(d.active_incidents||[])[0];if(active){const notes=active.notifications||[];const expires=active.expires_at?new Date(active.expires_at).toLocaleTimeString('en-ZA',{hour:'2-digit',minute:'2-digit'}):'manual close';$('mMeshStatus').innerHTML=`<h4>Incident watch · ${mEsc(active.incident_id)}</h4><p class="mono" style="margin:5px 0 8px">${mEsc(active.anonymous_label)} · ${mEsc(active.incident_type.replaceAll('_',' '))}<br>origin ${mEsc(active.origin_household)} · expires ${mEsc(expires)}</p>${notes.map(n=>`<div class="meshnotice"><b class="${n.status==='MATCH_CAPTURED'?'status-hit':n.status==='WATCH_ACTIVE'?'status-watch':'status-origin'}">${mEsc(n.household)} · ${mEsc(mStatus(n.status))}</b><span>${mEsc(n.reason)}${n.distance_from_origin_m?` · ${Math.round(n.distance_from_origin_m)} m from origin`:''}</span></div>`).join('')}<div class="visitoractions"><button class="btn gh" data-mesh-close="${active.incident_id}">Close watch</button><a class="btn gh" href="/api/member/incidents/${active.incident_id}/report" target="_blank">Export report</a></div>`;return;}const trail=(d.trails||[])[0];if(trail&&trail.sighting_count>=2){const last=trail.points[trail.points.length-1];$('mMeshStatus').innerHTML=`<h4>Continuity detected</h4><p class="mono" style="margin-top:6px;line-height:1.65">${mEsc(trail.anonymous_label)} has ${trail.sighting_count} linked sightings across ${new Set(trail.points.map(p=>p.camera_id)).size} camera(s). Latest movement: ${mEsc(last.journey_direction||'—')} · ${Math.round(last.journey_distance_m||0)} m · ${Number(last.journey_speed_kmh||0).toFixed(1)} km/h. A human review is still required before an incident label.</p>`;return;}$('mMeshStatus').innerHTML=`<h4>Neighbour cameras ready</h4><p class="mono" style="margin-top:6px;line-height:1.65">${d.camera_count||0} camera(s) persist in ${mEsc(d.storage||'SQLite')}. Scan the same face at 17 and 18 Sher Avenue to draw the route.</p>`;
+}
+$('mMeshStatus').addEventListener('click',e=>{const id=e.target.closest('[data-mesh-close]')?.dataset.meshClose;if(id)closeMemberIncident(id);});
+function renderMemberWatchBanner(d){
+  const active=(d.active_incidents||[])[0];const banner=$('mWatchBanner');if(!active||!ACTIVE_MEMBER){banner.classList.remove('on');return;}const notice=(active.notifications||[]).find(n=>n.user_id===ACTIVE_MEMBER.user_id);if(!notice||!['WATCH_ACTIVE','MATCH_CAPTURED','ORIGIN_CONFIRMED'].includes(notice.status)){banner.classList.remove('on');return;}banner.classList.add('on');$('mWatchTitle').textContent=`${mStatus(notice.status)} · ${ACTIVE_MEMBER.household}`;$('mWatchText').textContent=`${active.incident_type.replaceAll('_',' ')} at ${active.origin_household}. ${notice.reason}`;const key=`${active.incident_id}:${notice.status}:${notice.updated_at}`;if(key!==memberLastNoticeKey){memberLastNoticeKey=key;document.title=`● Sentinel · ${mStatus(notice.status)}`;}
+}
+$('mWatchOpen').onclick=()=>$('mMeshMap').scrollIntoView({behavior:'smooth',block:'center'});
+async function loadMemberMesh(){if(!LIVE)return;try{memberMeshState=await j('/api/member/mesh-state');renderMemberMeshMap(memberMeshState);renderMemberMeshStatus(memberMeshState);renderMemberWatchBanner(memberMeshState);}catch(e){$('mMeshMap').innerHTML='<div class="empty">MESH STATE UNAVAILABLE</div>';$('mMeshStatus').innerHTML=`<h4>Mesh error</h4><p class="mono">${mEsc(e.message.slice(0,120))}</p>`;}}
+
+async function loadMemberDatabase(){
+  if(!LIVE)return;try{const d=await j('/api/member/database/overview?limit=24');const important=['member_users','member_cameras','member_camera_calibrations','face_profiles','face_sightings','member_profile_labels','member_incidents','member_camera_notifications'];$('mDbCounts').innerHTML=important.map(t=>`<div class="dbcount"><b>${Number(d.counts[t]||0).toLocaleString('en-ZA')}</b><span>${mEsc(t)}</span></div>`).join('');$('mDbPath').textContent=`${d.engine} · ${d.database_path} · ${(d.database_size_bytes/1024).toFixed(1)} KB`;$('mDbMeta').textContent=`${d.pending_aws_records} AWS outbox record(s) · ${d.aws_sync_status}`;$('mOutboxText').textContent=`${d.pending_aws_records} local write(s) are queued for later DynamoDB/S3 sync.`;$('mOutboxBar').style.width=Math.min(100,d.pending_aws_records*5)+'%';$('mDbWrites').innerHTML=d.recent_writes.length?d.recent_writes.map(w=>`<div class="dbwrite"><b>${mEsc(w.action)} ${mEsc(w.table_name)}</b> · ${mEsc(w.record_id)}<br>${mEsc(w.summary)}<br><span class="aws">${new Date(w.created_at).toLocaleTimeString('en-ZA')} · queued via AWS outbox</span></div>`).join(''):'<div class="dbwrite">No member writes yet.</div>';}
+  catch(e){$('mDbWrites').innerHTML=`<div class="dbwrite">${mEsc(e.message.slice(0,150))}</div>`;}
+}
+$('mDbRefresh').onclick=loadMemberDatabase;
+$('mResetFaces').onclick=async()=>{if(!LIVE)return;if(!confirm('Reset visitor profiles, classifications, incident watches, sightings and the AWS demo outbox? Camera registrations and calibrations remain.'))return;await j('/api/member/face-sightings',{method:'DELETE'});memberLatestSighting=null;memberSelectedProfile=null;memberActionFlash=null;memberFaceResults=[];memberFaceScanIndex=0;$('mScanResult').innerHTML='<div class="scanresult"><h4>Face demo reset</h4><p class="mono">The database write panel now starts clean. Show a face at 17 Sher Avenue, classify it, then switch households.</p></div>';await Promise.all([loadMemberSightings(),loadMemberMesh(),loadMemberVisitors(),loadMemberDatabase()]);};
+setInterval(()=>{if(ROLE==='member'&&ACTIVE_MEMBER&&LIVE){loadMemberMesh();loadMemberDatabase();}},5000);
+
 
 /* Debug handle — inspect or drive state from the browser console.
    Handy at a venue: SM.state() shows what the app thinks is going on. */

@@ -745,8 +745,8 @@ def roles():
              "sees": ["all claims", "traceable claim analytics", "claim-linked evidence timelines", "anonymous movement corridors"],
              "never": ["member camera control", "security partner site administration"]},
             {"id": "security", "label": "Security partner",
-             "home": "briefing",
-             "sees": ["hotspot briefings", "patrol routes", "coverage gaps", "partner-nominated sites"],
+             "home": "dispatch",
+             "sees": ["moving patrol units", "incident dispatches", "hotspot briefings", "patrol routes", "fuel-aware route economics", "coverage gaps", "WhatsApp-ready notifications"],
              "never": ["claim amounts", "member identities", "raw evidence media"]},
         ],
         "principle": "The dashboard displays the minimum needed for each role. This hackathon "

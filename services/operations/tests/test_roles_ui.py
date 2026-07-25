@@ -15,7 +15,7 @@ def test_role_contract_matches_required_workspaces():
     assert "all claims" in by_id["fraud"]["sees"]
     assert "member camera control" in by_id["fraud"]["never"]
 
-    assert by_id["security"]["home"] == "briefing"
+    assert by_id["security"]["home"] == "dispatch"
     assert "patrol routes" in by_id["security"]["sees"]
     assert "claim amounts" in by_id["security"]["never"]
 
@@ -34,7 +34,7 @@ def test_dashboard_has_strict_role_tab_sets_and_role_chooser():
 
     assert "member:['property','live']" in html
     assert "fraud:['claims','evidence','movement','rewind','patterns']" in html
-    assert "security:['briefing','patrol']" in html
+    assert "security:['dispatch','briefing','patrol']" in html
 
     assert "showRoleGate();\n  loadAI();" in html
     assert "applyRole('fraud');" not in html
