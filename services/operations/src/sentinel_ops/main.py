@@ -99,6 +99,38 @@ def home():
     return RedirectResponse(url="/dashboard")
 
 
+# Record every API call on the live tape, so the console shows the request
+# that caused a write alongside the write itself. Excludes the polling endpoint
+# and static pages, which would otherwise flood the feed.
+_TAPE_SKIP = ("/api/activity", "/console", "/dashboard", "/static", "/docs",
+              "/redoc", "/openapi.json", "/favicon.ico")
+
+
+@app.middleware("http")
+async def log_api_calls(request, call_next):
+    import time as _t
+    started = _t.perf_counter()
+    response = await call_next(request)
+    path = request.url.path
+    if path.startswith("/api") and not path.startswith(_TAPE_SKIP):
+        from sentinel_ops import activity as _activity
+        _activity.record(
+            action=request.method,
+            backend="api",
+            target=path,
+            detail=f"{response.status_code}",
+            status="ok" if response.status_code < 400 else "error",
+            latency_ms=(_t.perf_counter() - started) * 1000,
+        )
+    return response
+
+
+@app.get("/console", include_in_schema=False)
+def console():
+    """Live datastore tape - every write the system makes, in order."""
+    return FileResponse(STATIC_DIR / "console.html")
+
+
 @app.get("/dashboard", include_in_schema=False)
 def dashboard():
     return FileResponse(STATIC_DIR / "dashboard.html")
