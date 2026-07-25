@@ -25,6 +25,9 @@ import json
 import math
 import os
 import sqlite3
+import time as _time
+
+from sentinel_ops import activity
 import uuid
 from dataclasses import dataclass, field, asdict
 from datetime import datetime, timedelta, timezone
@@ -388,7 +391,9 @@ class DynamoStore:
         item["bucket"] = s.bucket
         if s.expires_at:
             item["ttl"] = int(datetime.fromisoformat(s.expires_at).timestamp())
+        _t0 = _time.perf_counter()
         self.sig.put_item(Item=item)
+        activity.record('PUT_ITEM','dynamodb','sentinel-signatures','signature written',latency_ms=(_time.perf_counter()-_t0)*1000)
 
     def signatures_in_buckets(self, buckets: list[str]) -> list[Signature]:
         from boto3.dynamodb.conditions import Key
@@ -409,7 +414,9 @@ class DynamoStore:
         return [_sig_from_item(i) for i in resp.get("Items", [])]
 
     def put_pattern(self, p: Pattern) -> None:
+        _t0 = _time.perf_counter()
         self.pat.put_item(Item=self._clean(asdict(p)))
+        activity.record('PUT_ITEM','dynamodb','sentinel-patterns','pattern written',latency_ms=(_time.perf_counter()-_t0)*1000)
 
     def get_pattern(self, pid: str) -> Pattern | None:
         item = self.pat.get_item(Key={"pattern_id": pid}).get("Item")
@@ -428,7 +435,9 @@ class DynamoStore:
         return [_pat_from_item(i) for i in resp.get("Items", [])]
 
     def put_review(self, review: dict) -> None:
+        _t0 = _time.perf_counter()
         self.rev.put_item(Item=self._clean(review))
+        activity.record('PUT_ITEM','dynamodb','sentinel-reviews','review written',latency_ms=(_time.perf_counter()-_t0)*1000)
 
     def list_reviews(self, pattern_id: str) -> list[dict]:
         from boto3.dynamodb.conditions import Key

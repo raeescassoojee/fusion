@@ -10,6 +10,7 @@ from fastapi.responses import FileResponse, RedirectResponse
 from sentinel_ops.alerts import evaluate_alert
 from sentinel_ops.aws_status import aws_status
 from sentinel_ops.camera_bridge import camera_ai_to_operations
+from sentinel_ops import activity
 from sentinel_ops.community import announce_review
 from sentinel_ops.camera_upload import router as camera_router
 from sentinel_ops.patterns_api import router as patterns_router
@@ -274,6 +275,14 @@ def reset_demo():
     """Reset the local operational store between judging runs."""
     removed = clear_all()
     return {"removed": removed, "storage": storage_status()}
+
+
+@app.get("/api/activity")
+def activity_feed(since: int = 0, limit: int = 100):
+    """Live datastore activity for the dashboard feed. Poll with the last
+    latest_seq you received to get only new rows."""
+    from sentinel_ops.activity import since as activity_since
+    return activity_since(seq=since, limit=limit)
 
 
 @app.get("/api/aws/status")

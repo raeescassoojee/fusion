@@ -251,6 +251,35 @@ async def upload_footage(
     }
 
 
+@router.post("/api/vision/rekognition/{event_id}")
+def rekognition_event(event_id: str):
+    """Corroborate a stored evidence crop with Amazon Rekognition DetectFaces.
+
+    Returns available=False with a reason when AWS is not configured, so the
+    local YuNet result remains the source of truth and the demo never breaks.
+    """
+    from sentinel_ops.rekognition import detect_faces_in_file
+
+    safe_id = "".join(c for c in event_id if c.isalnum() or c in "-_")
+    if not safe_id:
+        raise HTTPException(status_code=400, detail="invalid event id")
+
+    matches = sorted(EVIDENCE_ROOT.glob(f"{safe_id}/*.jpg")) or sorted(
+        UPLOAD_ROOT.glob(f"*/evidence/{safe_id}/*.jpg")
+    )
+    if not matches:
+        raise HTTPException(
+            status_code=404, detail=f"no stored evidence image for {safe_id}"
+        )
+
+    crop = matches[0]
+    return {
+        "event_id": safe_id,
+        "image": crop.name,
+        "rekognition": detect_faces_in_file(crop),
+    }
+
+
 @router.get("/api/cameras/media/{batch}/{path:path}", include_in_schema=False)
 def camera_media(batch: str, path: str):
     """Serve evidence crops produced for an uploaded batch."""

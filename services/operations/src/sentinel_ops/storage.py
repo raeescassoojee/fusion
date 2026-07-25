@@ -5,6 +5,7 @@ import sqlite3
 from pathlib import Path
 from typing import Any
 
+from sentinel_ops import activity
 from sentinel_ops.models import Alert, CameraEvent, Claim
 
 
@@ -54,6 +55,7 @@ def initialise() -> None:
 
 
 def save_event(event: CameraEvent) -> None:
+    activity.record('PUT_ITEM','sqlite','sentinel-events','event written')
     initialise()
     with connect() as connection:
         connection.execute(
@@ -85,6 +87,7 @@ def list_events(limit: int = 200) -> list[CameraEvent]:
 
 
 def save_claim(claim: Claim) -> None:
+    activity.record('PUT_ITEM','sqlite','sentinel-claims','claim written')
     initialise()
     with connect() as connection:
         connection.execute(
@@ -114,6 +117,7 @@ def list_claims(limit: int = 100) -> list[Claim]:
 
 
 def save_alert(alert: Alert) -> None:
+    activity.record('PUT_ITEM','sqlite','sentinel-alerts','alert written')
     initialise()
     with connect() as connection:
         connection.execute(
