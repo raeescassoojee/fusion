@@ -1,0 +1,2 @@
+[console_scripts]
+sentinel-camera-ai = sentinel_camera_ai.cli:main
