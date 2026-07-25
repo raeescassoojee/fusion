@@ -1,7 +1,51 @@
 [
-  {"hotspot_id":"H001","saps_context_score":82,"population_exposure_index":67,"camera_coverage_score":35,"response_success_score":58},
-  {"hotspot_id":"H002","saps_context_score":72,"population_exposure_index":81,"camera_coverage_score":65,"response_success_score":70},
-  {"hotspot_id":"H003","saps_context_score":75,"population_exposure_index":59,"camera_coverage_score":42,"response_success_score":55},
-  {"hotspot_id":"H004","saps_context_score":51,"population_exposure_index":49,"camera_coverage_score":75,"response_success_score":76},
-  {"hotspot_id":"H005","saps_context_score":64,"population_exposure_index":70,"camera_coverage_score":22,"response_success_score":48}
+  {
+    "hotspot_id": "H003",
+    "saps_context_score": 82,
+    "population_exposure_index": 67,
+    "camera_coverage_score": 35,
+    "response_success_score": 58
+  },
+  {
+    "hotspot_id": "H007",
+    "saps_context_score": 72,
+    "population_exposure_index": 81,
+    "camera_coverage_score": 65,
+    "response_success_score": 70
+  },
+  {
+    "hotspot_id": "H009",
+    "saps_context_score": 75,
+    "population_exposure_index": 59,
+    "camera_coverage_score": 42,
+    "response_success_score": 55
+  },
+  {
+    "hotspot_id": "H012",
+    "saps_context_score": 51,
+    "population_exposure_index": 49,
+    "camera_coverage_score": 75,
+    "response_success_score": 76
+  },
+  {
+    "hotspot_id": "H011",
+    "saps_context_score": 64,
+    "population_exposure_index": 70,
+    "camera_coverage_score": 22,
+    "response_success_score": 48
+  },
+  {
+    "hotspot_id": "H010",
+    "saps_context_score": 82,
+    "population_exposure_index": 67,
+    "camera_coverage_score": 35,
+    "response_success_score": 58
+  },
+  {
+    "hotspot_id": "H014",
+    "saps_context_score": 72,
+    "population_exposure_index": 81,
+    "camera_coverage_score": 65,
+    "response_success_score": 70
+  }
 ]

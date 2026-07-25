@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from datetime import datetime, timezone
 from pathlib import Path
 
 from fastapi import FastAPI, HTTPException, Query
@@ -11,7 +12,6 @@ from sentinel_ops.aws_status import aws_status
 from sentinel_ops.camera_bridge import camera_ai_to_operations
 from sentinel_ops.camera_upload import router as camera_router
 from sentinel_ops.patterns_api import router as patterns_router
-from sentinel_ops.roles_api import router as roles_router
 from sentinel_ops.claims_bridge import (
     build_metro_patrol,
     find_claims_file,
@@ -25,6 +25,7 @@ from sentinel_ops.ingestion import ingest_claim, ingest_event
 from sentinel_ops.models import (
     Alert,
     AlertEvaluationRequest,
+    AlertReviewRequest,
     EnrichmentRequest,
     EvidenceComparisonRequest,
     EvidenceLink,
@@ -39,9 +40,12 @@ from sentinel_ops.rewind import reconstruct_incident
 from sentinel_ops.routing import optimise_patrol
 from sentinel_ops.storage import (
     clear_all,
+    get_alert,
     list_alerts,
     list_claims,
     list_events,
+    save_alert,
+    update_alert,
     status as storage_status,
 )
 
@@ -72,7 +76,6 @@ app.add_middleware(
 # Camera intake (upload + roster) and evidence-pattern / height endpoints.
 app.include_router(camera_router)
 app.include_router(patterns_router)
-app.include_router(roles_router)
 
 
 @app.get("/", include_in_schema=False)
@@ -148,11 +151,34 @@ def evidence_compare(request: EvidenceComparisonRequest):
 
 @app.post("/api/alerts/evaluate", response_model=Alert)
 def alert_evaluate(request: AlertEvaluationRequest):
-    return evaluate_alert(request)
+    alert = evaluate_alert(request)
+    if alert.status == "PENDING_REVIEW":
+        save_alert(alert)
+    return alert
+
+
+@app.post("/api/alerts/{alert_id}/review", response_model=Alert)
+def alert_review(alert_id: str, request: AlertReviewRequest):
+    """Close the outcome loop: an operator accepts, dismisses or escalates a
+    pending alert and the reason is stored for audit."""
+    alert = get_alert(alert_id)
+    if alert is None:
+        raise HTTPException(status_code=404, detail=f"Unknown alert {alert_id}")
+    if alert.status not in {"PENDING_REVIEW", "ACCEPTED", "DISMISSED", "ESCALATED"}:
+        raise HTTPException(
+            status_code=409, detail=f"Alert {alert_id} is not reviewable"
+        )
+    alert.status = request.decision
+    alert.review_reason = request.reason
+    alert.reviewed_by = request.reviewed_by
+    alert.reviewed_at = datetime.now(timezone.utc)
+    return update_alert(alert)
 
 
 @app.post("/api/cases/reconstruct", response_model=IncidentTimeline)
 def case_reconstruct(request: ReconstructRequest):
+    if request.events is None:
+        request = request.model_copy(update={"events": list_events(limit=500)})
     return reconstruct_incident(request)
 
 
@@ -205,17 +231,16 @@ def post_claim(claim: Claim):
 def get_alerts(limit: int = Query(default=100, ge=1, le=1000)):
     return [alert.model_dump(mode="json") for alert in list_alerts(limit)]
 
+
 @app.post("/api/demo/seed")
 def seed_demo():
-    """Seed the local operational store with bundled synthetic/consented fixtures."""
+    """Seed the runtime SQLite store with the bundled synthetic camera events and claim."""
     import json
 
     fixtures = OPERATIONS_ROOT / "fixtures"
     events_payload = json.loads((fixtures / "events.json").read_text(encoding="utf-8"))
     claim_payload = json.loads((fixtures / "claim.json").read_text(encoding="utf-8"))
-    event_results = [
-        ingest_event(CameraEvent.model_validate(item)) for item in events_payload
-    ]
+    event_results = [ingest_event(CameraEvent.model_validate(item)) for item in events_payload]
     claim_result = ingest_claim(Claim.model_validate(claim_payload))
     return {
         "seeded_events": len(event_results),
@@ -227,13 +252,11 @@ def seed_demo():
 
 @app.delete("/api/demo/reset")
 def reset_demo():
-    """Reset local events, claims and alerts between judging runs."""
+    """Reset the local operational store between judging runs."""
     removed = clear_all()
     return {"removed": removed, "storage": storage_status()}
 
 
 @app.get("/api/aws/status")
 def get_aws_status():
-    """Report whether the optional S3/DynamoDB integration is ready."""
     return aws_status()
-

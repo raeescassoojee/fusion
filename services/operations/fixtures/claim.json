@@ -1,1 +1,13 @@
-{"claim_id":"CLM001","incident_time":"2026-07-24T21:10:00+02:00","location":{"latitude":-26.1035,"longitude":28.0535},"claim_type":"Vehicle Theft","claim_amount":420000,"plate_text":"AB12CDGP","vehicle_colour":"white","vehicle_type":"sedan"}
+{
+  "claim_id": "CLM001",
+  "incident_time": "2026-07-24T13:20:00+02:00",
+  "location": {
+    "latitude": -26.0526,
+    "longitude": 28.0295
+  },
+  "claim_type": "Vehicle Theft",
+  "claim_amount": 420000,
+  "plate_text": "AB12CDGP",
+  "vehicle_colour": "white",
+  "vehicle_type": "sedan"
+}

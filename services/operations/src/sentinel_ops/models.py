@@ -122,16 +122,32 @@ class Alert(BaseModel):
     alert_id: str
     event_id: str
     priority: Literal["NONE", "LOW", "MEDIUM", "HIGH"]
-    status: Literal["NO_ALERT", "PENDING_REVIEW"]
+    status: Literal[
+        "NO_ALERT", "PENDING_REVIEW", "ACCEPTED", "DISMISSED", "ESCALATED"
+    ]
     hotspot_id: str | None = None
     evidence_score: float
     reasons: list[str]
     human_review_required: bool = True
+    review_reason: str | None = None
+    reviewed_by: str | None = None
+    reviewed_at: datetime | None = None
+
+
+class AlertReviewRequest(BaseModel):
+    """Operator decision on a pending alert. A reason is always required so the
+    outcome loop stays auditable under POPIA."""
+
+    decision: Literal["ACCEPTED", "DISMISSED", "ESCALATED"]
+    reason: str = Field(min_length=3, max_length=500)
+    reviewed_by: str = Field(default="operator", max_length=120)
 
 
 class ReconstructRequest(BaseModel):
     claim: Claim
-    events: list[CameraEvent]
+    # Optional: when omitted the API reconstructs from events already in storage,
+    # so Rewind runs against real uploaded footage instead of a fixture list.
+    events: list[CameraEvent] | None = None
     radius_km: float = Field(default=5.0, gt=0)
     minutes_before: int = Field(default=90, ge=0)
     minutes_after: int = Field(default=60, ge=0)

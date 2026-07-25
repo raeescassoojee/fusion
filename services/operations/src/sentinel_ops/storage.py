@@ -134,6 +134,22 @@ def save_alert(alert: Alert) -> None:
         )
 
 
+def get_alert(alert_id: str) -> Alert | None:
+    initialise()
+    with connect() as connection:
+        row = connection.execute(
+            "SELECT payload FROM alerts WHERE alert_id = ?",
+            (alert_id,),
+        ).fetchone()
+    return Alert.model_validate_json(row["payload"]) if row else None
+
+
+def update_alert(alert: Alert) -> Alert:
+    """Persist a reviewed alert. save_alert already upserts on alert_id."""
+    save_alert(alert)
+    return alert
+
+
 def list_alerts(limit: int = 100) -> list[Alert]:
     initialise()
     with connect() as connection:
