@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sentinel Mesh Operations</title>
+  <style>
+    :root {
+      --navy: #10243e;
+      --blue: #1676b8;
+      --orange: #f5a000;
+      --ink: #1d2937;
+      --muted: #657386;
+      --panel: #ffffff;
+      --bg: #f2f6fa;
+      --line: #dbe4ec;
+      --green: #167a59;
+      --red: #b64242;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Segoe UI, Arial, sans-serif; color: var(--ink); background: var(--bg); }
+    header { background: var(--navy); color: white; padding: 22px 28px; border-bottom: 5px solid var(--orange); }
+    header h1 { margin: 0 0 6px; font-size: 28px; }
+    header p { margin: 0; color: #d7e5f2; }
+    main { padding: 22px; max-width: 1480px; margin: 0 auto; }
+    .toolbar, .panel, .metric { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; }
+    .toolbar { display: flex; gap: 14px; align-items: end; flex-wrap: wrap; padding: 14px; margin-bottom: 16px; }
+    label { font-size: 13px; color: var(--muted); display: block; margin-bottom: 5px; }
+    select, button { padding: 9px 12px; border-radius: 9px; border: 1px solid var(--line); background: white; font: inherit; }
+    button { background: var(--blue); color: white; border-color: var(--blue); cursor: pointer; }
+    .status { margin-left: auto; font-size: 13px; color: var(--muted); }
+    .metrics { display: grid; grid-template-columns: repeat(4, minmax(170px, 1fr)); gap: 12px; margin-bottom: 16px; }
+    .metric { padding: 15px; }
+    .metric .label { color: var(--muted); font-size: 13px; }
+    .metric .value { color: var(--navy); font-size: 25px; font-weight: 700; margin-top: 5px; }
+    .grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: 16px; margin-bottom: 16px; }
+    .panel { padding: 16px; min-width: 0; }
+    .panel h2 { margin: 0 0 12px; color: var(--navy); font-size: 19px; }
+    iframe { width: 100%; height: 420px; border: 0; border-radius: 10px; background: #eef3f7; }
+    .route-svg { width: 100%; height: 330px; background: #f8fbfd; border: 1px solid var(--line); border-radius: 10px; }
+    .legend { display: flex; gap: 16px; flex-wrap: wrap; margin: 9px 0; font-size: 13px; color: var(--muted); }
+    .swatch { display: inline-block; width: 20px; height: 4px; vertical-align: middle; margin-right: 6px; }
+    .route-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+    .route-card { background: #f7fafc; padding: 12px; border-radius: 10px; border: 1px solid var(--line); }
+    .route-card strong { color: var(--navy); }
+    .evidence { display: grid; grid-template-columns: 1fr auto 1fr; gap: 12px; align-items: center; }
+    .node { border: 1px solid var(--line); padding: 16px; border-radius: 12px; background: #f8fbfd; }
+    .edge { text-align: center; color: var(--blue); font-weight: 700; }
+    .score { font-size: 28px; color: var(--navy); }
+    .components { margin-top: 14px; display: grid; gap: 8px; }
+    .bar-row { display: grid; grid-template-columns: 95px 1fr 48px; gap: 8px; align-items: center; font-size: 13px; }
+    .bar { height: 9px; background: #e4ebf1; border-radius: 6px; overflow: hidden; }
+    .bar > span { display: block; height: 100%; background: var(--blue); }
+    .timeline { border-left: 3px solid var(--blue); margin-left: 8px; padding-left: 18px; }
+    .timeline-item { margin: 0 0 16px; position: relative; }
+    .timeline-item::before { content: ""; width: 11px; height: 11px; border-radius: 50%; background: var(--orange); position: absolute; left: -25px; top: 4px; }
+    .timeline time { color: var(--muted); font-size: 13px; }
+    .alert { border-left: 5px solid var(--orange); background: #fff9eb; padding: 13px; border-radius: 9px; margin-bottom: 12px; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th, td { padding: 9px 7px; border-bottom: 1px solid var(--line); text-align: left; }
+    th { color: var(--muted); font-weight: 600; }
+    .pill { padding: 3px 8px; border-radius: 999px; background: #e8f2fa; color: var(--blue); font-size: 12px; }
+    .notice { color: var(--muted); font-size: 12px; margin-top: 12px; }
+    @media (max-width: 900px) {
+      .metrics { grid-template-columns: 1fr 1fr; }
+      .grid { grid-template-columns: 1fr; }
+      .status { margin-left: 0; width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Discovery Sentinel Mesh</h1>
+    <p>Claims-directed evidence, incident rewind and fuel-aware patrol operations</p>
+  </header>
+  <main>
+    <section class="toolbar">
+      <div>
+        <label for="metro">Pilot metro</label>
+        <select id="metro"></select>
+      </div>
+      <button id="refresh" type="button">Refresh operations view</button>
+      <div class="status" id="status">Loading data…</div>
+    </section>
+
+    <section class="metrics">
+      <div class="metric"><div class="label">Hotspots</div><div class="value" id="mHotspots">—</div></div>
+      <div class="metric"><div class="label">Claims represented</div><div class="value" id="mClaims">—</div></div>
+      <div class="metric"><div class="label">Total claim value</div><div class="value" id="mValue">—</div></div>
+      <div class="metric"><div class="label">Top operational priority</div><div class="value" id="mPriority">—</div></div>
+    </section>
+
+    <section class="grid">
+      <div class="panel">
+        <h2>Risk Pulse map</h2>
+        <iframe src="/api/claims/map" title="Claims hotspot map"></iframe>
+        <div class="notice">The map comes from the cassoojee claims pipeline. SAPS values are historical corroboration, not a live SAPS incident feed.</div>
+      </div>
+      <div class="panel">
+        <h2>Fuel-aware patrol comparison</h2>
+        <svg id="routeSvg" class="route-svg" viewBox="0 0 600 330" role="img" aria-label="Schematic patrol route comparison"></svg>
+        <div class="legend">
+          <span><span class="swatch" style="background:#8293a5"></span>Existing sequence</span>
+          <span><span class="swatch" style="background:#1676b8"></span>Optimised sequence</span>
+        </div>
+        <div class="route-cards">
+          <div class="route-card" id="baselineCard"></div>
+          <div class="route-card" id="optimisedCard"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="panel">
+        <h2>Repeat-evidence graph</h2>
+        <div class="evidence">
+          <div class="node"><strong>Camera event 1</strong><p>Plate, face, vehicle and appearance signals</p></div>
+          <div class="edge"><div class="score" id="evidenceScore">—</div><div id="relationship">Candidate link</div></div>
+          <div class="node"><strong>Camera event 2</strong><p>Cross-camera comparison with journey plausibility</p></div>
+        </div>
+        <div class="components" id="components"></div>
+      </div>
+      <div class="panel">
+        <h2>Human-review alert</h2>
+        <div class="alert" id="alertBox"></div>
+        <ul id="alertReasons"></ul>
+        <p class="notice">The system surfaces a possible relationship. It does not determine guilt or automatically dispatch on weak evidence.</p>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="panel">
+        <h2>Incident Time Machine</h2>
+        <div class="timeline" id="timeline"></div>
+      </div>
+      <div class="panel">
+        <h2>Hotspot priorities</h2>
+        <table>
+          <thead><tr><th>Area</th><th>Peril</th><th>Claims</th><th>Claims risk</th><th>Operational</th></tr></thead>
+          <tbody id="hotspotRows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <p class="notice" id="demoNotice"></p>
+  </main>
+<script>
+  const metroSelect = document.getElementById('metro');
+  const statusEl = document.getElementById('status');
+  const money = new Intl.NumberFormat('en-ZA', { style: 'currency', currency: 'ZAR', maximumFractionDigits: 0 });
+  const number = new Intl.NumberFormat('en-ZA');
+
+  async function json(url) {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error(await response.text());
+    return response.json();
+  }
+
+  function fmt(value, digits = 1) {
+    return Number(value || 0).toFixed(digits);
+  }
+
+  function routeCard(title, route) {
+    return `<strong>${title}</strong><br>${fmt(route.distance_km)} km · ${fmt(route.estimated_fuel_litres, 2)} L<br>${fmt(route.coverage_percent)}% risk covered<br>${fmt(route.protected_risk_per_km, 2)} protected risk/km`;
+  }
+
+  function drawRoutes(data) {
+    const svg = document.getElementById('routeSvg');
+    const hotspots = data.hotspots;
+    if (!hotspots.length) return;
+    const xs = hotspots.map(h => h.location.longitude);
+    const ys = hotspots.map(h => h.location.latitude);
+    const minX = Math.min(...xs), maxX = Math.max(...xs);
+    const minY = Math.min(...ys), maxY = Math.max(...ys);
+    const point = h => ({
+      x: 45 + ((h.location.longitude - minX) / Math.max(0.0001, maxX - minX)) * 510,
+      y: 285 - ((h.location.latitude - minY) / Math.max(0.0001, maxY - minY)) * 240
+    });
+    const byId = Object.fromEntries(hotspots.map(h => [h.hotspot_id, h]));
+    const path = order => order.map(id => point(byId[id])).map((p, i) => `${i ? 'L' : 'M'} ${p.x} ${p.y}`).join(' ');
+    const basePath = path(data.patrol.baseline.ordered_hotspot_ids);
+    const optPath = path(data.patrol.optimised.ordered_hotspot_ids);
+    const nodes = hotspots.map(h => {
+      const p = point(h);
+      return `<circle cx="${p.x}" cy="${p.y}" r="7" fill="#f5a000" stroke="#10243e" stroke-width="2"><title>${h.name}</title></circle><text x="${p.x + 9}" y="${p.y - 8}" font-size="11" fill="#10243e">${h.name}</text>`;
+    }).join('');
+    svg.innerHTML = `<path d="${basePath}" fill="none" stroke="#8293a5" stroke-width="4" stroke-dasharray="8 6"/><path d="${optPath}" fill="none" stroke="#1676b8" stroke-width="5"/>${nodes}`;
+  }
+
+  function render(data) {
+    const s = data.claims_summary;
+    document.getElementById('mHotspots').textContent = number.format(s.hotspot_count);
+    document.getElementById('mClaims').textContent = number.format(s.claim_count);
+    document.getElementById('mValue').textContent = money.format(s.total_claim_value);
+    document.getElementById('mPriority').textContent = `${s.top_hotspot} · ${fmt(s.top_operational_priority)}`;
+
+    document.getElementById('baselineCard').innerHTML = routeCard('Existing route', data.patrol.baseline);
+    document.getElementById('optimisedCard').innerHTML = routeCard('Optimised route', data.patrol.optimised);
+    drawRoutes(data);
+
+    document.getElementById('evidenceScore').textContent = `${fmt(data.evidence.score)}/100`;
+    document.getElementById('relationship').textContent = data.evidence.relationship.replaceAll('_', ' ');
+    document.getElementById('components').innerHTML = Object.entries(data.evidence.components).map(([key, value]) => `<div class="bar-row"><span>${key}</span><div class="bar"><span style="width:${Math.min(100, value * (key === 'camera_trust_factor' ? 1 : 2.5))}%"></span></div><strong>${fmt(value)}</strong></div>`).join('');
+
+    document.getElementById('alertBox').innerHTML = `<strong>${data.alert.priority} PRIORITY</strong><br><span class="pill">${data.alert.status.replaceAll('_', ' ')}</span> · Evidence ${fmt(data.alert.evidence_score)}/100`;
+    document.getElementById('alertReasons').innerHTML = data.alert.reasons.map(reason => `<li>${reason}</li>`).join('');
+
+    document.getElementById('timeline').innerHTML = data.timeline.items.map(item => `<div class="timeline-item"><time>${new Date(item.timestamp).toLocaleString('en-ZA')}</time><div><strong>${item.event_id}</strong> · ${item.description}</div></div>`).join('') || '<p>No matching events.</p>';
+
+    document.getElementById('hotspotRows').innerHTML = data.hotspots.map(h => `<tr><td><strong>${h.name}</strong><br><span class="pill">${h.confidence_band || 'N/A'}</span></td><td>${h.main_peril || '—'}</td><td>${number.format(h.claim_count || 0)}</td><td>${fmt(h.claims_risk_score)}</td><td><strong>${fmt(h.operational_priority)}</strong></td></tr>`).join('');
+    document.getElementById('demoNotice').textContent = data.demo_notice;
+    statusEl.textContent = `${data.data_source.source} · ${data.metro}`;
+  }
+
+  async function loadMetros() {
+    const data = await json('/api/claims/metros');
+    metroSelect.innerHTML = data.metros.map(metro => `<option value="${metro}">${metro}</option>`).join('');
+    if (data.metros.includes('Gauteng')) metroSelect.value = 'Gauteng';
+  }
+
+  async function refresh() {
+    statusEl.textContent = 'Loading operations data…';
+    try {
+      const data = await json(`/api/overview?metro=${encodeURIComponent(metroSelect.value)}`);
+      render(data);
+    } catch (error) {
+      statusEl.textContent = `Error: ${error.message}`;
+    }
+  }
+
+  document.getElementById('refresh').addEventListener('click', refresh);
+  metroSelect.addEventListener('change', refresh);
+  loadMetros().then(refresh).catch(error => { statusEl.textContent = `Error: ${error.message}`; });
+</script>
+</body>
+</html>

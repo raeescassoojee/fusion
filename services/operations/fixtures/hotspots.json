@@ -1,0 +1,7 @@
+[
+  {"hotspot_id":"H001","name":"Pilot Zone A","location":{"latitude":-26.104,"longitude":28.053},"risk_score":88,"claims_risk_score":88,"main_peril":"Vehicle Theft","peak_window":{"days":["Friday","Saturday"],"start":"20:00","end":"23:59"},"geofence_radius_km":2.0},
+  {"hotspot_id":"H002","name":"Pilot Zone B","location":{"latitude":-26.09,"longitude":28.078},"risk_score":77,"claims_risk_score":77,"main_peril":"Home Theft","peak_window":{"days":["Thursday","Friday"],"start":"19:00","end":"23:00"},"geofence_radius_km":1.8},
+  {"hotspot_id":"H003","name":"Pilot Zone C","location":{"latitude":-26.121,"longitude":28.083},"risk_score":69,"claims_risk_score":69,"main_peril":"Vehicle Theft","peak_window":{"days":["Friday"],"start":"18:00","end":"22:30"},"geofence_radius_km":1.5},
+  {"hotspot_id":"H004","name":"Pilot Zone D","location":{"latitude":-26.132,"longitude":28.045},"risk_score":60,"claims_risk_score":60,"main_peril":"Home Theft","peak_window":{"days":["Wednesday","Friday"],"start":"21:00","end":"01:00"},"geofence_radius_km":1.5},
+  {"hotspot_id":"H005","name":"Pilot Zone E","location":{"latitude":-26.075,"longitude":28.052},"risk_score":54,"claims_risk_score":54,"main_peril":"Vehicle Theft","peak_window":{"days":["Saturday"],"start":"17:00","end":"22:00"},"geofence_radius_km":1.4}
+]
