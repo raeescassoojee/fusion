@@ -1,0 +1,232 @@
+{
+  "model_type": "Latent Dirichlet Allocation",
+  "selected_topic_count": 9,
+  "vocabulary_size": 789,
+  "training_documents": 101,
+  "topics": [
+    {
+      "topic_id": 1,
+      "topic_key": "topic_1",
+      "likely_category": "Incident Reporting",
+      "document_count": 46,
+      "category_purity": 0.587,
+      "top_words": [
+        "reports",
+        "warnings",
+        "whether",
+        "unfinished reports",
+        "unfinished",
+        "save unfinished",
+        "reports automatically",
+        "save",
+        "automatically",
+        "help",
+        "urgent",
+        "report"
+      ],
+      "category_distribution": {
+        "Incident Reporting": 27,
+        "Safety Alerts": 19
+      }
+    },
+    {
+      "topic_id": 2,
+      "topic_key": "topic_2",
+      "likely_category": "Community Chat",
+      "document_count": 37,
+      "category_purity": 1.0,
+      "top_words": [
+        "verified",
+        "updates",
+        "group",
+        "moderation",
+        "messages",
+        "residents",
+        "pinned",
+        "information",
+        "moderation message",
+        "basic moderation",
+        "message reporting",
+        "reporting group"
+      ],
+      "category_distribution": {
+        "Community Chat": 37
+      }
+    },
+    {
+      "topic_id": 3,
+      "topic_key": "topic_3",
+      "likely_category": "Safety Alerts",
+      "document_count": 31,
+      "category_purity": 0.6774,
+      "top_words": [
+        "neighbourhood",
+        "residents",
+        "groups",
+        "neighbourhood groups",
+        "time",
+        "warnings",
+        "recommend feature",
+        "feature neighbourhood",
+        "recommend",
+        "feature",
+        "information",
+        "alerts"
+      ],
+      "category_distribution": {
+        "Positive Experience": 10,
+        "Safety Alerts": 21
+      }
+    },
+    {
+      "topic_id": 4,
+      "topic_key": "topic_4",
+      "likely_category": "Application Performance",
+      "document_count": 34,
+      "category_purity": 0.5882,
+      "top_words": [
+        "mobile",
+        "easier",
+        "reporting",
+        "messages",
+        "connection",
+        "messages load",
+        "older messages",
+        "load requested",
+        "load",
+        "older",
+        "requested",
+        "many"
+      ],
+      "category_distribution": {
+        "Incident Reporting": 11,
+        "Application Performance": 20,
+        "Community Chat": 3
+      }
+    },
+    {
+      "topic_id": 5,
+      "topic_key": "topic_5",
+      "likely_category": "Positive Experience",
+      "document_count": 32,
+      "category_purity": 0.9375,
+      "top_words": [
+        "warnings",
+        "community",
+        "affected",
+        "details",
+        "continue",
+        "continue improving",
+        "alert details",
+        "improving alert",
+        "improving",
+        "understand",
+        "alert",
+        "made"
+      ],
+      "category_distribution": {
+        "Positive Experience": 30,
+        "Location Accuracy": 2
+      }
+    },
+    {
+      "topic_id": 6,
+      "topic_key": "topic_6",
+      "likely_category": "Location Accuracy",
+      "document_count": 38,
+      "category_purity": 1.0,
+      "top_words": [
+        "street",
+        "location",
+        "incident",
+        "landmark",
+        "pin",
+        "map",
+        "validation publishing",
+        "validation",
+        "address",
+        "address validation",
+        "publishing incident",
+        "publishing"
+      ],
+      "category_distribution": {
+        "Location Accuracy": 38
+      }
+    },
+    {
+      "topic_id": 7,
+      "topic_key": "topic_7",
+      "likely_category": "Privacy and Trust",
+      "document_count": 14,
+      "category_purity": 0.5714,
+      "top_words": [
+        "information",
+        "users",
+        "safety",
+        "community",
+        "stored",
+        "application",
+        "share",
+        "safety information",
+        "even",
+        "sensitive safety",
+        "share sensitive",
+        "sensitive"
+      ],
+      "category_distribution": {
+        "Application Performance": 6,
+        "Privacy and Trust": 8
+      }
+    },
+    {
+      "topic_id": 8,
+      "topic_key": "topic_8",
+      "likely_category": "Application Performance",
+      "document_count": 10,
+      "category_purity": 1.0,
+      "top_words": [
+        "loading",
+        "automatic",
+        "speed",
+        "automatic reconnection",
+        "speed automatic",
+        "loading speed",
+        "reconnection",
+        "without",
+        "requiring",
+        "without requiring",
+        "technical",
+        "technical knowledge"
+      ],
+      "category_distribution": {
+        "Application Performance": 10
+      }
+    },
+    {
+      "topic_id": 9,
+      "topic_key": "topic_9",
+      "likely_category": "Privacy and Trust",
+      "document_count": 38,
+      "category_purity": 0.8421,
+      "top_words": [
+        "private",
+        "form",
+        "reports",
+        "add",
+        "privacy",
+        "near",
+        "notice",
+        "submission form",
+        "simple privacy",
+        "submission",
+        "add simple",
+        "notice near"
+      ],
+      "category_distribution": {
+        "Privacy and Trust": 32,
+        "Application Performance": 4,
+        "Incident Reporting": 2
+      }
+    }
+  ]
+}

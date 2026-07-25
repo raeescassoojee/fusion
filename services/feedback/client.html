@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>Sentinel Feedback</title>
+
+  <style>
+    :root {
+      --blue: #0033a0;
+      --blue-dark: #0a2a72;
+      --cyan: #0090c8;
+      --green: #0b6b46;
+      --amber: #c9761a;
+      --red: #c0392b;
+      --ink: #101828;
+      --sub: #667085;
+      --edge: #dfe3eb;
+      --wash: #f5f7fa;
+      --panel: #ffffff;
+      --star: #f2b01e;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+    }
+
+    body {
+      color: var(--ink);
+      background:
+        linear-gradient(
+          135deg,
+          #eef3fb 0%,
+          #f7f8fa 50%,
+          #eaf5f8 100%
+        );
+      font-family:
+        Inter,
+        "Segoe UI",
+        system-ui,
+        sans-serif;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 1100px;
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: 32px 22px;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .logo {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: #ffffff;
+      background: var(--blue);
+      border-radius: 11px;
+      font-size: 19px;
+      font-weight: 800;
+    }
+
+    .header-text {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 25px;
+      letter-spacing: -0.03em;
+    }
+
+    .header p {
+      margin: 4px 0 0;
+      color: var(--sub);
+      font-size: 14px;
+    }
+
+    .connection {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--sub);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .connection-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--amber);
+      border-radius: 50%;
+    }
+
+    .connection.online {
+      color: var(--green);
+    }
+
+    .connection.online .connection-dot {
+      background: var(--green);
+    }
+
+    .connection.offline {
+      color: var(--red);
+    }
+
+    .connection.offline .connection-dot {
+      background: var(--red);
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns:
+        minmax(0, 1.55fr)
+        minmax(260px, 0.75fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--edge);
+      border-radius: 14px;
+      box-shadow:
+        0 12px 30px
+        rgba(16, 24, 40, 0.07);
+    }
+
+    .form-card {
+      padding: 26px;
+    }
+
+    .card-title {
+      margin: 0;
+      font-size: 19px;
+      letter-spacing: -0.02em;
+    }
+
+    .card-description {
+      margin: 7px 0 24px;
+      color: var(--sub);
+      font-size: 13.5px;
+      line-height: 1.55;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .required {
+      color: var(--red);
+    }
+
+    select,
+    textarea {
+      width: 100%;
+      color: var(--ink);
+      background: #ffffff;
+      border: 1px solid var(--edge);
+      border-radius: 9px;
+      outline: none;
+      transition:
+        border-color 0.15s,
+        box-shadow 0.15s;
+    }
+
+    select {
+      min-height: 44px;
+      padding: 9px 12px;
+      cursor: pointer;
+    }
+
+    textarea {
+      min-height: 150px;
+      padding: 12px 14px;
+      resize: vertical;
+      line-height: 1.5;
+    }
+
+    select:focus,
+    textarea:focus {
+      border-color: var(--cyan);
+      box-shadow:
+        0 0 0 3px
+        rgba(0, 144, 200, 0.12);
+    }
+
+    select:disabled,
+    textarea:disabled,
+    button:disabled {
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
+    .rating {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+      gap: 4px;
+    }
+
+    .rating input {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .rating label {
+      color: #d3d7df;
+      cursor: pointer;
+      font-size: 34px;
+      line-height: 1;
+      transition:
+        color 0.15s,
+        transform 0.15s;
+    }
+
+    .rating label:hover {
+      transform: translateY(-1px);
+    }
+
+    .rating label:hover,
+    .rating label:hover ~ label,
+    .rating input:checked ~ label {
+      color: var(--star);
+    }
+
+    .rating input:focus-visible + label {
+      outline: 2px solid var(--cyan);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    .rating-message {
+      min-height: 18px;
+      margin-top: 7px;
+      color: var(--sub);
+      font-size: 12px;
+    }
+
+    .textarea-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 6px;
+      color: var(--sub);
+      font-size: 11.5px;
+    }
+
+    .character-count.limit {
+      color: var(--red);
+      font-weight: 700;
+    }
+
+    .submit-button {
+      width: 100%;
+      min-height: 46px;
+      color: #ffffff;
+      background: var(--blue);
+      border: none;
+      border-radius: 9px;
+      cursor: pointer;
+      font-weight: 700;
+      transition:
+        background 0.15s,
+        transform 0.15s;
+    }
+
+    .submit-button:hover:not(:disabled) {
+      background: var(--blue-dark);
+    }
+
+    .submit-button:active:not(:disabled) {
+      transform: translateY(1px);
+    }
+
+    .form-status {
+      display: none;
+      margin-top: 14px;
+      padding: 11px 13px;
+      border-radius: 8px;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .form-status.show {
+      display: block;
+    }
+
+    .form-status.success {
+      color: #07583a;
+      background: #e9f7f0;
+      border: 1px solid #b9e4d0;
+    }
+
+    .form-status.error {
+      color: #8e2b20;
+      background: #fdf0ee;
+      border: 1px solid #efc4be;
+    }
+
+    .side {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .side-card {
+      padding: 21px;
+    }
+
+    .side-title {
+      margin: 0 0 16px;
+      font-size: 15px;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .stat {
+      padding: 13px;
+      background: var(--wash);
+      border: 1px solid #e9ecf2;
+      border-radius: 9px;
+    }
+
+    .stat-value {
+      color: var(--blue);
+      font-size: 22px;
+      font-weight: 750;
+    }
+
+    .stat-label {
+      margin-top: 3px;
+      color: var(--sub);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .rating-bars {
+      margin-top: 18px;
+    }
+
+    .rating-row {
+      display: grid;
+      grid-template-columns:
+        30px 1fr 25px;
+      gap: 8px;
+      align-items: center;
+      margin-top: 8px;
+      font-size: 11px;
+    }
+
+    .bar-track {
+      height: 7px;
+      overflow: hidden;
+      background: #e7eaf0;
+      border-radius: 20px;
+    }
+
+    .bar-value {
+      height: 100%;
+      width: 0;
+      background: var(--cyan);
+      border-radius: 20px;
+      transition: width 0.3s;
+    }
+
+    .privacy-list {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--sub);
+      font-size: 12.5px;
+      line-height: 1.7;
+    }
+
+    .privacy-note {
+      margin-top: 14px;
+      padding: 10px 11px;
+      color: #554118;
+      background: #fff8e8;
+      border: 1px solid #f0dfb5;
+      border-radius: 8px;
+      font-size: 11.5px;
+      line-height: 1.5;
+    }
+
+    .footer {
+      margin-top: 24px;
+      color: var(--sub);
+      font-size: 11.5px;
+      text-align: center;
+    }
+
+    @media (max-width: 800px) {
+      .page {
+        padding: 22px 14px;
+      }
+
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .side {
+        order: 2;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .header {
+        align-items: flex-start;
+      }
+
+      .connection {
+        display: none;
+      }
+
+      .header h1 {
+        font-size: 21px;
+      }
+
+      .form-card {
+        padding: 19px;
+      }
+
+      .rating label {
+        font-size: 31px;
+      }
+
+      .stat-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header class="header">
+      <div class="logo">S</div>
+
+      <div class="header-text">
+        <h1>Sentinel Feedback</h1>
+
+        <p>
+          Help us improve community safety services.
+        </p>
+      </div>
+
+      <div
+        class="connection"
+        id="connectionStatus"
+      >
+        <span class="connection-dot"></span>
+        <span id="connectionText">
+          Connecting
+        </span>
+      </div>
+    </header>
+
+    <div class="layout">
+      <main class="card form-card">
+        <h2 class="card-title">
+          Share your experience
+        </h2>
+
+        <p class="card-description">
+          Your feedback helps Sentinel identify common
+          concerns, improve safety alerts, and understand
+          how communities use the platform.
+        </p>
+
+        <form id="feedbackForm">
+          <div class="form-group">
+            <label
+              class="form-label"
+              for="location"
+            >
+              Community location
+              <span class="required">*</span>
+            </label>
+
+            <select
+              id="location"
+              name="hotspot_id"
+              required
+              disabled
+            >
+              <option value="">
+                Loading locations...
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <span class="form-label">
+              Overall rating
+              <span class="required">*</span>
+            </span>
+
+            <div
+              class="rating"
+              role="radiogroup"
+              aria-label="Overall rating"
+            >
+              <input
+                id="rating5"
+                name="rating"
+                type="radio"
+                value="5"
+              />
+
+              <label
+                for="rating5"
+                title="Excellent"
+              >
+                &#9733;
+              </label>
+
+              <input
+                id="rating4"
+                name="rating"
+                type="radio"
+                value="4"
+              />
+
+              <label
+                for="rating4"
+                title="Good"
+              >
+                &#9733;
+              </label>
+
+              <input
+                id="rating3"
+                name="rating"
+                type="radio"
+                value="3"
+              />
+
+              <label
+                for="rating3"
+                title="Average"
+              >
+                &#9733;
+              </label>
+
+              <input
+                id="rating2"
+                name="rating"
+                type="radio"
+                value="2"
+              />
+
+              <label
+                for="rating2"
+                title="Poor"
+              >
+                &#9733;
+              </label>
+
+              <input
+                id="rating1"
+                name="rating"
+                type="radio"
+                value="1"
+              />
+
+              <label
+                for="rating1"
+                title="Very poor"
+              >
+                &#9733;
+              </label>
+            </div>
+
+            <div
+              class="rating-message"
+              id="ratingMessage"
+            >
+              Select between 1 and 5 stars.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label
+              class="form-label"
+              for="category"
+            >
+              Feedback category
+              <span class="required">*</span>
+            </label>
+
+            <select
+              id="category"
+              name="category"
+              required
+              disabled
+            >
+              <option value="">
+                Loading categories...
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label
+              class="form-label"
+              for="feedbackText"
+            >
+              Your feedback
+              <span class="required">*</span>
+            </label>
+
+            <textarea
+              id="feedbackText"
+              name="feedback_text"
+              minlength="10"
+              maxlength="1000"
+              placeholder="Tell us what worked well, what went wrong, or what you would like Sentinel to improve."
+              required
+            ></textarea>
+
+            <div class="textarea-meta">
+              <span>
+                Minimum 10 characters
+              </span>
+
+              <span
+                class="character-count"
+                id="characterCount"
+              >
+                0 / 1000
+              </span>
+            </div>
+          </div>
+
+          <button
+            class="submit-button"
+            id="submitButton"
+            type="submit"
+            disabled
+          >
+            Submit feedback
+          </button>
+
+          <div
+            class="form-status"
+            id="formStatus"
+            role="status"
+            aria-live="polite"
+          ></div>
+        </form>
+      </main>
+
+      <aside class="side">
+        <section class="card side-card">
+          <h2 class="side-title">
+            Live feedback summary
+          </h2>
+
+          <div class="stat-grid">
+            <div class="stat">
+              <div
+                class="stat-value"
+                id="totalFeedback"
+              >
+                0
+              </div>
+
+              <div class="stat-label">
+                Responses
+              </div>
+            </div>
+
+            <div class="stat">
+              <div
+                class="stat-value"
+                id="averageRating"
+              >
+                0.0
+              </div>
+
+              <div class="stat-label">
+                Average rating
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="rating-bars"
+            id="ratingBars"
+          >
+            <div class="rating-row">
+              <span>5 ★</span>
+              <div class="bar-track">
+                <div
+                  class="bar-value"
+                  id="ratingBar5"
+                ></div>
+              </div>
+              <span id="ratingCount5">0</span>
+            </div>
+
+            <div class="rating-row">
+              <span>4 ★</span>
+              <div class="bar-track">
+                <div
+                  class="bar-value"
+                  id="ratingBar4"
+                ></div>
+              </div>
+              <span id="ratingCount4">0</span>
+            </div>
+
+            <div class="rating-row">
+              <span>3 ★</span>
+              <div class="bar-track">
+                <div
+                  class="bar-value"
+                  id="ratingBar3"
+                ></div>
+              </div>
+              <span id="ratingCount3">0</span>
+            </div>
+
+            <div class="rating-row">
+              <span>2 ★</span>
+              <div class="bar-track">
+                <div
+                  class="bar-value"
+                  id="ratingBar2"
+                ></div>
+              </div>
+              <span id="ratingCount2">0</span>
+            </div>
+
+            <div class="rating-row">
+              <span>1 ★</span>
+              <div class="bar-track">
+                <div
+                  class="bar-value"
+                  id="ratingBar1"
+                ></div>
+              </div>
+              <span id="ratingCount1">0</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="card side-card">
+          <h2 class="side-title">
+            Your privacy
+          </h2>
+
+          <ul class="privacy-list">
+            <li>
+              Do not include names, phone numbers,
+              addresses, or identity numbers.
+            </li>
+
+            <li>
+              Feedback is used to identify broad
+              service-improvement themes.
+            </li>
+
+            <li>
+              Feedback does not replace an emergency
+              report.
+            </li>
+          </ul>
+
+          <div class="privacy-note">
+            If there is immediate danger, contact the
+            relevant emergency service or security
+            provider directly.
+          </div>
+        </section>
+      </aside>
+    </div>
+
+    <footer class="footer">
+      Sentinel Community Safety | Feedback Analysis
+    </footer>
+  </div>
+
+  <script>
+    "use strict";
+
+    const USER_ID_KEY =
+      "sentinel.feedbackUserId";
+
+    const form =
+      document.getElementById(
+        "feedbackForm"
+      );
+
+    const locationSelect =
+      document.getElementById(
+        "location"
+      );
+
+    const categorySelect =
+      document.getElementById(
+        "category"
+      );
+
+    const feedbackText =
+      document.getElementById(
+        "feedbackText"
+      );
+
+    const characterCount =
+      document.getElementById(
+        "characterCount"
+      );
+
+    const submitButton =
+      document.getElementById(
+        "submitButton"
+      );
+
+    const formStatus =
+      document.getElementById(
+        "formStatus"
+      );
+
+    const connectionStatus =
+      document.getElementById(
+        "connectionStatus"
+      );
+
+    const connectionText =
+      document.getElementById(
+        "connectionText"
+      );
+
+
+    function getUserId() {
+      let userId = localStorage.getItem(
+        USER_ID_KEY
+      );
+
+      if (!userId) {
+        userId = crypto.randomUUID();
+
+        localStorage.setItem(
+          USER_ID_KEY,
+          userId
+        );
+      }
+
+      return userId;
+    }
+
+
+    function detectPlatform() {
+      if (
+        navigator.userAgentData &&
+        navigator.userAgentData.mobile
+      ) {
+        return "Mobile Web";
+      }
+
+      if (
+        /Android|iPhone|iPad|Mobile/i.test(
+          navigator.userAgent
+        )
+      ) {
+        return "Mobile Web";
+      }
+
+      return "Web";
+    }
+
+
+    function setConnection(
+      status,
+      text
+    ) {
+      connectionStatus.className =
+        `connection ${status}`;
+
+      connectionText.textContent = text;
+    }
+
+
+    function showStatus(
+      type,
+      message
+    ) {
+      formStatus.className =
+        `form-status show ${type}`;
+
+      formStatus.textContent =
+        message;
+    }
+
+
+    function clearStatus() {
+      formStatus.className =
+        "form-status";
+
+      formStatus.textContent = "";
+    }
+
+
+    async function fetchJson(
+      url,
+      options
+    ) {
+      const response = await fetch(
+        url,
+        options
+      );
+
+      let data;
+
+      try {
+        data = await response.json();
+      } catch {
+        data = {};
+      }
+
+      if (!response.ok) {
+        throw new Error(
+          data.error ||
+          "The request could not be completed."
+        );
+      }
+
+      return data;
+    }
+
+
+    function populateLocations(
+      locations
+    ) {
+      locationSelect.innerHTML = "";
+
+      const placeholder =
+        document.createElement(
+          "option"
+        );
+
+      placeholder.value = "";
+      placeholder.textContent =
+        "Select your community";
+
+      locationSelect.appendChild(
+        placeholder
+      );
+
+      for (const location of locations) {
+        const option =
+          document.createElement(
+            "option"
+          );
+
+        option.value =
+          location.hotspot_id;
+
+        option.textContent =
+          `${location.name} | ${location.metro}`;
+
+        locationSelect.appendChild(
+          option
+        );
+      }
+
+      locationSelect.disabled = false;
+    }
+
+
+    function populateCategories(
+      categories
+    ) {
+      categorySelect.innerHTML = "";
+
+      const placeholder =
+        document.createElement(
+          "option"
+        );
+
+      placeholder.value = "";
+      placeholder.textContent =
+        "Select a feedback category";
+
+      categorySelect.appendChild(
+        placeholder
+      );
+
+      for (const category of categories) {
+        const option =
+          document.createElement(
+            "option"
+          );
+
+        option.value = category;
+        option.textContent = category;
+
+        categorySelect.appendChild(
+          option
+        );
+      }
+
+      categorySelect.disabled = false;
+    }
+
+
+    function updateStats(stats) {
+      const total = Number(
+        stats.total_feedback || 0
+      );
+
+      const average = Number(
+        stats.average_rating || 0
+      );
+
+      document.getElementById(
+        "totalFeedback"
+      ).textContent = total;
+
+      document.getElementById(
+        "averageRating"
+      ).textContent =
+        average.toFixed(1);
+
+      const counts =
+        stats.rating_counts || {};
+
+      let maximumCount = 0;
+
+      for (
+        let rating = 1;
+        rating <= 5;
+        rating += 1
+      ) {
+        maximumCount = Math.max(
+          maximumCount,
+          Number(counts[rating] || 0)
+        );
+      }
+
+      for (
+        let rating = 1;
+        rating <= 5;
+        rating += 1
+      ) {
+        const count = Number(
+          counts[rating] || 0
+        );
+
+        const percentage =
+          maximumCount > 0
+            ? (
+                count /
+                maximumCount
+              ) * 100
+            : 0;
+
+        document.getElementById(
+          `ratingCount${rating}`
+        ).textContent = count;
+
+        document.getElementById(
+          `ratingBar${rating}`
+        ).style.width =
+          `${percentage}%`;
+      }
+    }
+
+
+    async function loadPageData() {
+      setConnection(
+        "",
+        "Connecting"
+      );
+
+      submitButton.disabled = true;
+
+      try {
+        const [
+          locationData,
+          categoryData,
+          statistics
+        ] = await Promise.all([
+          fetchJson(
+            "/api/locations"
+          ),
+
+          fetchJson(
+            "/api/categories"
+          ),
+
+          fetchJson(
+            "/api/feedback/stats"
+          )
+        ]);
+
+        populateLocations(
+          locationData.locations || []
+        );
+
+        populateCategories(
+          categoryData.categories || []
+        );
+
+        updateStats(statistics);
+
+        setConnection(
+          "online",
+          "Online"
+        );
+
+        submitButton.disabled = false;
+      } catch (error) {
+        setConnection(
+          "offline",
+          "Offline"
+        );
+
+        showStatus(
+          "error",
+          error.message
+        );
+      }
+    }
+
+
+    function selectedRating() {
+      const selected =
+        form.querySelector(
+          'input[name="rating"]:checked'
+        );
+
+      return selected
+        ? Number(selected.value)
+        : null;
+    }
+
+
+    function resetForm() {
+      form.reset();
+
+      characterCount.textContent =
+        "0 / 1000";
+
+      characterCount.classList.remove(
+        "limit"
+      );
+
+      document.getElementById(
+        "ratingMessage"
+      ).textContent =
+        "Select between 1 and 5 stars.";
+    }
+
+
+    feedbackText.addEventListener(
+      "input",
+      () => {
+        const length =
+          feedbackText.value.length;
+
+        characterCount.textContent =
+          `${length} / 1000`;
+
+        characterCount.classList.toggle(
+          "limit",
+          length >= 950
+        );
+      }
+    );
+
+
+    const ratingInputs =
+      form.querySelectorAll(
+        'input[name="rating"]'
+      );
+
+    for (const input of ratingInputs) {
+      input.addEventListener(
+        "change",
+        () => {
+          const rating = Number(
+            input.value
+          );
+
+          const labels = {
+            1: "Very poor",
+            2: "Poor",
+            3: "Average",
+            4: "Good",
+            5: "Excellent"
+          };
+
+          document.getElementById(
+            "ratingMessage"
+          ).textContent =
+            `${rating} stars | ${labels[rating]}`;
+        }
+      );
+    }
+
+
+    form.addEventListener(
+      "submit",
+      async (event) => {
+        event.preventDefault();
+        clearStatus();
+
+        const rating =
+          selectedRating();
+
+        if (!locationSelect.value) {
+          showStatus(
+            "error",
+            "Please select your community location."
+          );
+
+          locationSelect.focus();
+          return;
+        }
+
+        if (!rating) {
+          showStatus(
+            "error",
+            "Please select a rating."
+          );
+
+          return;
+        }
+
+        if (!categorySelect.value) {
+          showStatus(
+            "error",
+            "Please select a feedback category."
+          );
+
+          categorySelect.focus();
+          return;
+        }
+
+        const text =
+          feedbackText.value.trim();
+
+        if (text.length < 10) {
+          showStatus(
+            "error",
+            "Feedback must contain at least 10 characters."
+          );
+
+          feedbackText.focus();
+          return;
+        }
+
+        submitButton.disabled = true;
+        submitButton.textContent =
+          "Submitting...";
+
+        try {
+          const result = await fetchJson(
+            "/api/feedback",
+            {
+              method: "POST",
+
+              headers: {
+                "Content-Type":
+                  "application/json"
+              },
+
+              body: JSON.stringify({
+                user_id:
+                  getUserId(),
+
+                hotspot_id:
+                  locationSelect.value,
+
+                rating,
+
+                category:
+                  categorySelect.value,
+
+                feedback_text:
+                  text,
+
+                platform:
+                  detectPlatform()
+              })
+            }
+          );
+
+          resetForm();
+
+          showStatus(
+            "success",
+            result.message ||
+            "Thank you. Your feedback was submitted."
+          );
+
+          const updatedStats =
+            await fetchJson(
+              "/api/feedback/stats"
+            );
+
+          updateStats(
+            updatedStats
+          );
+        } catch (error) {
+          showStatus(
+            "error",
+            error.message
+          );
+        } finally {
+          submitButton.disabled = false;
+          submitButton.textContent =
+            "Submit feedback";
+        }
+      }
+    );
+
+
+    window.addEventListener(
+      "online",
+      loadPageData
+    );
+
+
+    window.addEventListener(
+      "offline",
+      () => {
+        setConnection(
+          "offline",
+          "Offline"
+        );
+
+        submitButton.disabled = true;
+      }
+    );
+
+
+    loadPageData();
+  </script>
+</body>
+</html>
