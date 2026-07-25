@@ -1,0 +1,1456 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sentinel Mesh — AI Operations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@600;700;800&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<style>
+:root{
+  --navy:#021F38;--navy2:#052B4E;--blue:#005BAA;--cyan:#00AEEF;--violet:#7A4DB8;
+  --grad:linear-gradient(90deg,#00AEEF,#4F7BD9 55%,#7A4DB8);
+  --ink:#14242F;--muted:#5B6B77;--minv:#8FA6BA;--paper:#F2F5F7;--panel:#fff;--line:#DDE4E9;
+  --linv:rgba(255,255,255,.14);--ok:#2E7D4F;--warn:#B26A00;--bad:#B03A2E;
+  --fd:'Saira Condensed',sans-serif;--fb:'Public Sans',sans-serif;--fm:'IBM Plex Mono',monospace;--r:12px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--fb);background:var(--paper);color:var(--ink);overflow-x:hidden}
+button,select,input{font-family:inherit}
+::selection{background:var(--cyan);color:var(--navy)}
+
+/* ============ WELCOME ============ */
+#welcome{position:fixed;inset:0;z-index:400;background:var(--navy);color:#fff;overflow-y:auto;transition:opacity .55s,visibility .55s}
+#welcome.gone{opacity:0;visibility:hidden;pointer-events:none}
+.hero{min-height:100svh;position:relative;display:flex;flex-direction:column;justify-content:center;padding:80px 6vw 60px}
+#hgrid{position:absolute;inset:0;width:100%;height:100%;opacity:.5}
+.hero .in{position:relative;z-index:2;max-width:1240px;margin:0 auto;width:100%}
+.kick{display:inline-flex;align-items:center;gap:10px;font-family:var(--fm);font-size:.7rem;letter-spacing:.2em;color:var(--cyan);border:1px solid rgba(0,174,239,.35);padding:7px 15px;border-radius:99px;margin-bottom:24px}
+.kick i{width:7px;height:7px;border-radius:50%;background:var(--cyan)}
+.ht{font-family:var(--fd);font-weight:800;text-transform:uppercase;line-height:.85;font-size:clamp(3.4rem,11vw,10rem)}
+.ht .row{display:block;overflow:hidden}.ht .row span{display:inline-block}
+.ht .o{color:transparent;-webkit-text-stroke:2px #fff}
+.ht .f{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hs{margin-top:20px;max-width:620px;font-size:1rem;line-height:1.65;color:var(--minv)}
+.hcta{display:flex;gap:14px;margin-top:30px;flex-wrap:wrap}
+.cta{font-family:var(--fd);font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:.95rem;padding:14px 30px;border-radius:99px;border:0;cursor:pointer;transition:transform .2s;text-decoration:none;display:inline-block}
+.cta:hover{transform:translateY(-2px)}
+.cta.solid{background:var(--grad);color:#fff}
+.cta.gh{border:1.5px solid rgba(255,255,255,.4);color:#fff;background:transparent}
+.cta.gh:hover{border-color:var(--cyan);color:var(--cyan)}
+.usps{position:relative;z-index:2;max-width:1240px;margin:52px auto 0;width:100%;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--linv);border:1px solid var(--linv);border-radius:var(--r);overflow:hidden}
+.usp{background:var(--navy);padding:18px 20px}
+.usp .n{font-family:var(--fm);font-size:.62rem;letter-spacing:.18em;color:var(--cyan)}
+.usp h4{font-family:var(--fd);font-weight:700;font-size:1rem;text-transform:uppercase;margin:7px 0 4px}
+.usp p{font-size:.7rem;line-height:1.5;color:var(--minv)}
+@media(max-width:900px){.usps{grid-template-columns:1fr 1fr}}
+.marq{background:var(--grad);color:var(--navy);overflow:hidden;padding:12px 0;transform:rotate(-1.1deg) scale(1.02)}
+.mt{display:flex;gap:50px;width:max-content;animation:marq 26s linear infinite}
+.mt span{font-family:var(--fd);font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:1.05rem;white-space:nowrap;display:flex;align-items:center;gap:50px}
+.mt i{font-style:normal;opacity:.55}
+@keyframes marq{to{transform:translateX(-50%)}}
+.wsteps{padding:88px 6vw 100px}.wsteps .in{max-width:1240px;margin:0 auto}
+.wsteps h2{font-family:var(--fd);font-weight:700;font-size:clamp(2rem,4.5vw,3.3rem);text-transform:uppercase;margin-bottom:28px}
+.stepgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.wstep{border:1px solid var(--linv);border-radius:var(--r);padding:18px;background:var(--navy2)}
+.wstep .n{font-family:var(--fd);font-weight:800;font-size:2rem;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.wstep h4{font-family:var(--fd);font-weight:700;font-size:1.05rem;text-transform:uppercase;margin:8px 0 6px}
+.wstep p{font-size:.74rem;line-height:1.55;color:var(--minv)}
+@media(max-width:1000px){.stepgrid{grid-template-columns:1fr 1fr}}
+.wfoot{text-align:center;padding:0 6vw 90px}
+.scrollhint{position:absolute;left:6vw;bottom:24px;font-family:var(--fm);font-size:.64rem;letter-spacing:.25em;color:var(--minv);display:flex;align-items:center;gap:10px;z-index:2}
+.scrollhint .bar{width:1px;height:40px;background:linear-gradient(var(--cyan),transparent);animation:drip 1.8s ease infinite}
+@keyframes drip{0%{transform:scaleY(0);transform-origin:top}55%{transform:scaleY(1);transform-origin:top}56%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ============ APP SHELL ============ */
+#app{opacity:0;transition:opacity .45s}#app.show{opacity:1}
+.nav{position:sticky;top:0;z-index:150;background:rgba(2,31,56,.96);backdrop-filter:blur(10px);color:#fff;display:flex;align-items:center;gap:14px;padding:0 20px;height:56px;box-shadow:0 1px 0 var(--linv)}
+.wm{display:flex;align-items:baseline;gap:8px;cursor:pointer}
+.wm .d{font-family:var(--fd);font-weight:700;font-size:1rem}
+.wm .p{font-family:var(--fd);font-weight:700;font-size:.88rem;letter-spacing:.13em;color:var(--cyan)}
+.tabs{display:flex;gap:2px;margin-left:6px}
+.tabs button{background:transparent;border:0;color:rgba(255,255,255,.7);font-size:.75rem;font-weight:700;padding:8px 13px;border-radius:99px;cursor:pointer;transition:all .15s}
+.tabs button:hover{color:#fff;background:rgba(255,255,255,.07)}
+.tabs button.on{background:var(--cyan);color:var(--navy)}
+.nav .sp{flex:1}
+.nav select{background:var(--navy2);color:#fff;border:1px solid rgba(255,255,255,.28);border-radius:99px;padding:6px 12px;font-size:.78rem;cursor:pointer}
+.src{display:flex;align-items:center;gap:7px;font-family:var(--fm);font-size:.62rem;color:rgba(255,255,255,.7)}
+.src .dot{width:8px;height:8px;border-radius:50%;background:var(--warn)}
+.src .dot.live{background:#3BD07F;box-shadow:0 0 0 3px rgba(59,208,127,.2)}
+.aistat{display:flex;align-items:center;gap:6px;font-family:var(--fm);font-size:.6rem;color:var(--cyan);border:1px solid rgba(0,174,239,.3);padding:4px 10px;border-radius:99px}
+.aistat .d{width:6px;height:6px;border-radius:50%;background:var(--warn)}
+.aistat .d.ready{background:#3BD07F}
+#introLink{font-size:.72rem;color:rgba(255,255,255,.6);text-decoration:none;font-weight:600;cursor:pointer}
+#introLink:hover{color:var(--cyan)}
+@media(max-width:1200px){.tabs button{padding:8px 9px;font-size:.7rem}}
+@media(max-width:900px){.tabs{overflow-x:auto}.aistat span:last-child{display:none}}
+.wrap{max-width:1400px;margin:0 auto;padding:20px}
+.view{display:none;animation:fade .35s ease}
+.view.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.vhead{display:flex;align-items:baseline;gap:14px;margin-bottom:4px;flex-wrap:wrap}
+.vhead h2{font-family:var(--fd);font-weight:700;font-size:1.9rem;text-transform:uppercase;letter-spacing:.02em}
+.vhead .tag{margin-left:auto;font-family:var(--fm);font-size:.62rem;color:var(--muted);text-align:right}
+.vhead .tag b{color:var(--blue);font-weight:500}
+.vlead{color:var(--muted);font-size:.86rem;max-width:700px;margin-bottom:16px;line-height:1.6}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);min-width:0}
+.ph{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.ph h3{font-family:var(--fd);font-size:.92rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.pb{padding:16px}
+.mono{font-family:var(--fm);font-size:.64rem;color:var(--muted)}
+.btn{background:var(--blue);color:#fff;border:0;border-radius:99px;padding:9px 18px;font-size:.76rem;font-weight:700;cursor:pointer;transition:.15s}
+.btn:hover{background:#004C8E;transform:translateY(-1px)}
+.btn.gh{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.btn.gh:hover{color:var(--blue);border-color:var(--blue)}
+.btn.red{background:var(--bad)}.btn.red:hover{background:#8F2E24}
+.btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.grid2{display:grid;grid-template-columns:1.15fr 1fr;gap:16px}
+.grid2r{display:grid;grid-template-columns:1fr 1.15fr;gap:16px}
+@media(max-width:1020px){.grid2,.grid2r{grid-template-columns:1fr}}
+
+/* KPI */
+.kband{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:20px}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:15px 18px;position:relative;overflow:hidden}
+.kpi::after{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--grad)}
+.kpi .l{font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.kpi .v{font-family:var(--fd);font-weight:800;font-size:1.8rem;line-height:1.1;color:var(--navy);margin-top:4px}
+.kpi .v small{font-size:.5em;color:var(--muted);font-weight:700}
+@media(max-width:1100px){.kband{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:700px){.kband{grid-template-columns:1fr 1fr}}
+
+/* maps + hotspots */
+#leafletMap{height:440px;border-radius:9px;background:#E9EEF1;z-index:1}
+#riskSvg{width:100%;height:auto;display:none;background:#E9EEF1;border-radius:9px}
+.zlab{font-family:var(--fd);font-weight:600;font-size:12px;fill:var(--ink);text-transform:uppercase}
+.zsub{font-family:var(--fm);font-size:9.5px;fill:#5B6B77}
+.hnode{cursor:pointer}
+.perils{display:flex;gap:8px;flex-wrap:wrap}
+.chip{border:1px solid var(--line);background:#fff;border-radius:99px;padding:5px 13px;font-size:.7rem;font-weight:700;cursor:pointer;color:var(--muted);transition:.15s}
+.chip:hover{border-color:var(--blue);color:var(--blue)}
+.chip.on{background:var(--blue);border-color:var(--blue);color:#fff}
+.htable{width:100%;border-collapse:collapse;font-size:.78rem}
+.htable th{text-align:left;font-size:.58rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);padding:8px;border-bottom:1px solid var(--line)}
+.htable td{padding:9px 8px;border-bottom:1px solid #EDF1F4}
+.hrow{cursor:pointer}.hrow:hover{background:#F6FAFC}
+.hrow.sel{background:#EFF6FB;box-shadow:inset 3px 0 0 var(--blue)}
+.pr{font-family:var(--fd);font-weight:800;font-size:1.05rem}
+.bandpill{font-size:.58rem;font-weight:700;padding:2px 8px;border-radius:99px;background:#EAF2EC;color:var(--ok)}
+.minibar{height:5px;background:#EDF1F4;border-radius:3px;overflow:hidden;min-width:60px}
+.minibar i{display:block;height:100%;background:var(--grad);border-radius:3px;transition:width .5s}
+.hdetail{border-top:1px solid var(--line);padding:13px 16px;background:#F8FBFD;border-radius:0 0 var(--r) var(--r);font-size:.74rem;display:flex;gap:22px;flex-wrap:wrap}
+.hdetail b{display:block;font-size:.56rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:2px}
+
+/* ============ CAMERA WALL ============ */
+.wallgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(228px,1fr));gap:14px}
+.camcard{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:#fff;cursor:pointer;transition:.2s}
+.camcard:hover{box-shadow:0 10px 30px rgba(2,31,56,.12);transform:translateY(-2px)}
+.camcard.sel{border-color:var(--blue);box-shadow:0 0 0 2px rgba(0,91,170,.18)}
+.camthumb{position:relative;aspect-ratio:16/10;background:#0B1622;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.camthumb img,.camthumb video,.camthumb canvas{width:100%;height:100%;object-fit:cover;display:block}
+.camthumb .noise{position:absolute;inset:0;opacity:.5;background:
+  repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 1px,transparent 1px 3px)}
+.camthumb .idle{position:absolute;font-family:var(--fm);font-size:.62rem;color:#4C6B80;letter-spacing:.14em}
+.camthumb .live{position:absolute;top:8px;left:8px;display:flex;align-items:center;gap:5px;font-family:var(--fm);font-size:.56rem;color:#fff;background:rgba(176,58,46,.9);padding:3px 8px;border-radius:99px;letter-spacing:.1em}
+.camthumb .live i{width:6px;height:6px;border-radius:50%;background:#fff;animation:blink 1.2s infinite}
+@keyframes blink{50%{opacity:.25}}
+.camthumb .mode{position:absolute;top:8px;right:8px;font-family:var(--fm);font-size:.54rem;padding:3px 8px;border-radius:99px;letter-spacing:.08em;background:rgba(255,255,255,.9);color:var(--warn);font-weight:700}
+.camthumb .mode.NORMAL{color:var(--ok)}
+.camthumb .det{position:absolute;bottom:8px;left:8px;font-family:var(--fm);font-size:.56rem;color:#8FD8F5;text-shadow:0 1px 3px #000}
+.caminfo{padding:11px 13px}
+.caminfo .hh{font-weight:700;font-size:.82rem}
+.caminfo .sb{font-size:.7rem;color:var(--muted);margin-top:1px}
+.caminfo .row{display:flex;justify-content:space-between;align-items:center;margin-top:8px;font-family:var(--fm);font-size:.62rem;color:var(--muted)}
+.trustnum{font-family:var(--fd);font-weight:800;font-size:.95rem}
+.trust-ok{color:var(--ok)}.trust-warn{color:var(--warn)}.trust-bad{color:var(--bad)}
+
+/* live stage */
+.stage{position:relative;background:#0B1622;border-radius:var(--r);overflow:hidden}
+.stage video,.stage img{display:block;width:100%;height:auto;max-height:62vh;object-fit:contain;background:#0B1622}
+.stage canvas.ov{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.stage .hud{position:absolute;top:10px;left:12px;right:12px;display:flex;justify-content:space-between;gap:10px;font-family:var(--fm);font-size:.6rem;color:#8FD8F5;letter-spacing:.1em;text-shadow:0 1px 3px #000;pointer-events:none}
+.stage .hudb{position:absolute;bottom:10px;left:12px;right:12px;display:flex;justify-content:space-between;gap:10px;font-family:var(--fm);font-size:.6rem;color:#8FD8F5;text-shadow:0 1px 3px #000;pointer-events:none}
+.stage .empty{padding:70px 20px;text-align:center;color:#4C6B80;font-family:var(--fm);font-size:.72rem;letter-spacing:.1em}
+.stagebar{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin-top:12px}
+.aichips{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+.aichip{font-family:var(--fm);font-size:.62rem;padding:4px 10px;border-radius:99px;background:#EFF6FB;color:var(--blue);border:1px solid #D6E6F2}
+.aichip.on{background:var(--blue);color:#fff;border-color:var(--blue)}
+.dropzone{border:2px dashed var(--line);border-radius:var(--r);padding:26px;text-align:center;background:#F8FBFD;transition:.2s;cursor:pointer}
+.dropzone.hot{border-color:var(--cyan);background:#EFF9FE}
+.dropzone h4{font-family:var(--fd);font-weight:700;font-size:1.1rem;text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px}
+.dropzone p{font-size:.75rem;color:var(--muted);line-height:1.6}
+.proc{margin-top:12px}
+.procbar{height:6px;background:#EDF1F4;border-radius:4px;overflow:hidden}
+.procbar i{display:block;height:100%;background:var(--grad);width:0;transition:width .2s}
+.loglines{font-family:var(--fm);font-size:.64rem;color:var(--muted);line-height:1.9;max-height:150px;overflow:auto;margin-top:8px}
+.loglines b{color:var(--ok)}.loglines .f{color:var(--bad)}.loglines .i{color:var(--blue)}
+.detlist{max-height:210px;overflow:auto}
+.detrow{display:flex;justify-content:space-between;gap:10px;font-family:var(--fm);font-size:.66rem;padding:6px 0;border-bottom:1px dashed #EDF1F4;color:var(--muted)}
+.detrow b{color:var(--ink);font-weight:600}
+.sigrow{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
+@media(max-width:900px){.sigrow{grid-template-columns:1fr 1fr}}
+.sig{border:1px solid var(--line);border-radius:9px;padding:11px 12px;background:#fff}
+.sig h5{font-size:.56rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+.sig .kv{display:flex;justify-content:space-between;font-size:.72rem;padding:2px 0;gap:8px}
+.sig .kv span{color:var(--muted)}.sig .kv b{font-weight:600;text-align:right}
+.sig img{width:100%;border-radius:6px;margin-bottom:7px;border:1px solid var(--line)}
+.swatch{display:inline-block;width:11px;height:11px;border-radius:3px;border:1px solid rgba(0,0,0,.15);vertical-align:-1px;margin-right:5px}
+.plate{display:inline-flex;align-items:center;background:#FDFDFB;border:1.5px solid #1c1c1c;border-radius:4px;padding:2px 8px;gap:7px;font-family:var(--fd);font-weight:700;letter-spacing:.09em;color:#101010;font-size:.86rem;box-shadow:inset 0 -2px 0 rgba(0,0,0,.06)}
+.plate .prov{font-size:.56rem;color:#1c4b8f;border-left:1px solid #c9c9c2;padding-left:6px;font-weight:700}
+.qbox{border:1px solid var(--line);border-radius:9px;padding:12px 14px;background:#fff;margin-top:12px}
+.qbox h5{font-size:.56rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:9px}
+.brow{display:grid;grid-template-columns:96px 1fr 38px;gap:9px;align-items:center;font-size:.7rem;margin-bottom:6px}
+.brow .bar{height:6px;background:#EDF1F4;border-radius:4px;overflow:hidden}
+.brow .bar i{display:block;height:100%;background:var(--grad);border-radius:4px;transition:width .5s}
+.brow b{font-family:var(--fm);font-weight:500;text-align:right}
+.evitem{padding:11px 15px;border-bottom:1px solid var(--line);cursor:pointer}
+.evitem:hover{background:#F6FAFC}
+.evitem.sel{background:#EFF6FB;box-shadow:inset 3px 0 0 var(--blue)}
+.evitem .et{display:flex;justify-content:space-between;gap:8px;font-family:var(--fm);font-size:.62rem;color:var(--muted);margin-bottom:3px}
+.evitem .ed{font-size:.75rem;font-weight:600}
+.srcpill{font-size:.52rem;font-weight:800;letter-spacing:.08em;padding:2px 7px;border-radius:99px;background:#EFF6FB;color:var(--blue)}
+.srcpill.LIVE{background:#FDECEA;color:var(--bad)}
+.srcpill.UPLOAD{background:#EAF2EC;color:var(--ok)}
+.modechip{font-size:.54rem;font-weight:800;letter-spacing:.08em;padding:2px 8px;border-radius:99px;background:#FBEFE4;color:var(--warn)}
+.modechip.NORMAL{background:#EAF2EC;color:var(--ok)}
+
+/* evidence graph */
+#graphSvg{width:100%;height:auto;display:block}
+.gnode{fill:#F8FBFD;stroke:var(--line)}
+.gtxt{font-family:var(--fm);font-size:11px;fill:var(--blue)}
+.gsub{font-family:var(--fb);font-size:9.5px;fill:#5B6B77}
+.cue{fill:#fff;stroke:var(--line)}
+.cuet{font-family:var(--fb);font-weight:700;font-size:10.5px;fill:var(--ink)}
+.cuev{font-family:var(--fm);font-size:9.5px;fill:#5B6B77}
+.glink{fill:none;stroke:url(#gs);stroke-width:1.6;opacity:.8}
+.scorebadge{font-family:var(--fd);font-weight:800;font-size:26px;fill:var(--navy)}
+.relbadge{font-family:var(--fm);font-size:9.5px;fill:var(--blue);letter-spacing:.06em}
+.jchip{display:inline-flex;gap:6px;align-items:center;font-size:.66rem;font-weight:700;border-radius:99px;padding:4px 12px;background:#EAF2EC;color:var(--ok)}
+.jchip.bad{background:#F6E4E1;color:var(--bad)}
+.reasons{display:grid;gap:5px;margin-top:10px}
+.reasons li{list-style:none;font-size:.74rem;padding-left:20px;position:relative}
+.reasons li::before{content:'✓';position:absolute;left:0;color:var(--ok);font-weight:700}
+.alertcard{border-left:4px solid var(--warn);background:#FFF9EE;border-radius:9px;padding:14px 16px}
+.alertcard.HIGH{border-color:var(--bad);background:#FDF3F1}
+.alertcard .prio{font-family:var(--fd);font-weight:800;font-size:1.25rem}
+.stpill{font-size:.56rem;font-weight:800;letter-spacing:.08em;padding:3px 10px;border-radius:99px;background:#FBF0DD;color:var(--warn);text-transform:uppercase}
+.stamp{margin-top:11px;display:inline-block;border:1.5px dashed var(--bad);color:var(--bad);font-family:var(--fd);font-weight:700;letter-spacing:.12em;font-size:.68rem;padding:5px 12px;border-radius:6px;transform:rotate(-1.5deg)}
+.matchcards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:12px}
+@media(max-width:900px){.matchcards{grid-template-columns:1fr}}
+.match{border:1px solid var(--line);border-radius:9px;padding:12px 13px;background:#fff}
+.match h5{font-size:.58rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+.match .stg{font-family:var(--fd);font-weight:800;font-size:1.15rem}
+.match.HIGH .stg{color:var(--ok)}.match.NONE .stg{color:var(--muted)}.match.MEDIUM .stg,.match.LOW .stg{color:var(--warn)}
+.match li{list-style:none;font-size:.66rem;color:var(--muted);padding-left:12px;position:relative;margin-bottom:3px}
+.match li::before{content:'—';position:absolute;left:0}
+.facepair{display:flex;gap:10px;align-items:center;margin-top:8px}
+.facepair img{width:58px;height:58px;object-fit:cover;border-radius:8px;border:2px solid var(--line)}
+.facepair .arr{font-family:var(--fd);font-weight:800;color:var(--ok)}
+/* rewind */
+.tl{position:relative;padding-left:24px}
+.tl::before{content:'';position:absolute;left:7px;top:4px;bottom:4px;width:2px;background:linear-gradient(var(--cyan),var(--violet))}
+.tli{position:relative;border:1px solid var(--line);border-radius:var(--r);background:#fff;padding:12px 15px;margin-bottom:11px}
+.tli::before{content:'';position:absolute;left:-21px;top:15px;width:10px;height:10px;border-radius:50%;background:var(--blue);border:2px solid #fff;box-shadow:0 0 0 2px var(--blue)}
+.tli .t{display:flex;justify-content:space-between;gap:10px;font-family:var(--fm);font-size:.64rem;color:var(--muted);margin-bottom:5px;flex-wrap:wrap}
+.tli .d{font-size:.78rem;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.rele{display:flex;align-items:center;gap:8px;margin-top:8px}
+.rele .minibar{flex:1}.rele span{font-family:var(--fm);font-size:.62rem;color:var(--muted)}
+/* patrol */
+#patSvg{width:100%;height:auto;display:block;background:#E9EEF1;border-radius:9px}
+.controls{display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap}
+.controls label{display:block;font-size:.56rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+.controls input,.controls select{border:1px solid var(--line);border-radius:9px;padding:8px 10px;font-size:.8rem;background:#fff;width:112px}
+.heroKPI{background:var(--navy);color:#fff;border-radius:var(--r);padding:18px 22px;margin-bottom:13px;position:relative;overflow:hidden}
+.heroKPI::before{content:'';position:absolute;inset:0;background:radial-gradient(600px 200px at 90% -20%,rgba(0,174,239,.18),transparent)}
+.heroKPI .big{font-family:var(--fd);font-weight:800;font-size:clamp(1.9rem,4vw,2.9rem);line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;position:relative}
+.heroKPI .lab{font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--minv);font-weight:700;position:relative}
+.heroKPI .form{font-family:var(--fm);font-size:.58rem;color:var(--minv);margin-top:7px;position:relative}
+.saves{display:flex;gap:26px;flex-wrap:wrap;margin-top:11px;position:relative}
+.saves .b{font-family:var(--fd);font-weight:800;font-size:1.3rem;color:#fff}
+.saves .s{font-size:.54rem;letter-spacing:.08em;text-transform:uppercase;color:var(--minv);font-weight:700}
+.rcards{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.rcard{border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;background:#F8FBFD;font-size:.74rem;line-height:1.7}
+.rcard b{font-family:var(--fd);font-size:.92rem;text-transform:uppercase}
+.rcard.best{border-color:#BFD9CB;background:#F3F9F5}
+.leg{display:flex;gap:14px;font-size:.66rem;color:var(--muted);padding:10px 4px 0;flex-wrap:wrap}
+.leg .sw{width:22px;height:3px;display:inline-block;border-radius:2px;margin-right:6px;vertical-align:middle}
+.footnote{margin:34px 0 20px;font-family:var(--fm);font-size:.62rem;color:var(--muted);line-height:1.8;border-top:1px solid var(--line);padding-top:14px}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}.mt,.scrollhint .bar,.camthumb .live i{animation:none}}
+</style>
+</head>
+<body>
+<!-- ===================== WELCOME ===================== -->
+<div id="welcome">
+  <section class="hero">
+    <svg id="hgrid" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"></svg>
+    <div class="in">
+      <span class="kick" id="kick"><i></i>DISCOVERY GRADHACK 2026 · AI FOR SAFER COMMUNITIES</span>
+      <h1 class="ht"><span class="row"><span class="o" data-line>SENTINEL</span></span>
+        <span class="row"><span class="f" data-line>MESH</span></span></h1>
+      <p class="hs" id="hs">Demo-ready AI for a controlled participating-camera pilot. Claims decide where attention goes, computer vision turns footage into evidence, and repeat patterns surface for human review.</p>
+      <div class="hcta" id="hcta">
+        <button class="cta solid" id="enterBtn">Open operations</button>
+        <a class="cta gh" href="#howworks">How the AI works</a>
+      </div>
+    </div>
+    <div class="usps" id="usps">
+      <div class="usp"><div class="n">USP 01</div><h4>Claims-directed cameras</h4><p>Claims risk decides which cameras run in heightened mode, and when.</p></div>
+      <div class="usp"><div class="n">USP 02</div><h4>Repeat-evidence graph</h4><p>Faces, plates, vehicles, appearance and journey plausibility — never one weak match.</p></div>
+      <div class="usp"><div class="n">USP 03</div><h4>Incident Time Machine</h4><p>A claim automatically retrieves and orders the relevant camera events.</p></div>
+      <div class="usp"><div class="n">USP 04</div><h4>Risk per kilometre</h4><p>Patrols optimise protected risk per kilometre — coverage and fuel, not distance.</p></div>
+    </div>
+    <div class="scrollhint"><span class="bar"></span>SCROLL</div>
+  </section>
+  <div class="marq" aria-hidden="true"><div class="mt">
+    <span>LIVE CAMERA AI <i>→</i> FACE + PLATE + VEHICLE <i>→</i> EVIDENCE GRAPH <i>→</i> HUMAN REVIEW <i>→</i> PATROL <i>→</i> OUTCOME <i>→</i></span>
+    <span>LIVE CAMERA AI <i>→</i> FACE + PLATE + VEHICLE <i>→</i> EVIDENCE GRAPH <i>→</i> HUMAN REVIEW <i>→</i> PATROL <i>→</i> OUTCOME <i>→</i></span>
+  </div></div>
+  <section class="wsteps" id="howworks"><div class="in">
+    <h2>Where the AI actually runs</h2>
+    <div class="stepgrid">
+      <div class="wstep reveal"><div class="n">01</div><h4>Risk model</h4><p>Frequency, severity, recency and peak-time components score every geofence from five years of Discovery claims fused with SAPS context.</p></div>
+      <div class="wstep reveal"><div class="n">02</div><h4>On-camera vision</h4><p>COCO-SSD object detection and BlazeFace face detection run in the browser on live doorbell feeds — person, vehicle and face boxes at frame rate.</p></div>
+      <div class="wstep reveal"><div class="n">03</div><h4>Server pipeline</h4><p>Uploaded footage runs the full Python stack: YuNet faces, licence-plate detection with OCR, vehicle colour and type, quality-weighted trust scoring.</p></div>
+      <div class="wstep reveal"><div class="n">04</div><h4>Evidence matching</h4><p>Multi-signal comparison across cameras with a journey-plausibility filter produces a scored, explainable candidate link.</p></div>
+      <div class="wstep reveal"><div class="n">05</div><h4>Optimisation</h4><p>Risk-weighted routing maximises protected risk per kilometre, and every review outcome tunes the thresholds.</p></div>
+    </div>
+  </div></section>
+  <div class="wfoot"><button class="cta solid" id="enterBtn2">Open operations →</button></div>
+</div>
+
+<!-- ===================== APP ===================== -->
+<div id="app">
+<nav class="nav">
+  <span class="wm" id="wmHome"><span class="d">Discovery</span><span class="p">·&nbsp;SENTINEL</span></span>
+  <div class="tabs" id="tabs">
+    <button data-v="overview" class="on">Overview</button>
+    <button data-v="cameras">Cameras</button>
+    <button data-v="live">Live AI</button>
+    <button data-v="evidence">Evidence</button>
+    <button data-v="rewind">Rewind</button>
+    <button data-v="patrol">Patrol</button>
+  </div>
+  <div class="sp"></div>
+  <span class="aistat"><span class="d" id="aiDot"></span><span id="aiTxt">AI loading…</span></span>
+  <select id="metro" aria-label="Pilot metro"></select>
+  <span class="src"><span class="dot" id="srcDot"></span><span id="srcTxt">…</span></span>
+  <a id="introLink">Intro</a>
+</nav>
+
+<main class="wrap">
+
+  <!-- ---------- OVERVIEW ---------- -->
+  <section class="view on" id="v-overview">
+    <div class="vhead"><h2>Overview</h2><span class="tag">USP 01 · <b>claims-directed camera intelligence</b></span></div>
+    <p class="vlead">Frequency, severity, recency and peak-time scored separately — the suburb with the most incidents is not the one losing the most money. Camera locations and live media in this POC are synthetic or consented.</p>
+    <div class="kband">
+      <div class="kpi"><div class="l">Hotspots</div><div class="v" id="kHot">—</div></div>
+      <div class="kpi"><div class="l">Claims represented</div><div class="v" id="kClaims">—</div></div>
+      <div class="kpi"><div class="l">Total claim value</div><div class="v" id="kValue">—</div></div>
+      <div class="kpi"><div class="l">Demo cameras configured</div><div class="v" id="kCams">—</div></div>
+      <div class="kpi"><div class="l">Events captured</div><div class="v" id="kEvents">—</div></div>
+    </div>
+    <div class="panel" style="margin-bottom:16px">
+      <div class="ph"><h3>Demo controls</h3><span class="mono">safe synthetic fixtures</span></div>
+      <div class="pb" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+        <button class="btn" id="seedDemo">Seed live demo state</button>
+        <button class="btn gh" id="resetDemo">Reset demo state</button>
+        <span class="mono" id="demoCtlStatus">Claims hotspots remain unchanged.</span>
+      </div>
+    </div>
+    <div class="grid2">
+      <div class="panel">
+        <div class="ph"><h3>Risk &amp; camera map</h3><span class="mono" id="mapSrc"></span></div>
+        <div class="pb" style="padding:10px">
+          <div id="leafletMap"></div><svg id="riskSvg" viewBox="0 0 660 440"></svg>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="ph"><h3>Hotspot priorities</h3><div class="perils" id="perils"></div></div>
+        <div class="pb" style="padding:6px 10px 0">
+          <table class="htable"><thead><tr><th>Area</th><th>Peril</th><th>Claims</th><th>Priority</th><th></th></tr></thead>
+          <tbody id="hotRows"></tbody></table>
+        </div>
+        <div class="hdetail" id="hotDetail"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- CAMERAS ---------- -->
+  <section class="view" id="v-cameras">
+    <div class="vhead"><h2>Camera network</h2><span class="tag">participating doorbell cameras · <b>adaptive edge mode from claims risk</b></span></div>
+    <p class="vlead">The POC uses a clearly labelled demonstration roster of participating households and cameras. Its processing mode is set by the claims risk of the geofence it sits in — heightened cameras run deeper face, plate and vehicle analysis; normal cameras stay on light motion detection.</p>
+    <div class="panel" style="margin-bottom:16px">
+      <div class="ph"><h3>Demo households</h3><span class="mono" id="wallMeta"></span></div>
+      <div class="pb"><div class="wallgrid" id="wall"></div></div>
+    </div>
+    <div class="panel">
+      <div class="ph"><h3 id="camTitle">Camera detail</h3><span class="mono" id="camMeta"></span></div>
+      <div class="pb" id="camDetail"></div>
+    </div>
+  </section>
+
+  <!-- ---------- LIVE AI ---------- -->
+  <section class="view" id="v-live">
+    <div class="vhead"><h2>Live AI</h2><span class="tag">browser demo vision · <b>COCO-SSD objects + BlazeFace faces</b></span></div>
+    <p class="vlead">Attach a real camera feed to any participating household, or upload footage from any location. Detection runs live in the browser; uploads can additionally be processed by the full Python pipeline for licence-plate OCR.</p>
+    <div class="grid2">
+      <div class="panel">
+        <div class="ph">
+          <h3>Feed</h3>
+          <select id="feedCam" style="border:1px solid var(--line);border-radius:9px;padding:6px 10px;font-size:.76rem"></select>
+        </div>
+        <div class="pb">
+          <div class="stage" id="stage"><div class="empty">NO FEED ATTACHED — START A CAMERA OR LOAD FOOTAGE</div></div>
+          <div class="stagebar">
+            <button class="btn" id="startCam">Start live camera</button>
+            <button class="btn gh" id="stopCam" disabled>Stop</button>
+            <button class="btn gh" id="snapBtn" disabled>Capture event</button>
+            <label class="btn gh" style="cursor:pointer">Load footage<input type="file" id="fileIn" accept="video/*,image/*" hidden></label>
+          </div>
+          <div class="aichips" id="aichips">
+            <span class="aichip" id="chipObj">objects: idle</span>
+            <span class="aichip" id="chipFace">faces: idle</span>
+            <span class="aichip" id="chipFps">— fps</span>
+            <span class="aichip" id="chipMode">mode: —</span>
+          </div>
+          <div class="dropzone" id="drop" style="margin-top:12px">
+            <h4>Drop footage here</h4>
+            <p>Any video or image from any location. Detection runs frame by frame in the browser; with the backend connected it also runs the full sentinel-camera-ai pipeline for plate OCR and trust scoring.</p>
+          </div>
+          <div class="proc" id="proc" style="display:none">
+            <div class="procbar"><i id="procFill"></i></div>
+            <div class="loglines" id="procLog"></div>
+          </div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="ph"><h3>Detections</h3><span class="mono" id="detMeta"></span></div>
+        <div class="pb">
+          <div class="detlist" id="detList"><p class="mono">Nothing detected yet.</p></div>
+          <div class="sigrow" id="liveSig"></div>
+          <div class="qbox"><h5>Frame quality → camera trust</h5><div id="liveQ"></div></div>
+          <div style="margin-top:12px;display:flex;gap:9px;flex-wrap:wrap">
+            <button class="btn" id="pushEvents" disabled>Send events to operations</button>
+            <button class="btn gh" id="serverPipe" disabled>Run server pipeline on file</button>
+          </div>
+          <p class="mono" style="margin-top:10px;line-height:1.7">Browser vision detects people, vehicles and faces and derives appearance colours. Licence-plate OCR, YuNet face embeddings and calibrated trust scoring run server-side in the Python pipeline.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- EVIDENCE ---------- -->
+  <section class="view" id="v-evidence">
+    <div class="vhead"><h2>Evidence</h2><span class="tag">USP 02 · <b>multi-signal repeat-evidence graph</b></span></div>
+    <p class="vlead">Every captured event — recorded, uploaded or live — lands here. Compare any two events across cameras: the graph scores each cue separately and applies a journey-plausibility filter before anything reaches a reviewer.</p>
+    <div class="grid2">
+      <div class="panel">
+        <div class="ph"><h3>Event store</h3><span class="mono" id="storeMeta"></span></div>
+        <div id="evList" style="max-height:330px;overflow:auto"></div>
+        <div class="pb" style="border-top:1px solid var(--line)">
+          <div class="mono" style="margin-bottom:8px">Compare two events</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+            <select id="cmpA" style="border:1px solid var(--line);border-radius:9px;padding:7px;font-size:.74rem;max-width:46%"></select>
+            <select id="cmpB" style="border:1px solid var(--line);border-radius:9px;padding:7px;font-size:.74rem;max-width:46%"></select>
+            <button class="btn" id="cmpRun">Compare</button>
+          </div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="ph"><h3 id="dvTitle">Detection viewer</h3><span class="mono" id="dvMeta"></span></div>
+        <div class="pb">
+          <div class="stage" id="dvStage"></div>
+          <div class="sigrow" id="sigrow"></div>
+          <div class="qbox"><h5>Quality metrics · trust <span id="trustHead"></span></h5><div id="qbars"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="grid2" style="margin-top:16px">
+      <div class="panel">
+        <div class="ph"><h3>Evidence graph</h3><span class="mono" id="evPair"></span></div>
+        <div class="pb" style="padding:10px 10px 16px">
+          <svg id="graphSvg" viewBox="0 0 640 330"></svg>
+          <div style="display:flex;justify-content:center;margin-top:6px"><span class="jchip" id="evJourney"></span></div>
+          <ul class="reasons" id="evReasons" style="padding:0 10px"></ul>
+          <div class="matchcards" id="matchcards"></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="ph"><h3>Human-review alert</h3><span class="stpill" id="alStatus"></span></div>
+        <div class="pb">
+          <div class="alertcard" id="alCard">
+            <div class="prio" id="alPrio"></div>
+            <div class="mono" id="alMeta" style="margin-top:4px"></div>
+            <ul class="reasons" id="alReasons" style="margin-top:10px"></ul>
+            <span class="stamp">HUMAN REVIEW REQUIRED — NO AUTO-DISPATCH</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- REWIND ---------- -->
+  <section class="view" id="v-rewind">
+    <div class="vhead"><h2>Incident Time Machine</h2><span class="tag">USP 03 · <b>claim-triggered evidence retrieval</b></span></div>
+    <p class="vlead">A submitted claim becomes an automatic search across nearby cameras — the minutes that matter, in order, ranked by relevance.</p>
+    <div class="panel">
+      <div class="ph"><h3 id="tmHead">Timeline</h3><span class="mono" id="tmWindow"></span></div>
+      <div class="pb"><div class="tl" id="tmList"></div><div class="mono" id="tmSummary"></div></div>
+    </div>
+  </section>
+
+  <!-- ---------- PATROL ---------- -->
+  <section class="view" id="v-patrol">
+    <div class="vhead"><h2>Patrol optimisation</h2><span class="tag">USP 04 · <b>protected risk per kilometre</b></span></div>
+    <p class="vlead">The baseline visits the highest-ranked risks without considering geography. Sentinel Mesh balances risk and distance to protect more useful risk per kilometre — with fuel impact shown beside it.</p>
+    <div class="grid2r">
+      <div class="panel">
+        <div class="ph"><h3>Route economics</h3>
+          <div class="controls">
+            <div><label for="fuelEcon">Fuel L/100km</label><input id="fuelEcon" type="number" min="5" max="20" step="0.5" value="10"></div>
+            <div><label for="maxStops">Max stops</label><select id="maxStops"><option>3</option><option>4</option><option>5</option><option>6</option><option value="">All</option></select></div>
+            <button class="btn" id="applyRoute">Recalculate</button>
+          </div>
+        </div>
+        <div class="pb">
+          <div class="heroKPI">
+            <div class="big" id="prpkBig">—</div>
+            <div class="lab">Protected risk per kilometre · optimised route</div>
+            <div class="form">protected risk / km = total hotspot risk covered ÷ total route kilometres</div>
+            <div class="saves" id="saves"></div>
+          </div>
+          <div class="rcards"><div class="rcard" id="cardBase"></div><div class="rcard best" id="cardOpt"></div></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="ph"><h3>Route map</h3><span class="mono" id="routeMeta"></span></div>
+        <div class="pb" style="padding:10px">
+          <svg id="patSvg" viewBox="0 0 660 440"></svg>
+          <div class="leg">
+            <span><i class="sw" style="background:#9AA8B2"></i>Risk-ranked baseline</span>
+            <span><i class="sw" style="background:#005BAA"></i>Optimised</span>
+            <span><i class="sw" style="background:#021F38;width:10px;height:10px;border-radius:2px"></i>Depot</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <p class="footnote" id="footnote"></p>
+</main>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.20.0/dist/tf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.2.3/dist/coco-ssd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/blazeface@0.1.0/dist/blazeface.min.js"></script>
+<script id="allData" type="application/json">{"Gauteng":{"metro":"Gauteng","data_source":{"path":"/mnt/data/sentinel_mesh_complete_fixed/services/claims/data/curated/hotspots.json","live_branch_output":true,"source":"cassoojee-live","note":"SAPS values in the supplied claims output are historical corroboration, not a live SAPS incident feed."},"claims_summary":{"hotspot_count":7,"claim_count":400,"total_claim_value":51660495.0,"top_hotspot":"Bryanston","top_operational_priority":66.0},"depot":{"hotspot_id":"H003","name":"Bryanston","location":{"latitude":-26.0514,"longitude":28.0281}},"hotspots":[{"hotspot_id":"H003","name":"Bryanston","location":{"latitude":-26.0514,"longitude":28.0281},"risk_score":84.0,"claims_risk_score":84.0,"main_peril":"Home Invasion","peak_window":{"days":["Friday"],"start":"12:00","end":"15:00"},"geofence_radius_km":1.5,"saps_context_score":12.2,"camera_coverage_score":null,"response_success_score":null,"operational_priority":66.0,"metro":"Gauteng","confidence_score":90.0,"confidence_band":"HIGH","claim_count":89,"total_claim_value":9454547.0,"primary_driver":"frequency","saps_year":"2015-2016","saps_corroborated":true,"source":"cassoojee-live"},{"hotspot_id":"H007","name":"Garsfontein","location":{"latitude":-25.7944,"longitude":28.3},"risk_score":58.0,"claims_risk_score":58.0,"main_peril":"Vehicle Theft","peak_window":{"days":["Saturday"],"start":"13:00","end":"16:00"},"geofence_radius_km":1.5,"saps_context_score":30.6,"camera_coverage_score":null,"response_success_score":null,"operational_priority":51.1,"metro":"Gauteng","confidence_score":76.0,"confidence_band":"HIGH","claim_count":57,"total_claim_value":10436499.0,"primary_driver":"severity","saps_year":"2015-2016","saps_corroborated":true,"source":"cassoojee-live"},{"hotspot_id":"H009","name":"Fourways","location":{"latitude":-26.0045,"longitude":28.0042},"risk_score":52.7,"claims_risk_score":52.7,"main_peril":"Vehicle Theft","peak_window":{"days":["Sunday"],"start":"17:00","end":"20:00"},"geofence_radius_km":1.5,"saps_context_score":11.6,"camera_coverage_score":null,"response_success_score":null,"operational_priority":42.4,"metro":"Gauteng","confidence_score":75.0,"confidence_band":"HIGH","claim_count":56,"total_claim_value":4261937.0,"primary_driver":"severity","saps_year":"2015-2016","saps_corroborated":true,"source":"cassoojee-live"},{"hotspot_id":"H012","name":"Menlo Park","location":{"latitude":-25.7697,"longitude":28.2556},"risk_score":45.4,"claims_risk_score":45.4,"main_peril":"Vehicle Theft","peak_window":{"days":["Saturday"],"start":"00:00","end":"03:00"},"geofence_radius_km":1.5,"saps_context_score":30.6,"camera_coverage_score":null,"response_success_score":null,"operational_priority":41.7,"metro":"Gauteng","confidence_score":70.0,"confidence_band":"HIGH","claim_count":42,"total_claim_value":8976320.0,"primary_driver":"severity","saps_year":"2015-2016","saps_corroborated":true,"source":"cassoojee-live"},{"hotspot_id":"H011","name":"Waterkloof Ridge","location":{"latitude":-25.7872,"longitude":28.2389},"risk_score":50.5,"claims_risk_score":50.5,"main_peril":"Home Invasion","peak_window":{"days":["Sunday"],"start":"01:00","end":"04:00"},"geofence_radius_km":1.5,"saps_context_score":9.7,"camera_coverage_score":null,"response_success_score":null,"operational_priority":40.3,"metro":"Gauteng","confidence_score":74.0,"confidence_band":"HIGH","claim_count":56,"total_claim_value":8466709.0,"primary_driver":"severity","saps_year":"2015-2016","saps_corroborated":false,"source":"cassoojee-live"},{"hotspot_id":"H010","name":"Bedfordview","location":{"latitude":-26.1764,"longitude":28.1425},"risk_score":52.4,"claims_risk_score":52.4,"main_peril":"Home Invasion","peak_window":{"days":["Friday"],"start":"14:00","end":"17:00"},"geofence_radius_km":1.5,"saps_context_score":0.0,"camera_coverage_score":null,"response_success_score":null,"operational_priority":39.3,"metro":"Gauteng","confidence_score":52.0,"confidence_band":"MEDIUM","claim_count":50,"total_claim_value":6873700.0,"primary_driver":"severity","saps_year":"2015-2016","saps_corroborated":false,"source":"cassoojee-live"},{"hotspot_id":"H014","name":"Centurion Central","location":{"latitude":-25.8364,"longitude":28.1803},"risk_score":28.1,"claims_risk_score":28.1,"main_peril":"Vehicle Theft","peak_window":{"days":["Saturday"],"start":"11:00","end":"14:00"},"geofence_radius_km":1.5,"saps_context_score":29.5,"camera_coverage_score":null,"response_success_score":null,"operational_priority":28.5,"metro":"Gauteng","confidence_score":52.0,"confidence_band":"MEDIUM","claim_count":50,"total_claim_value":3190783.0,"primary_driver":"severity","saps_year":"2015-2016","saps_corroborated":true,"source":"cassoojee-live"}],"evidence":{"first_event_id":"EVT001","second_event_id":"EVT002","score":85.2,"relationship":"HIGH_PRIORITY_REVIEW","components":{"plate":36.4,"face":19.7,"vehicle":15.0,"appearance":10.0,"journey":10.0,"camera_trust":81.5},"reasons":["Strong plate agreement","Face signal supports human review","Vehicle attributes agree","Visible appearance attributes agree","Journey is geographically plausible"],"journey_distance_km":0.802,"journey_plausible":true,"human_review_required":true},"alert":{"alert_id":"ALT-C7679D7E","event_id":"EVT002","priority":"HIGH","status":"PENDING_REVIEW","hotspot_id":"H003","evidence_score":85.2,"reasons":["Event is 0.80 km from hotspot H003","Outside peak-risk window","Evidence score is 85.2/100","Camera trust is 79.0/100"],"human_review_required":true},"timeline":{"claim_id":"CLM001","start_time":"2026-07-24T19:40:00+02:00","end_time":"2026-07-24T22:40:00+02:00","items":[{"event_id":"EVT001","timestamp":"2026-07-24T20:58:00+02:00","distance_from_claim_km":0.0,"relevance_score":96.3,"description":"AB 12 CD GP white sedan; relevance 96/100","media_url":"/evidence/EVT001.jpg"},{"event_id":"EVT002","timestamp":"2026-07-24T21:16:00+02:00","distance_from_claim_km":0.802,"relevance_score":91.2,"description":"AB12CDGP white sedan; relevance 91/100","media_url":"/evidence/EVT002.jpg"},{"event_id":"EVT003","timestamp":"2026-07-24T21:34:00+02:00","distance_from_claim_km":1.101,"relevance_score":88.3,"description":"AB12CDGP white sedan; relevance 88/100","media_url":"/evidence/EVT003.jpg"}],"summary":"Found 3 relevant events in the incident window."},"patrol":{"baseline":{"ordered_hotspot_ids":["H003","H007","H009"],"distance_km":82.882,"estimated_fuel_litres":8.288,"risk_covered":159.5,"coverage_percent":51.6,"protected_risk_per_km":1.924},"optimised":{"ordered_hotspot_ids":["H003","H009","H010"],"distance_km":47.308,"estimated_fuel_litres":4.731,"risk_covered":147.7,"coverage_percent":47.8,"protected_risk_per_km":3.122},"distance_saved_km":35.574,"fuel_saved_litres":3.557,"protected_risk_per_km_improvement_percent":62.3},"demo_notice":"Claims hotspots come from the cassoojee pipeline. Camera events and the claim used for evidence/rewind are synthetic demo fixtures until the camera workstream supplies live event JSON."},"Cape Town":{"metro":"Cape Town","data_source":{"path":"/mnt/data/sentinel_mesh_complete_fixed/services/claims/data/curated/hotspots.json","live_branch_output":true,"source":"cassoojee-live","note":"SAPS values in the supplied claims output are historical corroboration, not a live SAPS incident feed."},"claims_summary":{"hotspot_count":7,"claim_count":595,"total_claim_value":28160172.0,"top_hotspot":"Sea Point","top_operational_priority":73.7},"depot":{"hotspot_id":"H005","name":"Sea Point","location":{"latitude":-33.9172,"longitude":18.3922}},"hotspots":[{"hotspot_id":"H005","name":"Sea Point","location":{"latitude":-33.9172,"longitude":18.3922},"risk_score":64.9,"claims_risk_score":64.9,"main_peril":"Vehicle Theft","peak_window":{"days":["Sunday"],"start":"10:00","end":"13:00"},"geofence_radius_km":1.5,"saps_context_score":100.0,"camera_coverage_score":null,"response_success_score":null,"operational_priority":73.7,"metro":"Cape Town","confidence_score":84.0,"confidence_band":"HIGH","claim_count":78,"total_claim_value":4340394.0,"primary_driver":"frequency","saps_year":"2015-2016","saps_corroborated":true,"source":"cassoojee-live"},{"hotspot_id":"H006","name":"Cape Town City Centre","location":{"latitude":-33.9253,"longitude":18.4185},"risk_score":61.1,"claims_risk_score":61.1,"main_peril":"Vehicle Theft","peak_window":{"days":["Thursday"],"start":"14:00","end":"17:00"},"geofence_radius_km":1.5,"saps_context_score":100.0,"camera_coverage_score":null,"response_success_score":null,"operational_priority":70.8,"metro":"Cape Town","confidence_score":92.0,"confidence_band":"HIGH","claim_count":93,"total_claim_value":1343333.0,"primary_driver":"frequency","saps_year":"2015-2016","saps_corroborated":true,"source":"cassoojee-live"},{"hotspot_id":"H002","name":"Somerset West","location":{"latitude":-34.0822,"longitude":18.8489},"risk_score":84.7,"claims_risk_score":84.7,"main_peril":"Home Invasion","peak_window":{"days":["Sunday"],"start":"01:00","end":"04:00"},"geofence_radius_km":1.5,"saps_context_score":10.5,"camera_coverage_score":null,"response_success_score":null,"operational_priority":66.2,"metro":"Cape Town","confidence_score":77.0,"confidence_band":"HIGH","claim_count":107,"total_claim_value":6032135.0,"primary_driver":"frequency","saps_year":"2015-2016","saps_corroborated":false,"source":"cassoojee-live"},{"hotspot_id":"H001","name":"Rondebosch","location":{"latitude":-33.9681,"longitude":18.4878},"risk_score":84.8,"claims_risk_score":84.8,"main_peril":"Home Invasion","peak_window":{"days":["Saturday"],"start":"01:00","end":"04:00"},"geofence_radius_km":1.5,"saps_context_score":2.0,"camera_coverage_score":null,"response_success_score":null,"operational_priority":64.1,"metro":"Cape Town","confidence_score":76.0,"confidence_band":"HIGH","claim_count":102,"total_claim_value":5118796.0,"primary_driver":"frequency","saps_year":"2015-2016","saps_corroborated":false,"source":"cassoojee-live"},{"hotspot_id":"H004","name":"Newlands","location":{"latitude":-33.9743,"longitude":18.4573},"risk_score":74.3,"claims_risk_score":74.3,"main_peril":"Home Invasion","peak_window":{"days":["Thursday"],"start":"18:00","end":"21:00"},"geofence_radius_km":1.5,"saps_context_score":2.0,"camera_coverage_score":null,"response_success_score":null,"operational_priority":56.2,"metro":"Cape Town","confidence_score":64.0,"confidence_band":"MEDIUM","claim_count":76,"total_claim_value":7243880.0,"primary_driver":"frequency","saps_year":"2015-2016","saps_corroborated":false,"source":"cassoojee-live"},{"hotspot_id":"H008","name":"Claremont","location":{"latitude":-33.9847,"longitude":18.4625},"risk_score":55.4,"claims_risk_score":55.4,"main_peril":"Home Invasion","peak_window":{"days":["Saturday"],"start":"02:00","end":"05:00"},"geofence_radius_km":1.5,"saps_context_score":2.0,"camera_coverage_score":null,"response_success_score":null,"operational_priority":42.0,"metro":"Cape Town","confidence_score":65.0,"confidence_band":"MEDIUM","claim_count":82,"total_claim_value":2140231.0,"primary_driver":"frequency","saps_year":"2015-2016","saps_corroborated":false,"source":"cassoojee-live"},{"hotspot_id":"H013","name":"Table View","location":{"latitude":-33.8236,"longitude":18.4903},"risk_score":40.8,"claims_risk_score":40.8,"main_peril":"Home Invasion","peak_window":{"days":["Tuesday"],"start":"01:00","end":"04:00"},"geofence_radius_km":1.5,"saps_context_score":11.1,"camera_coverage_score":null,"response_success_score":null,"operational_priority":33.4,"metro":"Cape Town","confidence_score":57.0,"confidence_band":"MEDIUM","claim_count":57,"total_claim_value":1941403.0,"primary_driver":"frequency","saps_year":"2015-2016","saps_corroborated":false,"source":"cassoojee-live"}],"evidence":{"first_event_id":"EVT001","second_event_id":"EVT002","score":85.2,"relationship":"HIGH_PRIORITY_REVIEW","components":{"plate":36.4,"face":19.7,"vehicle":15.0,"appearance":10.0,"journey":10.0,"camera_trust":81.5},"reasons":["Strong plate agreement","Face signal supports human review","Vehicle attributes agree","Visible appearance attributes agree","Journey is geographically plausible"],"journey_distance_km":0.763,"journey_plausible":true,"human_review_required":true},"alert":{"alert_id":"ALT-EAFBD9BF","event_id":"EVT002","priority":"MEDIUM","status":"PENDING_REVIEW","hotspot_id":"H005","evidence_score":85.2,"reasons":["Event is 0.76 km from hotspot H005","Outside peak-risk window","Evidence score is 85.2/100","Camera trust is 79.0/100"],"human_review_required":true},"timeline":{"claim_id":"CLM001","start_time":"2026-07-24T19:40:00+02:00","end_time":"2026-07-24T22:40:00+02:00","items":[{"event_id":"EVT001","timestamp":"2026-07-24T20:58:00+02:00","distance_from_claim_km":0.0,"relevance_score":96.3,"description":"AB 12 CD GP white sedan; relevance 96/100","media_url":"/evidence/EVT001.jpg"},{"event_id":"EVT002","timestamp":"2026-07-24T21:16:00+02:00","distance_from_claim_km":0.763,"relevance_score":91.4,"description":"AB12CDGP white sedan; relevance 91/100","media_url":"/evidence/EVT002.jpg"},{"event_id":"EVT003","timestamp":"2026-07-24T21:34:00+02:00","distance_from_claim_km":1.038,"relevance_score":88.6,"description":"AB12CDGP white sedan; relevance 89/100","media_url":"/evidence/EVT003.jpg"}],"summary":"Found 3 relevant events in the incident window."},"patrol":{"baseline":{"ordered_hotspot_ids":["H005","H006","H002"],"distance_km":91.855,"estimated_fuel_litres":9.185,"risk_covered":210.7,"coverage_percent":51.8,"protected_risk_per_km":2.294},"optimised":{"ordered_hotspot_ids":["H005","H006","H004"],"distance_km":17.847,"estimated_fuel_litres":1.785,"risk_covered":200.7,"coverage_percent":49.4,"protected_risk_per_km":11.246},"distance_saved_km":74.008,"fuel_saved_litres":7.4,"protected_risk_per_km_improvement_percent":390.2},"demo_notice":"Claims hotspots come from the cassoojee pipeline. Camera events and the claim used for evidence/rewind are synthetic demo fixtures until the camera workstream supplies live event JSON."}}</script>
+<script id="camData" type="application/json">{"events":{"EVT-314D9D0C2C":{"schema_version":"1.0","event_id":"EVT-314D9D0C2C","camera_id":"CAM02","timestamp":"2026-07-24T21:07:04.666667+02:00","mode":"HEIGHTENED","location":{"latitude":-25.797,"longitude":28.301},"source_media":"/workspace/scratch/c9b13cc63ef4/sentinel-camera-ai/media/camera_2_clip.mp4","media_url":"evidence/EVT-314D9D0C2C/best_frame.jpg","frame_index":10,"motion_score":0.1134,"face":{"present":false,"count":0,"boxes":[],"crop_paths":[],"embedding_ref":null,"detection_confidence":null},"plate":{"text":"AB12CDGP","display_text":"AB12CD GP","box":{"x":146,"y":376,"width":207,"height":55},"crop_url":"evidence/EVT-314D9D0C2C/plate.jpg","detection_confidence":0.82,"ocr_confidence":0.91},"vehicle":{"colour":"Blue","type":"Car","make_model":null,"direction":"right","box":{"x":12,"y":246,"width":370,"height":206},"detection_confidence":0.676},"appearance":{"upper_colour":"Unknown","lower_colour":"Unknown","cap":null,"backpack":null,"person_box":null,"confidence":null},"camera_trust_score":78,"quality_metrics":{"sharpness":64,"lighting":100,"detection":70,"unobstructed":100,"resolution":63},"trust_reasons":["moderate motion blur","good lighting","moderate detections"],"model_versions":{"objects":"OpenCV colour/contour heuristic fallback","face":"OpenCV YuNet (face_detection_yunet_2023mar.onnx)","face_embedding":"OpenCV SFace","plate_detection":"OpenCV LPD-YuNet (license_plate_detection_lpd_yunet_2023mar.onnx) + contour","plate_ocr":"Tesseract 5"},"metadata":{"annotated_media_url":"evidence/EVT-314D9D0C2C/annotated_frame.jpg","observation_count":31,"plate_raw_text":"AB12CDGP","ocr_backend":"Tesseract 5","vehicle_colour_confidence":0.634,"quality_raw":{"laplacian_variance":374.62,"mean_brightness":118.57},"model_notes":["heuristic object detector used","contour plate detector used"],"possible_plate_in_vehicle":true}},"EVT-4ADFB703C2":{"schema_version":"1.0","event_id":"EVT-4ADFB703C2","camera_id":"CAM01","timestamp":"2026-07-24T21:07:03.333333+02:00","mode":"HEIGHTENED","location":{"latitude":-25.797,"longitude":28.301},"source_media":"/workspace/scratch/c9b13cc63ef4/sentinel-camera-ai/media/camera_1_clip.mp4","media_url":"evidence/EVT-4ADFB703C2/best_frame.jpg","frame_index":50,"motion_score":0.1308,"face":{"present":false,"count":0,"boxes":[],"crop_paths":[],"embedding_ref":null,"detection_confidence":null},"plate":{"text":"AB12CDGP","display_text":"AB12CD GP","box":{"x":639,"y":363,"width":207,"height":55},"crop_url":"evidence/EVT-4ADFB703C2/plate.jpg","detection_confidence":0.82,"ocr_confidence":0.91},"vehicle":{"colour":"Blue","type":"Car","make_model":null,"direction":"right","box":{"x":504,"y":234,"width":412,"height":210},"detection_confidence":0.68},"appearance":{"upper_colour":"Unknown","lower_colour":"Unknown","cap":null,"backpack":null,"person_box":null,"confidence":null},"camera_trust_score":79,"quality_metrics":{"sharpness":67,"lighting":100,"detection":70,"unobstructed":100,"resolution":63},"trust_reasons":["moderate motion blur","good lighting","moderate detections"],"model_versions":{"objects":"OpenCV colour/contour heuristic fallback","face":"OpenCV YuNet (face_detection_yunet_2023mar.onnx)","face_embedding":"OpenCV SFace","plate_detection":"OpenCV LPD-YuNet (license_plate_detection_lpd_yunet_2023mar.onnx) + contour","plate_ocr":"Tesseract 5"},"metadata":{"annotated_media_url":"evidence/EVT-4ADFB703C2/annotated_frame.jpg","observation_count":34,"plate_raw_text":"AB12CDGP","ocr_backend":"Tesseract 5","vehicle_colour_confidence":0.648,"quality_raw":{"laplacian_variance":486.86,"mean_brightness":134.92},"model_notes":["heuristic object detector used","contour plate detector used"],"possible_plate_in_vehicle":true}},"EVT-E1A0975120":{"schema_version":"1.0","event_id":"EVT-E1A0975120","camera_id":"CAM-FACE","timestamp":"2026-07-24T21:08:00+02:00","mode":"HEIGHTENED","location":{"latitude":-25.797,"longitude":28.301},"source_media":"/workspace/scratch/c9b13cc63ef4/sentinel-camera-ai/media/synthetic_face_fixture.png","media_url":"evidence/EVT-E1A0975120/best_frame.jpg","frame_index":0,"motion_score":0.0,"face":{"present":true,"count":1,"boxes":[{"x":411,"y":354,"width":423,"height":550}],"crop_paths":["evidence/EVT-E1A0975120/faces/face_0.jpg"],"embedding_ref":"evidence/EVT-E1A0975120/faces/face_0_embedding.npy","detection_confidence":0.8952178359031677},"plate":{"text":null,"display_text":null,"box":null,"crop_url":null,"detection_confidence":null,"ocr_confidence":null},"vehicle":{"colour":"Unknown","type":"Unknown","make_model":null,"direction":"stationary_or_unknown","box":null,"detection_confidence":null},"appearance":{"upper_colour":"Orange","lower_colour":"Orange","cap":null,"backpack":null,"person_box":{"x":364,"y":153,"width":519,"height":980},"confidence":0.743},"camera_trust_score":82,"quality_metrics":{"sharpness":52,"lighting":100,"detection":79,"unobstructed":100,"resolution":100},"trust_reasons":["moderate motion blur","good lighting","strong detections"],"model_versions":{"objects":"OpenCV colour/contour heuristic fallback","face":"OpenCV YuNet (face_detection_yunet_2023mar.onnx)","face_embedding":"OpenCV SFace","plate_detection":"OpenCV LPD-YuNet (license_plate_detection_lpd_yunet_2023mar.onnx) + contour","plate_ocr":"Tesseract 5"},"metadata":{"annotated_media_url":"evidence/EVT-E1A0975120/annotated_frame.jpg","observation_count":1,"plate_raw_text":null,"ocr_backend":"none","vehicle_colour_confidence":0.0,"quality_raw":{"laplacian_variance":124.88,"mean_brightness":116.1},"model_notes":[],"possible_plate_in_vehicle":null}},"EVT-F65E5D0A12":{"schema_version":"1.0","event_id":"EVT-F65E5D0A12","camera_id":"CAM-FACE-2","timestamp":"2026-07-24T21:09:00+02:00","mode":"HEIGHTENED","location":{"latitude":-25.797,"longitude":28.301},"source_media":"/workspace/scratch/c9b13cc63ef4/sentinel-camera-ai/media/synthetic_face_fixture.png","media_url":"evidence/EVT-F65E5D0A12/best_frame.jpg","frame_index":0,"motion_score":0.0,"face":{"present":true,"count":1,"boxes":[{"x":411,"y":354,"width":423,"height":550}],"crop_paths":["evidence/EVT-F65E5D0A12/faces/face_0.jpg"],"embedding_ref":"evidence/EVT-F65E5D0A12/faces/face_0_embedding.npy","detection_confidence":0.8952178359031677},"plate":{"text":null,"display_text":null,"box":null,"crop_url":null,"detection_confidence":null,"ocr_confidence":null},"vehicle":{"colour":"Unknown","type":"Unknown","make_model":null,"direction":"stationary_or_unknown","box":null,"detection_confidence":null},"appearance":{"upper_colour":"Orange","lower_colour":"Orange","cap":null,"backpack":null,"person_box":{"x":364,"y":153,"width":519,"height":980},"confidence":0.743},"camera_trust_score":82,"quality_metrics":{"sharpness":52,"lighting":100,"detection":79,"unobstructed":100,"resolution":100},"trust_reasons":["moderate motion blur","good lighting","strong detections"],"model_versions":{"objects":"OpenCV colour/contour heuristic fallback","face":"OpenCV YuNet (face_detection_yunet_2023mar.onnx)","face_embedding":"OpenCV SFace","plate_detection":"OpenCV LPD-YuNet (license_plate_detection_lpd_yunet_2023mar.onnx) + contour","plate_ocr":"Tesseract 5"},"metadata":{"annotated_media_url":"evidence/EVT-F65E5D0A12/annotated_frame.jpg","observation_count":1,"plate_raw_text":null,"ocr_backend":"none","vehicle_colour_confidence":0.0,"quality_raw":{"laplacian_variance":124.88,"mean_brightness":116.1},"model_notes":[],"possible_plate_in_vehicle":null}}},"comparisons":{"vehicle":{"event_a":"EVT-4ADFB703C2","event_b":"EVT-314D9D0C2C","possible_same_vehicle":{"value":true,"score":1.0,"evidence_strength":"HIGH","reasons":["plate similarity 1.00","vehicle colour matches","vehicle type matches"]},"possible_same_face":{"value":false,"score":0.0,"evidence_strength":"NONE","reasons":["one or both anonymous face embeddings unavailable"]},"possible_same_appearance":{"value":false,"score":0.0,"evidence_strength":"NONE","reasons":["upper clothing differs or unknown","lower clothing differs or unknown"]},"warnings":[]},"face":{"event_a":"EVT-E1A0975120","event_b":"EVT-F65E5D0A12","possible_same_vehicle":{"value":false,"score":0.0,"evidence_strength":"NONE","reasons":["one or both plates unavailable","vehicle colour differs","vehicle type differs"]},"possible_same_face":{"value":true,"score":1.0,"evidence_strength":"HIGH","reasons":["anonymous embedding similarity 1.00","minimum camera trust 82/100"]},"possible_same_appearance":{"value":true,"score":1.0,"evidence_strength":"HIGH","reasons":["upper clothing matches","lower clothing matches"]},"warnings":["vehicle result has weak evidence because a plate is missing"]}},"ops_events":[{"event_id":"EVT001","camera_id":"CAM01","timestamp":"2026-07-24T20:58:00+02:00","location":{"latitude":-26.1042,"longitude":28.0525},"media_url":"/evidence/EVT001.jpg","plate":{"text":"AB 12 CD GP","confidence":0.94},"face":{"reference_token":"CONSENTED_DEMO_FACE_A","embedding":[0.82,0.11,0.36,0.2],"confidence":0.82},"vehicle":{"colour":"white","type":"sedan","make":"demo","model":"model-a"},"appearance":{"upper_colour":"black","lower_colour":"blue","descriptor_token":"DEMO_APPEARANCE_A"},"camera_trust_score":84,"source":"synthetic-demo"},{"event_id":"EVT002","camera_id":"CAM02","timestamp":"2026-07-24T21:16:00+02:00","location":{"latitude":-26.092,"longitude":28.071},"media_url":"/evidence/EVT002.jpg","plate":{"text":"AB12CDGP","confidence":0.91},"face":{"reference_token":"CONSENTED_DEMO_FACE_A","embedding":[0.81,0.12,0.35,0.21],"confidence":0.79},"vehicle":{"colour":"white","type":"sedan","make":"demo","model":"model-a"},"appearance":{"upper_colour":"black","lower_colour":"blue","descriptor_token":"DEMO_APPEARANCE_A"},"camera_trust_score":79,"source":"synthetic-demo"},{"event_id":"EVT003","camera_id":"CAM03","timestamp":"2026-07-24T21:34:00+02:00","location":{"latitude":-26.118,"longitude":28.08},"media_url":"/evidence/EVT003.jpg","plate":{"text":"AB12CDGP","confidence":0.88},"vehicle":{"colour":"white","type":"sedan"},"camera_trust_score":73,"source":"synthetic-demo"},{"event_id":"EVT004","camera_id":"CAM04","timestamp":"2026-07-24T18:05:00+02:00","location":{"latitude":-26.14,"longitude":28.09},"media_url":"/evidence/EVT004.jpg","plate":{"text":"ZZ99ZZGP","confidence":0.95},"vehicle":{"colour":"red","type":"suv"},"camera_trust_score":91,"source":"synthetic-demo"}]}</script>
+<script id="mediaData" type="application/json">{"veh1_frame":"data:image/jpeg;base64,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","veh2_frame":"data:image/jpeg;base64,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","veh1_plate":"data:image/jpeg;base64,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","veh2_plate":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAA7AN8DASIAAhEBAxEB/8QAHQAAAgICAwEAAAAAAAAAAAAABwgACQEEAwUGAv/EAEkQAAECBAMDCQUFAwgLAAAAAAECAwAEBhEFByESMVYIExYXQZWk0tMUIlFhcTU3c7GzUoGRFSMmVZOhssEkMjM0NkJFVGJ1gv/EABkBAQEBAQEBAAAAAAAAAAAAAAAFBAYCAf/EACQRAQAABQIGAwAAAAAAAAAAAAABBAURMwJxAxIhMjSBJDFB/9oADAMBAAIRAxEAPwAQVb9nNfjDT9xhsOo7Lw76e17f9NmPUhT6s+zW/wAYfkYfuK1bj8n0wU/EGvUbl1w942Z9SMdRuXfD3jZn1IJcSJDcGnUbl3w942Z9SJ1G5d8PeNmfUgl9v1iaXgBp1G5d8PeNmfUiHI3Lsb6e8bM+pBGcmWGlbLjzSFfBSgIy2+y7fmnULtv2FA2+toAcdRuXfD3jZn1Iz1G5d8PeNmfUglXvqTcRO2AGnUbl1w942Z9SJ1G5d8PeNmfUgli9yNf74wpQSCVEADUk6AQA16jcu+HvGzPqROo3Lvh7xsz6kEdl9p4kMuocI37CgbRyWgBp1G5d8PeNmfUjPUbl1w942Z9SCK6+0zbnXUIvu2lAXjkSUqSFJIKTqCDcGAG3Ubl1w942Z9SJ1G5dcPeNmfUgjOutsgF5xDYOg2lWjDT7LxIZdbcI/ZUDADnqNy74e8bM+pE6jcu+HvGzPqQSwI+XFobSVOKSlI7VGwgBt1G5d8PeNmfUidRuXfD3jZn1IJDTrbqSppaFgaEpNwI+lqShJUtQSkbyTYCAGvUbl3w942Z9SM9RuXXD3jZn1IIXt0p/3TH9oI5wQRcEEQA26jcuuHvGzPqROo3Lvh7xsz6kEqJAArNLKqjaaoTEsWwXBvZp9jmubd9qfXs7TqUnRSyNQojUQARu7YbbPb7qcb+rH66IUmOqoOHVunznc16s+zW/xh+Rh+4QSrPs1v8AGH5GH7iZWvJ9Qe6fhSMndbfGI6qq8al6cpvEsYnCOYkmFPEE22iBokfMmwH1iQ2lZ5R9WT89meEYI5MBmmG0OOKacISh0rTdeh0N1oRffpDT0vjLNRU5huLyh/mJxhDwTfdcaj6g3H7oUzK+qqNTT9ZrrjE1IxeoittdpVxzm0G6toFKbX21Xt/4iCTyR6pE/TWIU286FvYa7zrHYVMrOthvsFXP/wBiAH9D5cSGZWZFeN41iOIM+wTq9hxpwKUoF1xNlFYJNggR6CvMj00JTM7UtIVNictO4c3zqg44GytAIuErRskGx3a30EeYobDK8xLMSu00BisrIPon3Pa1PWAcBec2bXQrcQqOfN2m83maXdmKsxYYngrNlPolHk7KRcWK0BKSoA27DbfpAMJkvVc1V2W2F4viA5yf2VNPlOyOdWgkbQA0BNgbG2/4Qt+fFS19jamMQxvCJynsClJ0syjJUUKL4BIWTvWbJNlJGyOztJZHJGZwmaytp9WAtqak0MbBbUsLWhwEhYUQBclVzewvfcIHfLF/4Bwb/wBmP0nIA6YWCMMlLqUshlHvLVck7I1J+MLxmLKVHmZnM9RYmcRwumZFlLj5S2oJcTYHbPYoqV7qdokCxI7QWHwz7OlPwk/kI5Zh5qWYcfmHENMtpLi3HCEpSkC5JJ0AABJJgFXzKyufyjwhirKMqPEGX5d5DbyHlAKUFKFrbNgoXAukg3HyEGKocy/5JyWl6y5hv2yZlGlMsL1QX1iwBsb7INza40B3GBZVWJT2fdfSuA0+h9FF4U8HJudA2ds6gr97tICkoFidVE6Xt3XK2lGcPy0p6SkW1NSkvPIaQhG1sIQlpYSD2fC1/nbtgOlovJzEMysJRVlf49iQmsQHOy7LdipDRJIN1XASb3CUgAC3xsNmnWKnyazOwqnPaZvGaSxlYaYuhay1cm5SkX2VpvdVhYp1sDuYWngz/IOHeyW9n9ma5q27Y2Ra37rRv6a37IBYc6sAaq3lF0/T0/NzTclNSSbltdy3o6fdCrgX2BewjeqHk+v03hb+K0DUeLNYvKoU4hoqCVPAC+wlSNkgkA7730Gm+NutjflcUjbtkh/gfhhd198AL8j8x11jQcxiGNqban8LUW51aEkBSQm4ct80g3t2g2A0ECfAcJxzlB1BiWJ4xiUzhlJyTvNS8qxeyldgAJ2dvZIKlkHeABa1utoEpGHZ4GQL/s3s73M80VbOztvW3fK2/sv2XgvcljmeqCRDNtv2l/nd99rb8uzADiscv8dyTEvVdC4vNzeHsuJE7KTAukjUAuBFgtBvbcCkkEH4d1yo8TcxPKWmZ8ImpMzs02tyWc2kFO0ypWytJtcgjtEekqvlB01TdRzuETWF4069KOc24tLKUAkb7BagbfMgX7NLR5flTYxLY/lTS+LYdtmSnJ1DzZcSUKsWl2uk/v8A8t8BtyvJlpp+VZdOM4yFuISrQtEC4v8AsR1mXrmP5Y52y1CzeLzOK4HiDG1LpcVo2ClSkqCSTsEFKkkA6jXXSNuVqjPcSrKWaUw0t7ACVbKL27D/ALaO2ywyzqh6vlVzmRNS7uJhu0vKoIUUKtsgq2RspCU7gm+puTcagdTGIkSA8Fnt91ON/Vj9dEKTDbZ7fdTjf1Y/XRCkx1dBw6t0+b7mvVn2a3+KPyVD9wglXfZrf4o/wqh+4l1ryY7PUhhgkBDlTT2JTNP4JTGEysy45jM4lC1obUUEJ1SgkaXKrKt8EGDfGR9BpEhueDwnKii5DCpSUdpzCpl1hpDa33ZVKluEAXUTbeSCTAtxjBBlryhqfnsAw5xGB442JVyXlGSUpJ91YASNwIS4foYY3X/KM/wgE/obMjD8tsx69cxqQxB32+eWG0MoCVJAdcV7wWRa4UDHpK5z06cU1PU3RtOYrMTuItFhZU2FlCDorZQjaJJFxra14ZV2Vl3VlTrDS1n/AJlIBP8AG0ZZl2WbllltBO/ZQAYDxmStLzdI5bYThOIkidSlTzyLghtS1FRRcaG17E3Ot/lHgeV5JzM3QuDolJd54pxNF+bQVWJbUlO74qIA+ZEHaJ9YDXw1Khh0sCkpIaSClQsR7utxCmcoPNSax6oXqTQiewvAJR8Nzv8AN2fmSDqSkke4LXSkkX0J7Alu7b72+UcLspLuqK3WGlr7SpIJ/jALfSGfNBUjgMvhGB09jLEozqTsslTitLrWdvVRtqfoBYAAE+p8Pk85Mo1pw4PSpn0JflDONqbLbqT7u0LHQm4uLixuLx78SEpf/dZf+zTGwAAAlIAA0HwAgFionOWey2whulMwcBxL2rDwWpd5sAFbQJAFlWBSLWStJIIt8LnYpyYqbObM/CajEvN4LSWDOBxi7i0c6bm+yoABS1Wsq2gTpf8AaZB2XZftzzLayndtpBt9I5EhKEhKEhKRoAkWAEAsOdNQM0lyisAqCflpl2TlJFO0GkWLhIdFklVgbbab6/3xv1FyhHqjw1/CqBp3FncYmkKbQ6pAUpm+hUlCNokjXfaxsdbWhjHmGXrB5pCwN20kG38YwzLss3LLLbd9+ykAwA0yNy5VR9BzEhjaUOT+KbTk6hKiQlKk2Dd/iBe9u0nUwKMBxbHOT3UOJYZjeGzOI0nOuc7LzMveyVG+yQogJ2ylNlIJH+qCDYC7T679BHy6226gpdQhaTvSpNx/CAVet62xPPB2VpmiMAfl5RbqFzk7MpFkgXKQtSQQhAtfeSSAAPj6DlJU25hOUFKYLhrUxNIkJtmXCkoUsmzSkC/w2lEAD5gCGHaabZTsstobSTeyQBrH39YDXw0EYdKhSSlQaSCkixBsNCI2IltYkBIkSJAeCz2+6nG/qx+uiFJhts9vupxv6sfrohSY6ug4dW6fN9zXq77Nb/FH5Kh+4QSrfs5r8ZP5Kjg6e1hxXUHeT3miXWvJjs9SGFYFEivzp7WHFlQd5PeaJ09rDiyoO8nvNEhtusDiRX509rDiyoO8nvNE6e1hxZUHeT3mgXWBxIr86e1hxZUHeT3midPaw4sqDvJ7zQLrA4kV+dPaw4sqDvJ7zROntYcWVB3k95oF1gcSK/OntYcWVB3k95onT2sOLKg7ye80C6wOJFfvT2sOK6g7ye80Tp7WHFdQd5PeaBdYFEiv3p7WHFdQd5PeaIK9rDiuoO8nvNB9WBRIr9VXtYAn+ldQb/6xe80fPT6seLKg7ye80CPRYJEivvp9WPFlQd5PeaJ0+rHiyoO8nvNAWCRIr76fVjxZUHeT3midPqx4sqDvJ7zQFgkQa7or76fVjxZUHeT3mj6TXtYEn+llQaD+snvNAWBRIr9Ne1hxXUGtv+oveaMdPaw4sqDvJ7zQDk54tOO5V46GkKWUpacUEgkhKXUKUo/IAEk9gB+EKO2OdSFNe+k7inUGOqmq1qqalXpeaqbHHpd1Cm3GnJ91SFpOhSQVWIIJBEdxgiQMGl7ab/zjo6DxY9eH+fadPx5YQ1P/2Q==","face_frame":"data:image/jpeg;base64,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","face_crop":"data:image/jpeg;base64,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"}</script>
+<script>
+const $=id=>document.getElementById(id);
+const money=new Intl.NumberFormat('en-ZA',{style:'currency',currency:'ZAR',maximumFractionDigits:0});
+const num=new Intl.NumberFormat('en-ZA');
+const fmt=(v,d=1)=>Number(v||0).toFixed(d);
+const REDUCED=!!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches);
+let LIVE=false,DATA=null,ALL=null,CAM=null,MEDIA=null;
+let selHotspot=null,perilFilter='All',leaf=null,leafLayer=null;
+let CAMERAS=[],selCamera=null,EVENTS=[],selEvent=null,LINK=null,ALERT=null;
+let objModel=null,faceModel=null,aiReady=false;
+let stream=null,rafId=null,liveEl=null,lastFile=null,liveDetections=[],fpsAvg=0;
+
+/* per-house cameras (fallback roster mirrors the backend router) */
+const ROSTER=[
+ {camera_id:'CAM-BRY-01',household:'14 Hillcrest Ave',suburb:'Bryanston',metro:'Gauteng',latitude:-26.0514,longitude:28.0281},
+ {camera_id:'CAM-BRY-02',household:'22 Kei Rd',suburb:'Bryanston',metro:'Gauteng',latitude:-26.0538,longitude:28.0309},
+ {camera_id:'CAM-FOU-01',household:'8 Montrose Ave',suburb:'Fourways',metro:'Gauteng',latitude:-26.0186,longitude:28.0104},
+ {camera_id:'CAM-GAR-01',household:'51 Rooibok St',suburb:'Garsfontein',metro:'Gauteng',latitude:-25.8110,longitude:28.2960},
+ {camera_id:'CAM-MEN-01',household:'3 Dely Rd',suburb:'Menlo Park',metro:'Gauteng',latitude:-25.7797,longitude:28.2611},
+ {camera_id:'CAM-BED-01',household:'17 Van Buuren Rd',suburb:'Bedfordview',metro:'Gauteng',latitude:-26.1795,longitude:28.1345},
+ {camera_id:'CAM-SEA-01',household:'9 Marine Dr',suburb:'Sea Point',metro:'Cape Town',latitude:-33.9172,longitude:18.3922},
+ {camera_id:'CAM-RON-01',household:'40 Campground Rd',suburb:'Rondebosch',metro:'Cape Town',latitude:-33.9681,longitude:18.4878},
+];
+async function j(u,o){const r=await fetch(u,o);if(!r.ok)throw new Error((await r.text()).slice(0,140));return r.json();}
+function hav(a,b){const R=6371,t=x=>x*Math.PI/180;
+  const dA=t(b.latitude-a.latitude),dO=t(b.longitude-a.longitude);
+  const s=Math.sin(dA/2)**2+Math.cos(t(a.latitude))*Math.cos(t(b.latitude))*Math.sin(dO/2)**2;
+  return 2*R*Math.asin(Math.sqrt(s));}
+function projector(hs,W,H,pad){
+  const xs=hs.map(h=>h.location.longitude),ys=hs.map(h=>h.location.latitude);
+  const mx=Math.min(...xs),Mx=Math.max(...xs),my=Math.min(...ys),My=Math.max(...ys);
+  return h=>({x:pad+((h.location.longitude-mx)/Math.max(1e-4,Mx-mx))*(W-2*pad),
+              y:(H-pad)-((h.location.latitude-my)/Math.max(1e-4,My-my))*(H-2*pad)});}
+function plateChip(t){if(!t)return'';const m=String(t).replace(/\s+/g,'').match(/^([A-Z]{2})(\d{2})([A-Z]{2})GP$/);
+  return `<span class="plate"><span>${m?`${m[1]} ${m[2]} ${m[3]} GP`:t}</span><span class="prov">ZA</span></span>`;}
+function trustCls(t){return t>=80?'trust-ok':t>=60?'trust-warn':'trust-bad';}
+function countTo(el,target,f){if(REDUCED||!window.gsap){el.textContent=f(target);return;}
+  const o={v:0};gsap.to(o,{v:target,duration:1,ease:'power2.out',onUpdate:()=>el.textContent=f(o.v)});}
+
+/* ---------- welcome / app ---------- */
+function enterApp(){$('welcome').classList.add('gone');$('app').classList.add('show');
+  if(leaf)setTimeout(()=>leaf.invalidateSize(),320);}
+$('enterBtn').onclick=enterApp;$('enterBtn2').onclick=enterApp;
+$('introLink').onclick=()=>{$('welcome').classList.remove('gone');$('app').classList.remove('show');$('welcome').scrollTop=0;};
+$('wmHome').onclick=()=>scrollTo({top:0,behavior:'smooth'});
+if(location.hash==='#app'){$('welcome').classList.add('gone');$('app').classList.add('show');}
+$('tabs').addEventListener('click',e=>{
+  const b=e.target.closest('button[data-v]');if(!b)return;
+  document.querySelectorAll('#tabs button').forEach(x=>x.classList.toggle('on',x===b));
+  document.querySelectorAll('.view').forEach(v=>v.classList.toggle('on',v.id==='v-'+b.dataset.v));
+  if(b.dataset.v==='overview'&&leaf)setTimeout(()=>leaf.invalidateSize(),120);
+  scrollTo({top:0,behavior:'smooth'});
+});
+
+/* ================= TENSORFLOW MODELS ================= */
+async function loadAI(){
+  if(!window.tf||!window.cocoSsd){$('aiTxt').textContent='AI offline (CDN blocked)';return;}
+  try{
+    $('aiTxt').textContent='loading vision models…';
+    objModel=await cocoSsd.load({base:'lite_mobilenet_v2'});
+    try{faceModel=await blazeface.load();}catch(e){faceModel=null;}
+    aiReady=true;$('aiDot').classList.add('ready');
+    $('aiTxt').textContent='vision AI ready'+(faceModel?' · objects + faces':' · objects');
+  }catch(e){$('aiTxt').textContent='AI load failed';}
+}
+
+/* ================= LIVE / UPLOAD DETECTION ================= */
+const VEHICLE=new Set(['car','truck','bus','motorcycle','bicycle']);
+function dominantColour(ctx,x,y,w,h){
+  try{
+    w=Math.max(2,w|0);h=Math.max(2,h|0);
+    const d=ctx.getImageData(x|0,y|0,w,h).data;let r=0,g=0,b=0,n=0;
+    for(let i=0;i<d.length;i+=16){r+=d[i];g+=d[i+1];b+=d[i+2];n++;}
+    r=r/n|0;g=g/n|0;b=b/n|0;
+    return {hex:'#'+[r,g,b].map(v=>v.toString(16).padStart(2,'0')).join(''),name:colourName(r,g,b)};
+  }catch(e){return {hex:'#888888',name:'Unknown'};}
+}
+function colourName(r,g,b){
+  const mx=Math.max(r,g,b),mn=Math.min(r,g,b),d=mx-mn;
+  if(mx<55)return 'Black';if(mn>195&&d<28)return 'White';if(d<32)return mx>130?'Silver':'Grey';
+  let h;if(mx===r)h=((g-b)/d+6)%6;else if(mx===g)h=(b-r)/d+2;else h=(r-g)/d+4;h*=60;
+  if(h<18||h>=330)return 'Red';if(h<45)return 'Orange';if(h<70)return 'Yellow';
+  if(h<165)return 'Green';if(h<200)return 'Cyan';if(h<255)return 'Blue';if(h<290)return 'Purple';return 'Pink';
+}
+async function detectFrame(src,ctx,W,H){
+  const out={objects:[],faces:[]};
+  if(!aiReady)return out;
+  try{out.objects=(await objModel.detect(src,12,.45))||[];}catch(e){}
+  if(faceModel){try{out.faces=(await faceModel.estimateFaces(src,false))||[];}catch(e){}}
+  return out;
+}
+function drawOverlay(ctx,W,H,det){
+  ctx.clearRect(0,0,W,H);
+  ctx.lineWidth=Math.max(2,W/320);ctx.font=`600 ${Math.max(12,W/48)}px IBM Plex Mono`;
+  const box=(x,y,w,h,col,label)=>{
+    ctx.strokeStyle=col;ctx.strokeRect(x,y,w,h);
+    ctx.fillStyle='rgba(11,22,34,.82)';
+    const tw=ctx.measureText(label).width+10;
+    ctx.fillRect(x,Math.max(0,y-20),tw,19);
+    ctx.fillStyle=col;ctx.fillText(label,x+5,Math.max(13,y-6));
+  };
+  det.objects.forEach(o=>{
+    const [x,y,w,h]=o.bbox;
+    const col=o.class==='person'?'#9BE8B0':VEHICLE.has(o.class)?'#00AEEF':'#FFC53D';
+    box(x,y,w,h,col,`${o.class} ${(o.score*100).toFixed(0)}%`);
+  });
+  det.faces.forEach(f=>{
+    const [x1,y1]=f.topLeft,[x2,y2]=f.bottomRight;
+    box(x1,y1,x2-x1,y2-y1,'#FF6B5E',`face ${((f.probability?.[0]??f.probability??0)*100).toFixed(0)}%`);
+  });
+}
+function qualityFrom(ctx,W,H,det){
+  let sharp=60,light=70;
+  try{
+    const d=ctx.getImageData(0,0,Math.min(W,320),Math.min(H,240)).data;
+    let sum=0,n=0,prev=0,edge=0;
+    for(let i=0;i<d.length;i+=32){const l=(d[i]*.299+d[i+1]*.587+d[i+2]*.114);sum+=l;n++;
+      edge+=Math.abs(l-prev);prev=l;}
+    const mean=sum/n;light=Math.max(10,Math.min(100,Math.round(100-Math.abs(mean-128)/1.28)));
+    sharp=Math.max(10,Math.min(100,Math.round((edge/n)*3.6)));
+  }catch(e){}
+  const detection=Math.min(100,30+(det.objects.length+det.faces.length)*22);
+  const resolution=Math.min(100,Math.round(W/12.8));
+  const unobstructed=det.objects.some(o=>{const[x,y,w,h]=o.bbox;return x<=2||y<=2||x+w>=W-2||y+h>=H-2;})?72:100;
+  return {sharpness:sharp,lighting:light,detection,unobstructed,resolution};
+}
+function trustFrom(q){return Math.round(.28*q.sharpness+.22*q.lighting+.2*q.detection+.15*q.unobstructed+.15*q.resolution);}
+function trustReasons(q){
+  const r=[];
+  r.push(q.sharpness>=70?'sharp image':q.sharpness>=45?'moderate motion blur':'heavy motion blur');
+  r.push(q.lighting>=70?'good lighting':'poor lighting');
+  r.push(q.detection>=70?'strong detections':q.detection>=45?'moderate detections':'weak detections');
+  if(q.unobstructed<90)r.push('target partly clipped or obstructed');
+  return r;
+}
+function newEventId(){return 'EVT-'+Math.random().toString(16).slice(2,12).toUpperCase();}
+function buildEvent(det,ctx,W,H,cam,source,frameIdx,motion){
+  const q=qualityFrom(ctx,W,H,det);
+  const person=det.objects.filter(o=>o.class==='person').sort((a,b)=>b.score-a.score)[0];
+  const veh=det.objects.filter(o=>VEHICLE.has(o.class)).sort((a,b)=>b.score-a.score)[0];
+  const face=det.faces[0];
+  let upper={name:'Unknown'},lower={name:'Unknown'};
+  if(person){const[x,y,w,h]=person.bbox;
+    upper=dominantColour(ctx,x+w*.25,y+h*.18,w*.5,h*.22);
+    lower=dominantColour(ctx,x+w*.25,y+h*.6,w*.5,h*.22);}
+  let vcol={name:'Unknown'};
+  if(veh){const[x,y,w,h]=veh.bbox;vcol=dominantColour(ctx,x+w*.3,y+h*.3,w*.4,h*.3);}
+  const ev={
+    schema_version:'1.0',event_id:newEventId(),camera_id:cam.camera_id,
+    timestamp:new Date().toISOString(),mode:cam.mode||'HEIGHTENED',
+    location:{latitude:cam.latitude,longitude:cam.longitude},
+    media_url:null,frame_index:frameIdx,motion_score:+motion.toFixed(4),
+    face:{present:!!face,count:det.faces.length,
+      boxes:det.faces.map(f=>({x:f.topLeft[0]|0,y:f.topLeft[1]|0,width:(f.bottomRight[0]-f.topLeft[0])|0,height:(f.bottomRight[1]-f.topLeft[1])|0})),
+      crop_paths:[],embedding_ref:face?'browser:blazeface':null,
+      detection_confidence:face?(face.probability?.[0]??face.probability??null):null},
+    plate:{text:null,display_text:null,box:null,crop_url:null,detection_confidence:null,ocr_confidence:null},
+    vehicle:veh?{colour:vcol.name,type:veh.class[0].toUpperCase()+veh.class.slice(1),make_model:null,
+      direction:'unknown',box:{x:veh.bbox[0]|0,y:veh.bbox[1]|0,width:veh.bbox[2]|0,height:veh.bbox[3]|0},
+      detection_confidence:+veh.score.toFixed(3)}
+      :{colour:'Unknown',type:'Unknown',make_model:null,direction:'stationary_or_unknown',box:null,detection_confidence:null},
+    appearance:{upper_colour:upper.name,lower_colour:lower.name,cap:null,backpack:
+      det.objects.some(o=>o.class==='backpack')||null,
+      person_box:person?{x:person.bbox[0]|0,y:person.bbox[1]|0,width:person.bbox[2]|0,height:person.bbox[3]|0}:null,
+      confidence:person?+person.score.toFixed(3):null},
+    camera_trust_score:trustFrom(q),quality_metrics:q,trust_reasons:trustReasons(q),
+    model_versions:{objects:'coco-ssd lite_mobilenet_v2 (browser)',face:faceModel?'blazeface (browser)':'none',
+      plate:'not run in browser — server pipeline required'},
+    _source:source,_colours:{upper:upper.hex,lower:lower.hex,vehicle:vcol.hex},
+    _thumb:snapshot(ctx.canvas)
+  };
+  return ev;
+}
+function snapshot(canvas){
+  try{const c=document.createElement('canvas');const s=Math.min(1,320/canvas.width);
+    c.width=canvas.width*s|0;c.height=canvas.height*s|0;
+    c.getContext('2d').drawImage(canvas,0,0,c.width,c.height);
+    return c.toDataURL('image/jpeg',.62);}catch(e){return null;}
+}
+</script>
+<script>
+/* ================= CAMERA WALL ================= */
+function camerasForMetro(){
+  const m=$('metro').value;
+  return CAMERAS.filter(c=>!m||c.metro===m);
+}
+async function loadCameras(){
+  if(LIVE){
+    try{const r=await j('/api/cameras');CAMERAS=r.cameras;return;}catch(e){}
+  }
+  const byName={};(DATA?DATA.hotspots:[]).forEach(h=>byName[h.name.toLowerCase()]={
+    id:h.hotspot_id,risk:h.operational_priority});
+  CAMERAS=ROSTER.map(c=>{
+    const ctx=byName[c.suburb.toLowerCase()]||{};
+    return {...c,hotspot_id:ctx.id||null,geofence_risk:ctx.risk??null,
+      mode:(ctx.risk??0)>=60?'HEIGHTENED':'NORMAL',status:'ONLINE'};
+  });
+}
+function renderWall(){
+  const cams=camerasForMetro();
+  if(!selCamera||!cams.find(c=>c.camera_id===selCamera))selCamera=cams[0]?.camera_id;
+  $('wallMeta').textContent=`${cams.length} demo households · ${cams.filter(c=>c.mode==='HEIGHTENED').length} in heightened mode`;
+  $('kCams').innerHTML=`${cams.length} <small>configured</small>`;
+  $('wall').innerHTML=cams.map(c=>{
+    const evs=EVENTS.filter(e=>e.camera_id===c.camera_id);
+    const last=evs[evs.length-1];
+    const attached=liveEl&&liveEl.dataset.cam===c.camera_id;
+    return `<div class="camcard ${c.camera_id===selCamera?'sel':''}" data-c="${c.camera_id}">
+      <div class="camthumb">
+        ${last&&last._thumb?`<img src="${last._thumb}" alt="last frame">`:
+          `<div class="idle">NO RECENT CAPTURE</div>`}
+        <div class="noise"></div>
+        ${attached?'<span class="live"><i></i>LIVE</span>':''}
+        <span class="mode ${c.mode}">${c.mode}</span>
+        ${evs.length?`<span class="det">${evs.length} event${evs.length>1?'s':''}</span>`:''}
+      </div>
+      <div class="caminfo">
+        <div class="hh">${c.household}</div>
+        <div class="sb">${c.suburb} · ${c.camera_id}</div>
+        <div class="row"><span>geofence risk ${c.geofence_risk!=null?fmt(c.geofence_risk):'—'}</span>
+          <span class="trustnum ${trustCls(last?last.camera_trust_score:78)}">${last?last.camera_trust_score:'—'}</span></div>
+      </div></div>`;
+  }).join('');
+  $('wall').querySelectorAll('.camcard').forEach(el=>el.onclick=()=>{selCamera=el.dataset.c;renderWall();renderCamDetail();});
+  const sel=$('feedCam');
+  const cur=sel.value;
+  sel.innerHTML=cams.map(c=>`<option value="${c.camera_id}">${c.household} · ${c.suburb}</option>`).join('');
+  if(cams.find(c=>c.camera_id===cur))sel.value=cur;else if(selCamera)sel.value=selCamera;
+  renderCamDetail();
+}
+function renderCamDetail(){
+  const c=CAMERAS.find(x=>x.camera_id===selCamera);if(!c)return;
+  const evs=EVENTS.filter(e=>e.camera_id===c.camera_id);
+  $('camTitle').textContent=`${c.household} · ${c.suburb}`;
+  $('camMeta').textContent=`${c.camera_id} · ${c.latitude.toFixed(4)}, ${c.longitude.toFixed(4)} · geofence ${c.hotspot_id||'—'}`;
+  $('camDetail').innerHTML=`
+    <div style="display:flex;gap:26px;flex-wrap:wrap;font-size:.78rem">
+      <div><b style="display:block;font-size:.56rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)">Adaptive edge mode</b>
+        <span class="modechip ${c.mode}">${c.mode}</span></div>
+      <div><b style="display:block;font-size:.56rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)">Geofence risk</b>${c.geofence_risk!=null?fmt(c.geofence_risk):'—'}</div>
+      <div><b style="display:block;font-size:.56rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)">Events captured</b>${evs.length}</div>
+      <div><b style="display:block;font-size:.56rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)">Status</b>${c.status}</div>
+    </div>
+    <p class="mono" style="margin-top:12px;line-height:1.7">${c.mode==='HEIGHTENED'
+      ?'Claims risk in this geofence is above threshold, so this camera runs deeper face, plate and vehicle analysis and uploads event crops.'
+      :'Risk is below threshold — this camera stays on light motion and object detection, keeping routine video local.'}</p>
+    <div style="margin-top:12px;display:flex;gap:9px;flex-wrap:wrap">
+      <button class="btn" id="attachCam">Attach live feed to this camera</button>
+      <button class="btn gh" id="viewEvents">View its events</button>
+    </div>`;
+  $('attachCam').onclick=()=>{$('feedCam').value=c.camera_id;
+    document.querySelector('#tabs button[data-v="live"]').click();startCamera();};
+  $('viewEvents').onclick=()=>{
+    const e=evs[evs.length-1];if(e){selEvent=e.event_id;}
+    document.querySelector('#tabs button[data-v="evidence"]').click();renderEvidenceView();};
+}
+
+/* ================= LIVE FEED ================= */
+function currentFeedCam(){return CAMERAS.find(c=>c.camera_id===$('feedCam').value)||CAMERAS[0];}
+function ensureStage(el){
+  const st=$('stage');st.innerHTML='';
+  st.appendChild(el);
+  const ov=document.createElement('canvas');ov.className='ov';st.appendChild(ov);
+  const hud=document.createElement('div');hud.className='hud';
+  hud.innerHTML=`<span id="hudL"></span><span id="hudR"></span>`;st.appendChild(hud);
+  const hudb=document.createElement('div');hudb.className='hudb';
+  hudb.innerHTML=`<span id="hudB"></span><span>SYNTHETIC / CONSENTED MEDIA ONLY</span>`;st.appendChild(hudb);
+  return ov;
+}
+async function startCamera(){
+  stopFeed();
+  const cam=currentFeedCam();
+  try{
+    stream=await navigator.mediaDevices.getUserMedia({video:{width:{ideal:960},height:{ideal:540},facingMode:'environment'},audio:false});
+  }catch(e){
+    $('stage').innerHTML=`<div class="empty">CAMERA ACCESS DENIED — ${String(e.message||e).slice(0,60)}<br><br>Use “Load footage” to run detection on a video file instead.</div>`;
+    return;
+  }
+  const v=document.createElement('video');v.autoplay=true;v.muted=true;v.playsInline=true;v.srcObject=stream;
+  v.dataset.cam=cam.camera_id;liveEl=v;
+  const ov=ensureStage(v);
+  await v.play().catch(()=>{});
+  $('startCam').disabled=true;$('stopCam').disabled=false;$('snapBtn').disabled=false;
+  $('chipMode').textContent='mode: '+(cam.mode||'HEIGHTENED');
+  renderWall();
+  loop(v,ov,cam,'LIVE');
+}
+function stopFeed(){
+  if(rafId)cancelAnimationFrame(rafId);rafId=null;
+  if(stream){stream.getTracks().forEach(t=>t.stop());stream=null;}
+  liveEl=null;$('startCam').disabled=false;$('stopCam').disabled=true;$('snapBtn').disabled=true;
+}
+$('startCam').onclick=startCamera;
+$('stopCam').onclick=()=>{stopFeed();$('stage').innerHTML='<div class="empty">FEED STOPPED</div>';renderWall();};
+$('feedCam').onchange=()=>{if(liveEl&&liveEl.srcObject)startCamera();};
+
+let workCanvas=document.createElement('canvas'),workCtx=workCanvas.getContext('2d',{willReadFrequently:true});
+let lastGray=null,frameNo=0,lastT=performance.now(),autoCooldown=0;
+function loop(src,ov,cam,mode){
+  const step=async()=>{
+    if(!src.isConnected){return;}
+    const W=src.videoWidth||src.naturalWidth||src.width,H=src.videoHeight||src.naturalHeight||src.height;
+    if(!W||!H){rafId=requestAnimationFrame(step);return;}
+    ov.width=W;ov.height=H;workCanvas.width=W;workCanvas.height=H;
+    workCtx.drawImage(src,0,0,W,H);
+    const det=await detectFrame(src,workCtx,W,H);
+    liveDetections=det;
+    drawOverlay(ov.getContext('2d'),W,H,det);
+    /* motion */
+    let motion=0;
+    try{const d=workCtx.getImageData(0,0,Math.min(W,160),Math.min(H,120)).data;
+      let g=0;for(let i=0;i<d.length;i+=64)g+=d[i];
+      if(lastGray!==null)motion=Math.min(1,Math.abs(g-lastGray)/Math.max(1,lastGray)*8);
+      lastGray=g;}catch(e){}
+    const now=performance.now();fpsAvg=fpsAvg*.8+(1000/Math.max(1,now-lastT))*.2;lastT=now;
+    frameNo++;
+    $('chipObj').textContent=`objects: ${det.objects.length}`;
+    $('chipObj').classList.toggle('on',det.objects.length>0);
+    $('chipFace').textContent=`faces: ${det.faces.length}`;
+    $('chipFace').classList.toggle('on',det.faces.length>0);
+    $('chipFps').textContent=`${fpsAvg.toFixed(0)} fps`;
+    const hl=$('hudL'),hr=$('hudR'),hb=$('hudB');
+    if(hl)hl.textContent=`${cam.camera_id} · ${cam.suburb} · ${mode}`;
+    if(hr)hr.textContent=`${W}×${H} · ${fpsAvg.toFixed(0)}fps`;
+    if(hb)hb.textContent=`objects ${det.objects.length} · faces ${det.faces.length} · motion ${motion.toFixed(2)}`;
+    renderDetPanel(det,W,H);
+    /* auto-capture on strong detection in heightened mode */
+    if(mode==='LIVE'&&(cam.mode==='HEIGHTENED')&&now>autoCooldown){
+      const strong=det.objects.some(o=>(o.class==='person'||VEHICLE.has(o.class))&&o.score>.66)||det.faces.length;
+      if(strong){autoCooldown=now+6000;captureEvent(cam,'LIVE',motion);}
+    }
+    rafId=requestAnimationFrame(step);
+  };
+  rafId=requestAnimationFrame(step);
+}
+function renderDetPanel(det,W,H){
+  const rows=[...det.objects.map(o=>({k:o.class,v:(o.score*100).toFixed(0)+'%'})),
+    ...det.faces.map((f,i)=>({k:'face '+(i+1),v:(((f.probability?.[0]??f.probability??0))*100).toFixed(0)+'%'}))];
+  $('detMeta').textContent=`${rows.length} in frame`;
+  $('detList').innerHTML=rows.length?rows.map(r=>`<div class="detrow"><b>${r.k}</b><span>${r.v}</span></div>`).join('')
+    :'<p class="mono">Nothing detected in this frame.</p>';
+  const q=qualityFrom(workCtx,W,H,det);
+  $('liveQ').innerHTML=Object.entries(q).map(([k,v])=>
+    `<div class="brow"><span style="text-transform:capitalize">${k}</span><div class="bar"><i style="width:${v}%"></i></div><b>${v}</b></div>`).join('')
+    +`<div class="brow" style="margin-top:6px"><span><b>Trust</b></span><div class="bar"><i style="width:${trustFrom(q)}%"></i></div><b>${trustFrom(q)}</b></div>`;
+}
+function captureEvent(cam,source,motion){
+  const W=workCanvas.width,H=workCanvas.height;if(!W)return null;
+  const ev=buildEvent(liveDetections,workCtx,W,H,cam,source,frameNo,motion||0);
+  EVENTS.push(ev);selEvent=ev.event_id;
+  $('pushEvents').disabled=false;
+  renderLiveSig(ev);renderWall();refreshStore();
+  return ev;
+}
+$('snapBtn').onclick=()=>{const c=currentFeedCam();captureEvent(c,'LIVE',0);};
+function renderLiveSig(ev){
+  const c=ev._colours||{};
+  $('liveSig').innerHTML=`
+    <div class="sig"><h5>Face</h5>${ev.face.present
+      ?`<div class="kv"><span>Detected</span><b>${ev.face.count}</b></div>
+        <div class="kv"><span>Confidence</span><b>${fmt((ev.face.detection_confidence||0)*100,0)}%</b></div>
+        <div class="kv"><span>Model</span><b>BlazeFace</b></div>`
+      :`<div class="kv"><span>Result</span><b>none</b></div>`}</div>
+    <div class="sig"><h5>Vehicle</h5>${ev.vehicle.type!=='Unknown'
+      ?`<div class="kv"><span>Type</span><b>${ev.vehicle.type}</b></div>
+        <div class="kv"><span>Colour</span><b><i class="swatch" style="background:${c.vehicle||'#888'}"></i>${ev.vehicle.colour}</b></div>
+        <div class="kv"><span>Confidence</span><b>${fmt((ev.vehicle.detection_confidence||0)*100,0)}%</b></div>`
+      :`<div class="kv"><span>Result</span><b>none</b></div>`}</div>
+    <div class="sig"><h5>Appearance</h5>${ev.appearance.person_box
+      ?`<div class="kv"><span>Upper</span><b><i class="swatch" style="background:${c.upper||'#888'}"></i>${ev.appearance.upper_colour}</b></div>
+        <div class="kv"><span>Lower</span><b><i class="swatch" style="background:${c.lower||'#888'}"></i>${ev.appearance.lower_colour}</b></div>
+        <div class="kv"><span>Never inferred</span><b>race · gender · age</b></div>`
+      :`<div class="kv"><span>Result</span><b>no person</b></div>`}</div>
+    <div class="sig"><h5>Plate</h5><div class="kv"><span>Browser</span><b>not run</b></div>
+      <div class="kv"><span>Server pipeline</span><b>OCR available</b></div></div>`;
+}
+
+/* ================= UPLOAD / FILE PROCESSING ================= */
+const drop=$('drop');
+['dragenter','dragover'].forEach(t=>drop.addEventListener(t,e=>{e.preventDefault();drop.classList.add('hot');}));
+['dragleave','drop'].forEach(t=>drop.addEventListener(t,e=>{e.preventDefault();drop.classList.remove('hot');}));
+drop.addEventListener('drop',e=>{const f=e.dataTransfer.files[0];if(f)handleFile(f);});
+drop.onclick=()=>$('fileIn').click();
+$('fileIn').onchange=e=>{const f=e.target.files[0];if(f)handleFile(f);};
+function plog(msg,cls){const el=$('procLog');el.innerHTML=`<div class="${cls||''}">${msg}</div>`+el.innerHTML;}
+async function handleFile(file){
+  stopFeed();lastFile=file;
+  $('serverPipe').disabled=!LIVE;
+  $('proc').style.display='block';$('procLog').innerHTML='';$('procFill').style.width='0%';
+  const cam=currentFeedCam();
+  plog(`<span class="i">loading ${file.name} (${(file.size/1e6).toFixed(1)} MB)</span>`);
+  const url=URL.createObjectURL(file);
+  if(file.type.startsWith('image/')){
+    const img=new Image();img.onload=async()=>{
+      const ov=ensureStage(img);
+      workCanvas.width=img.naturalWidth;workCanvas.height=img.naturalHeight;
+      ov.width=img.naturalWidth;ov.height=img.naturalHeight;
+      workCtx.drawImage(img,0,0);
+      const det=await detectFrame(img,workCtx,img.naturalWidth,img.naturalHeight);
+      liveDetections=det;drawOverlay(ov.getContext('2d'),img.naturalWidth,img.naturalHeight,det);
+      renderDetPanel(det,img.naturalWidth,img.naturalHeight);
+      plog(`<b>✓</b> detected ${det.objects.length} objects, ${det.faces.length} faces`);
+      const ev=captureEvent(cam,'UPLOAD',0);ev._file=file.name;
+      $('procFill').style.width='100%';
+      plog(`<b>✓</b> event ${ev.event_id} created`);
+    };img.src=url;return;
+  }
+  const v=document.createElement('video');v.src=url;v.muted=true;v.playsInline=true;v.controls=true;
+  v.dataset.cam=cam.camera_id;
+  const ov=ensureStage(v);
+  v.onloadedmetadata=async()=>{
+    const dur=v.duration&&isFinite(v.duration)?v.duration:0;
+    plog(`<span class="i">${v.videoWidth}×${v.videoHeight} · ${dur?dur.toFixed(1)+'s':'stream'}</span>`);
+    const samples=Math.min(12,Math.max(4,Math.round(dur*2)||6));
+    const best={score:-1,ev:null};
+    for(let i=0;i<samples;i++){
+      const t=dur?(dur*(i+.5)/samples):0;
+      await seek(v,t);
+      const W=v.videoWidth,H=v.videoHeight;
+      workCanvas.width=W;workCanvas.height=H;ov.width=W;ov.height=H;
+      workCtx.drawImage(v,0,0,W,H);
+      const det=await detectFrame(v,workCtx,W,H);
+      liveDetections=det;drawOverlay(ov.getContext('2d'),W,H,det);
+      renderDetPanel(det,W,H);
+      const score=det.objects.reduce((s,o)=>s+o.score,0)+det.faces.length;
+      $('procFill').style.width=((i+1)/samples*100).toFixed(0)+'%';
+      plog(`frame @${t.toFixed(1)}s — ${det.objects.map(o=>o.class).join(', ')||'no objects'}${det.faces.length?' + '+det.faces.length+' face':''}`);
+      if(score>best.score){best.score=score;best.ev=buildEvent(det,workCtx,W,H,cam,'UPLOAD',i,0);}
+      await new Promise(r=>setTimeout(r,30));
+    }
+    if(best.ev){best.ev._file=file.name;EVENTS.push(best.ev);selEvent=best.ev.event_id;
+      $('pushEvents').disabled=false;renderLiveSig(best.ev);renderWall();refreshStore();
+      plog(`<b>✓</b> best frame → event ${best.ev.event_id} · trust ${best.ev.camera_trust_score}`);}
+    else plog('<span class="f">no confident detections in sampled frames</span>');
+    if(LIVE)plog('<span class="i">“Run server pipeline on file” will also run plate OCR + YuNet faces</span>');
+  };
+  v.load();
+}
+function seek(v,t){return new Promise(res=>{
+  const done=()=>{v.removeEventListener('seeked',done);res();};
+  v.addEventListener('seeked',done);
+  try{v.currentTime=t;}catch(e){res();}
+  setTimeout(res,900);});}
+
+/* push browser events into the operations backend */
+$('pushEvents').onclick=async()=>{
+  const btn=$('pushEvents');btn.disabled=true;
+  const mine=EVENTS.filter(e=>e._source&&!e._pushed);
+  if(!LIVE){plog('<span class="f">backend not connected — events kept in this session only</span>');btn.disabled=false;return;}
+  for(const e of mine){
+    try{const payload={...e};delete payload._thumb;delete payload._colours;
+      await j('/api/events/camera-ai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+      e._pushed=true;plog(`<b>✓</b> ${e.event_id} → POST /api/events/camera-ai`);}
+    catch(err){plog(`<span class="f">${e.event_id} failed: ${err.message}</span>`);}
+  }
+  refreshStore();btn.disabled=false;
+};
+/* run the real python pipeline on the uploaded file */
+$('serverPipe').onclick=async()=>{
+  if(!lastFile||!LIVE)return;
+  const btn=$('serverPipe');btn.disabled=true;
+  const cam=currentFeedCam();
+  plog('<span class="i">uploading to /api/cameras/upload …</span>');
+  try{
+    const fd=new FormData();
+    fd.append('file',lastFile);fd.append('camera_id',cam.camera_id);
+    fd.append('latitude',cam.latitude);fd.append('longitude',cam.longitude);fd.append('mode',cam.mode||'HEIGHTENED');
+    const res=await fetch('/api/cameras/upload',{method:'POST',body:fd});
+    if(!res.ok)throw new Error((await res.text()).slice(0,140));
+    const out=await res.json();
+    plog(`<b>✓</b> pipeline produced ${out.event_count} event(s), ${out.ingested} ingested`);
+    out.events.forEach(e=>{
+      e._source='SERVER';
+      if(e.media_url)e._thumb=`/api/cameras/media/${out.batch}/${e.media_url}`;
+      e._serverBatch=out.batch;
+      EVENTS.push(e);
+      plog(`<b>✓</b> ${e.event_id} · plate ${e.plate?.text||'none'} · ${e.vehicle?.colour||''} ${e.vehicle?.type||''} · trust ${e.camera_trust_score}`);
+    });
+    if(out.events[0])selEvent=out.events[0].event_id;
+    renderWall();refreshStore();renderEvidenceView();
+  }catch(err){plog(`<span class="f">server pipeline: ${err.message}</span>`);}
+  btn.disabled=false;
+};
+</script>
+<script>
+/* ================= EVENT STORE + EVIDENCE ================= */
+function seedEvents(){
+  EVENTS=Object.values(CAM.events).map(e=>({...e,_source:'RECORDED',
+    _thumb:({'EVT-314D9D0C2C':MEDIA.veh1_frame,'EVT-4ADFB703C2':MEDIA.veh2_frame,
+             'EVT-E1A0975120':MEDIA.face_frame,'EVT-F65E5D0A12':MEDIA.face_frame})[e.event_id]||null}));
+  selEvent=EVENTS[0].event_id;
+}
+function evDesc(e){
+  const b=[];
+  if(e.plate?.text)b.push('plate '+(e.plate.display_text||e.plate.text));
+  if(e.face?.present)b.push(e.face.count+' face');
+  if(e.vehicle?.type&&e.vehicle.type!=='Unknown')b.push(`${e.vehicle.colour} ${e.vehicle.type.toLowerCase()}`);
+  if(e.appearance?.person_box)b.push('person');
+  return b.join(' · ')||'motion event';
+}
+function refreshStore(){
+  $('storeMeta').textContent=`${EVENTS.length} events · ${new Set(EVENTS.map(e=>e.camera_id)).size} cameras`;
+  $('kEvents').textContent=EVENTS.length;
+  $('evList').innerHTML=EVENTS.map(e=>`
+    <div class="evitem ${e.event_id===selEvent?'sel':''}" data-e="${e.event_id}">
+      <div class="et"><span>${e.event_id}</span><span>${new Date(e.timestamp).toLocaleTimeString('en-ZA',{hour:'2-digit',minute:'2-digit'})} · ${e.camera_id}</span></div>
+      <div class="ed">${evDesc(e)}</div>
+      <div style="margin-top:5px;display:flex;gap:6px;align-items:center;flex-wrap:wrap">
+        <span class="srcpill ${e._source}">${e._source}</span>
+        <span class="modechip ${e.mode}">${e.mode}</span>
+        <span class="mono">trust ${e.camera_trust_score}</span>
+      </div></div>`).join('');
+  $('evList').querySelectorAll('.evitem').forEach(el=>el.onclick=()=>{selEvent=el.dataset.e;renderEvidenceView();});
+  const opts=EVENTS.map(e=>`<option value="${e.event_id}">${e.event_id.slice(0,14)} · ${e.camera_id}</option>`).join('');
+  const a=$('cmpA'),b=$('cmpB'),av=a.value,bv=b.value;
+  a.innerHTML=opts;b.innerHTML=opts;
+  a.value=EVENTS.find(e=>e.event_id===av)?av:EVENTS[0]?.event_id;
+  b.value=EVENTS.find(e=>e.event_id===bv)?bv:(EVENTS[1]||EVENTS[0])?.event_id;
+}
+function renderEvidenceView(){
+  refreshStore();
+  const e=EVENTS.find(x=>x.event_id===selEvent);if(!e)return;
+  $('dvTitle').textContent='Detection viewer · '+e.event_id;
+  $('dvMeta').textContent=`${e.camera_id} · frame ${e.frame_index??0} · ${e.mode} · ${e._source}`;
+  const st=$('dvStage');
+  const boxes=[];
+  if(e.vehicle?.box)boxes.push({b:e.vehicle.box,c:'#00AEEF',l:`vehicle ${fmt((e.vehicle.detection_confidence||0)*100,0)}%`});
+  if(e.plate?.box)boxes.push({b:e.plate.box,c:'#FFC53D',l:`plate ${fmt((e.plate.ocr_confidence||0)*100,0)}%`});
+  (e.face?.boxes||[]).forEach(b=>boxes.push({b,c:'#FF6B5E',l:`face ${fmt((e.face.detection_confidence||0)*100,0)}%`}));
+  if(e.appearance?.person_box)boxes.push({b:e.appearance.person_box,c:'#9BE8B0',l:'person'});
+  if(e._thumb){
+    st.innerHTML=`<img id="dvImg" src="${e._thumb}" alt="event frame"><svg class="ov" id="dvOv" preserveAspectRatio="none"></svg>
+      <div class="hud"><span>${e.camera_id} · ${e.mode}</span><span>${e._source}</span></div>`;
+    const img=$('dvImg');
+    const draw=()=>{
+      const W=img.naturalWidth||640,H=img.naturalHeight||480;
+      const ov=$('dvOv');ov.setAttribute('viewBox',`0 0 ${W} ${H}`);
+      ov.innerHTML=boxes.map(o=>`<rect x="${o.b.x}" y="${o.b.y}" width="${o.b.width}" height="${o.b.height}" fill="none" stroke="${o.c}" stroke-width="${Math.max(2,W/300)}" rx="3"/>
+        <text x="${o.b.x+4}" y="${Math.max(16,o.b.y-6)}" font-family="IBM Plex Mono" font-size="${Math.max(12,W/45)}" fill="${o.c}" paint-order="stroke" stroke="#0B1622" stroke-width="3">${o.l}</text>`).join('');
+    };
+    img.complete?draw():img.onload=draw;
+  }else if(boxes.length){
+    const W=Math.max(...boxes.map(o=>o.b.x+o.b.width),640)*1.1,H=Math.max(...boxes.map(o=>o.b.y+o.b.height),480)*1.1;
+    st.innerHTML=`<svg viewBox="0 0 ${W} ${H}" style="display:block;width:100%"><rect width="${W}" height="${H}" fill="#0B1622"/>${
+      boxes.map(o=>`<rect x="${o.b.x}" y="${o.b.y}" width="${o.b.width}" height="${o.b.height}" fill="none" stroke="${o.c}" stroke-width="3" rx="3"/>
+      <text x="${o.b.x+4}" y="${Math.max(16,o.b.y-6)}" font-family="IBM Plex Mono" font-size="14" fill="${o.c}">${o.l}</text>`).join('')}</svg>
+      <div class="hud"><span>${e.camera_id} · ${e.mode}</span><span>BOX RECONSTRUCTION</span></div>`;
+  }else st.innerHTML='<div class="empty">NO FRAME STORED FOR THIS EVENT</div>';
+  const col=e._colours||{};
+  $('sigrow').innerHTML=`
+    <div class="sig"><h5>Face</h5>${e.face?.present
+      ?`${e.camera_id==='CAM-FACE'&&MEDIA.face_crop?`<img src="${MEDIA.face_crop}" alt="face crop">`:''}
+        <div class="kv"><span>Detected</span><b>${e.face.count}</b></div>
+        <div class="kv"><span>Confidence</span><b>${fmt((e.face.detection_confidence||0)*100,0)}%</b></div>
+        <div class="kv"><span>Embedding</span><b>${e.face.embedding_ref?'anonymous ref':'—'}</b></div>`
+      :'<div class="kv"><span>Result</span><b>none</b></div>'}</div>
+    <div class="sig"><h5>Plate</h5>${e.plate?.text
+      ?`${({'EVT-314D9D0C2C':MEDIA.veh1_plate,'EVT-4ADFB703C2':MEDIA.veh2_plate})[e.event_id]?`<img src="${({'EVT-314D9D0C2C':MEDIA.veh1_plate,'EVT-4ADFB703C2':MEDIA.veh2_plate})[e.event_id]}" alt="plate crop">`:''}
+        <div style="margin-bottom:6px">${plateChip(e.plate.text)}</div>
+        <div class="kv"><span>OCR</span><b>${fmt((e.plate.ocr_confidence||0)*100,0)}%</b></div>`
+      :'<div class="kv"><span>Result</span><b>no plate</b></div>'}</div>
+    <div class="sig"><h5>Vehicle</h5>${e.vehicle?.type&&e.vehicle.type!=='Unknown'
+      ?`<div class="kv"><span>Type</span><b>${e.vehicle.type}</b></div>
+        <div class="kv"><span>Colour</span><b>${col.vehicle?`<i class="swatch" style="background:${col.vehicle}"></i>`:''}${e.vehicle.colour}</b></div>
+        <div class="kv"><span>Direction</span><b>${e.vehicle.direction||'—'}</b></div>`
+      :'<div class="kv"><span>Result</span><b>none</b></div>'}</div>
+    <div class="sig"><h5>Appearance</h5>${e.appearance?.person_box||e.appearance?.upper_colour!=='Unknown'
+      ?`<div class="kv"><span>Upper</span><b>${col.upper?`<i class="swatch" style="background:${col.upper}"></i>`:''}${e.appearance.upper_colour}</b></div>
+        <div class="kv"><span>Lower</span><b>${col.lower?`<i class="swatch" style="background:${col.lower}"></i>`:''}${e.appearance.lower_colour}</b></div>
+        <div class="kv"><span>Never inferred</span><b>race · gender · age</b></div>`
+      :'<div class="kv"><span>Result</span><b>none</b></div>'}</div>`;
+  const q=e.quality_metrics||{};
+  $('trustHead').textContent=(e.camera_trust_score??'—')+'/100';
+  $('qbars').innerHTML=Object.entries(q).map(([k,v])=>
+    `<div class="brow"><span style="text-transform:capitalize">${k}</span><div class="bar"><i style="width:${v}%"></i></div><b>${v}</b></div>`).join('')
+    +`<div class="mono" style="margin-top:8px">${(e.trust_reasons||[]).join(' · ')}</div>`;
+  renderGraph();
+}
+
+/* ---- browser-side multi-signal comparison (mirrors the server scorer) ---- */
+function compareEvents(a,b){
+  const comps={plate:0,face:0,vehicle:0,appearance:0,journey:0,
+    camera_trust:Math.min(a.camera_trust_score??50,b.camera_trust_score??50)};
+  const reasons=[];
+  const pa=(a.plate?.text||'').replace(/\s+/g,''),pb=(b.plate?.text||'').replace(/\s+/g,'');
+  if(pa&&pb){
+    let same=0;for(let i=0;i<Math.min(pa.length,pb.length);i++)if(pa[i]===pb[i])same++;
+    const ratio=same/Math.max(pa.length,pb.length);
+    comps.plate=+(40*ratio).toFixed(1);
+    if(ratio>=.85)reasons.push('Strong plate agreement');else if(ratio>0)reasons.push('Partial plate agreement');
+  }else reasons.push('One or both plates unavailable');
+  if(a.face?.present&&b.face?.present){comps.face=20;reasons.push('Face present on both cameras — human review required');}
+  const va=a.vehicle||{},vb=b.vehicle||{};
+  if(va.type&&vb.type&&va.type!=='Unknown'&&va.type===vb.type){comps.vehicle+=9;reasons.push('Vehicle type agrees');}
+  if(va.colour&&vb.colour&&va.colour!=='Unknown'&&va.colour===vb.colour){comps.vehicle+=6;reasons.push('Vehicle colour agrees');}
+  const aa=a.appearance||{},ab=b.appearance||{};
+  if(aa.upper_colour&&aa.upper_colour!=='Unknown'&&aa.upper_colour===ab.upper_colour){comps.appearance+=6;reasons.push('Upper clothing matches');}
+  if(aa.lower_colour&&aa.lower_colour!=='Unknown'&&aa.lower_colour===ab.lower_colour){comps.appearance+=4;reasons.push('Lower clothing matches');}
+  const km=hav(a.location,b.location);
+  const mins=Math.abs(new Date(b.timestamp)-new Date(a.timestamp))/60000;
+  const speed=mins>0?km/(mins/60):(km>0?999:0);
+  const plausible=km<=0.05||speed<=120;
+  comps.journey=plausible?10:0;
+  reasons.push(plausible?'Journey is geographically plausible':`Journey implausible — ${fmt(km,2)} km in ${fmt(mins,1)} min`);
+  const raw=comps.plate+comps.face+comps.vehicle+comps.appearance+comps.journey;
+  const score=Math.max(0,Math.min(100,raw*(0.6+0.4*(comps.camera_trust/100))));
+  let rel='WEAK_CONNECTION';
+  if(score>=75)rel='HIGH_PRIORITY_REVIEW';
+  else if(comps.plate>=25||comps.vehicle>=12)rel='POSSIBLE_SAME_VEHICLE';
+  else if(comps.appearance>=6||comps.face>=20)rel='POSSIBLE_SAME_APPEARANCE';
+  return {first_event_id:a.event_id,second_event_id:b.event_id,score:+score.toFixed(1),relationship:rel,
+    components:comps,reasons,journey_distance_km:+km.toFixed(3),journey_plausible:plausible,human_review_required:true};
+}
+function evaluateAlert(link,ev){
+  const hs=(DATA.hotspots||[]).map(h=>({h,km:hav(ev.location,h.location)})).sort((x,y)=>x.km-y.km)[0];
+  const near=hs&&hs.km<=(hs.h.geofence_radius_km||1.5)*2;
+  const reasons=[];
+  if(hs)reasons.push(`Event is ${fmt(hs.km,2)} km from hotspot ${hs.h.hotspot_id}`);
+  reasons.push(`Evidence score is ${fmt(link.score)}/100`);
+  reasons.push(`Camera trust is ${fmt(link.components.camera_trust)}/100`);
+  if(!link.journey_plausible)reasons.push('Journey plausibility failed — candidate suppressed');
+  let priority='LOW';
+  if(link.score>=75&&near)priority='HIGH';else if(link.score>=50)priority='MEDIUM';
+  if(!link.journey_plausible)priority='NONE';
+  return {alert_id:'ALT-'+Math.random().toString(16).slice(2,10).toUpperCase(),event_id:ev.event_id,
+    priority,status:priority==='NONE'?'NO_ALERT':'PENDING_REVIEW',hotspot_id:near?hs.h.hotspot_id:null,
+    evidence_score:link.score,reasons,human_review_required:true};
+}
+$('cmpRun').onclick=async()=>{
+  const a=EVENTS.find(e=>e.event_id===$('cmpA').value),b=EVENTS.find(e=>e.event_id===$('cmpB').value);
+  if(!a||!b||a===b){alert('Pick two different events.');return;}
+  LINK=compareEvents(a,b);ALERT=evaluateAlert(LINK,b);
+  renderGraph();
+};
+function renderGraph(){
+  const e=LINK||DATA.evidence,a=ALERT||DATA.alert;
+  $('evPair').textContent=`${e.first_event_id} ↔ ${e.second_event_id}`;
+  const c=e.components;
+  const cues=[['Plate',c.plate],['Face',c.face],['Vehicle',c.vehicle],['Appearance',c.appearance],['Journey',c.journey]];
+  const W=640,cx=W/2,L=96,R=W-96,top=118,gap=42;
+  let out=`<defs><linearGradient id="gs" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#00AEEF"/><stop offset="1" stop-color="#7A4DB8"/></linearGradient></defs>`;
+  out+=`<text class="scorebadge" x="${cx}" y="42" text-anchor="middle">${fmt(e.score)}/100</text>`;
+  out+=`<text class="relbadge" x="${cx}" y="60" text-anchor="middle">${e.relationship.replaceAll('_',' ')}</text>`;
+  const node=(x,id,sub)=>`<rect class="gnode" x="${x-74}" y="150" width="148" height="72" rx="10"/>
+    <text class="gtxt" x="${x}" y="180" text-anchor="middle">${String(id).slice(0,15)}</text>
+    <text class="gsub" x="${x}" y="198" text-anchor="middle">${sub}</text>`;
+  const ea=EVENTS.find(x=>x.event_id===e.first_event_id),eb=EVENTS.find(x=>x.event_id===e.second_event_id);
+  out+=node(L,e.first_event_id,ea?ea.camera_id:'camera one');
+  out+=node(R,e.second_event_id,eb?eb.camera_id:'camera two');
+  cues.forEach((cu,i)=>{const y=top+i*gap;
+    out+=`<path class="glink" d="M ${L+74} 186 C ${cx-120} 186, ${cx-120} ${y+13}, ${cx-62} ${y+13}"/>`;
+    out+=`<path class="glink" d="M ${R-74} 186 C ${cx+120} 186, ${cx+120} ${y+13}, ${cx+62} ${y+13}"/>`;
+    out+=`<rect class="cue" x="${cx-62}" y="${y}" width="124" height="27" rx="13.5"/>`;
+    out+=`<text class="cuet" x="${cx-50}" y="${y+17.5}">${cu[0]}</text>`;
+    out+=`<text class="cuev" x="${cx+50}" y="${y+17.5}" text-anchor="end">+${fmt(cu[1])}</text>`;});
+  $('graphSvg').innerHTML=out;
+  $('evJourney').className='jchip'+(e.journey_plausible?'':' bad');
+  $('evJourney').textContent=(e.journey_plausible?'Journey plausible · ':'Journey implausible · ')+fmt(e.journey_distance_km,2)+' km between cameras';
+  $('evReasons').innerHTML=e.reasons.map(r=>`<li>${r}</li>`).join('');
+  $('alStatus').textContent=(a.status||'').replaceAll('_',' ');
+  $('alCard').className='alertcard '+a.priority;
+  $('alPrio').textContent=`${a.priority} PRIORITY`;
+  $('alMeta').textContent=`${a.alert_id} · event ${a.event_id} · hotspot ${a.hotspot_id??'—'} · evidence ${fmt(a.evidence_score)}/100`;
+  $('alReasons').innerHTML=a.reasons.map(r=>`<li>${r}</li>`).join('');
+  const comp=CAM.comparisons;
+  const card=(o,t)=>o?`<div class="match ${o.evidence_strength}"><h5>${t}</h5><div class="stg">${o.evidence_strength}${o.value?' ✓':''}</div>
+    ${t.includes('face')&&o.value&&MEDIA.face_crop?`<div class="facepair"><img src="${MEDIA.face_crop}"><span class="arr">≈ ${fmt(o.score*100,0)}%</span><img src="${MEDIA.face_crop}"></div>`:''}
+    <ul>${o.reasons.map(r=>`<li>${r}</li>`).join('')}</ul></div>`:'';
+  $('matchcards').innerHTML=`<div class="mono" style="grid-column:1/-1">Recorded pipeline comparison · ${comp.face.event_a} ↔ ${comp.face.event_b}</div>`
+    +card(comp.face.possible_same_face,'Possible same face')
+    +card(comp.face.possible_same_appearance,'Possible same appearance')
+    +card(comp.vehicle.possible_same_vehicle,'Possible same vehicle');
+}
+</script>
+<script>
+/* ================= OVERVIEW: map + hotspots ================= */
+function initLeaflet(){
+  if(leaf)return;
+  if(!window.L){useSvg();return;}
+  try{
+    leaf=L.map('leafletMap',{scrollWheelZoom:false});
+    let loaded=false;
+    const t=L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'© OpenStreetMap'});
+    t.on('tileload',()=>loaded=true);t.addTo(leaf);
+    setTimeout(()=>{if(!loaded)useSvg();},4500);
+  }catch(e){leaf=null;useSvg();}
+}
+function useSvg(){$('leafletMap').style.display='none';$('riskSvg').style.display='block';renderSvgMap();}
+function renderSvgMap(){
+  const svg=$('riskSvg');if(svg.style.display==='none'||!DATA)return;
+  const W=660,H=440,P=projector(DATA.hotspots,W,H,64);
+  const inF=new Set(filtered().map(h=>h.hotspot_id));
+  const maxP=Math.max(...DATA.hotspots.map(h=>h.operational_priority??0),1);
+  let out='';
+  for(let x=40;x<W;x+=62)out+=`<line x1="${x}" y1="14" x2="${x}" y2="${H-14}" stroke="#D5DDE2"/>`;
+  for(let y=34;y<H;y+=58)out+=`<line x1="16" y1="${y}" x2="${W-16}" y2="${y}" stroke="#D5DDE2"/>`;
+  const nodes=DATA.hotspots.map(h=>({h,p:P(h)})).sort((a,b)=>a.p.y-b.p.y);const placed=[];
+  nodes.forEach(n=>{let side=n.p.x>W-170?-1:1,ly=n.p.y;
+    placed.forEach(q=>{if(Math.abs(q.lx-(n.p.x+side*30))<150&&Math.abs(q.ly-ly)<26)ly=q.ly+26;});
+    n.side=side;n.ly=ly;placed.push({lx:n.p.x+side*30,ly});});
+  nodes.forEach(({h,p,side,ly})=>{
+    const act=inF.has(h.hotspot_id),sel=h.hotspot_id===selHotspot,r=9+15*(h.operational_priority??0)/maxP;
+    const lx=p.x+side*(r+8),anc=side>0?'start':'end';
+    out+=`<g class="hnode" data-h="${h.hotspot_id}" opacity="${act?1:.25}">
+      <circle cx="${p.x}" cy="${p.y}" r="${r+5}" fill="none" stroke="${sel?'#005BAA':'#B03A2E'}" stroke-width="1.3" stroke-dasharray="4 4" opacity=".55"/>
+      <circle cx="${p.x}" cy="${p.y}" r="${r}" fill="${sel?'#005BAA':'#E2B1AB'}" stroke="#fff" stroke-width="2.5"/>
+      ${Math.abs(ly-p.y)>4?`<line x1="${p.x+side*r}" y1="${p.y}" x2="${lx}" y2="${ly-4}" stroke="#B7C3CB"/>`:''}
+      <text class="zlab" x="${lx}" y="${ly-2}" text-anchor="${anc}">${h.name}</text>
+      <text class="zsub" x="${lx}" y="${ly+11}" text-anchor="${anc}">${fmt(h.operational_priority)} · ${h.main_peril||''}</text></g>`;});
+  camerasForMetro().forEach(c=>{
+    const p=P({location:{latitude:c.latitude,longitude:c.longitude}});
+    out+=`<rect x="${p.x-4}" y="${p.y-4}" width="8" height="8" rx="2" fill="#021F38"/>`;});
+  svg.innerHTML=out;
+  svg.querySelectorAll('.hnode').forEach(n=>n.onclick=()=>{selHotspot=n.dataset.h;renderRisk();});
+}
+function renderLeaflet(){
+  if(!leaf)return;
+  if(leafLayer)leafLayer.remove();
+  leafLayer=L.layerGroup().addTo(leaf);
+  const maxP=Math.max(...DATA.hotspots.map(h=>h.operational_priority??0),1);
+  const inF=new Set(filtered().map(h=>h.hotspot_id));const pts=[];
+  DATA.hotspots.forEach(h=>{
+    const act=inF.has(h.hotspot_id),sel=h.hotspot_id===selHotspot;
+    const ll=[h.location.latitude,h.location.longitude];pts.push(ll);
+    L.circleMarker(ll,{radius:9+13*(h.operational_priority??0)/maxP,color:sel?'#005BAA':'#B03A2E',weight:2,
+      fillColor:sel?'#005BAA':'#E2B1AB',fillOpacity:act?.85:.2,opacity:act?.9:.3})
+      .addTo(leafLayer)
+      .bindTooltip(`<b style="font-family:Saira Condensed">${h.name}</b><br><span style="font-family:IBM Plex Mono;font-size:11px">${fmt(h.operational_priority)} · ${h.main_peril||''}</span>`,{direction:'top',offset:[0,-6]})
+      .on('click',()=>{selHotspot=h.hotspot_id;renderRisk();});
+  });
+  camerasForMetro().forEach(c=>{
+    const evs=EVENTS.filter(e=>e.camera_id===c.camera_id).length;
+    pts.push([c.latitude,c.longitude]);
+    L.marker([c.latitude,c.longitude],{icon:L.divIcon({className:'',iconSize:[13,13],
+      html:`<div style="width:13px;height:13px;background:${c.mode==='HEIGHTENED'?'#00AEEF':'#021F38'};border:2px solid #fff;border-radius:3px;box-shadow:0 1px 4px rgba(0,0,0,.4)"></div>`})})
+      .addTo(leafLayer).bindTooltip(`<b>${c.household}</b><br>${c.camera_id} · ${c.mode}${evs?`<br>${evs} events`:''}`,{direction:'top'})
+      .on('click',()=>{selCamera=c.camera_id;document.querySelector('#tabs button[data-v="cameras"]').click();renderWall();});
+  });
+  if(pts.length)leaf.fitBounds(L.latLngBounds(pts).pad(.22));
+}
+function renderPerils(){
+  const ps=['All',...new Set(DATA.hotspots.map(h=>h.main_peril).filter(Boolean))];
+  if(!ps.includes(perilFilter))perilFilter='All';
+  $('perils').innerHTML=ps.map(p=>`<button class="chip ${p===perilFilter?'on':''}" data-p="${p}">${p}</button>`).join('');
+  $('perils').querySelectorAll('.chip').forEach(b=>b.onclick=()=>{perilFilter=b.dataset.p;renderRisk();});
+}
+function filtered(){return DATA.hotspots.filter(h=>perilFilter==='All'||h.main_peril===perilFilter)
+  .sort((a,b)=>(b.operational_priority??0)-(a.operational_priority??0));}
+function renderRisk(){
+  renderPerils();
+  const list=filtered();
+  if(!list.find(h=>h.hotspot_id===selHotspot))selHotspot=list[0]?.hotspot_id??null;
+  const maxP=Math.max(...DATA.hotspots.map(h=>h.operational_priority??0),1);
+  $('hotRows').innerHTML=list.map(h=>`
+    <tr class="hrow ${h.hotspot_id===selHotspot?'sel':''}" data-h="${h.hotspot_id}">
+      <td><strong>${h.name}</strong><br><span class="bandpill">conf ${fmt(h.confidence_score??0,0)}</span></td>
+      <td>${h.main_peril||'—'}</td><td>${num.format(h.claim_count||0)}</td>
+      <td class="pr">${fmt(h.operational_priority)}</td>
+      <td style="width:78px"><div class="minibar"><i style="width:${100*(h.operational_priority??0)/maxP}%"></i></div></td></tr>`).join('');
+  $('hotRows').querySelectorAll('.hrow').forEach(r=>r.onclick=()=>{selHotspot=r.dataset.h;renderRisk();});
+  const h=DATA.hotspots.find(x=>x.hotspot_id===selHotspot);
+  const camsHere=CAMERAS.filter(c=>c.suburb===(h?h.name:''));
+  $('hotDetail').innerHTML=h?`
+    <div><b>Peak window</b>${(h.peak_window?.days||[]).join(', ')||'—'} ${h.peak_window?`· ${h.peak_window.start}–${h.peak_window.end}`:''}</div>
+    <div><b>Claims risk</b>${fmt(h.claims_risk_score)}</div>
+    <div><b>SAPS context</b>${h.saps_context_score!=null?fmt(h.saps_context_score):'—'}</div>
+    <div><b>Geofence</b>${fmt(h.geofence_radius_km,1)} km</div>
+    <div><b>Cameras here</b>${camsHere.length?camsHere.map(c=>c.camera_id).join(', '):'none yet'}</div>`:'';
+  renderLeaflet();renderSvgMap();
+  $('mapSrc').textContent=DATA.data_source.source;
+}
+
+/* ================= REWIND + PATROL ================= */
+function renderRewind(){
+  const t=DATA.timeline;
+  $('tmHead').textContent=`Time Machine · ${t.claim_id}`;
+  $('tmWindow').textContent=`${new Date(t.start_time).toLocaleString('en-ZA')} → ${new Date(t.end_time).toLocaleString('en-ZA')}`;
+  $('tmList').innerHTML=t.items.map(i=>`
+    <div class="tli"><div class="t"><span>${new Date(i.timestamp).toLocaleTimeString('en-ZA',{hour:'2-digit',minute:'2-digit'})} · ${i.event_id}</span>
+      <span>${fmt(i.distance_from_claim_km,2)} km from claim</span></div>
+      <div class="d">${i.description.replace(/([A-Z]{2})\s?(\d{2})\s?([A-Z]{2})\s?GP/g,(m,a,b,c)=>plateChip(a+b+c+'GP'))}</div>
+      <div class="rele"><div class="minibar"><i style="width:${i.relevance_score}%"></i></div><span>relevance ${fmt(i.relevance_score,0)}/100</span></div>
+    </div>`).join('')||'<p class="mono">No matching events.</p>';
+  $('tmSummary').textContent=t.summary;
+}
+function renderPatrol(p,animate){
+  const byId=Object.fromEntries(DATA.hotspots.map(h=>[h.hotspot_id,h]));
+  const b=p.baseline,o=p.optimised;
+  countTo($('prpkBig'),o.protected_risk_per_km,v=>fmt(v,2));
+  $('saves').innerHTML=`<div><div class="b">${fmt(p.distance_saved_km)} km</div><div class="s">distance saved</div></div>
+    <div><div class="b">${fmt(p.fuel_saved_litres,1)} L</div><div class="s">fuel saved / shift</div></div>
+    <div><div class="b">+${fmt(p.protected_risk_per_km_improvement_percent,0)}%</div><div class="s">vs existing</div></div>`;
+  const card=(t,r)=>`<b>${t}</b><br>${fmt(r.distance_km)} km · ${fmt(r.estimated_fuel_litres,2)} L<br>${fmt(r.coverage_percent)}% risk covered · <strong>${fmt(r.protected_risk_per_km,2)} risk/km</strong>`;
+  $('cardBase').innerHTML=card('Risk-ranked baseline',b);$('cardOpt').innerHTML=card('Optimised',o);
+  $('routeMeta').textContent=`${o.ordered_hotspot_ids.length} stops · depot ${DATA.depot.name}`;
+  const W=660,H=440,P=projector(DATA.hotspots,W,H,58);
+  const path=or=>{let s=`M ${P(DATA.depot).x} ${P(DATA.depot).y}`;or.forEach(id=>{const q=P(byId[id]);s+=` L ${q.x} ${q.y}`});return s;};
+  const dp=P(DATA.depot);let out='';
+  for(let x=40;x<W;x+=62)out+=`<line x1="${x}" y1="14" x2="${x}" y2="${H-14}" stroke="#D5DDE2"/>`;
+  for(let y=34;y<H;y+=58)out+=`<line x1="16" y1="${y}" x2="${W-16}" y2="${y}" stroke="#D5DDE2"/>`;
+  out+=`<path d="${path(b.ordered_hotspot_ids)}" fill="none" stroke="#9AA8B2" stroke-width="3" stroke-dasharray="3 6"/>`;
+  out+=`<path id="optPath" d="${path(o.ordered_hotspot_ids)}" fill="none" stroke="#005BAA" stroke-width="4" stroke-linejoin="round"/>`;
+  DATA.hotspots.forEach(h=>{const q=P(h);
+    out+=`<circle cx="${q.x}" cy="${q.y}" r="9" fill="#E2B1AB" stroke="#fff" stroke-width="2.5"/><text class="zlab" x="${q.x+12}" y="${q.y-5}">${h.name}</text>`;});
+  out+=`<rect x="${dp.x-8}" y="${dp.y-8}" width="16" height="16" rx="4" fill="#021F38"/><text class="zlab" x="${dp.x+13}" y="${dp.y+5}">DEPOT</text>`;
+  $('patSvg').innerHTML=out;
+  if(animate&&!REDUCED){const el=$('patSvg').querySelector('#optPath');
+    try{const L2=el.getTotalLength();el.style.strokeDasharray=L2;el.style.strokeDashoffset=L2;
+      el.style.transition='stroke-dashoffset 1.4s cubic-bezier(.2,.7,.2,1)';
+      requestAnimationFrame(()=>requestAnimationFrame(()=>el.style.strokeDashoffset='0'));}catch(e){}}
+}
+async function recalcRoute(){
+  const econ=parseFloat($('fuelEcon').value)||10;
+  const stops=$('maxStops').value?parseInt($('maxStops').value):null;
+  if(LIVE){try{const q=new URLSearchParams({fuel_l_per_100km:econ});if(stops)q.set('max_stops',stops);
+    renderPatrol(await j(`/api/routes/metro/${encodeURIComponent($('metro').value)}?${q}`),true);return;}catch(e){}}
+  const byId=Object.fromEntries(DATA.hotspots.map(h=>[h.hotspot_id,h]));
+  const base=JSON.parse(JSON.stringify(DATA.patrol));
+  ['baseline','optimised'].forEach(k=>{
+    let or=base[k].ordered_hotspot_ids;const full=or.length;
+    if(stops)or=or.slice(0,stops);
+    let km=0,prev=DATA.depot.location;
+    or.forEach(id=>{km+=hav(prev,byId[id].location);prev=byId[id].location;});
+    const risk=base[k].risk_covered*(or.length/full);
+    base[k]={...base[k],ordered_hotspot_ids:or,distance_km:km,estimated_fuel_litres:km*econ/100,
+      coverage_percent:base[k].coverage_percent*(or.length/full),protected_risk_per_km:risk/Math.max(.001,km)};
+  });
+  base.distance_saved_km=base.baseline.distance_km-base.optimised.distance_km;
+  base.fuel_saved_litres=base.baseline.estimated_fuel_litres-base.optimised.estimated_fuel_litres;
+  base.protected_risk_per_km_improvement_percent=100*(base.optimised.protected_risk_per_km/Math.max(.001,base.baseline.protected_risk_per_km)-1);
+  renderPatrol(base,true);
+}
+$('applyRoute').onclick=recalcRoute;
+
+/* ================= DEMO CONTROLS ================= */
+$('seedDemo').onclick=async()=>{
+  $('demoCtlStatus').textContent='seeding…';
+  try{const r=await j('/api/demo/seed',{method:'POST'});
+    $('demoCtlStatus').textContent=`seeded ${r.seeded_events} events · claim ${r.claim_id}`;
+    await loadMetro($('metro').value);
+  }catch(e){$('demoCtlStatus').textContent=`seed failed: ${String(e.message||e).slice(0,90)}`;}
+};
+$('resetDemo').onclick=async()=>{
+  $('demoCtlStatus').textContent='resetting…';
+  try{const r=await j('/api/demo/reset',{method:'DELETE'});
+    $('demoCtlStatus').textContent=`reset complete · removed ${r.removed.events} events, ${r.removed.claims} claims, ${r.removed.alerts} alerts`;
+  }catch(e){$('demoCtlStatus').textContent=`reset failed: ${String(e.message||e).slice(0,90)}`;}
+};
+
+/* ================= BOOT ================= */
+function renderAll(){
+  const s=DATA.claims_summary;
+  countTo($('kHot'),s.hotspot_count,v=>num.format(Math.round(v)));
+  countTo($('kClaims'),s.claim_count,v=>num.format(Math.round(v)));
+  countTo($('kValue'),s.total_claim_value,v=>money.format(v));
+  renderRisk();renderWall();renderEvidenceView();renderRewind();renderPatrol(DATA.patrol,false);
+  $('footnote').textContent=`${DATA.demo_notice} Live detection runs COCO-SSD and BlazeFace in the browser; uploaded footage can additionally run the full sentinel-camera-ai pipeline server-side. Camera media is synthetic or consented. Source: ${DATA.data_source.source}${LIVE?' · live API':' · embedded payloads'}`;
+}
+async function loadMetro(m){
+  $('srcTxt').textContent='loading…';
+  if(LIVE){
+    try{DATA=await j('/api/overview?metro='+encodeURIComponent(m));$('srcTxt').textContent=DATA.data_source.source+' · live';}
+    catch(e){DATA=ALL[m]||ALL['Gauteng'];$('srcTxt').textContent='embedded · api error';}
+  }else{DATA=ALL[m]||ALL['Gauteng'];$('srcTxt').textContent='embedded · '+m;}
+  selHotspot=null;perilFilter='All';
+  await loadCameras();
+  renderAll();
+}
+(async function boot(){
+  ALL=JSON.parse($('allData').textContent);
+  CAM=JSON.parse($('camData').textContent);
+  MEDIA=JSON.parse($('mediaData').textContent);
+  seedEvents();
+  let metros=Object.keys(ALL);
+  try{const m=await j('/api/claims/metros');LIVE=true;$('srcDot').classList.add('live');metros=m.metros;}catch(e){LIVE=false;}
+  $('metro').innerHTML=metros.map(x=>`<option>${x}</option>`).join('');
+  if(metros.includes('Gauteng'))$('metro').value='Gauteng';
+  $('metro').onchange=()=>loadMetro($('metro').value);
+  initLeaflet();
+  await loadMetro($('metro').value);
+  loadAI();
+})();
+
+/* ================= WELCOME MOTION ================= */
+(function(){
+  let l='';
+  for(let x=60;x<1440;x+=115)l+=`<line x1="${x}" y1="0" x2="${x}" y2="900" stroke="rgba(0,174,239,.12)"/>`;
+  for(let y=70;y<900;y+=115)l+=`<line x1="0" y1="${y}" x2="1440" y2="${y}" stroke="rgba(0,174,239,.12)"/>`;
+  l+=`<line x1="80" y1="900" x2="1360" y2="0" stroke="rgba(0,174,239,.22)" stroke-width="3"/>`;
+  $('hgrid').innerHTML=l;
+  if(!window.gsap||REDUCED)return;
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.timeline({defaults:{ease:'power3.out'}})
+    .from('#hgrid line',{scaleX:0,scaleY:0,transformOrigin:'50% 50%',stagger:{each:.014,from:'center'},duration:.9},0)
+    .from('#kick',{y:20,opacity:0,duration:.6},.3)
+    .from('.ht [data-line]',{yPercent:110,duration:.9,stagger:.12},.45)
+    .from('#hs',{y:22,opacity:0,duration:.7},.9)
+    .from('#hcta .cta',{y:16,opacity:0,stagger:.1,duration:.5},1.05)
+    .from('.usp',{y:26,opacity:0,stagger:.09,duration:.55},1.15);
+  gsap.utils.toArray('#welcome .reveal').forEach(el=>gsap.from(el,{y:30,opacity:0,duration:.7,
+    scrollTrigger:{trigger:el,scroller:'#welcome',start:'top 88%',once:true}}));
+})();
+</script>
+</body>
+</html>

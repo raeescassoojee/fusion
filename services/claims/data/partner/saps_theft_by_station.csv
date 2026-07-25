@@ -1,0 +1,1001 @@
+Police Station,Province,Crime,Year,Incidents
+Cape Town Central,Western Cape,All theft not mentioned elsewhere,2005-2006,6692
+Cape Town Central,Western Cape,All theft not mentioned elsewhere,2006-2007,6341
+Cape Town Central,Western Cape,All theft not mentioned elsewhere,2007-2008,5966
+Cape Town Central,Western Cape,All theft not mentioned elsewhere,2008-2009,5187
+Cape Town Central,Western Cape,All theft not mentioned elsewhere,2009-2010,4985
+Cape Town Central,Western Cape,All theft not mentioned elsewhere,2010-2011,5127
+Cape Town Central,Western Cape,All theft not mentioned elsewhere,2011-2012,5285
+Cape Town Central,Western Cape,All theft not mentioned elsewhere,2012-2013,5937
+Cape Town Central,Western Cape,All theft not mentioned elsewhere,2013-2014,5600
+Cape Town Central,Western Cape,All theft not mentioned elsewhere,2014-2015,5335
+Cape Town Central,Western Cape,All theft not mentioned elsewhere,2015-2016,5176
+Cape Town Central,Western Cape,All theft not mentioned elsewhere,2016-2017,5496
+Mitchells Plain,Western Cape,All theft not mentioned elsewhere,2005-2006,5341
+Mitchells Plain,Western Cape,All theft not mentioned elsewhere,2006-2007,6093
+Mitchells Plain,Western Cape,All theft not mentioned elsewhere,2007-2008,6316
+Mitchells Plain,Western Cape,All theft not mentioned elsewhere,2008-2009,6803
+Mitchells Plain,Western Cape,All theft not mentioned elsewhere,2009-2010,6035
+Mitchells Plain,Western Cape,All theft not mentioned elsewhere,2010-2011,5761
+Mitchells Plain,Western Cape,All theft not mentioned elsewhere,2011-2012,6108
+Mitchells Plain,Western Cape,All theft not mentioned elsewhere,2012-2013,5514
+Mitchells Plain,Western Cape,All theft not mentioned elsewhere,2013-2014,4975
+Mitchells Plain,Western Cape,All theft not mentioned elsewhere,2014-2015,4043
+Mitchells Plain,Western Cape,All theft not mentioned elsewhere,2015-2016,3635
+Mitchells Plain,Western Cape,All theft not mentioned elsewhere,2016-2017,3322
+Pretoria Central,Gauteng,All theft not mentioned elsewhere,2005-2006,5099
+Pretoria Central,Gauteng,All theft not mentioned elsewhere,2006-2007,4536
+Pretoria Central,Gauteng,All theft not mentioned elsewhere,2007-2008,3309
+Pretoria Central,Gauteng,All theft not mentioned elsewhere,2008-2009,2694
+Pretoria Central,Gauteng,All theft not mentioned elsewhere,2009-2010,2616
+Pretoria Central,Gauteng,All theft not mentioned elsewhere,2010-2011,2606
+Pretoria Central,Gauteng,All theft not mentioned elsewhere,2011-2012,2635
+Pretoria Central,Gauteng,All theft not mentioned elsewhere,2012-2013,3226
+Pretoria Central,Gauteng,All theft not mentioned elsewhere,2013-2014,3246
+Pretoria Central,Gauteng,All theft not mentioned elsewhere,2014-2015,2892
+Pretoria Central,Gauteng,All theft not mentioned elsewhere,2015-2016,3030
+Pretoria Central,Gauteng,All theft not mentioned elsewhere,2016-2017,2956
+Durban Central,Kwazulu/Natal,All theft not mentioned elsewhere,2005-2006,4162
+Durban Central,Kwazulu/Natal,All theft not mentioned elsewhere,2006-2007,4529
+Durban Central,Kwazulu/Natal,All theft not mentioned elsewhere,2007-2008,3499
+Durban Central,Kwazulu/Natal,All theft not mentioned elsewhere,2008-2009,3353
+Durban Central,Kwazulu/Natal,All theft not mentioned elsewhere,2009-2010,3183
+Durban Central,Kwazulu/Natal,All theft not mentioned elsewhere,2010-2011,2933
+Durban Central,Kwazulu/Natal,All theft not mentioned elsewhere,2011-2012,3219
+Durban Central,Kwazulu/Natal,All theft not mentioned elsewhere,2012-2013,3418
+Durban Central,Kwazulu/Natal,All theft not mentioned elsewhere,2013-2014,3390
+Durban Central,Kwazulu/Natal,All theft not mentioned elsewhere,2014-2015,2872
+Durban Central,Kwazulu/Natal,All theft not mentioned elsewhere,2015-2016,2865
+Durban Central,Kwazulu/Natal,All theft not mentioned elsewhere,2016-2017,2776
+Stellenbosch,Western Cape,All theft not mentioned elsewhere,2005-2006,1864
+Stellenbosch,Western Cape,All theft not mentioned elsewhere,2006-2007,2077
+Stellenbosch,Western Cape,All theft not mentioned elsewhere,2007-2008,1805
+Stellenbosch,Western Cape,All theft not mentioned elsewhere,2008-2009,1996
+Stellenbosch,Western Cape,All theft not mentioned elsewhere,2009-2010,1743
+Stellenbosch,Western Cape,All theft not mentioned elsewhere,2010-2011,1949
+Stellenbosch,Western Cape,All theft not mentioned elsewhere,2011-2012,1906
+Stellenbosch,Western Cape,All theft not mentioned elsewhere,2012-2013,1909
+Stellenbosch,Western Cape,All theft not mentioned elsewhere,2013-2014,2143
+Stellenbosch,Western Cape,All theft not mentioned elsewhere,2014-2015,2093
+Stellenbosch,Western Cape,All theft not mentioned elsewhere,2015-2016,2379
+Stellenbosch,Western Cape,All theft not mentioned elsewhere,2016-2017,2426
+Sandton,Gauteng,All theft not mentioned elsewhere,2005-2006,3030
+Sandton,Gauteng,All theft not mentioned elsewhere,2006-2007,3037
+Sandton,Gauteng,All theft not mentioned elsewhere,2007-2008,2556
+Sandton,Gauteng,All theft not mentioned elsewhere,2008-2009,2383
+Sandton,Gauteng,All theft not mentioned elsewhere,2009-2010,2431
+Sandton,Gauteng,All theft not mentioned elsewhere,2010-2011,2601
+Sandton,Gauteng,All theft not mentioned elsewhere,2011-2012,2446
+Sandton,Gauteng,All theft not mentioned elsewhere,2012-2013,2310
+Sandton,Gauteng,All theft not mentioned elsewhere,2013-2014,2275
+Sandton,Gauteng,All theft not mentioned elsewhere,2014-2015,2838
+Sandton,Gauteng,All theft not mentioned elsewhere,2015-2016,2866
+Sandton,Gauteng,All theft not mentioned elsewhere,2016-2017,2410
+Honeydew,Gauteng,All theft not mentioned elsewhere,2005-2006,2423
+Honeydew,Gauteng,All theft not mentioned elsewhere,2006-2007,2469
+Honeydew,Gauteng,All theft not mentioned elsewhere,2007-2008,2610
+Honeydew,Gauteng,All theft not mentioned elsewhere,2008-2009,2513
+Honeydew,Gauteng,All theft not mentioned elsewhere,2009-2010,2663
+Honeydew,Gauteng,All theft not mentioned elsewhere,2010-2011,2486
+Honeydew,Gauteng,All theft not mentioned elsewhere,2011-2012,2544
+Honeydew,Gauteng,All theft not mentioned elsewhere,2012-2013,2627
+Honeydew,Gauteng,All theft not mentioned elsewhere,2013-2014,2568
+Honeydew,Gauteng,All theft not mentioned elsewhere,2014-2015,2401
+Honeydew,Gauteng,All theft not mentioned elsewhere,2015-2016,2346
+Honeydew,Gauteng,All theft not mentioned elsewhere,2016-2017,2109
+Park Road,Free State,All theft not mentioned elsewhere,2005-2006,5108
+Park Road,Free State,All theft not mentioned elsewhere,2006-2007,4282
+Park Road,Free State,All theft not mentioned elsewhere,2007-2008,3834
+Park Road,Free State,All theft not mentioned elsewhere,2008-2009,3316
+Park Road,Free State,All theft not mentioned elsewhere,2009-2010,3101
+Park Road,Free State,All theft not mentioned elsewhere,2010-2011,3013
+Park Road,Free State,All theft not mentioned elsewhere,2011-2012,2679
+Park Road,Free State,All theft not mentioned elsewhere,2012-2013,3116
+Park Road,Free State,All theft not mentioned elsewhere,2013-2014,2927
+Park Road,Free State,All theft not mentioned elsewhere,2014-2015,2297
+Park Road,Free State,All theft not mentioned elsewhere,2015-2016,2103
+Park Road,Free State,All theft not mentioned elsewhere,2016-2017,2095
+Brooklyn,Gauteng,All theft not mentioned elsewhere,2005-2006,3931
+Brooklyn,Gauteng,All theft not mentioned elsewhere,2006-2007,3583
+Brooklyn,Gauteng,All theft not mentioned elsewhere,2007-2008,2878
+Brooklyn,Gauteng,All theft not mentioned elsewhere,2008-2009,2568
+Brooklyn,Gauteng,All theft not mentioned elsewhere,2009-2010,2415
+Brooklyn,Gauteng,All theft not mentioned elsewhere,2010-2011,2162
+Brooklyn,Gauteng,All theft not mentioned elsewhere,2011-2012,2050
+Brooklyn,Gauteng,All theft not mentioned elsewhere,2012-2013,1883
+Brooklyn,Gauteng,All theft not mentioned elsewhere,2013-2014,2442
+Brooklyn,Gauteng,All theft not mentioned elsewhere,2014-2015,2200
+Brooklyn,Gauteng,All theft not mentioned elsewhere,2015-2016,2107
+Brooklyn,Gauteng,All theft not mentioned elsewhere,2016-2017,2045
+Jhb Central,Gauteng,All theft not mentioned elsewhere,2005-2006,6093
+Jhb Central,Gauteng,All theft not mentioned elsewhere,2006-2007,4602
+Jhb Central,Gauteng,All theft not mentioned elsewhere,2007-2008,3761
+Jhb Central,Gauteng,All theft not mentioned elsewhere,2008-2009,3610
+Jhb Central,Gauteng,All theft not mentioned elsewhere,2009-2010,3267
+Jhb Central,Gauteng,All theft not mentioned elsewhere,2010-2011,3037
+Jhb Central,Gauteng,All theft not mentioned elsewhere,2011-2012,2886
+Jhb Central,Gauteng,All theft not mentioned elsewhere,2012-2013,2638
+Jhb Central,Gauteng,All theft not mentioned elsewhere,2013-2014,2809
+Jhb Central,Gauteng,All theft not mentioned elsewhere,2014-2015,3050
+Jhb Central,Gauteng,All theft not mentioned elsewhere,2015-2016,2434
+Jhb Central,Gauteng,All theft not mentioned elsewhere,2016-2017,2023
+Midrand,Gauteng,All theft not mentioned elsewhere,2005-2006,1424
+Midrand,Gauteng,All theft not mentioned elsewhere,2006-2007,1401
+Midrand,Gauteng,All theft not mentioned elsewhere,2007-2008,1252
+Midrand,Gauteng,All theft not mentioned elsewhere,2008-2009,1375
+Midrand,Gauteng,All theft not mentioned elsewhere,2009-2010,1647
+Midrand,Gauteng,All theft not mentioned elsewhere,2010-2011,1835
+Midrand,Gauteng,All theft not mentioned elsewhere,2011-2012,2026
+Midrand,Gauteng,All theft not mentioned elsewhere,2012-2013,2032
+Midrand,Gauteng,All theft not mentioned elsewhere,2013-2014,1985
+Midrand,Gauteng,All theft not mentioned elsewhere,2014-2015,1847
+Midrand,Gauteng,All theft not mentioned elsewhere,2015-2016,1775
+Midrand,Gauteng,All theft not mentioned elsewhere,2016-2017,2023
+Phoenix,Kwazulu/Natal,All theft not mentioned elsewhere,2005-2006,1680
+Phoenix,Kwazulu/Natal,All theft not mentioned elsewhere,2006-2007,1396
+Phoenix,Kwazulu/Natal,All theft not mentioned elsewhere,2007-2008,1553
+Phoenix,Kwazulu/Natal,All theft not mentioned elsewhere,2008-2009,1558
+Phoenix,Kwazulu/Natal,All theft not mentioned elsewhere,2009-2010,1567
+Phoenix,Kwazulu/Natal,All theft not mentioned elsewhere,2010-2011,1906
+Phoenix,Kwazulu/Natal,All theft not mentioned elsewhere,2011-2012,2222
+Phoenix,Kwazulu/Natal,All theft not mentioned elsewhere,2012-2013,2166
+Phoenix,Kwazulu/Natal,All theft not mentioned elsewhere,2013-2014,2077
+Phoenix,Kwazulu/Natal,All theft not mentioned elsewhere,2014-2015,2104
+Phoenix,Kwazulu/Natal,All theft not mentioned elsewhere,2015-2016,1919
+Phoenix,Kwazulu/Natal,All theft not mentioned elsewhere,2016-2017,2009
+Kraaifontein,Western Cape,All theft not mentioned elsewhere,2005-2006,1548
+Kraaifontein,Western Cape,All theft not mentioned elsewhere,2006-2007,1677
+Kraaifontein,Western Cape,All theft not mentioned elsewhere,2007-2008,1385
+Kraaifontein,Western Cape,All theft not mentioned elsewhere,2008-2009,1307
+Kraaifontein,Western Cape,All theft not mentioned elsewhere,2009-2010,1386
+Kraaifontein,Western Cape,All theft not mentioned elsewhere,2010-2011,1371
+Kraaifontein,Western Cape,All theft not mentioned elsewhere,2011-2012,1603
+Kraaifontein,Western Cape,All theft not mentioned elsewhere,2012-2013,1583
+Kraaifontein,Western Cape,All theft not mentioned elsewhere,2013-2014,1784
+Kraaifontein,Western Cape,All theft not mentioned elsewhere,2014-2015,1906
+Kraaifontein,Western Cape,All theft not mentioned elsewhere,2015-2016,1987
+Kraaifontein,Western Cape,All theft not mentioned elsewhere,2016-2017,1951
+Witbank,Mpumalanga,All theft not mentioned elsewhere,2005-2006,2437
+Witbank,Mpumalanga,All theft not mentioned elsewhere,2006-2007,2388
+Witbank,Mpumalanga,All theft not mentioned elsewhere,2007-2008,1920
+Witbank,Mpumalanga,All theft not mentioned elsewhere,2008-2009,2072
+Witbank,Mpumalanga,All theft not mentioned elsewhere,2009-2010,2425
+Witbank,Mpumalanga,All theft not mentioned elsewhere,2010-2011,2463
+Witbank,Mpumalanga,All theft not mentioned elsewhere,2011-2012,2251
+Witbank,Mpumalanga,All theft not mentioned elsewhere,2012-2013,1862
+Witbank,Mpumalanga,All theft not mentioned elsewhere,2013-2014,1943
+Witbank,Mpumalanga,All theft not mentioned elsewhere,2014-2015,2060
+Witbank,Mpumalanga,All theft not mentioned elsewhere,2015-2016,1951
+Witbank,Mpumalanga,All theft not mentioned elsewhere,2016-2017,1903
+Milnerton,Western Cape,All theft not mentioned elsewhere,2005-2006,2239
+Milnerton,Western Cape,All theft not mentioned elsewhere,2006-2007,2260
+Milnerton,Western Cape,All theft not mentioned elsewhere,2007-2008,2270
+Milnerton,Western Cape,All theft not mentioned elsewhere,2008-2009,2329
+Milnerton,Western Cape,All theft not mentioned elsewhere,2009-2010,2099
+Milnerton,Western Cape,All theft not mentioned elsewhere,2010-2011,1872
+Milnerton,Western Cape,All theft not mentioned elsewhere,2011-2012,1875
+Milnerton,Western Cape,All theft not mentioned elsewhere,2012-2013,2127
+Milnerton,Western Cape,All theft not mentioned elsewhere,2013-2014,1974
+Milnerton,Western Cape,All theft not mentioned elsewhere,2014-2015,1948
+Milnerton,Western Cape,All theft not mentioned elsewhere,2015-2016,2144
+Milnerton,Western Cape,All theft not mentioned elsewhere,2016-2017,1860
+Sunnyside,Gauteng,All theft not mentioned elsewhere,2005-2006,2967
+Sunnyside,Gauteng,All theft not mentioned elsewhere,2006-2007,2659
+Sunnyside,Gauteng,All theft not mentioned elsewhere,2007-2008,1866
+Sunnyside,Gauteng,All theft not mentioned elsewhere,2008-2009,1881
+Sunnyside,Gauteng,All theft not mentioned elsewhere,2009-2010,2044
+Sunnyside,Gauteng,All theft not mentioned elsewhere,2010-2011,2168
+Sunnyside,Gauteng,All theft not mentioned elsewhere,2011-2012,1862
+Sunnyside,Gauteng,All theft not mentioned elsewhere,2012-2013,1861
+Sunnyside,Gauteng,All theft not mentioned elsewhere,2013-2014,2350
+Sunnyside,Gauteng,All theft not mentioned elsewhere,2014-2015,1985
+Sunnyside,Gauteng,All theft not mentioned elsewhere,2015-2016,1820
+Sunnyside,Gauteng,All theft not mentioned elsewhere,2016-2017,1837
+Seshego,Limpopo,All theft not mentioned elsewhere,2005-2006,413
+Seshego,Limpopo,All theft not mentioned elsewhere,2006-2007,520
+Seshego,Limpopo,All theft not mentioned elsewhere,2007-2008,312
+Seshego,Limpopo,All theft not mentioned elsewhere,2008-2009,354
+Seshego,Limpopo,All theft not mentioned elsewhere,2009-2010,296
+Seshego,Limpopo,All theft not mentioned elsewhere,2010-2011,654
+Seshego,Limpopo,All theft not mentioned elsewhere,2011-2012,1303
+Seshego,Limpopo,All theft not mentioned elsewhere,2012-2013,790
+Seshego,Limpopo,All theft not mentioned elsewhere,2013-2014,1022
+Seshego,Limpopo,All theft not mentioned elsewhere,2014-2015,1437
+Seshego,Limpopo,All theft not mentioned elsewhere,2015-2016,1391
+Seshego,Limpopo,All theft not mentioned elsewhere,2016-2017,1836
+Kimberley,Northern Cape,All theft not mentioned elsewhere,2005-2006,1970
+Kimberley,Northern Cape,All theft not mentioned elsewhere,2006-2007,1731
+Kimberley,Northern Cape,All theft not mentioned elsewhere,2007-2008,1764
+Kimberley,Northern Cape,All theft not mentioned elsewhere,2008-2009,1927
+Kimberley,Northern Cape,All theft not mentioned elsewhere,2009-2010,1810
+Kimberley,Northern Cape,All theft not mentioned elsewhere,2010-2011,1598
+Kimberley,Northern Cape,All theft not mentioned elsewhere,2011-2012,1603
+Kimberley,Northern Cape,All theft not mentioned elsewhere,2012-2013,1572
+Kimberley,Northern Cape,All theft not mentioned elsewhere,2013-2014,1632
+Kimberley,Northern Cape,All theft not mentioned elsewhere,2014-2015,1616
+Kimberley,Northern Cape,All theft not mentioned elsewhere,2015-2016,1571
+Kimberley,Northern Cape,All theft not mentioned elsewhere,2016-2017,1726
+Worcester,Western Cape,All theft not mentioned elsewhere,2005-2006,1975
+Worcester,Western Cape,All theft not mentioned elsewhere,2006-2007,1992
+Worcester,Western Cape,All theft not mentioned elsewhere,2007-2008,1801
+Worcester,Western Cape,All theft not mentioned elsewhere,2008-2009,1808
+Worcester,Western Cape,All theft not mentioned elsewhere,2009-2010,1741
+Worcester,Western Cape,All theft not mentioned elsewhere,2010-2011,1842
+Worcester,Western Cape,All theft not mentioned elsewhere,2011-2012,2315
+Worcester,Western Cape,All theft not mentioned elsewhere,2012-2013,1809
+Worcester,Western Cape,All theft not mentioned elsewhere,2013-2014,1882
+Worcester,Western Cape,All theft not mentioned elsewhere,2014-2015,2100
+Worcester,Western Cape,All theft not mentioned elsewhere,2015-2016,2034
+Worcester,Western Cape,All theft not mentioned elsewhere,2016-2017,1721
+Bellville,Western Cape,All theft not mentioned elsewhere,2005-2006,3010
+Bellville,Western Cape,All theft not mentioned elsewhere,2006-2007,2828
+Bellville,Western Cape,All theft not mentioned elsewhere,2007-2008,2721
+Bellville,Western Cape,All theft not mentioned elsewhere,2008-2009,2911
+Bellville,Western Cape,All theft not mentioned elsewhere,2009-2010,2691
+Bellville,Western Cape,All theft not mentioned elsewhere,2010-2011,2180
+Bellville,Western Cape,All theft not mentioned elsewhere,2011-2012,2435
+Bellville,Western Cape,All theft not mentioned elsewhere,2012-2013,2231
+Bellville,Western Cape,All theft not mentioned elsewhere,2013-2014,2249
+Bellville,Western Cape,All theft not mentioned elsewhere,2014-2015,2136
+Bellville,Western Cape,All theft not mentioned elsewhere,2015-2016,1839
+Bellville,Western Cape,All theft not mentioned elsewhere,2016-2017,1680
+Lentegeur,Western Cape,All theft not mentioned elsewhere,2005-2006,0
+Lentegeur,Western Cape,All theft not mentioned elsewhere,2006-2007,0
+Lentegeur,Western Cape,All theft not mentioned elsewhere,2007-2008,0
+Lentegeur,Western Cape,All theft not mentioned elsewhere,2008-2009,0
+Lentegeur,Western Cape,All theft not mentioned elsewhere,2009-2010,0
+Lentegeur,Western Cape,All theft not mentioned elsewhere,2010-2011,0
+Lentegeur,Western Cape,All theft not mentioned elsewhere,2011-2012,0
+Lentegeur,Western Cape,All theft not mentioned elsewhere,2012-2013,0
+Lentegeur,Western Cape,All theft not mentioned elsewhere,2013-2014,1300
+Lentegeur,Western Cape,All theft not mentioned elsewhere,2014-2015,2346
+Lentegeur,Western Cape,All theft not mentioned elsewhere,2015-2016,1989
+Lentegeur,Western Cape,All theft not mentioned elsewhere,2016-2017,1620
+Douglasdale,Gauteng,All theft not mentioned elsewhere,2005-2006,1914
+Douglasdale,Gauteng,All theft not mentioned elsewhere,2006-2007,2067
+Douglasdale,Gauteng,All theft not mentioned elsewhere,2007-2008,1977
+Douglasdale,Gauteng,All theft not mentioned elsewhere,2008-2009,1818
+Douglasdale,Gauteng,All theft not mentioned elsewhere,2009-2010,2071
+Douglasdale,Gauteng,All theft not mentioned elsewhere,2010-2011,2002
+Douglasdale,Gauteng,All theft not mentioned elsewhere,2011-2012,1973
+Douglasdale,Gauteng,All theft not mentioned elsewhere,2012-2013,1730
+Douglasdale,Gauteng,All theft not mentioned elsewhere,2013-2014,1752
+Douglasdale,Gauteng,All theft not mentioned elsewhere,2014-2015,1765
+Douglasdale,Gauteng,All theft not mentioned elsewhere,2015-2016,1750
+Douglasdale,Gauteng,All theft not mentioned elsewhere,2016-2017,1591
+Kleinvlei,Western Cape,All theft not mentioned elsewhere,2005-2006,1271
+Kleinvlei,Western Cape,All theft not mentioned elsewhere,2006-2007,1313
+Kleinvlei,Western Cape,All theft not mentioned elsewhere,2007-2008,1524
+Kleinvlei,Western Cape,All theft not mentioned elsewhere,2008-2009,1451
+Kleinvlei,Western Cape,All theft not mentioned elsewhere,2009-2010,1231
+Kleinvlei,Western Cape,All theft not mentioned elsewhere,2010-2011,1378
+Kleinvlei,Western Cape,All theft not mentioned elsewhere,2011-2012,1461
+Kleinvlei,Western Cape,All theft not mentioned elsewhere,2012-2013,1645
+Kleinvlei,Western Cape,All theft not mentioned elsewhere,2013-2014,1534
+Kleinvlei,Western Cape,All theft not mentioned elsewhere,2014-2015,1913
+Kleinvlei,Western Cape,All theft not mentioned elsewhere,2015-2016,1597
+Kleinvlei,Western Cape,All theft not mentioned elsewhere,2016-2017,1576
+Polokwane,Limpopo,All theft not mentioned elsewhere,2005-2006,2499
+Polokwane,Limpopo,All theft not mentioned elsewhere,2006-2007,2038
+Polokwane,Limpopo,All theft not mentioned elsewhere,2007-2008,1837
+Polokwane,Limpopo,All theft not mentioned elsewhere,2008-2009,1711
+Polokwane,Limpopo,All theft not mentioned elsewhere,2009-2010,1666
+Polokwane,Limpopo,All theft not mentioned elsewhere,2010-2011,1391
+Polokwane,Limpopo,All theft not mentioned elsewhere,2011-2012,2440
+Polokwane,Limpopo,All theft not mentioned elsewhere,2012-2013,1450
+Polokwane,Limpopo,All theft not mentioned elsewhere,2013-2014,1887
+Polokwane,Limpopo,All theft not mentioned elsewhere,2014-2015,1936
+Polokwane,Limpopo,All theft not mentioned elsewhere,2015-2016,1834
+Polokwane,Limpopo,All theft not mentioned elsewhere,2016-2017,1566
+Athlone,Western Cape,All theft not mentioned elsewhere,2005-2006,1273
+Athlone,Western Cape,All theft not mentioned elsewhere,2006-2007,1411
+Athlone,Western Cape,All theft not mentioned elsewhere,2007-2008,1473
+Athlone,Western Cape,All theft not mentioned elsewhere,2008-2009,1447
+Athlone,Western Cape,All theft not mentioned elsewhere,2009-2010,1385
+Athlone,Western Cape,All theft not mentioned elsewhere,2010-2011,1474
+Athlone,Western Cape,All theft not mentioned elsewhere,2011-2012,1835
+Athlone,Western Cape,All theft not mentioned elsewhere,2012-2013,1714
+Athlone,Western Cape,All theft not mentioned elsewhere,2013-2014,1794
+Athlone,Western Cape,All theft not mentioned elsewhere,2014-2015,1797
+Athlone,Western Cape,All theft not mentioned elsewhere,2015-2016,1621
+Athlone,Western Cape,All theft not mentioned elsewhere,2016-2017,1499
+Rustenburg,North West,All theft not mentioned elsewhere,2005-2006,4239
+Rustenburg,North West,All theft not mentioned elsewhere,2006-2007,4173
+Rustenburg,North West,All theft not mentioned elsewhere,2007-2008,3398
+Rustenburg,North West,All theft not mentioned elsewhere,2008-2009,3388
+Rustenburg,North West,All theft not mentioned elsewhere,2009-2010,2737
+Rustenburg,North West,All theft not mentioned elsewhere,2010-2011,2117
+Rustenburg,North West,All theft not mentioned elsewhere,2011-2012,2139
+Rustenburg,North West,All theft not mentioned elsewhere,2012-2013,1914
+Rustenburg,North West,All theft not mentioned elsewhere,2013-2014,1897
+Rustenburg,North West,All theft not mentioned elsewhere,2014-2015,1868
+Rustenburg,North West,All theft not mentioned elsewhere,2015-2016,1862
+Rustenburg,North West,All theft not mentioned elsewhere,2016-2017,1468
+Somerset West,Western Cape,All theft not mentioned elsewhere,2005-2006,1592
+Somerset West,Western Cape,All theft not mentioned elsewhere,2006-2007,1379
+Somerset West,Western Cape,All theft not mentioned elsewhere,2007-2008,1165
+Somerset West,Western Cape,All theft not mentioned elsewhere,2008-2009,1053
+Somerset West,Western Cape,All theft not mentioned elsewhere,2009-2010,1270
+Somerset West,Western Cape,All theft not mentioned elsewhere,2010-2011,1368
+Somerset West,Western Cape,All theft not mentioned elsewhere,2011-2012,1480
+Somerset West,Western Cape,All theft not mentioned elsewhere,2012-2013,1456
+Somerset West,Western Cape,All theft not mentioned elsewhere,2013-2014,1535
+Somerset West,Western Cape,All theft not mentioned elsewhere,2014-2015,1544
+Somerset West,Western Cape,All theft not mentioned elsewhere,2015-2016,1660
+Somerset West,Western Cape,All theft not mentioned elsewhere,2016-2017,1467
+Florida,Gauteng,All theft not mentioned elsewhere,2005-2006,1688
+Florida,Gauteng,All theft not mentioned elsewhere,2006-2007,1508
+Florida,Gauteng,All theft not mentioned elsewhere,2007-2008,1511
+Florida,Gauteng,All theft not mentioned elsewhere,2008-2009,1656
+Florida,Gauteng,All theft not mentioned elsewhere,2009-2010,1533
+Florida,Gauteng,All theft not mentioned elsewhere,2010-2011,1724
+Florida,Gauteng,All theft not mentioned elsewhere,2011-2012,1679
+Florida,Gauteng,All theft not mentioned elsewhere,2012-2013,1631
+Florida,Gauteng,All theft not mentioned elsewhere,2013-2014,1535
+Florida,Gauteng,All theft not mentioned elsewhere,2014-2015,1421
+Florida,Gauteng,All theft not mentioned elsewhere,2015-2016,1567
+Florida,Gauteng,All theft not mentioned elsewhere,2016-2017,1462
+Grassy Park,Western Cape,All theft not mentioned elsewhere,2005-2006,932
+Grassy Park,Western Cape,All theft not mentioned elsewhere,2006-2007,1337
+Grassy Park,Western Cape,All theft not mentioned elsewhere,2007-2008,1425
+Grassy Park,Western Cape,All theft not mentioned elsewhere,2008-2009,1388
+Grassy Park,Western Cape,All theft not mentioned elsewhere,2009-2010,1566
+Grassy Park,Western Cape,All theft not mentioned elsewhere,2010-2011,1542
+Grassy Park,Western Cape,All theft not mentioned elsewhere,2011-2012,1798
+Grassy Park,Western Cape,All theft not mentioned elsewhere,2012-2013,1928
+Grassy Park,Western Cape,All theft not mentioned elsewhere,2013-2014,1909
+Grassy Park,Western Cape,All theft not mentioned elsewhere,2014-2015,2091
+Grassy Park,Western Cape,All theft not mentioned elsewhere,2015-2016,1829
+Grassy Park,Western Cape,All theft not mentioned elsewhere,2016-2017,1453
+Ravensmead,Western Cape,All theft not mentioned elsewhere,2005-2006,2085
+Ravensmead,Western Cape,All theft not mentioned elsewhere,2006-2007,1940
+Ravensmead,Western Cape,All theft not mentioned elsewhere,2007-2008,2549
+Ravensmead,Western Cape,All theft not mentioned elsewhere,2008-2009,1790
+Ravensmead,Western Cape,All theft not mentioned elsewhere,2009-2010,1707
+Ravensmead,Western Cape,All theft not mentioned elsewhere,2010-2011,1788
+Ravensmead,Western Cape,All theft not mentioned elsewhere,2011-2012,1681
+Ravensmead,Western Cape,All theft not mentioned elsewhere,2012-2013,1535
+Ravensmead,Western Cape,All theft not mentioned elsewhere,2013-2014,1483
+Ravensmead,Western Cape,All theft not mentioned elsewhere,2014-2015,1454
+Ravensmead,Western Cape,All theft not mentioned elsewhere,2015-2016,1507
+Ravensmead,Western Cape,All theft not mentioned elsewhere,2016-2017,1450
+Paarl,Western Cape,All theft not mentioned elsewhere,2005-2006,1517
+Paarl,Western Cape,All theft not mentioned elsewhere,2006-2007,1381
+Paarl,Western Cape,All theft not mentioned elsewhere,2007-2008,1117
+Paarl,Western Cape,All theft not mentioned elsewhere,2008-2009,1160
+Paarl,Western Cape,All theft not mentioned elsewhere,2009-2010,1353
+Paarl,Western Cape,All theft not mentioned elsewhere,2010-2011,1465
+Paarl,Western Cape,All theft not mentioned elsewhere,2011-2012,1544
+Paarl,Western Cape,All theft not mentioned elsewhere,2012-2013,1506
+Paarl,Western Cape,All theft not mentioned elsewhere,2013-2014,1440
+Paarl,Western Cape,All theft not mentioned elsewhere,2014-2015,1683
+Paarl,Western Cape,All theft not mentioned elsewhere,2015-2016,1618
+Paarl,Western Cape,All theft not mentioned elsewhere,2016-2017,1442
+Table View,Western Cape,All theft not mentioned elsewhere,2005-2006,1604
+Table View,Western Cape,All theft not mentioned elsewhere,2006-2007,1413
+Table View,Western Cape,All theft not mentioned elsewhere,2007-2008,1404
+Table View,Western Cape,All theft not mentioned elsewhere,2008-2009,1498
+Table View,Western Cape,All theft not mentioned elsewhere,2009-2010,1572
+Table View,Western Cape,All theft not mentioned elsewhere,2010-2011,1420
+Table View,Western Cape,All theft not mentioned elsewhere,2011-2012,1498
+Table View,Western Cape,All theft not mentioned elsewhere,2012-2013,1539
+Table View,Western Cape,All theft not mentioned elsewhere,2013-2014,1566
+Table View,Western Cape,All theft not mentioned elsewhere,2014-2015,1509
+Table View,Western Cape,All theft not mentioned elsewhere,2015-2016,1390
+Table View,Western Cape,All theft not mentioned elsewhere,2016-2017,1425
+Middelburg Mpumalang,Mpumalanga,All theft not mentioned elsewhere,2005-2006,1956
+Middelburg Mpumalang,Mpumalanga,All theft not mentioned elsewhere,2006-2007,1779
+Middelburg Mpumalang,Mpumalanga,All theft not mentioned elsewhere,2007-2008,1459
+Middelburg Mpumalang,Mpumalanga,All theft not mentioned elsewhere,2008-2009,1372
+Middelburg Mpumalang,Mpumalanga,All theft not mentioned elsewhere,2009-2010,1607
+Middelburg Mpumalang,Mpumalanga,All theft not mentioned elsewhere,2010-2011,1772
+Middelburg Mpumalang,Mpumalanga,All theft not mentioned elsewhere,2011-2012,1752
+Middelburg Mpumalang,Mpumalanga,All theft not mentioned elsewhere,2012-2013,1608
+Middelburg Mpumalang,Mpumalanga,All theft not mentioned elsewhere,2013-2014,1779
+Middelburg Mpumalang,Mpumalanga,All theft not mentioned elsewhere,2014-2015,1653
+Middelburg Mpumalang,Mpumalanga,All theft not mentioned elsewhere,2015-2016,1507
+Middelburg Mpumalang,Mpumalanga,All theft not mentioned elsewhere,2016-2017,1422
+Claremont,Western Cape,All theft not mentioned elsewhere,2005-2006,2111
+Claremont,Western Cape,All theft not mentioned elsewhere,2006-2007,1894
+Claremont,Western Cape,All theft not mentioned elsewhere,2007-2008,1684
+Claremont,Western Cape,All theft not mentioned elsewhere,2008-2009,1728
+Claremont,Western Cape,All theft not mentioned elsewhere,2009-2010,1549
+Claremont,Western Cape,All theft not mentioned elsewhere,2010-2011,1426
+Claremont,Western Cape,All theft not mentioned elsewhere,2011-2012,1556
+Claremont,Western Cape,All theft not mentioned elsewhere,2012-2013,1520
+Claremont,Western Cape,All theft not mentioned elsewhere,2013-2014,1548
+Claremont,Western Cape,All theft not mentioned elsewhere,2014-2015,1690
+Claremont,Western Cape,All theft not mentioned elsewhere,2015-2016,1561
+Claremont,Western Cape,All theft not mentioned elsewhere,2016-2017,1413
+Randfontein,Gauteng,All theft not mentioned elsewhere,2005-2006,1606
+Randfontein,Gauteng,All theft not mentioned elsewhere,2006-2007,1384
+Randfontein,Gauteng,All theft not mentioned elsewhere,2007-2008,1352
+Randfontein,Gauteng,All theft not mentioned elsewhere,2008-2009,1424
+Randfontein,Gauteng,All theft not mentioned elsewhere,2009-2010,1319
+Randfontein,Gauteng,All theft not mentioned elsewhere,2010-2011,1318
+Randfontein,Gauteng,All theft not mentioned elsewhere,2011-2012,1254
+Randfontein,Gauteng,All theft not mentioned elsewhere,2012-2013,1262
+Randfontein,Gauteng,All theft not mentioned elsewhere,2013-2014,1316
+Randfontein,Gauteng,All theft not mentioned elsewhere,2014-2015,1411
+Randfontein,Gauteng,All theft not mentioned elsewhere,2015-2016,1306
+Randfontein,Gauteng,All theft not mentioned elsewhere,2016-2017,1378
+Temba,Gauteng,All theft not mentioned elsewhere,2005-2006,1098
+Temba,Gauteng,All theft not mentioned elsewhere,2006-2007,1142
+Temba,Gauteng,All theft not mentioned elsewhere,2007-2008,1982
+Temba,Gauteng,All theft not mentioned elsewhere,2008-2009,2533
+Temba,Gauteng,All theft not mentioned elsewhere,2009-2010,2018
+Temba,Gauteng,All theft not mentioned elsewhere,2010-2011,1864
+Temba,Gauteng,All theft not mentioned elsewhere,2011-2012,2594
+Temba,Gauteng,All theft not mentioned elsewhere,2012-2013,2082
+Temba,Gauteng,All theft not mentioned elsewhere,2013-2014,1893
+Temba,Gauteng,All theft not mentioned elsewhere,2014-2015,1932
+Temba,Gauteng,All theft not mentioned elsewhere,2015-2016,1455
+Temba,Gauteng,All theft not mentioned elsewhere,2016-2017,1372
+Or Tambo Intern Airp,Gauteng,All theft not mentioned elsewhere,2005-2006,1783
+Or Tambo Intern Airp,Gauteng,All theft not mentioned elsewhere,2006-2007,2180
+Or Tambo Intern Airp,Gauteng,All theft not mentioned elsewhere,2007-2008,2191
+Or Tambo Intern Airp,Gauteng,All theft not mentioned elsewhere,2008-2009,1998
+Or Tambo Intern Airp,Gauteng,All theft not mentioned elsewhere,2009-2010,1989
+Or Tambo Intern Airp,Gauteng,All theft not mentioned elsewhere,2010-2011,1691
+Or Tambo Intern Airp,Gauteng,All theft not mentioned elsewhere,2011-2012,1575
+Or Tambo Intern Airp,Gauteng,All theft not mentioned elsewhere,2012-2013,1658
+Or Tambo Intern Airp,Gauteng,All theft not mentioned elsewhere,2013-2014,1533
+Or Tambo Intern Airp,Gauteng,All theft not mentioned elsewhere,2014-2015,1396
+Or Tambo Intern Airp,Gauteng,All theft not mentioned elsewhere,2015-2016,1373
+Or Tambo Intern Airp,Gauteng,All theft not mentioned elsewhere,2016-2017,1367
+Hillbrow,Gauteng,All theft not mentioned elsewhere,2005-2006,3489
+Hillbrow,Gauteng,All theft not mentioned elsewhere,2006-2007,2914
+Hillbrow,Gauteng,All theft not mentioned elsewhere,2007-2008,3093
+Hillbrow,Gauteng,All theft not mentioned elsewhere,2008-2009,2706
+Hillbrow,Gauteng,All theft not mentioned elsewhere,2009-2010,2250
+Hillbrow,Gauteng,All theft not mentioned elsewhere,2010-2011,2298
+Hillbrow,Gauteng,All theft not mentioned elsewhere,2011-2012,2051
+Hillbrow,Gauteng,All theft not mentioned elsewhere,2012-2013,1835
+Hillbrow,Gauteng,All theft not mentioned elsewhere,2013-2014,1610
+Hillbrow,Gauteng,All theft not mentioned elsewhere,2014-2015,1607
+Hillbrow,Gauteng,All theft not mentioned elsewhere,2015-2016,1618
+Hillbrow,Gauteng,All theft not mentioned elsewhere,2016-2017,1357
+Strand,Western Cape,All theft not mentioned elsewhere,2005-2006,1605
+Strand,Western Cape,All theft not mentioned elsewhere,2006-2007,1931
+Strand,Western Cape,All theft not mentioned elsewhere,2007-2008,2124
+Strand,Western Cape,All theft not mentioned elsewhere,2008-2009,1822
+Strand,Western Cape,All theft not mentioned elsewhere,2009-2010,1335
+Strand,Western Cape,All theft not mentioned elsewhere,2010-2011,1304
+Strand,Western Cape,All theft not mentioned elsewhere,2011-2012,1803
+Strand,Western Cape,All theft not mentioned elsewhere,2012-2013,1625
+Strand,Western Cape,All theft not mentioned elsewhere,2013-2014,1621
+Strand,Western Cape,All theft not mentioned elsewhere,2014-2015,1587
+Strand,Western Cape,All theft not mentioned elsewhere,2015-2016,1520
+Strand,Western Cape,All theft not mentioned elsewhere,2016-2017,1355
+Benoni,Gauteng,All theft not mentioned elsewhere,2005-2006,1769
+Benoni,Gauteng,All theft not mentioned elsewhere,2006-2007,1638
+Benoni,Gauteng,All theft not mentioned elsewhere,2007-2008,1637
+Benoni,Gauteng,All theft not mentioned elsewhere,2008-2009,1702
+Benoni,Gauteng,All theft not mentioned elsewhere,2009-2010,1601
+Benoni,Gauteng,All theft not mentioned elsewhere,2010-2011,1500
+Benoni,Gauteng,All theft not mentioned elsewhere,2011-2012,1445
+Benoni,Gauteng,All theft not mentioned elsewhere,2012-2013,1446
+Benoni,Gauteng,All theft not mentioned elsewhere,2013-2014,1418
+Benoni,Gauteng,All theft not mentioned elsewhere,2014-2015,1316
+Benoni,Gauteng,All theft not mentioned elsewhere,2015-2016,1114
+Benoni,Gauteng,All theft not mentioned elsewhere,2016-2017,1345
+Kuilsrivier,Western Cape,All theft not mentioned elsewhere,2005-2006,1390
+Kuilsrivier,Western Cape,All theft not mentioned elsewhere,2006-2007,1249
+Kuilsrivier,Western Cape,All theft not mentioned elsewhere,2007-2008,1226
+Kuilsrivier,Western Cape,All theft not mentioned elsewhere,2008-2009,1436
+Kuilsrivier,Western Cape,All theft not mentioned elsewhere,2009-2010,1350
+Kuilsrivier,Western Cape,All theft not mentioned elsewhere,2010-2011,1321
+Kuilsrivier,Western Cape,All theft not mentioned elsewhere,2011-2012,1469
+Kuilsrivier,Western Cape,All theft not mentioned elsewhere,2012-2013,1429
+Kuilsrivier,Western Cape,All theft not mentioned elsewhere,2013-2014,1513
+Kuilsrivier,Western Cape,All theft not mentioned elsewhere,2014-2015,1687
+Kuilsrivier,Western Cape,All theft not mentioned elsewhere,2015-2016,1417
+Kuilsrivier,Western Cape,All theft not mentioned elsewhere,2016-2017,1340
+Kempton Park,Gauteng,All theft not mentioned elsewhere,2005-2006,2379
+Kempton Park,Gauteng,All theft not mentioned elsewhere,2006-2007,2056
+Kempton Park,Gauteng,All theft not mentioned elsewhere,2007-2008,1847
+Kempton Park,Gauteng,All theft not mentioned elsewhere,2008-2009,1633
+Kempton Park,Gauteng,All theft not mentioned elsewhere,2009-2010,1653
+Kempton Park,Gauteng,All theft not mentioned elsewhere,2010-2011,1802
+Kempton Park,Gauteng,All theft not mentioned elsewhere,2011-2012,1763
+Kempton Park,Gauteng,All theft not mentioned elsewhere,2012-2013,1587
+Kempton Park,Gauteng,All theft not mentioned elsewhere,2013-2014,1520
+Kempton Park,Gauteng,All theft not mentioned elsewhere,2014-2015,1435
+Kempton Park,Gauteng,All theft not mentioned elsewhere,2015-2016,1433
+Kempton Park,Gauteng,All theft not mentioned elsewhere,2016-2017,1334
+Mondeor,Gauteng,All theft not mentioned elsewhere,2005-2006,1493
+Mondeor,Gauteng,All theft not mentioned elsewhere,2006-2007,1243
+Mondeor,Gauteng,All theft not mentioned elsewhere,2007-2008,1276
+Mondeor,Gauteng,All theft not mentioned elsewhere,2008-2009,1234
+Mondeor,Gauteng,All theft not mentioned elsewhere,2009-2010,1433
+Mondeor,Gauteng,All theft not mentioned elsewhere,2010-2011,1706
+Mondeor,Gauteng,All theft not mentioned elsewhere,2011-2012,1631
+Mondeor,Gauteng,All theft not mentioned elsewhere,2012-2013,1588
+Mondeor,Gauteng,All theft not mentioned elsewhere,2013-2014,1484
+Mondeor,Gauteng,All theft not mentioned elsewhere,2014-2015,1485
+Mondeor,Gauteng,All theft not mentioned elsewhere,2015-2016,1456
+Mondeor,Gauteng,All theft not mentioned elsewhere,2016-2017,1329
+East London,Eastern Cape,All theft not mentioned elsewhere,2005-2006,2892
+East London,Eastern Cape,All theft not mentioned elsewhere,2006-2007,2432
+East London,Eastern Cape,All theft not mentioned elsewhere,2007-2008,2058
+East London,Eastern Cape,All theft not mentioned elsewhere,2008-2009,1892
+East London,Eastern Cape,All theft not mentioned elsewhere,2009-2010,1582
+East London,Eastern Cape,All theft not mentioned elsewhere,2010-2011,1567
+East London,Eastern Cape,All theft not mentioned elsewhere,2011-2012,1498
+East London,Eastern Cape,All theft not mentioned elsewhere,2012-2013,1251
+East London,Eastern Cape,All theft not mentioned elsewhere,2013-2014,1618
+East London,Eastern Cape,All theft not mentioned elsewhere,2014-2015,1394
+East London,Eastern Cape,All theft not mentioned elsewhere,2015-2016,1268
+East London,Eastern Cape,All theft not mentioned elsewhere,2016-2017,1325
+Pinetown,Kwazulu/Natal,All theft not mentioned elsewhere,2005-2006,2143
+Pinetown,Kwazulu/Natal,All theft not mentioned elsewhere,2006-2007,1934
+Pinetown,Kwazulu/Natal,All theft not mentioned elsewhere,2007-2008,1422
+Pinetown,Kwazulu/Natal,All theft not mentioned elsewhere,2008-2009,1331
+Pinetown,Kwazulu/Natal,All theft not mentioned elsewhere,2009-2010,1379
+Pinetown,Kwazulu/Natal,All theft not mentioned elsewhere,2010-2011,1362
+Pinetown,Kwazulu/Natal,All theft not mentioned elsewhere,2011-2012,1433
+Pinetown,Kwazulu/Natal,All theft not mentioned elsewhere,2012-2013,1387
+Pinetown,Kwazulu/Natal,All theft not mentioned elsewhere,2013-2014,1415
+Pinetown,Kwazulu/Natal,All theft not mentioned elsewhere,2014-2015,1414
+Pinetown,Kwazulu/Natal,All theft not mentioned elsewhere,2015-2016,1289
+Pinetown,Kwazulu/Natal,All theft not mentioned elsewhere,2016-2017,1320
+Roodepoort,Gauteng,All theft not mentioned elsewhere,2005-2006,2110
+Roodepoort,Gauteng,All theft not mentioned elsewhere,2006-2007,2009
+Roodepoort,Gauteng,All theft not mentioned elsewhere,2007-2008,2168
+Roodepoort,Gauteng,All theft not mentioned elsewhere,2008-2009,2124
+Roodepoort,Gauteng,All theft not mentioned elsewhere,2009-2010,2200
+Roodepoort,Gauteng,All theft not mentioned elsewhere,2010-2011,2228
+Roodepoort,Gauteng,All theft not mentioned elsewhere,2011-2012,1811
+Roodepoort,Gauteng,All theft not mentioned elsewhere,2012-2013,1923
+Roodepoort,Gauteng,All theft not mentioned elsewhere,2013-2014,1769
+Roodepoort,Gauteng,All theft not mentioned elsewhere,2014-2015,1503
+Roodepoort,Gauteng,All theft not mentioned elsewhere,2015-2016,1373
+Roodepoort,Gauteng,All theft not mentioned elsewhere,2016-2017,1305
+Krugersdorp,Gauteng,All theft not mentioned elsewhere,2005-2006,2117
+Krugersdorp,Gauteng,All theft not mentioned elsewhere,2006-2007,2026
+Krugersdorp,Gauteng,All theft not mentioned elsewhere,2007-2008,2005
+Krugersdorp,Gauteng,All theft not mentioned elsewhere,2008-2009,2438
+Krugersdorp,Gauteng,All theft not mentioned elsewhere,2009-2010,1862
+Krugersdorp,Gauteng,All theft not mentioned elsewhere,2010-2011,1597
+Krugersdorp,Gauteng,All theft not mentioned elsewhere,2011-2012,1578
+Krugersdorp,Gauteng,All theft not mentioned elsewhere,2012-2013,1485
+Krugersdorp,Gauteng,All theft not mentioned elsewhere,2013-2014,1575
+Krugersdorp,Gauteng,All theft not mentioned elsewhere,2014-2015,1413
+Krugersdorp,Gauteng,All theft not mentioned elsewhere,2015-2016,1444
+Krugersdorp,Gauteng,All theft not mentioned elsewhere,2016-2017,1303
+Linden,Gauteng,All theft not mentioned elsewhere,2005-2006,1765
+Linden,Gauteng,All theft not mentioned elsewhere,2006-2007,1922
+Linden,Gauteng,All theft not mentioned elsewhere,2007-2008,2193
+Linden,Gauteng,All theft not mentioned elsewhere,2008-2009,1883
+Linden,Gauteng,All theft not mentioned elsewhere,2009-2010,1754
+Linden,Gauteng,All theft not mentioned elsewhere,2010-2011,1586
+Linden,Gauteng,All theft not mentioned elsewhere,2011-2012,1907
+Linden,Gauteng,All theft not mentioned elsewhere,2012-2013,1766
+Linden,Gauteng,All theft not mentioned elsewhere,2013-2014,1590
+Linden,Gauteng,All theft not mentioned elsewhere,2014-2015,1624
+Linden,Gauteng,All theft not mentioned elsewhere,2015-2016,1288
+Linden,Gauteng,All theft not mentioned elsewhere,2016-2017,1292
+Welkom,Free State,All theft not mentioned elsewhere,2005-2006,2173
+Welkom,Free State,All theft not mentioned elsewhere,2006-2007,1989
+Welkom,Free State,All theft not mentioned elsewhere,2007-2008,2063
+Welkom,Free State,All theft not mentioned elsewhere,2008-2009,2327
+Welkom,Free State,All theft not mentioned elsewhere,2009-2010,2022
+Welkom,Free State,All theft not mentioned elsewhere,2010-2011,1797
+Welkom,Free State,All theft not mentioned elsewhere,2011-2012,1836
+Welkom,Free State,All theft not mentioned elsewhere,2012-2013,1828
+Welkom,Free State,All theft not mentioned elsewhere,2013-2014,1843
+Welkom,Free State,All theft not mentioned elsewhere,2014-2015,1526
+Welkom,Free State,All theft not mentioned elsewhere,2015-2016,1409
+Welkom,Free State,All theft not mentioned elsewhere,2016-2017,1278
+Mount Road,Eastern Cape,All theft not mentioned elsewhere,2005-2006,2234
+Mount Road,Eastern Cape,All theft not mentioned elsewhere,2006-2007,2257
+Mount Road,Eastern Cape,All theft not mentioned elsewhere,2007-2008,2288
+Mount Road,Eastern Cape,All theft not mentioned elsewhere,2008-2009,2104
+Mount Road,Eastern Cape,All theft not mentioned elsewhere,2009-2010,1657
+Mount Road,Eastern Cape,All theft not mentioned elsewhere,2010-2011,1734
+Mount Road,Eastern Cape,All theft not mentioned elsewhere,2011-2012,1419
+Mount Road,Eastern Cape,All theft not mentioned elsewhere,2012-2013,1424
+Mount Road,Eastern Cape,All theft not mentioned elsewhere,2013-2014,1456
+Mount Road,Eastern Cape,All theft not mentioned elsewhere,2014-2015,1392
+Mount Road,Eastern Cape,All theft not mentioned elsewhere,2015-2016,1239
+Mount Road,Eastern Cape,All theft not mentioned elsewhere,2016-2017,1272
+Akasia,Gauteng,All theft not mentioned elsewhere,2005-2006,1291
+Akasia,Gauteng,All theft not mentioned elsewhere,2006-2007,1531
+Akasia,Gauteng,All theft not mentioned elsewhere,2007-2008,1704
+Akasia,Gauteng,All theft not mentioned elsewhere,2008-2009,1493
+Akasia,Gauteng,All theft not mentioned elsewhere,2009-2010,1329
+Akasia,Gauteng,All theft not mentioned elsewhere,2010-2011,1429
+Akasia,Gauteng,All theft not mentioned elsewhere,2011-2012,1758
+Akasia,Gauteng,All theft not mentioned elsewhere,2012-2013,1542
+Akasia,Gauteng,All theft not mentioned elsewhere,2013-2014,1964
+Akasia,Gauteng,All theft not mentioned elsewhere,2014-2015,2122
+Akasia,Gauteng,All theft not mentioned elsewhere,2015-2016,1692
+Akasia,Gauteng,All theft not mentioned elsewhere,2016-2017,1244
+Nelspruit,Mpumalanga,All theft not mentioned elsewhere,2005-2006,3481
+Nelspruit,Mpumalanga,All theft not mentioned elsewhere,2006-2007,2385
+Nelspruit,Mpumalanga,All theft not mentioned elsewhere,2007-2008,1812
+Nelspruit,Mpumalanga,All theft not mentioned elsewhere,2008-2009,1558
+Nelspruit,Mpumalanga,All theft not mentioned elsewhere,2009-2010,1437
+Nelspruit,Mpumalanga,All theft not mentioned elsewhere,2010-2011,1562
+Nelspruit,Mpumalanga,All theft not mentioned elsewhere,2011-2012,1450
+Nelspruit,Mpumalanga,All theft not mentioned elsewhere,2012-2013,1390
+Nelspruit,Mpumalanga,All theft not mentioned elsewhere,2013-2014,1307
+Nelspruit,Mpumalanga,All theft not mentioned elsewhere,2014-2015,1309
+Nelspruit,Mpumalanga,All theft not mentioned elsewhere,2015-2016,1152
+Nelspruit,Mpumalanga,All theft not mentioned elsewhere,2016-2017,1236
+Parow,Western Cape,All theft not mentioned elsewhere,2005-2006,2107
+Parow,Western Cape,All theft not mentioned elsewhere,2006-2007,2147
+Parow,Western Cape,All theft not mentioned elsewhere,2007-2008,2022
+Parow,Western Cape,All theft not mentioned elsewhere,2008-2009,1913
+Parow,Western Cape,All theft not mentioned elsewhere,2009-2010,1840
+Parow,Western Cape,All theft not mentioned elsewhere,2010-2011,1544
+Parow,Western Cape,All theft not mentioned elsewhere,2011-2012,1795
+Parow,Western Cape,All theft not mentioned elsewhere,2012-2013,1692
+Parow,Western Cape,All theft not mentioned elsewhere,2013-2014,1946
+Parow,Western Cape,All theft not mentioned elsewhere,2014-2015,1892
+Parow,Western Cape,All theft not mentioned elsewhere,2015-2016,1693
+Parow,Western Cape,All theft not mentioned elsewhere,2016-2017,1211
+Atlantis,Western Cape,All theft not mentioned elsewhere,2005-2006,606
+Atlantis,Western Cape,All theft not mentioned elsewhere,2006-2007,1381
+Atlantis,Western Cape,All theft not mentioned elsewhere,2007-2008,1237
+Atlantis,Western Cape,All theft not mentioned elsewhere,2008-2009,1206
+Atlantis,Western Cape,All theft not mentioned elsewhere,2009-2010,1003
+Atlantis,Western Cape,All theft not mentioned elsewhere,2010-2011,802
+Atlantis,Western Cape,All theft not mentioned elsewhere,2011-2012,842
+Atlantis,Western Cape,All theft not mentioned elsewhere,2012-2013,847
+Atlantis,Western Cape,All theft not mentioned elsewhere,2013-2014,863
+Atlantis,Western Cape,All theft not mentioned elsewhere,2014-2015,1152
+Atlantis,Western Cape,All theft not mentioned elsewhere,2015-2016,1269
+Atlantis,Western Cape,All theft not mentioned elsewhere,2016-2017,1210
+Klerksdorp,North West,All theft not mentioned elsewhere,2005-2006,2511
+Klerksdorp,North West,All theft not mentioned elsewhere,2006-2007,1800
+Klerksdorp,North West,All theft not mentioned elsewhere,2007-2008,1817
+Klerksdorp,North West,All theft not mentioned elsewhere,2008-2009,1844
+Klerksdorp,North West,All theft not mentioned elsewhere,2009-2010,1529
+Klerksdorp,North West,All theft not mentioned elsewhere,2010-2011,1467
+Klerksdorp,North West,All theft not mentioned elsewhere,2011-2012,1434
+Klerksdorp,North West,All theft not mentioned elsewhere,2012-2013,1332
+Klerksdorp,North West,All theft not mentioned elsewhere,2013-2014,1167
+Klerksdorp,North West,All theft not mentioned elsewhere,2014-2015,1423
+Klerksdorp,North West,All theft not mentioned elsewhere,2015-2016,1696
+Klerksdorp,North West,All theft not mentioned elsewhere,2016-2017,1205
+Woodstock,Western Cape,All theft not mentioned elsewhere,2005-2006,1609
+Woodstock,Western Cape,All theft not mentioned elsewhere,2006-2007,1588
+Woodstock,Western Cape,All theft not mentioned elsewhere,2007-2008,1600
+Woodstock,Western Cape,All theft not mentioned elsewhere,2008-2009,1710
+Woodstock,Western Cape,All theft not mentioned elsewhere,2009-2010,1417
+Woodstock,Western Cape,All theft not mentioned elsewhere,2010-2011,1370
+Woodstock,Western Cape,All theft not mentioned elsewhere,2011-2012,1385
+Woodstock,Western Cape,All theft not mentioned elsewhere,2012-2013,1173
+Woodstock,Western Cape,All theft not mentioned elsewhere,2013-2014,1290
+Woodstock,Western Cape,All theft not mentioned elsewhere,2014-2015,1341
+Woodstock,Western Cape,All theft not mentioned elsewhere,2015-2016,1263
+Woodstock,Western Cape,All theft not mentioned elsewhere,2016-2017,1199
+Potchefstroom,North West,All theft not mentioned elsewhere,2005-2006,2424
+Potchefstroom,North West,All theft not mentioned elsewhere,2006-2007,1993
+Potchefstroom,North West,All theft not mentioned elsewhere,2007-2008,1361
+Potchefstroom,North West,All theft not mentioned elsewhere,2008-2009,1352
+Potchefstroom,North West,All theft not mentioned elsewhere,2009-2010,1240
+Potchefstroom,North West,All theft not mentioned elsewhere,2010-2011,1266
+Potchefstroom,North West,All theft not mentioned elsewhere,2011-2012,1100
+Potchefstroom,North West,All theft not mentioned elsewhere,2012-2013,1062
+Potchefstroom,North West,All theft not mentioned elsewhere,2013-2014,1096
+Potchefstroom,North West,All theft not mentioned elsewhere,2014-2015,1294
+Potchefstroom,North West,All theft not mentioned elsewhere,2015-2016,1244
+Potchefstroom,North West,All theft not mentioned elsewhere,2016-2017,1194
+Lyttelton,Gauteng,All theft not mentioned elsewhere,2005-2006,2564
+Lyttelton,Gauteng,All theft not mentioned elsewhere,2006-2007,2741
+Lyttelton,Gauteng,All theft not mentioned elsewhere,2007-2008,2272
+Lyttelton,Gauteng,All theft not mentioned elsewhere,2008-2009,1781
+Lyttelton,Gauteng,All theft not mentioned elsewhere,2009-2010,1466
+Lyttelton,Gauteng,All theft not mentioned elsewhere,2010-2011,1478
+Lyttelton,Gauteng,All theft not mentioned elsewhere,2011-2012,1394
+Lyttelton,Gauteng,All theft not mentioned elsewhere,2012-2013,1276
+Lyttelton,Gauteng,All theft not mentioned elsewhere,2013-2014,1366
+Lyttelton,Gauteng,All theft not mentioned elsewhere,2014-2015,1285
+Lyttelton,Gauteng,All theft not mentioned elsewhere,2015-2016,1283
+Lyttelton,Gauteng,All theft not mentioned elsewhere,2016-2017,1188
+Germiston,Gauteng,All theft not mentioned elsewhere,2005-2006,1343
+Germiston,Gauteng,All theft not mentioned elsewhere,2006-2007,1437
+Germiston,Gauteng,All theft not mentioned elsewhere,2007-2008,1392
+Germiston,Gauteng,All theft not mentioned elsewhere,2008-2009,1364
+Germiston,Gauteng,All theft not mentioned elsewhere,2009-2010,1398
+Germiston,Gauteng,All theft not mentioned elsewhere,2010-2011,1205
+Germiston,Gauteng,All theft not mentioned elsewhere,2011-2012,1206
+Germiston,Gauteng,All theft not mentioned elsewhere,2012-2013,1325
+Germiston,Gauteng,All theft not mentioned elsewhere,2013-2014,1272
+Germiston,Gauteng,All theft not mentioned elsewhere,2014-2015,1189
+Germiston,Gauteng,All theft not mentioned elsewhere,2015-2016,1328
+Germiston,Gauteng,All theft not mentioned elsewhere,2016-2017,1187
+Brakpan,Gauteng,All theft not mentioned elsewhere,2005-2006,1223
+Brakpan,Gauteng,All theft not mentioned elsewhere,2006-2007,1092
+Brakpan,Gauteng,All theft not mentioned elsewhere,2007-2008,1187
+Brakpan,Gauteng,All theft not mentioned elsewhere,2008-2009,1213
+Brakpan,Gauteng,All theft not mentioned elsewhere,2009-2010,1084
+Brakpan,Gauteng,All theft not mentioned elsewhere,2010-2011,966
+Brakpan,Gauteng,All theft not mentioned elsewhere,2011-2012,1000
+Brakpan,Gauteng,All theft not mentioned elsewhere,2012-2013,943
+Brakpan,Gauteng,All theft not mentioned elsewhere,2013-2014,1101
+Brakpan,Gauteng,All theft not mentioned elsewhere,2014-2015,962
+Brakpan,Gauteng,All theft not mentioned elsewhere,2015-2016,1069
+Brakpan,Gauteng,All theft not mentioned elsewhere,2016-2017,1182
+Vanderbijlpark,Gauteng,All theft not mentioned elsewhere,2005-2006,2108
+Vanderbijlpark,Gauteng,All theft not mentioned elsewhere,2006-2007,1978
+Vanderbijlpark,Gauteng,All theft not mentioned elsewhere,2007-2008,1382
+Vanderbijlpark,Gauteng,All theft not mentioned elsewhere,2008-2009,1320
+Vanderbijlpark,Gauteng,All theft not mentioned elsewhere,2009-2010,1130
+Vanderbijlpark,Gauteng,All theft not mentioned elsewhere,2010-2011,1104
+Vanderbijlpark,Gauteng,All theft not mentioned elsewhere,2011-2012,1090
+Vanderbijlpark,Gauteng,All theft not mentioned elsewhere,2012-2013,1419
+Vanderbijlpark,Gauteng,All theft not mentioned elsewhere,2013-2014,1525
+Vanderbijlpark,Gauteng,All theft not mentioned elsewhere,2014-2015,1386
+Vanderbijlpark,Gauteng,All theft not mentioned elsewhere,2015-2016,1277
+Vanderbijlpark,Gauteng,All theft not mentioned elsewhere,2016-2017,1181
+Bishop Lavis,Western Cape,All theft not mentioned elsewhere,2005-2006,1836
+Bishop Lavis,Western Cape,All theft not mentioned elsewhere,2006-2007,2288
+Bishop Lavis,Western Cape,All theft not mentioned elsewhere,2007-2008,2217
+Bishop Lavis,Western Cape,All theft not mentioned elsewhere,2008-2009,1855
+Bishop Lavis,Western Cape,All theft not mentioned elsewhere,2009-2010,1810
+Bishop Lavis,Western Cape,All theft not mentioned elsewhere,2010-2011,1211
+Bishop Lavis,Western Cape,All theft not mentioned elsewhere,2011-2012,1508
+Bishop Lavis,Western Cape,All theft not mentioned elsewhere,2012-2013,1423
+Bishop Lavis,Western Cape,All theft not mentioned elsewhere,2013-2014,1483
+Bishop Lavis,Western Cape,All theft not mentioned elsewhere,2014-2015,1594
+Bishop Lavis,Western Cape,All theft not mentioned elsewhere,2015-2016,1409
+Bishop Lavis,Western Cape,All theft not mentioned elsewhere,2016-2017,1173
+George,Western Cape,All theft not mentioned elsewhere,2005-2006,1494
+George,Western Cape,All theft not mentioned elsewhere,2006-2007,1807
+George,Western Cape,All theft not mentioned elsewhere,2007-2008,1560
+George,Western Cape,All theft not mentioned elsewhere,2008-2009,1436
+George,Western Cape,All theft not mentioned elsewhere,2009-2010,1238
+George,Western Cape,All theft not mentioned elsewhere,2010-2011,1426
+George,Western Cape,All theft not mentioned elsewhere,2011-2012,1412
+George,Western Cape,All theft not mentioned elsewhere,2012-2013,1511
+George,Western Cape,All theft not mentioned elsewhere,2013-2014,1420
+George,Western Cape,All theft not mentioned elsewhere,2014-2015,1195
+George,Western Cape,All theft not mentioned elsewhere,2015-2016,1096
+George,Western Cape,All theft not mentioned elsewhere,2016-2017,1150
+Springs,Gauteng,All theft not mentioned elsewhere,2005-2006,1329
+Springs,Gauteng,All theft not mentioned elsewhere,2006-2007,1538
+Springs,Gauteng,All theft not mentioned elsewhere,2007-2008,1575
+Springs,Gauteng,All theft not mentioned elsewhere,2008-2009,1741
+Springs,Gauteng,All theft not mentioned elsewhere,2009-2010,1738
+Springs,Gauteng,All theft not mentioned elsewhere,2010-2011,1564
+Springs,Gauteng,All theft not mentioned elsewhere,2011-2012,1396
+Springs,Gauteng,All theft not mentioned elsewhere,2012-2013,1257
+Springs,Gauteng,All theft not mentioned elsewhere,2013-2014,1307
+Springs,Gauteng,All theft not mentioned elsewhere,2014-2015,1389
+Springs,Gauteng,All theft not mentioned elsewhere,2015-2016,1229
+Springs,Gauteng,All theft not mentioned elsewhere,2016-2017,1147
+Randburg,Gauteng,All theft not mentioned elsewhere,2005-2006,1526
+Randburg,Gauteng,All theft not mentioned elsewhere,2006-2007,1431
+Randburg,Gauteng,All theft not mentioned elsewhere,2007-2008,1334
+Randburg,Gauteng,All theft not mentioned elsewhere,2008-2009,1613
+Randburg,Gauteng,All theft not mentioned elsewhere,2009-2010,1384
+Randburg,Gauteng,All theft not mentioned elsewhere,2010-2011,1266
+Randburg,Gauteng,All theft not mentioned elsewhere,2011-2012,1226
+Randburg,Gauteng,All theft not mentioned elsewhere,2012-2013,1275
+Randburg,Gauteng,All theft not mentioned elsewhere,2013-2014,1293
+Randburg,Gauteng,All theft not mentioned elsewhere,2014-2015,1269
+Randburg,Gauteng,All theft not mentioned elsewhere,2015-2016,1169
+Randburg,Gauteng,All theft not mentioned elsewhere,2016-2017,1139
+Manenberg,Western Cape,All theft not mentioned elsewhere,2005-2006,846
+Manenberg,Western Cape,All theft not mentioned elsewhere,2006-2007,1280
+Manenberg,Western Cape,All theft not mentioned elsewhere,2007-2008,1295
+Manenberg,Western Cape,All theft not mentioned elsewhere,2008-2009,843
+Manenberg,Western Cape,All theft not mentioned elsewhere,2009-2010,826
+Manenberg,Western Cape,All theft not mentioned elsewhere,2010-2011,768
+Manenberg,Western Cape,All theft not mentioned elsewhere,2011-2012,880
+Manenberg,Western Cape,All theft not mentioned elsewhere,2012-2013,1211
+Manenberg,Western Cape,All theft not mentioned elsewhere,2013-2014,1367
+Manenberg,Western Cape,All theft not mentioned elsewhere,2014-2015,1698
+Manenberg,Western Cape,All theft not mentioned elsewhere,2015-2016,1171
+Manenberg,Western Cape,All theft not mentioned elsewhere,2016-2017,1124
+Pretoria West,Gauteng,All theft not mentioned elsewhere,2005-2006,2020
+Pretoria West,Gauteng,All theft not mentioned elsewhere,2006-2007,2239
+Pretoria West,Gauteng,All theft not mentioned elsewhere,2007-2008,2340
+Pretoria West,Gauteng,All theft not mentioned elsewhere,2008-2009,1976
+Pretoria West,Gauteng,All theft not mentioned elsewhere,2009-2010,2004
+Pretoria West,Gauteng,All theft not mentioned elsewhere,2010-2011,1760
+Pretoria West,Gauteng,All theft not mentioned elsewhere,2011-2012,1524
+Pretoria West,Gauteng,All theft not mentioned elsewhere,2012-2013,1570
+Pretoria West,Gauteng,All theft not mentioned elsewhere,2013-2014,1597
+Pretoria West,Gauteng,All theft not mentioned elsewhere,2014-2015,1568
+Pretoria West,Gauteng,All theft not mentioned elsewhere,2015-2016,1389
+Pretoria West,Gauteng,All theft not mentioned elsewhere,2016-2017,1119
+Boksburg North,Gauteng,All theft not mentioned elsewhere,2005-2006,1854
+Boksburg North,Gauteng,All theft not mentioned elsewhere,2006-2007,1880
+Boksburg North,Gauteng,All theft not mentioned elsewhere,2007-2008,1697
+Boksburg North,Gauteng,All theft not mentioned elsewhere,2008-2009,1757
+Boksburg North,Gauteng,All theft not mentioned elsewhere,2009-2010,1679
+Boksburg North,Gauteng,All theft not mentioned elsewhere,2010-2011,1576
+Boksburg North,Gauteng,All theft not mentioned elsewhere,2011-2012,1422
+Boksburg North,Gauteng,All theft not mentioned elsewhere,2012-2013,1406
+Boksburg North,Gauteng,All theft not mentioned elsewhere,2013-2014,1517
+Boksburg North,Gauteng,All theft not mentioned elsewhere,2014-2015,1268
+Boksburg North,Gauteng,All theft not mentioned elsewhere,2015-2016,1311
+Boksburg North,Gauteng,All theft not mentioned elsewhere,2016-2017,1118
+Wierdabrug,Gauteng,All theft not mentioned elsewhere,2005-2006,1733
+Wierdabrug,Gauteng,All theft not mentioned elsewhere,2006-2007,1728
+Wierdabrug,Gauteng,All theft not mentioned elsewhere,2007-2008,2003
+Wierdabrug,Gauteng,All theft not mentioned elsewhere,2008-2009,2116
+Wierdabrug,Gauteng,All theft not mentioned elsewhere,2009-2010,1925
+Wierdabrug,Gauteng,All theft not mentioned elsewhere,2010-2011,1825
+Wierdabrug,Gauteng,All theft not mentioned elsewhere,2011-2012,1750
+Wierdabrug,Gauteng,All theft not mentioned elsewhere,2012-2013,1218
+Wierdabrug,Gauteng,All theft not mentioned elsewhere,2013-2014,1338
+Wierdabrug,Gauteng,All theft not mentioned elsewhere,2014-2015,1152
+Wierdabrug,Gauteng,All theft not mentioned elsewhere,2015-2016,1188
+Wierdabrug,Gauteng,All theft not mentioned elsewhere,2016-2017,1106
+Moroka,Gauteng,All theft not mentioned elsewhere,2005-2006,1132
+Moroka,Gauteng,All theft not mentioned elsewhere,2006-2007,1048
+Moroka,Gauteng,All theft not mentioned elsewhere,2007-2008,1105
+Moroka,Gauteng,All theft not mentioned elsewhere,2008-2009,1192
+Moroka,Gauteng,All theft not mentioned elsewhere,2009-2010,1078
+Moroka,Gauteng,All theft not mentioned elsewhere,2010-2011,987
+Moroka,Gauteng,All theft not mentioned elsewhere,2011-2012,1062
+Moroka,Gauteng,All theft not mentioned elsewhere,2012-2013,1159
+Moroka,Gauteng,All theft not mentioned elsewhere,2013-2014,1092
+Moroka,Gauteng,All theft not mentioned elsewhere,2014-2015,1182
+Moroka,Gauteng,All theft not mentioned elsewhere,2015-2016,1166
+Moroka,Gauteng,All theft not mentioned elsewhere,2016-2017,1100
+Mfuleni,Western Cape,All theft not mentioned elsewhere,2005-2006,480
+Mfuleni,Western Cape,All theft not mentioned elsewhere,2006-2007,789
+Mfuleni,Western Cape,All theft not mentioned elsewhere,2007-2008,864
+Mfuleni,Western Cape,All theft not mentioned elsewhere,2008-2009,922
+Mfuleni,Western Cape,All theft not mentioned elsewhere,2009-2010,794
+Mfuleni,Western Cape,All theft not mentioned elsewhere,2010-2011,914
+Mfuleni,Western Cape,All theft not mentioned elsewhere,2011-2012,1003
+Mfuleni,Western Cape,All theft not mentioned elsewhere,2012-2013,1059
+Mfuleni,Western Cape,All theft not mentioned elsewhere,2013-2014,1156
+Mfuleni,Western Cape,All theft not mentioned elsewhere,2014-2015,1164
+Mfuleni,Western Cape,All theft not mentioned elsewhere,2015-2016,1172
+Mfuleni,Western Cape,All theft not mentioned elsewhere,2016-2017,1076
+Humewood,Eastern Cape,All theft not mentioned elsewhere,2005-2006,2585
+Humewood,Eastern Cape,All theft not mentioned elsewhere,2006-2007,2276
+Humewood,Eastern Cape,All theft not mentioned elsewhere,2007-2008,1889
+Humewood,Eastern Cape,All theft not mentioned elsewhere,2008-2009,1712
+Humewood,Eastern Cape,All theft not mentioned elsewhere,2009-2010,1288
+Humewood,Eastern Cape,All theft not mentioned elsewhere,2010-2011,1569
+Humewood,Eastern Cape,All theft not mentioned elsewhere,2011-2012,1294
+Humewood,Eastern Cape,All theft not mentioned elsewhere,2012-2013,1236
+Humewood,Eastern Cape,All theft not mentioned elsewhere,2013-2014,1408
+Humewood,Eastern Cape,All theft not mentioned elsewhere,2014-2015,1132
+Humewood,Eastern Cape,All theft not mentioned elsewhere,2015-2016,1044
+Humewood,Eastern Cape,All theft not mentioned elsewhere,2016-2017,1073
+Brackenfell,Western Cape,All theft not mentioned elsewhere,2005-2006,1364
+Brackenfell,Western Cape,All theft not mentioned elsewhere,2006-2007,1254
+Brackenfell,Western Cape,All theft not mentioned elsewhere,2007-2008,1319
+Brackenfell,Western Cape,All theft not mentioned elsewhere,2008-2009,1425
+Brackenfell,Western Cape,All theft not mentioned elsewhere,2009-2010,1315
+Brackenfell,Western Cape,All theft not mentioned elsewhere,2010-2011,1021
+Brackenfell,Western Cape,All theft not mentioned elsewhere,2011-2012,1166
+Brackenfell,Western Cape,All theft not mentioned elsewhere,2012-2013,1123
+Brackenfell,Western Cape,All theft not mentioned elsewhere,2013-2014,1005
+Brackenfell,Western Cape,All theft not mentioned elsewhere,2014-2015,1155
+Brackenfell,Western Cape,All theft not mentioned elsewhere,2015-2016,1192
+Brackenfell,Western Cape,All theft not mentioned elsewhere,2016-2017,1072
+Alberton,Gauteng,All theft not mentioned elsewhere,2005-2006,1523
+Alberton,Gauteng,All theft not mentioned elsewhere,2006-2007,1322
+Alberton,Gauteng,All theft not mentioned elsewhere,2007-2008,1289
+Alberton,Gauteng,All theft not mentioned elsewhere,2008-2009,1200
+Alberton,Gauteng,All theft not mentioned elsewhere,2009-2010,1261
+Alberton,Gauteng,All theft not mentioned elsewhere,2010-2011,1118
+Alberton,Gauteng,All theft not mentioned elsewhere,2011-2012,1055
+Alberton,Gauteng,All theft not mentioned elsewhere,2012-2013,1034
+Alberton,Gauteng,All theft not mentioned elsewhere,2013-2014,1215
+Alberton,Gauteng,All theft not mentioned elsewhere,2014-2015,1100
+Alberton,Gauteng,All theft not mentioned elsewhere,2015-2016,1103
+Alberton,Gauteng,All theft not mentioned elsewhere,2016-2017,1068
+Oudtshoorn,Western Cape,All theft not mentioned elsewhere,2005-2006,804
+Oudtshoorn,Western Cape,All theft not mentioned elsewhere,2006-2007,666
+Oudtshoorn,Western Cape,All theft not mentioned elsewhere,2007-2008,578
+Oudtshoorn,Western Cape,All theft not mentioned elsewhere,2008-2009,661
+Oudtshoorn,Western Cape,All theft not mentioned elsewhere,2009-2010,755
+Oudtshoorn,Western Cape,All theft not mentioned elsewhere,2010-2011,698
+Oudtshoorn,Western Cape,All theft not mentioned elsewhere,2011-2012,953
+Oudtshoorn,Western Cape,All theft not mentioned elsewhere,2012-2013,1021
+Oudtshoorn,Western Cape,All theft not mentioned elsewhere,2013-2014,1106
+Oudtshoorn,Western Cape,All theft not mentioned elsewhere,2014-2015,1147
+Oudtshoorn,Western Cape,All theft not mentioned elsewhere,2015-2016,1168
+Oudtshoorn,Western Cape,All theft not mentioned elsewhere,2016-2017,1065
+Silverton,Gauteng,All theft not mentioned elsewhere,2005-2006,1474
+Silverton,Gauteng,All theft not mentioned elsewhere,2006-2007,1283
+Silverton,Gauteng,All theft not mentioned elsewhere,2007-2008,1357
+Silverton,Gauteng,All theft not mentioned elsewhere,2008-2009,1564
+Silverton,Gauteng,All theft not mentioned elsewhere,2009-2010,1379
+Silverton,Gauteng,All theft not mentioned elsewhere,2010-2011,1432
+Silverton,Gauteng,All theft not mentioned elsewhere,2011-2012,987
+Silverton,Gauteng,All theft not mentioned elsewhere,2012-2013,1154
+Silverton,Gauteng,All theft not mentioned elsewhere,2013-2014,1114
+Silverton,Gauteng,All theft not mentioned elsewhere,2014-2015,1226
+Silverton,Gauteng,All theft not mentioned elsewhere,2015-2016,1002
+Silverton,Gauteng,All theft not mentioned elsewhere,2016-2017,1064
+Nyanga,Western Cape,All theft not mentioned elsewhere,2005-2006,647
+Nyanga,Western Cape,All theft not mentioned elsewhere,2006-2007,718
+Nyanga,Western Cape,All theft not mentioned elsewhere,2007-2008,658
+Nyanga,Western Cape,All theft not mentioned elsewhere,2008-2009,709
+Nyanga,Western Cape,All theft not mentioned elsewhere,2009-2010,583
+Nyanga,Western Cape,All theft not mentioned elsewhere,2010-2011,650
+Nyanga,Western Cape,All theft not mentioned elsewhere,2011-2012,804
+Nyanga,Western Cape,All theft not mentioned elsewhere,2012-2013,761
+Nyanga,Western Cape,All theft not mentioned elsewhere,2013-2014,821
+Nyanga,Western Cape,All theft not mentioned elsewhere,2014-2015,803
+Nyanga,Western Cape,All theft not mentioned elsewhere,2015-2016,896
+Nyanga,Western Cape,All theft not mentioned elsewhere,2016-2017,1045
+Pietermaritzburg,Kwazulu/Natal,All theft not mentioned elsewhere,2005-2006,1402
+Pietermaritzburg,Kwazulu/Natal,All theft not mentioned elsewhere,2006-2007,1628
+Pietermaritzburg,Kwazulu/Natal,All theft not mentioned elsewhere,2007-2008,1134
+Pietermaritzburg,Kwazulu/Natal,All theft not mentioned elsewhere,2008-2009,1173
+Pietermaritzburg,Kwazulu/Natal,All theft not mentioned elsewhere,2009-2010,1070
+Pietermaritzburg,Kwazulu/Natal,All theft not mentioned elsewhere,2010-2011,1074
+Pietermaritzburg,Kwazulu/Natal,All theft not mentioned elsewhere,2011-2012,1195
+Pietermaritzburg,Kwazulu/Natal,All theft not mentioned elsewhere,2012-2013,1211
+Pietermaritzburg,Kwazulu/Natal,All theft not mentioned elsewhere,2013-2014,1394
+Pietermaritzburg,Kwazulu/Natal,All theft not mentioned elsewhere,2014-2015,1459
+Pietermaritzburg,Kwazulu/Natal,All theft not mentioned elsewhere,2015-2016,1202
+Pietermaritzburg,Kwazulu/Natal,All theft not mentioned elsewhere,2016-2017,1022
+Sophia Town,Gauteng,All theft not mentioned elsewhere,2005-2006,1422
+Sophia Town,Gauteng,All theft not mentioned elsewhere,2006-2007,1150
+Sophia Town,Gauteng,All theft not mentioned elsewhere,2007-2008,1075
+Sophia Town,Gauteng,All theft not mentioned elsewhere,2008-2009,897
+Sophia Town,Gauteng,All theft not mentioned elsewhere,2009-2010,772
+Sophia Town,Gauteng,All theft not mentioned elsewhere,2010-2011,985
+Sophia Town,Gauteng,All theft not mentioned elsewhere,2011-2012,890
+Sophia Town,Gauteng,All theft not mentioned elsewhere,2012-2013,1094
+Sophia Town,Gauteng,All theft not mentioned elsewhere,2013-2014,994
+Sophia Town,Gauteng,All theft not mentioned elsewhere,2014-2015,1038
+Sophia Town,Gauteng,All theft not mentioned elsewhere,2015-2016,1089
+Sophia Town,Gauteng,All theft not mentioned elsewhere,2016-2017,1008
+Moffatview,Gauteng,All theft not mentioned elsewhere,2005-2006,0
+Moffatview,Gauteng,All theft not mentioned elsewhere,2006-2007,0
+Moffatview,Gauteng,All theft not mentioned elsewhere,2007-2008,0
+Moffatview,Gauteng,All theft not mentioned elsewhere,2008-2009,0
+Moffatview,Gauteng,All theft not mentioned elsewhere,2009-2010,0
+Moffatview,Gauteng,All theft not mentioned elsewhere,2010-2011,0
+Moffatview,Gauteng,All theft not mentioned elsewhere,2011-2012,0
+Moffatview,Gauteng,All theft not mentioned elsewhere,2012-2013,1012
+Moffatview,Gauteng,All theft not mentioned elsewhere,2013-2014,1195
+Moffatview,Gauteng,All theft not mentioned elsewhere,2014-2015,1294
+Moffatview,Gauteng,All theft not mentioned elsewhere,2015-2016,991
+Moffatview,Gauteng,All theft not mentioned elsewhere,2016-2017,1004
+Mankweng,Limpopo,All theft not mentioned elsewhere,2005-2006,516
+Mankweng,Limpopo,All theft not mentioned elsewhere,2006-2007,522
+Mankweng,Limpopo,All theft not mentioned elsewhere,2007-2008,501
+Mankweng,Limpopo,All theft not mentioned elsewhere,2008-2009,282
+Mankweng,Limpopo,All theft not mentioned elsewhere,2009-2010,265
+Mankweng,Limpopo,All theft not mentioned elsewhere,2010-2011,262
+Mankweng,Limpopo,All theft not mentioned elsewhere,2011-2012,556
+Mankweng,Limpopo,All theft not mentioned elsewhere,2012-2013,560
+Mankweng,Limpopo,All theft not mentioned elsewhere,2013-2014,505
+Mankweng,Limpopo,All theft not mentioned elsewhere,2014-2015,746
+Mankweng,Limpopo,All theft not mentioned elsewhere,2015-2016,994
+Mankweng,Limpopo,All theft not mentioned elsewhere,2016-2017,979
+Hercules,Gauteng,All theft not mentioned elsewhere,2005-2006,970
+Hercules,Gauteng,All theft not mentioned elsewhere,2006-2007,907
+Hercules,Gauteng,All theft not mentioned elsewhere,2007-2008,1032
+Hercules,Gauteng,All theft not mentioned elsewhere,2008-2009,1050
+Hercules,Gauteng,All theft not mentioned elsewhere,2009-2010,978
+Hercules,Gauteng,All theft not mentioned elsewhere,2010-2011,1074
+Hercules,Gauteng,All theft not mentioned elsewhere,2011-2012,1044
+Hercules,Gauteng,All theft not mentioned elsewhere,2012-2013,844
+Hercules,Gauteng,All theft not mentioned elsewhere,2013-2014,796
+Hercules,Gauteng,All theft not mentioned elsewhere,2014-2015,1059
+Hercules,Gauteng,All theft not mentioned elsewhere,2015-2016,1058
+Hercules,Gauteng,All theft not mentioned elsewhere,2016-2017,978
+Paarl East,Western Cape,All theft not mentioned elsewhere,2005-2006,614
+Paarl East,Western Cape,All theft not mentioned elsewhere,2006-2007,483
+Paarl East,Western Cape,All theft not mentioned elsewhere,2007-2008,331
+Paarl East,Western Cape,All theft not mentioned elsewhere,2008-2009,479
+Paarl East,Western Cape,All theft not mentioned elsewhere,2009-2010,681
+Paarl East,Western Cape,All theft not mentioned elsewhere,2010-2011,750
+Paarl East,Western Cape,All theft not mentioned elsewhere,2011-2012,910
+Paarl East,Western Cape,All theft not mentioned elsewhere,2012-2013,1009
+Paarl East,Western Cape,All theft not mentioned elsewhere,2013-2014,1058
+Paarl East,Western Cape,All theft not mentioned elsewhere,2014-2015,1044
+Paarl East,Western Cape,All theft not mentioned elsewhere,2015-2016,1019
+Paarl East,Western Cape,All theft not mentioned elsewhere,2016-2017,965
+Ladysmith,Kwazulu/Natal,All theft not mentioned elsewhere,2005-2006,1522
+Ladysmith,Kwazulu/Natal,All theft not mentioned elsewhere,2006-2007,1202
+Ladysmith,Kwazulu/Natal,All theft not mentioned elsewhere,2007-2008,1101
+Ladysmith,Kwazulu/Natal,All theft not mentioned elsewhere,2008-2009,974

@@ -1,0 +1,35 @@
+{
+  "event_a": "EVT-E1A0975120",
+  "event_b": "EVT-F65E5D0A12",
+  "possible_same_vehicle": {
+    "value": false,
+    "score": 0.0,
+    "evidence_strength": "NONE",
+    "reasons": [
+      "one or both plates unavailable",
+      "vehicle colour differs",
+      "vehicle type differs"
+    ]
+  },
+  "possible_same_face": {
+    "value": true,
+    "score": 1.0,
+    "evidence_strength": "HIGH",
+    "reasons": [
+      "anonymous embedding similarity 1.00",
+      "minimum camera trust 82/100"
+    ]
+  },
+  "possible_same_appearance": {
+    "value": true,
+    "score": 1.0,
+    "evidence_strength": "HIGH",
+    "reasons": [
+      "upper clothing matches",
+      "lower clothing matches"
+    ]
+  },
+  "warnings": [
+    "vehicle result has weak evidence because a plate is missing"
+  ]
+}

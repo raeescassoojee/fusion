@@ -1,0 +1,71 @@
+schema_version: "1.0"
+output_dir: output
+timezone: Africa/Johannesburg
+
+camera:
+  id: CAM01
+  latitude: -25.797
+  longitude: 28.301
+
+face:
+  backend: auto
+  yunet_model: models/face_detection_yunet_2023mar.onnx
+  sface_model: models/face_recognition_sface_2021dec.onnx
+  min_confidence: 0.72
+  save_crops: true
+
+object_detection:
+  backend: auto
+  yolo_model: yolo11n.pt
+  confidence: 0.40
+  image_size: 640
+  allow_heuristic_fallback: true
+
+plate:
+  backend: auto
+  yolo_model: models/license_plate_detector.pt
+  lpd_yunet_model: models/license_plate_detection_lpd_yunet_2023mar.onnx
+  min_detection_confidence: 0.35
+  ocr_backend: auto
+  min_ocr_confidence: 0.30
+  minimum_length: 4
+  maximum_length: 10
+
+video:
+  max_events_per_clip: 4
+  dedupe_cooldown_seconds: 3.0
+  minimum_stable_observations: 2
+  heavy_frame_interval: 10
+
+trust:
+  sharpness_weight: 0.25
+  lighting_weight: 0.20
+  detection_weight: 0.30
+  unobstructed_weight: 0.15
+  resolution_weight: 0.10
+
+modes:
+  NORMAL:
+    frame_stride: 8
+    motion_gate: false
+    run_face: false
+    run_plate: false
+    run_vehicle: true
+    run_appearance: false
+  HEIGHTENED:
+    frame_stride: 2
+    motion_gate: false
+    run_face: true
+    run_plate: true
+    run_vehicle: true
+    run_appearance: true
+
+aws:
+  enabled: false
+  profile: sentinel-dev
+  region: af-south-1
+  bucket: ""
+  evidence_prefix: evidence
+  events_prefix: events
+  ingestion_url: ""
+  api_token_env: SENTINEL_API_TOKEN

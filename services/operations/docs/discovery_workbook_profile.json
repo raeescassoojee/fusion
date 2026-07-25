@@ -1,0 +1,20 @@
+{
+  "rows": 15712,
+  "columns": [
+    "incident",
+    "peril",
+    "suburb",
+    "item_type",
+    "vehicle_make",
+    "vehicle_model",
+    "vehicle_year",
+    "incident_date_time",
+    "claim_amount",
+    "item_category",
+    "item_peril_descr"
+  ],
+  "missing_suburb": 651,
+  "date_min": "2021-07-04T00:00:00",
+  "date_max": "2026-06-28T14:39:00",
+  "total_claim_amount": 1265026035.74
+}

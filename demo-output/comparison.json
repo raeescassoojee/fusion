@@ -1,0 +1,32 @@
+{
+  "event_a": "EVT-4ADFB703C2",
+  "event_b": "EVT-314D9D0C2C",
+  "possible_same_vehicle": {
+    "value": true,
+    "score": 1.0,
+    "evidence_strength": "HIGH",
+    "reasons": [
+      "plate similarity 1.00",
+      "vehicle colour matches",
+      "vehicle type matches"
+    ]
+  },
+  "possible_same_face": {
+    "value": false,
+    "score": 0.0,
+    "evidence_strength": "NONE",
+    "reasons": [
+      "one or both anonymous face embeddings unavailable"
+    ]
+  },
+  "possible_same_appearance": {
+    "value": false,
+    "score": 0.0,
+    "evidence_strength": "NONE",
+    "reasons": [
+      "upper clothing differs or unknown",
+      "lower clothing differs or unknown"
+    ]
+  },
+  "warnings": []
+}

@@ -1,0 +1,11 @@
+numpy>=2.0,<2.3
+opencv-contrib-python-headless==4.12.0.88
+pillow>=11,<13
+pydantic>=2.10,<3
+PyYAML>=6,<7
+pytesseract>=0.3.13,<0.4
+rapidfuzz>=3.10,<4
+boto3>=1.40,<2
+
+# --- added for camera intake + evidence patterns ---
+python-multipart  # video/image upload via /api/cameras/upload

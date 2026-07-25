@@ -1,0 +1,94 @@
+{
+  "schema_version": "1.0",
+  "event_id": "EVT-E1A0975120",
+  "camera_id": "CAM-FACE",
+  "timestamp": "2026-07-24T21:08:00+02:00",
+  "mode": "HEIGHTENED",
+  "location": {
+    "latitude": -25.797,
+    "longitude": 28.301
+  },
+  "source_media": "/workspace/scratch/c9b13cc63ef4/sentinel-camera-ai/media/synthetic_face_fixture.png",
+  "media_url": "evidence/EVT-E1A0975120/best_frame.jpg",
+  "frame_index": 0,
+  "motion_score": 0.0,
+  "face": {
+    "present": true,
+    "count": 1,
+    "boxes": [
+      {
+        "x": 411,
+        "y": 354,
+        "width": 423,
+        "height": 550
+      }
+    ],
+    "crop_paths": [
+      "evidence/EVT-E1A0975120/faces/face_0.jpg"
+    ],
+    "embedding_ref": "evidence/EVT-E1A0975120/faces/face_0_embedding.npy",
+    "detection_confidence": 0.8952178359031677
+  },
+  "plate": {
+    "text": null,
+    "display_text": null,
+    "box": null,
+    "crop_url": null,
+    "detection_confidence": null,
+    "ocr_confidence": null
+  },
+  "vehicle": {
+    "colour": "Unknown",
+    "type": "Unknown",
+    "make_model": null,
+    "direction": "stationary_or_unknown",
+    "box": null,
+    "detection_confidence": null
+  },
+  "appearance": {
+    "upper_colour": "Orange",
+    "lower_colour": "Orange",
+    "cap": null,
+    "backpack": null,
+    "person_box": {
+      "x": 364,
+      "y": 153,
+      "width": 519,
+      "height": 980
+    },
+    "confidence": 0.743
+  },
+  "camera_trust_score": 82,
+  "quality_metrics": {
+    "sharpness": 52,
+    "lighting": 100,
+    "detection": 79,
+    "unobstructed": 100,
+    "resolution": 100
+  },
+  "trust_reasons": [
+    "moderate motion blur",
+    "good lighting",
+    "strong detections"
+  ],
+  "model_versions": {
+    "objects": "OpenCV colour/contour heuristic fallback",
+    "face": "OpenCV YuNet (face_detection_yunet_2023mar.onnx)",
+    "face_embedding": "OpenCV SFace",
+    "plate_detection": "OpenCV LPD-YuNet (license_plate_detection_lpd_yunet_2023mar.onnx) + contour",
+    "plate_ocr": "Tesseract 5"
+  },
+  "metadata": {
+    "annotated_media_url": "evidence/EVT-E1A0975120/annotated_frame.jpg",
+    "observation_count": 1,
+    "plate_raw_text": null,
+    "ocr_backend": "none",
+    "vehicle_colour_confidence": 0.0,
+    "quality_raw": {
+      "laplacian_variance": 124.88,
+      "mean_brightness": 116.1
+    },
+    "model_notes": [],
+    "possible_plate_in_vehicle": null
+  }
+}

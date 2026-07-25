@@ -1,0 +1,7 @@
+# Install only after the core pipeline and doctor command work.
+ultralytics>=8.3,<9
+
+# PaddleOCR is supported by the OCR adapter, but its engine installation is
+# platform-specific. Follow the official PaddleOCR installation instructions.
+paddleocr>=3,<4
+

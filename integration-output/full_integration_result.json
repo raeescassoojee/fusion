@@ -1,0 +1,449 @@
+{
+  "hotspots": {
+    "metro": "Gauteng",
+    "data_source": {
+      "path": "/mnt/data/sentinel_mesh_complete_fixed/services/claims/data/curated/hotspots.json",
+      "live_branch_output": true,
+      "source": "cassoojee-live",
+      "note": "SAPS values in the supplied claims output are historical corroboration, not a live SAPS incident feed."
+    },
+    "hotspots": [
+      {
+        "hotspot_id": "H003",
+        "name": "Bryanston",
+        "location": {
+          "latitude": -26.0514,
+          "longitude": 28.0281
+        },
+        "risk_score": 84.0,
+        "claims_risk_score": 84.0,
+        "main_peril": "Home Invasion",
+        "peak_window": {
+          "days": [
+            "Friday"
+          ],
+          "start": "12:00",
+          "end": "15:00"
+        },
+        "geofence_radius_km": 1.5,
+        "saps_context_score": 12.2,
+        "camera_coverage_score": null,
+        "response_success_score": null,
+        "operational_priority": 66.0,
+        "metro": "Gauteng",
+        "confidence_score": 90.0,
+        "confidence_band": "HIGH",
+        "claim_count": 89,
+        "total_claim_value": 9454547.0,
+        "primary_driver": "frequency",
+        "saps_year": "2015-2016",
+        "saps_corroborated": true,
+        "source": "cassoojee-live"
+      },
+      {
+        "hotspot_id": "H007",
+        "name": "Garsfontein",
+        "location": {
+          "latitude": -25.7944,
+          "longitude": 28.3
+        },
+        "risk_score": 58.0,
+        "claims_risk_score": 58.0,
+        "main_peril": "Vehicle Theft",
+        "peak_window": {
+          "days": [
+            "Saturday"
+          ],
+          "start": "13:00",
+          "end": "16:00"
+        },
+        "geofence_radius_km": 1.5,
+        "saps_context_score": 30.6,
+        "camera_coverage_score": null,
+        "response_success_score": null,
+        "operational_priority": 51.1,
+        "metro": "Gauteng",
+        "confidence_score": 76.0,
+        "confidence_band": "HIGH",
+        "claim_count": 57,
+        "total_claim_value": 10436499.0,
+        "primary_driver": "severity",
+        "saps_year": "2015-2016",
+        "saps_corroborated": true,
+        "source": "cassoojee-live"
+      },
+      {
+        "hotspot_id": "H009",
+        "name": "Fourways",
+        "location": {
+          "latitude": -26.0045,
+          "longitude": 28.0042
+        },
+        "risk_score": 52.7,
+        "claims_risk_score": 52.7,
+        "main_peril": "Vehicle Theft",
+        "peak_window": {
+          "days": [
+            "Sunday"
+          ],
+          "start": "17:00",
+          "end": "20:00"
+        },
+        "geofence_radius_km": 1.5,
+        "saps_context_score": 11.6,
+        "camera_coverage_score": null,
+        "response_success_score": null,
+        "operational_priority": 42.4,
+        "metro": "Gauteng",
+        "confidence_score": 75.0,
+        "confidence_band": "HIGH",
+        "claim_count": 56,
+        "total_claim_value": 4261937.0,
+        "primary_driver": "severity",
+        "saps_year": "2015-2016",
+        "saps_corroborated": true,
+        "source": "cassoojee-live"
+      },
+      {
+        "hotspot_id": "H012",
+        "name": "Menlo Park",
+        "location": {
+          "latitude": -25.7697,
+          "longitude": 28.2556
+        },
+        "risk_score": 45.4,
+        "claims_risk_score": 45.4,
+        "main_peril": "Vehicle Theft",
+        "peak_window": {
+          "days": [
+            "Saturday"
+          ],
+          "start": "00:00",
+          "end": "03:00"
+        },
+        "geofence_radius_km": 1.5,
+        "saps_context_score": 30.6,
+        "camera_coverage_score": null,
+        "response_success_score": null,
+        "operational_priority": 41.7,
+        "metro": "Gauteng",
+        "confidence_score": 70.0,
+        "confidence_band": "HIGH",
+        "claim_count": 42,
+        "total_claim_value": 8976320.0,
+        "primary_driver": "severity",
+        "saps_year": "2015-2016",
+        "saps_corroborated": true,
+        "source": "cassoojee-live"
+      },
+      {
+        "hotspot_id": "H011",
+        "name": "Waterkloof Ridge",
+        "location": {
+          "latitude": -25.7872,
+          "longitude": 28.2389
+        },
+        "risk_score": 50.5,
+        "claims_risk_score": 50.5,
+        "main_peril": "Home Invasion",
+        "peak_window": {
+          "days": [
+            "Sunday"
+          ],
+          "start": "01:00",
+          "end": "04:00"
+        },
+        "geofence_radius_km": 1.5,
+        "saps_context_score": 9.7,
+        "camera_coverage_score": null,
+        "response_success_score": null,
+        "operational_priority": 40.3,
+        "metro": "Gauteng",
+        "confidence_score": 74.0,
+        "confidence_band": "HIGH",
+        "claim_count": 56,
+        "total_claim_value": 8466709.0,
+        "primary_driver": "severity",
+        "saps_year": "2015-2016",
+        "saps_corroborated": false,
+        "source": "cassoojee-live"
+      },
+      {
+        "hotspot_id": "H010",
+        "name": "Bedfordview",
+        "location": {
+          "latitude": -26.1764,
+          "longitude": 28.1425
+        },
+        "risk_score": 52.4,
+        "claims_risk_score": 52.4,
+        "main_peril": "Home Invasion",
+        "peak_window": {
+          "days": [
+            "Friday"
+          ],
+          "start": "14:00",
+          "end": "17:00"
+        },
+        "geofence_radius_km": 1.5,
+        "saps_context_score": 0.0,
+        "camera_coverage_score": null,
+        "response_success_score": null,
+        "operational_priority": 39.3,
+        "metro": "Gauteng",
+        "confidence_score": 52.0,
+        "confidence_band": "MEDIUM",
+        "claim_count": 50,
+        "total_claim_value": 6873700.0,
+        "primary_driver": "severity",
+        "saps_year": "2015-2016",
+        "saps_corroborated": false,
+        "source": "cassoojee-live"
+      },
+      {
+        "hotspot_id": "H014",
+        "name": "Centurion Central",
+        "location": {
+          "latitude": -25.8364,
+          "longitude": 28.1803
+        },
+        "risk_score": 28.1,
+        "claims_risk_score": 28.1,
+        "main_peril": "Vehicle Theft",
+        "peak_window": {
+          "days": [
+            "Saturday"
+          ],
+          "start": "11:00",
+          "end": "14:00"
+        },
+        "geofence_radius_km": 1.5,
+        "saps_context_score": 29.5,
+        "camera_coverage_score": null,
+        "response_success_score": null,
+        "operational_priority": 28.5,
+        "metro": "Gauteng",
+        "confidence_score": 52.0,
+        "confidence_band": "MEDIUM",
+        "claim_count": 50,
+        "total_claim_value": 3190783.0,
+        "primary_driver": "severity",
+        "saps_year": "2015-2016",
+        "saps_corroborated": true,
+        "source": "cassoojee-live"
+      }
+    ]
+  },
+  "event_results": [
+    {
+      "event": {
+        "event_id": "EVT-4ADFB703C2",
+        "camera_id": "CAM01",
+        "timestamp": "2026-07-24T21:07:03.333333+02:00",
+        "location": {
+          "latitude": -25.797,
+          "longitude": 28.301
+        },
+        "media_url": "evidence/EVT-4ADFB703C2/best_frame.jpg",
+        "plate": {
+          "text": "AB12CDGP",
+          "confidence": 0.91
+        },
+        "face": {
+          "reference_token": null,
+          "embedding": null,
+          "confidence": 0.0
+        },
+        "vehicle": {
+          "colour": "Blue",
+          "type": "Car",
+          "make": null,
+          "model": null
+        },
+        "appearance": {
+          "upper_colour": "Unknown",
+          "lower_colour": "Unknown",
+          "descriptor_token": "Unknown|Unknown|cap=None|backpack=None"
+        },
+        "camera_trust_score": 79.0,
+        "source": "sentinel-camera-ai"
+      },
+      "candidate_links": [],
+      "alert": {
+        "alert_id": "ALT-D1B8D583",
+        "event_id": "EVT-4ADFB703C2",
+        "priority": "NONE",
+        "status": "NO_ALERT",
+        "hotspot_id": "H007",
+        "evidence_score": 0.0,
+        "reasons": [
+          "Event is 0.31 km from hotspot H007",
+          "Outside peak-risk window",
+          "Evidence score is 0.0/100",
+          "Camera trust is 79.0/100"
+        ],
+        "human_review_required": true
+      },
+      "hotspot_source": {
+        "path": "/mnt/data/sentinel_mesh_complete_fixed/services/claims/data/curated/hotspots.json",
+        "live_branch_output": true,
+        "source": "cassoojee-live",
+        "note": "SAPS values in the supplied claims output are historical corroboration, not a live SAPS incident feed."
+      }
+    },
+    {
+      "event": {
+        "event_id": "EVT-314D9D0C2C",
+        "camera_id": "CAM02",
+        "timestamp": "2026-07-24T21:07:04.666667+02:00",
+        "location": {
+          "latitude": -25.797,
+          "longitude": 28.301
+        },
+        "media_url": "evidence/EVT-314D9D0C2C/best_frame.jpg",
+        "plate": {
+          "text": "AB12CDGP",
+          "confidence": 0.91
+        },
+        "face": {
+          "reference_token": null,
+          "embedding": null,
+          "confidence": 0.0
+        },
+        "vehicle": {
+          "colour": "Blue",
+          "type": "Car",
+          "make": null,
+          "model": null
+        },
+        "appearance": {
+          "upper_colour": "Unknown",
+          "lower_colour": "Unknown",
+          "descriptor_token": "Unknown|Unknown|cap=None|backpack=None"
+        },
+        "camera_trust_score": 78.0,
+        "source": "sentinel-camera-ai"
+      },
+      "candidate_links": [
+        {
+          "first_event_id": "EVT-4ADFB703C2",
+          "second_event_id": "EVT-314D9D0C2C",
+          "score": 63.3,
+          "relationship": "POSSIBLE_SAME_VEHICLE",
+          "components": {
+            "plate": 36.4,
+            "face": 0.0,
+            "vehicle": 12.0,
+            "appearance": 10.0,
+            "journey": 10.0,
+            "camera_trust": 78.5
+          },
+          "reasons": [
+            "Strong plate agreement",
+            "Vehicle attributes agree",
+            "Visible appearance attributes agree",
+            "Journey is geographically plausible"
+          ],
+          "journey_distance_km": 0.0,
+          "journey_plausible": true,
+          "human_review_required": true
+        }
+      ],
+      "alert": {
+        "alert_id": "ALT-D35A9CBD",
+        "event_id": "EVT-314D9D0C2C",
+        "priority": "LOW",
+        "status": "PENDING_REVIEW",
+        "hotspot_id": "H007",
+        "evidence_score": 63.3,
+        "reasons": [
+          "Event is 0.31 km from hotspot H007",
+          "Outside peak-risk window",
+          "Evidence score is 63.3/100",
+          "Camera trust is 78.0/100"
+        ],
+        "human_review_required": true
+      },
+      "hotspot_source": {
+        "path": "/mnt/data/sentinel_mesh_complete_fixed/services/claims/data/curated/hotspots.json",
+        "live_branch_output": true,
+        "source": "cassoojee-live",
+        "note": "SAPS values in the supplied claims output are historical corroboration, not a live SAPS incident feed."
+      }
+    }
+  ],
+  "claim_result": {
+    "claim": {
+      "claim_id": "CLM-INTEGRATION-001",
+      "incident_time": "2026-07-24T21:10:00+02:00",
+      "location": {
+        "latitude": -25.797,
+        "longitude": 28.301
+      },
+      "claim_type": "Vehicle Theft",
+      "claim_amount": 420000.0,
+      "plate_text": "AB12CDGP",
+      "vehicle_colour": "Blue",
+      "vehicle_type": "Car"
+    },
+    "timeline": {
+      "claim_id": "CLM-INTEGRATION-001",
+      "start_time": "2026-07-24T19:10:00+02:00",
+      "end_time": "2026-07-24T23:10:00+02:00",
+      "items": [
+        {
+          "event_id": "EVT-4ADFB703C2",
+          "timestamp": "2026-07-24T21:07:03.333333+02:00",
+          "distance_from_claim_km": 0.0,
+          "relevance_score": 94.8,
+          "description": "AB12CDGP Blue Car; relevance 95/100",
+          "media_url": "evidence/EVT-4ADFB703C2/best_frame.jpg"
+        },
+        {
+          "event_id": "EVT-314D9D0C2C",
+          "timestamp": "2026-07-24T21:07:04.666667+02:00",
+          "distance_from_claim_km": 0.0,
+          "relevance_score": 94.6,
+          "description": "AB12CDGP Blue Car; relevance 95/100",
+          "media_url": "evidence/EVT-314D9D0C2C/best_frame.jpg"
+        }
+      ],
+      "summary": "Found 2 relevant events in the incident window."
+    }
+  },
+  "route_result": {
+    "baseline": {
+      "ordered_hotspot_ids": [
+        "H003",
+        "H007",
+        "H009"
+      ],
+      "distance_km": 82.882,
+      "estimated_fuel_litres": 8.288,
+      "risk_covered": 159.5,
+      "coverage_percent": 51.6,
+      "protected_risk_per_km": 1.924
+    },
+    "optimised": {
+      "ordered_hotspot_ids": [
+        "H003",
+        "H009",
+        "H010"
+      ],
+      "distance_km": 47.308,
+      "estimated_fuel_litres": 4.731,
+      "risk_covered": 147.7,
+      "coverage_percent": 47.8,
+      "protected_risk_per_km": 3.122
+    },
+    "distance_saved_km": 35.574,
+    "fuel_saved_litres": 3.557,
+    "protected_risk_per_km_improvement_percent": 62.3
+  },
+  "storage": {
+    "database": "/tmp/sentinel_full_integration_test.db",
+    "events": 2,
+    "claims": 1,
+    "alerts": 1
+  }
+}
