@@ -7,13 +7,13 @@
     content="width=device-width, initial-scale=1.0"
   />
 
-  <title>Sentinel | Community Safety</title>
+  <title>MzansiMesh | Community</title>
 
   <style>
     :root {
-      --blue: #0033a0;
-      --blue2: #0a2a72;
-      --cyan: #0090c8;
+      --blue: #005baa;
+      --blue2: #052b4e;
+      --cyan: #00aeef;
       --ink: #101828;
       --sub: #667085;
       --edge: #e4e7ee;
@@ -895,10 +895,21 @@
         width: auto;
       }
     }
+
+    body.embed { background: #ffffff; }
+    body.embed .app { max-width: none; border: 0; height: 100vh; }
+    body.embed .rail { width: 96px; }
+    body.embed .me { justify-content: center; padding: 12px 7px; }
+    body.embed .me .txt, body.embed .me .edit, body.embed .find, body.embed .tools, body.embed .rmain, body.embed .sect { display: none; }
+    body.embed .room, body.embed .joinrow { justify-content: center; padding: 10px 6px; }
+    body.embed .thead { padding: 10px 12px; }
+    body.embed .feed { padding: 12px; }
+    body.embed .m { max-width: 92%; }
   </style>
 </head>
 
 <body>
+  <script>if(new URLSearchParams(location.search).get("embed")==="1")document.body.classList.add("embed");</script>
   <div class="app">
     <aside class="rail">
       <div class="me">
@@ -1072,9 +1083,9 @@
   <script>
     "use strict";
 
-    const USER_ID_KEY = "sentinel.userId";
-    const USER_NAME_KEY = "sentinel.userName";
-    const USER_ROLE_KEY = "sentinel.userRole";
+    const USER_ID_KEY = "mzansimesh.userId";
+    const USER_NAME_KEY = "mzansimesh.userName";
+    const USER_ROLE_KEY = "mzansimesh.userRole";
 
     const ROLES = ["Resident", "Security", "Staff"];
 

@@ -68,6 +68,7 @@ MEMBER_TABLES = (
     "member_profile_labels",
     "member_incidents",
     "member_camera_notifications",
+    "member_alert_events",
     "member_audit_log",
     "aws_sync_outbox",
 )
@@ -80,6 +81,7 @@ AWS_TABLE_MAP = {
     "member_profile_labels": "SentinelProfileReviews",
     "member_incidents": "SentinelIncidents",
     "member_camera_notifications": "SentinelCameraNotifications",
+    "member_alert_events": "MzansiMeshMemberAlerts",
     "member_audit_log": "SentinelAuditLog",
     "face media": "S3 sentinel-evidence/member-faces/",
 }
@@ -334,6 +336,27 @@ def initialise_member_store() -> None:
                 FOREIGN KEY(incident_id) REFERENCES member_incidents(incident_id),
                 FOREIGN KEY(camera_id) REFERENCES member_cameras(camera_id)
             );
+            CREATE TABLE IF NOT EXISTS member_alert_events (
+                alert_id TEXT PRIMARY KEY,
+                dedupe_key TEXT NOT NULL,
+                user_id TEXT NOT NULL,
+                incident_id TEXT,
+                profile_id TEXT,
+                sighting_id TEXT,
+                alert_type TEXT NOT NULL,
+                title TEXT NOT NULL,
+                body TEXT NOT NULL,
+                urgent INTEGER NOT NULL DEFAULT 1,
+                channels_json TEXT NOT NULL DEFAULT '[]',
+                action TEXT,
+                context_json TEXT NOT NULL DEFAULT '{}',
+                created_at TEXT NOT NULL,
+                read_at TEXT,
+                UNIQUE(dedupe_key, user_id),
+                FOREIGN KEY(user_id) REFERENCES member_users(user_id)
+            );
+            CREATE INDEX IF NOT EXISTS idx_member_alert_events_user_created
+                ON member_alert_events(user_id, created_at DESC);
             CREATE TABLE IF NOT EXISTS member_audit_log (
                 audit_id TEXT PRIMARY KEY,
                 table_name TEXT NOT NULL,
@@ -493,6 +516,54 @@ def _audit(
                 action, payload_json or "{}", created_at,
             ),
         )
+
+
+def _create_member_alert(
+    db: sqlite3.Connection,
+    *,
+    dedupe_key: str,
+    user_id: str,
+    alert_type: str,
+    title: str,
+    body: str,
+    incident_id: str | None = None,
+    profile_id: str | None = None,
+    sighting_id: str | None = None,
+    urgent: bool = True,
+    channels: list[str] | None = None,
+    action: str | None = "member-trail",
+    context: dict[str, Any] | None = None,
+) -> str | None:
+    alert_id = f"MAL-{uuid.uuid4().hex[:11].upper()}"
+    created_at = _now()
+    cursor = db.execute(
+        """
+        INSERT OR IGNORE INTO member_alert_events(
+            alert_id, dedupe_key, user_id, incident_id, profile_id, sighting_id,
+            alert_type, title, body, urgent, channels_json, action, context_json, created_at
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        """,
+        (
+            alert_id, dedupe_key, user_id, incident_id, profile_id, sighting_id,
+            alert_type, title, body, int(urgent), _safe_json(channels or ["IN-APP"]),
+            action, _safe_json(context or {}), created_at,
+        ),
+    )
+    if cursor.rowcount == 0:
+        return None
+    _audit(
+        db, "member_alert_events", alert_id, "INSERT", "MzansiMesh notifications",
+        title,
+        {
+            "dedupe_key": dedupe_key,
+            "user_id": user_id,
+            "incident_id": incident_id,
+            "profile_id": profile_id,
+            "sighting_id": sighting_id,
+            "channels": channels or ["IN-APP"],
+        },
+    )
+    return alert_id
 
 
 def _get_user(user_id: str) -> dict[str, Any]:
@@ -1255,6 +1326,24 @@ def _start_incident_in_db(
             f"{item['household']} camera status set to {status}",
             {"incident_id": incident_id, "camera_id": item["camera_id"], "status": status},
         )
+        _create_member_alert(
+            db,
+            dedupe_key=f"INCIDENT-{incident_id}-{item['user_id']}",
+            user_id=item["user_id"],
+            incident_id=incident_id,
+            profile_id=sighting["profile_id"],
+            sighting_id=sighting["sighting_id"],
+            alert_type="INCIDENT_CONFIRMED" if origin else "NEIGHBOUR_WATCH",
+            title="Incident confirmed" if origin else "Neighbour alert",
+            body=(
+                f"Incident confirmed at {camera['household']}. Security response and camera watch are active."
+                if origin else
+                f"A confirmed incident at {camera['household']} has armed your household camera for {duration_minutes} minutes."
+            ),
+            urgent=True,
+            channels=["IN-APP", "NEIGHBOURS", "SECURITY", "WHATSAPP READY"],
+            context={"incident_id": incident_id, "profile_id": sighting["profile_id"], "camera_id": item["camera_id"]},
+        )
     db.execute(
         "UPDATE face_profiles SET system_status='ACTIVE_INCIDENT', review_required=1, last_classified_at=? WHERE profile_id=?",
         (started.isoformat(), sighting["profile_id"]),
@@ -1267,6 +1356,20 @@ def _start_incident_in_db(
             "origin_camera_id": sighting["camera_id"], "expires_at": expires.isoformat(),
         },
     )
+    try:
+        from sentinel_ops.community_api import record_community_system_message
+        record_community_system_message(
+            db,
+            message=(
+                f"Confirmed incident at {camera['household']}. "
+                f"Neighbouring cameras have been armed for {duration_minutes} minutes."
+            ),
+            urgent=True,
+            source="MEMBER_INCIDENT",
+            dedupe_key=f"INCIDENT-{incident_id}",
+        )
+    except Exception:
+        pass
     payload = _incident_payload(db, incident_id)
     assert payload is not None
     return True, payload
@@ -1379,7 +1482,7 @@ async def create_face_sighting(
             int(image_width or frame.shape[1]), int(image_height or frame.shape[0]),
         )
         profiles = db.execute(
-            "SELECT profile_id, anonymous_label, embedding, embedding_size, sighting_count FROM face_profiles"
+            "SELECT profile_id, anonymous_label, embedding, embedding_size, sighting_count, system_status FROM face_profiles"
         ).fetchall()
         best: dict[str, Any] | None = None
         for profile in profiles:
@@ -1415,7 +1518,16 @@ async def create_face_sighting(
         journey = _journey_metrics(previous, camera, captured_at)
         breakdown = _match_breakdown(similarity, previous, height, appearance, journey)
         review_required = int(matched and (not journey["plausible"] or breakdown["overall"] < 72))
-        system_status = "REPEAT_VISITOR" if matched else "UNKNOWN"
+        prior_system_status = str(best["row"]["system_status"] or "UNKNOWN") if matched and best else "UNKNOWN"
+        # Never downgrade a human-confirmed intruder or an active incident merely
+        # because another biometric sighting was captured. The old implementation
+        # replaced these states with REPEAT_VISITOR on every match, which could
+        # silently break downstream neighbour and security alerts.
+        system_status = (
+            prior_system_status
+            if prior_system_status in {"CONFIRMED_INTRUDER", "ACTIVE_INCIDENT"}
+            else ("REPEAT_VISITOR" if matched else "UNKNOWN")
+        )
         if matched:
             db.execute(
                 """
@@ -1482,15 +1594,40 @@ async def create_face_sighting(
             },
         )
 
+        _expire_incidents(db)
         active = db.execute(
             "SELECT incident_id FROM member_incidents WHERE profile_id=? AND status='ACTIVE' ORDER BY started_at DESC LIMIT 1",
             (profile_id,),
         ).fetchone()
         incident_watch = None
+        auto_incident_started = False
+        # Resolve the operational status from both the profile and human review
+        # labels. This keeps automatic watch reactivation reliable even after an
+        # earlier incident has expired or a local household label was the source of
+        # the confirmed-intruder decision.
+        profile_system_status = _profile_status(db, profile_id)
+        if not active and matched and profile_system_status in {"CONFIRMED_INTRUDER", "ACTIVE_INCIDENT"}:
+            fresh_sighting = db.execute(
+                "SELECT * FROM face_sightings WHERE sighting_id=?",
+                (sighting_id,),
+            ).fetchone()
+            if fresh_sighting:
+                auto_incident_started, incident_watch = _start_incident_in_db(
+                    db,
+                    fresh_sighting,
+                    "TRESPASSING",
+                    30,
+                    "Automatically reactivated after a repeat sighting of a human-confirmed intruder profile.",
+                    "MzansiMesh automatic watch",
+                )
+                if incident_watch:
+                    active = {"incident_id": incident_watch["incident_id"]}
+
         if active:
             incident_id = active["incident_id"]
             db.execute("UPDATE member_incidents SET updated_at=? WHERE incident_id=?", (captured_at, incident_id))
             notification_id = f"NOTE-{uuid.uuid4().hex[:10].upper()}"
+            match_reason = f"Confirmed intruder profile captured at {camera['household']}"
             db.execute(
                 """
                 INSERT INTO member_camera_notifications(
@@ -1503,15 +1640,71 @@ async def create_face_sighting(
                 """,
                 (
                     notification_id, incident_id, camera_id, user_id,
-                    f"Anonymous profile captured at {camera['household']}",
+                    match_reason,
                     captured_at, captured_at, sighting_id,
                 ),
             )
+            # Re-alert every other participating household. Their camera remains in
+            # watch mode, but the reason and timestamp change so the UI creates a
+            # fresh notification instead of silently retaining the original flag.
+            neighbour_reason = (
+                f"Repeat intruder seen at {camera['household']}. "
+                "Keep this camera on active watch and review any match immediately."
+            )
+            db.execute(
+                """
+                UPDATE member_camera_notifications
+                SET status='WATCH_ACTIVE', reason=?, updated_at=?, captured_sighting_id=NULL
+                WHERE incident_id=? AND camera_id<>?
+                """,
+                (neighbour_reason, captured_at, incident_id, camera_id),
+            )
+            participating_users = db.execute(
+                "SELECT DISTINCT user_id, household FROM member_cameras ORDER BY user_id"
+            ).fetchall()
+            for participant in participating_users:
+                _create_member_alert(
+                    db,
+                    dedupe_key=f"REPEAT-{sighting_id}-{participant['user_id']}",
+                    user_id=participant["user_id"],
+                    incident_id=incident_id,
+                    profile_id=profile_id,
+                    sighting_id=sighting_id,
+                    alert_type="REPEAT_INTRUDER_MATCH",
+                    title=f"Repeat intruder detected at {camera['household']}",
+                    body=(
+                        f"A human-confirmed intruder profile was detected at {camera['household']}. "
+                        "Neighbouring cameras remain armed and the security control room has been alerted."
+                    ),
+                    urgent=True,
+                    channels=["IN-APP", "NEIGHBOURS", "SECURITY", "WHATSAPP READY"],
+                    context={
+                        "incident_id": incident_id,
+                        "profile_id": profile_id,
+                        "sighting_id": sighting_id,
+                        "camera_id": camera_id,
+                        "detected_household": camera["household"],
+                    },
+                )
             _audit(
-                db, "member_camera_notifications", notification_id, "UPSERT", "Sentinel matcher",
-                f"Active-watch match captured at {camera['household']}",
+                db, "member_camera_notifications", notification_id, "UPSERT", "MzansiMesh matcher",
+                f"Active-watch match captured at {camera['household']} and neighbouring households re-alerted",
                 {"incident_id": incident_id, "sighting_id": sighting_id, "camera_id": camera_id},
             )
+            try:
+                from sentinel_ops.community_api import record_community_system_message
+                record_community_system_message(
+                    db,
+                    message=(
+                        f"Active watch match at {camera['household']}. "
+                        "Neighbouring households and the security control room have been alerted."
+                    ),
+                    urgent=True,
+                    source="CAMERA_MATCH",
+                    dedupe_key=f"MATCH-{sighting_id}",
+                )
+            except Exception:
+                pass
             incident_watch = _incident_payload(db, incident_id)
 
         rows = db.execute(
@@ -1528,6 +1721,32 @@ async def create_face_sighting(
             "SELECT * FROM member_profile_labels WHERE profile_id=? AND user_id=?",
             (profile_id, user_id),
         ).fetchone()
+
+    security_dispatch = None
+    if incident_watch:
+        try:
+            from sentinel_ops.security_dispatch import (
+                create_dispatch_for_member_incident,
+                initialise_security_store,
+                queue_repeat_intruder_notifications,
+            )
+            initialise_security_store()
+            with connect() as security_db:
+                security_dispatch = create_dispatch_for_member_incident(
+                    security_db,
+                    incident_watch["incident_id"],
+                    actor="MzansiMesh repeat match" if not auto_incident_started else "MzansiMesh automatic watch",
+                )
+                if matched:
+                    security_dispatch = queue_repeat_intruder_notifications(
+                        security_db,
+                        incident_watch["incident_id"],
+                        household=camera["household"],
+                        sighting_id=sighting_id,
+                        actor="MzansiMesh repeat match",
+                    )
+        except Exception as exc:
+            security_dispatch = {"status": "DISPATCH_BRIDGE_ERROR", "detail": str(exc)}
 
     sightings = [_sighting_payload(row) for row in rows]
     other_users = sorted({row["display_name"] for row in sightings if row["user_id"] != user_id})
@@ -1552,7 +1771,13 @@ async def create_face_sighting(
         "match_breakdown": breakdown,
         "face_box": face_box,
         "incident_watch": incident_watch,
-        "notice": "Anonymous biometric candidate only; a person must review and classify it before action.",
+        "auto_incident_started": auto_incident_started,
+        "security_dispatch": security_dispatch,
+        "notice": (
+            "A human-confirmed intruder profile triggered an automatic neighbourhood watch."
+            if auto_incident_started else
+            "Anonymous biometric candidate only; a person must review and classify it before action."
+        ),
     }
 
 
@@ -1941,6 +2166,150 @@ def incident_report(incident_id: str):
         "anonymous_profile": profile,
         "disclaimer": "Candidate biometric and appearance evidence for human review; not proof of identity or guilt.",
     }
+
+
+@router.get("/api/member/alerts")
+def member_alerts(
+    user_id: str | None = Query(default=None),
+    limit: int = Query(default=50, ge=1, le=200),
+):
+    """Persistent priority alerts for household inboxes.
+
+    Unknown visitors never enter this feed. Only confirmed incidents, neighbour
+    watches and repeat intruder matches are stored here.
+    """
+    initialise_member_store()
+    query = "SELECT * FROM member_alert_events"
+    args: list[Any] = []
+    if user_id:
+        query += " WHERE user_id=?"
+        args.append(user_id)
+    query += " ORDER BY created_at DESC LIMIT ?"
+    args.append(limit)
+    with connect() as db:
+        rows = db.execute(query, tuple(args)).fetchall()
+    alerts = []
+    for row in rows:
+        item = dict(row)
+        item["urgent"] = bool(item.get("urgent"))
+        item["channels"] = _json_obj(item.pop("channels_json", None), [])
+        item["context"] = _json_obj(item.pop("context_json", None), {})
+        alerts.append(item)
+    return {"user_id": user_id, "count": len(alerts), "alerts": alerts}
+
+
+@router.get("/api/notifications/priority")
+def priority_notifications(
+    scope: Literal["member", "security"] = Query(default="member"),
+    user_id: str | None = Query(default=None),
+    limit: int = Query(default=80, ge=1, le=200),
+):
+    """Unified priority feed used by the bottom notification centre.
+
+    Member scope returns the selected household's persistent incident alerts plus
+    any security response messages tied to those incidents. Security scope returns
+    control-room notifications only. Unknown visitors are deliberately excluded.
+    """
+    initialise_member_store()
+    try:
+        from sentinel_ops.security_dispatch import initialise_security_store
+        initialise_security_store()
+    except Exception:
+        pass
+
+    items: list[dict[str, Any]] = []
+    with connect() as db:
+        incident_ids: list[str] = []
+        if scope == "member":
+            member_query = "SELECT * FROM member_alert_events"
+            member_args: list[Any] = []
+            if user_id:
+                member_query += " WHERE user_id=?"
+                member_args.append(user_id)
+            member_query += " ORDER BY created_at DESC LIMIT ?"
+            member_args.append(limit)
+            member_rows = db.execute(member_query, tuple(member_args)).fetchall()
+            for row in member_rows:
+                data = dict(row)
+                incident_id = data.get("incident_id")
+                if incident_id:
+                    incident_ids.append(str(incident_id))
+                items.append({
+                    "event_id": f"MEMBER:{data['alert_id']}",
+                    "source": "MEMBER",
+                    "target_user_id": data.get("user_id"),
+                    "title": data.get("title") or "MzansiMesh alert",
+                    "body": data.get("body") or "",
+                    "created_at": data.get("created_at"),
+                    "urgent": bool(data.get("urgent")),
+                    "channels": _json_obj(data.get("channels_json"), ["IN-APP"]),
+                    "action": "member-trail",
+                    "action_label": "Open incident trail",
+                    "context": _json_obj(data.get("context_json"), {}),
+                })
+
+        table_names = {row["name"] for row in db.execute(
+            "SELECT name FROM sqlite_master WHERE type='table'"
+        ).fetchall()}
+        if scope == "security" and {"security_notifications", "security_dispatches"}.issubset(table_names):
+            sec_rows = db.execute(
+                """
+                SELECT n.*, d.member_incident_id, d.incident_type, d.address,
+                       d.selected_unit_id, d.eta_minutes
+                FROM security_notifications n
+                JOIN security_dispatches d ON d.dispatch_id=n.dispatch_id
+                ORDER BY n.created_at DESC LIMIT ?
+                """,
+                (limit * 4,),
+            ).fetchall()
+            seen_control_room_events: set[tuple[str, str]] = set()
+            for row in sec_rows:
+                data = dict(row)
+                message = str(data.get("message") or "Security response notification")
+                alert_group = "REPEAT" if "REPEAT INTRUDER" in message.upper() else "INITIAL"
+                dedupe = (str(data.get("dispatch_id") or ""), alert_group)
+                if dedupe in seen_control_room_events:
+                    continue
+                seen_control_room_events.add(dedupe)
+                lines = [line.strip() for line in message.splitlines() if line.strip()]
+                title = lines[0] if lines else "Security response notification"
+                body = " ".join(lines[1:]) if len(lines) > 1 else message
+                items.append({
+                    "event_id": f"SECURITY:{data['notification_id']}",
+                    "source": "SECURITY",
+                    "title": title,
+                    "body": body,
+                    "created_at": data.get("created_at"),
+                    "urgent": "REPEAT INTRUDER" in message.upper() or data.get("status") == "QUEUED_LOCAL",
+                    "channels": [data.get("channel") or "CONTROL ROOM", "IN-APP"],
+                    "action": "security-response",
+                    "action_label": "Open security response",
+                    "context": {
+                        "dispatch_id": data.get("dispatch_id"),
+                        "unit_id": data.get("selected_unit_id") or data.get("unit_id"),
+                        "incident_id": data.get("member_incident_id"),
+                    },
+                })
+
+    items.sort(key=lambda item: str(item.get("created_at") or ""), reverse=True)
+    return {
+        "scope": scope,
+        "user_id": user_id,
+        "count": min(len(items), limit),
+        "items": items[:limit],
+        "server_time": _now(),
+    }
+
+
+@router.post("/api/member/alerts/{alert_id}/read")
+def mark_member_alert_read(alert_id: str):
+    initialise_member_store()
+    with connect() as db:
+        row = db.execute("SELECT alert_id FROM member_alert_events WHERE alert_id=?", (alert_id,)).fetchone()
+        if not row:
+            raise HTTPException(status_code=404, detail="alert not found")
+        db.execute("UPDATE member_alert_events SET read_at=? WHERE alert_id=?", (_now(), alert_id))
+    return {"alert_id": alert_id, "read": True}
 
 
 @router.get("/api/member/mesh-state")

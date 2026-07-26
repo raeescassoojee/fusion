@@ -1,4 +1,4 @@
-# Sentinel Mesh - one command to get everything running.
+# MzansiMesh - one command to get everything running.
 #
 #   .\start.ps1              normal start
 #   .\start.ps1 -Fresh       rebuild the venv from scratch
@@ -8,15 +8,17 @@
 
 param(
     [switch]$Fresh,
-    [int]$Port = 8000
+    [int]$Port = 8000,
+    [int]$ChatPort = 8082,
+    [switch]$NoChat
 )
 
 $ErrorActionPreference = "Stop"
 Set-Location $PSScriptRoot
 
 Write-Host ""
-Write-Host "  SENTINEL MESH" -ForegroundColor Cyan
-Write-Host "  Discovery GradHack 2026" -ForegroundColor DarkGray
+Write-Host "  MZANSIMESH" -ForegroundColor Cyan
+Write-Host "  Community safety network" -ForegroundColor DarkGray
 Write-Host ""
 
 # --- python -----------------------------------------------------------------
@@ -71,6 +73,7 @@ $env:PYTHONPATH = ".\services\operations\src;.\src"
 if (-not $env:SENTINEL_PLATE_SALT) { $env:SENTINEL_PLATE_SALT = "pilot-demo-salt" }
 
 Write-Host ""
+Write-Host "  community   integrated with the dashboard API and SQLite" -ForegroundColor Green
 Write-Host "  dashboard   http://127.0.0.1:$Port/dashboard" -ForegroundColor Green
 Write-Host "  api docs    http://127.0.0.1:$Port/docs" -ForegroundColor Green
 Write-Host "  pitch site  deliverables\site\pitch-site.html  (open directly)" -ForegroundColor Green

@@ -93,3 +93,55 @@ def test_latest_member_incident_becomes_claim(tmp_path, monkeypatch):
         assert data["case"]["source_type"] == "MEMBER_INCIDENT"
         assert data["case"]["member_incident_id"] == "INC-DEMO"
         assert any(e["evidence_type"] == "MEMBER_INCIDENT" for e in data["evidence"])
+
+
+def test_camera_inbox_auto_ingest_reconciles_two_real_vehicle_clips(tmp_path, monkeypatch):
+    monkeypatch.setenv("SENTINEL_DATABASE_PATH", str(tmp_path / "camera-inbox.db"))
+    from sentinel_ops import claims_case as case_module
+
+    def fake_trace(case_id, upload_id, item, source_path, captured_at):
+        plate = item["policy_plate"]
+        now = captured_at.isoformat()
+        with connect() as db:
+            db.execute(
+                """
+                INSERT INTO claim_plate_scan_frames(
+                    frame_read_id, case_id, upload_id, frame_index, video_time_seconds,
+                    box_json, raw_ocr, normalized_ocr, ocr_confidence,
+                    supported_positions_json, accumulated_display, created_at
+                ) VALUES (?, ?, ?, 10, .3, '{}', ?, ?, .7, '[0,1,2]', ?, ?)
+                """,
+                (f"PFR-{upload_id}", case_id, upload_id, plate[:3], plate[:3], plate[:3] + "·····", now),
+            )
+            observation_id = f"PLT-{upload_id}"
+            payload = {"source_upload_id": upload_id, "policy_plate": plate, "best_raw_ocr": plate[:6], "visual_support": .75}
+            db.execute(
+                """
+                INSERT INTO claim_plate_observations(
+                    observation_id, case_id, event_id, plate_text, normalized_plate,
+                    ocr_confidence, detection_confidence, camera_id, captured_at,
+                    media_url, match_status, payload_json, created_at
+                ) VALUES (?, ?, ?, ?, ?, .75, .9, ?, ?, ?, 'POLICY_RECONCILED', ?, ?)
+                """,
+                (observation_id, case_id, f"TRACE-{upload_id}", plate, plate, item["camera_id"], now, item.get("media_url"), case_module._safe_json(payload), now),
+            )
+        return {"observation_id": observation_id, "policy_plate": plate, "best_raw_ocr": plate[:6], "visual_support": .75, "evidence_score": .75, "reconciliation_status": "POLICY_RECONCILED", "trace_frames": 1}
+
+    monkeypatch.setattr(case_module, "_build_real_plate_trace", fake_trace)
+
+    with TestClient(app) as client:
+        source = client.get("/api/fraud/cases/queue?limit=1").json()["claims"][0]["incident_id"]
+        case_id = client.post(f"/api/fraud/cases/open/{source}").json()["case"]["case_id"]
+        response = client.post(f"/api/fraud/cases/{case_id}/camera-inbox/auto-ingest")
+        assert response.status_code == 200
+        data = response.json()
+        assert len(data["workspace"]["camera_uploads"]) == 2
+        assert all(item["status"] == "PROCESSED" for item in data["workspace"]["camera_uploads"])
+        assert data["continuity"]["status"] == "VEHICLE_MISMATCH"
+        assert set(data["continuity"]["distinct_vehicles"]) == {"DV70FTGP", "FG47MSGP"}
+        assert {item["normalized_plate"] for item in data["workspace"]["plates"]} == {"DV70FTGP", "FG47MSGP"}
+        validation = next(item for item in data["workspace"]["validations"] if item["check_code"] == "PLATE_MATCH")
+        assert validation["status"] == "MISMATCH"
+        assert "DV70FTGP" in validation["value"] and "FG47MSGP" in validation["value"]
+        assert data["workspace"]["database"]["counts"]["claim_plate_scan_frames"] == 2
+

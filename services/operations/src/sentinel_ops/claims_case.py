@@ -14,6 +14,10 @@ from __future__ import annotations
 
 import json
 import math
+import difflib
+from html import escape
+
+import cv2
 import shutil
 import tempfile
 import uuid
@@ -23,6 +27,7 @@ from pathlib import Path
 from typing import Any, Literal
 
 from fastapi import APIRouter, File, Form, HTTPException, Query, UploadFile
+from fastapi.responses import FileResponse, HTMLResponse
 from pydantic import BaseModel, Field
 
 from sentinel_ops.camera_bridge import camera_ai_to_operations
@@ -50,6 +55,8 @@ CASE_TABLES = (
     "claim_case_validations",
     "claim_evidence_links",
     "claim_plate_observations",
+    "claim_camera_uploads",
+    "claim_plate_scan_frames",
     "claim_agent_runs",
     "claim_case_reports",
 )
@@ -60,6 +67,8 @@ AWS_CASE_TABLE_MAP = {
     "claim_case_validations": "SentinelClaimValidations",
     "claim_evidence_links": "SentinelClaimEvidence",
     "claim_plate_observations": "SentinelPlateObservations",
+    "claim_camera_uploads": "SentinelCameraUploads",
+    "claim_plate_scan_frames": "SentinelPlateScanFrames",
     "claim_agent_runs": "SentinelCaseAgentRuns",
     "claim_case_reports": "SentinelClaimReports",
 }
@@ -78,9 +87,114 @@ VALIDATION_LIBRARY = [
 VALIDATION_STATUSES = {"PENDING", "VERIFIED", "MISSING", "MISMATCH", "NOT_APPLICABLE"}
 CASE_STATUSES = {"OPEN", "AWAITING_INFORMATION", "UNDER_REVIEW", "READY_FOR_DECISION", "CLOSED"}
 
+OPERATIONS_ROOT = Path(__file__).resolve().parents[2]
+REPO_ROOT = OPERATIONS_ROOT.parents[1]
+CAMERA_INBOX_FIXTURE = OPERATIONS_ROOT / "fixtures" / "claims_camera_inbox.json"
+CAMERA_INBOX_MEDIA_ROOT = REPO_ROOT / "media" / "claims_camera_inbox"
+
 
 def _now() -> str:
     return datetime.now().astimezone().isoformat()
+
+
+def _html(value: Any) -> str:
+    return escape(str(value if value is not None else ""), quote=True)
+
+
+def _money(value: Any) -> str:
+    try:
+        amount = float(value or 0)
+    except (TypeError, ValueError):
+        amount = 0.0
+    return f"R{amount:,.2f}".replace(",", " ")
+
+
+def _report_html_document(report: dict[str, Any], *, report_id: str, version: int) -> str:
+    claim = report.get("claim") or {}
+    state = report.get("case_state") or {}
+    summary = report.get("executive_summary") or {}
+    validations = report.get("validations") or []
+    evidence = report.get("evidence") or []
+    plates = report.get("plate_observations") or []
+    activity = report.get("activity") or []
+    governance = report.get("governance") or {}
+
+    claim_amount = claim.get("claim_amount") or claim.get("claim_cost") or claim.get("amount") or 0
+    claim_type = claim.get("claim_type") or claim.get("peril") or claim.get("incident_type") or "Not supplied"
+    suburb = claim.get("suburb") or claim.get("area") or claim.get("location") or "Not supplied"
+    incident_time = claim.get("incident_time") or claim.get("date_of_loss") or claim.get("reported_at") or "Not supplied"
+
+    validation_rows = "".join(
+        f"<tr><td>{_html(item.get('label') or item.get('check_code'))}</td>"
+        f"<td><span class='pill {_html(item.get('status'))}'>{_html(str(item.get('status') or '').replace('_', ' '))}</span></td>"
+        f"<td>{_html(item.get('value') or '')}</td><td>{_html(item.get('note') or '')}</td></tr>"
+        for item in validations
+    ) or "<tr><td colspan='4'>No validation results recorded.</td></tr>"
+
+    evidence_rows = "".join(
+        f"<article class='item'><h3>{_html(item.get('evidence_type') or item.get('source') or 'Evidence')}</h3>"
+        f"<p>{_html(item.get('summary') or 'No summary supplied.')}</p>"
+        f"<small>Status: {_html(item.get('status') or 'PENDING')} | Confidence: {_html(item.get('confidence') or 'n/a')}</small></article>"
+        for item in evidence
+    ) or "<p class='empty'>No evidence has been linked yet.</p>"
+
+    plate_rows = "".join(
+        f"<article class='item'><h3>{_html(item.get('plate_text') or item.get('normalized_plate') or 'No read')}</h3>"
+        f"<p>{_html(str(item.get('match_status') or 'PENDING').replace('_', ' '))} at {_html(item.get('camera_id') or 'camera')}</p>"
+        f"<small>OCR confidence: {_html(round(float(item.get('ocr_confidence') or 0) * 100))}% | Captured: {_html(item.get('captured_at') or 'n/a')}</small></article>"
+        for item in plates
+    ) or "<p class='empty'>No plate observations have been stored.</p>"
+
+    activity_rows = "".join(
+        f"<li><time>{_html(item.get('created_at') or '')}</time><b>{_html(item.get('title') or item.get('event_type'))}</b>"
+        f"<span>{_html(item.get('detail') or '')}</span></li>"
+        for item in activity[-40:]
+    ) or "<li><span>No activity recorded.</span></li>"
+
+    limitation_rows = "".join(f"<li>{_html(item)}</li>" for item in governance.get("limitations", []))
+    generated = report.get("generated_at") or _now()
+    return f"""<!doctype html>
+<html lang='en'>
+<head>
+<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<title>MzansiMesh investigation report {_html(report.get('case_id'))}</title>
+<style>
+:root{{--navy:#021f38;--blue:#005baa;--cyan:#00aeef;--ink:#14242f;--muted:#5b6b77;--line:#dce4ea;--paper:#f3f6f8;--ok:#147a4c;--warn:#9a6500;--bad:#a92b1d}}
+*{{box-sizing:border-box}} body{{margin:0;background:var(--paper);color:var(--ink);font:15px/1.55 Arial,sans-serif}}
+header{{background:var(--navy);color:white;padding:28px 5vw}} header h1{{margin:0;font-size:30px}} header p{{margin:6px 0 0;color:#b9d5e6}}
+main{{max-width:1100px;margin:0 auto;padding:24px}} .grid{{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}}
+.card,.section{{background:white;border:1px solid var(--line);border-radius:12px;padding:16px}} .card b{{display:block;font-size:20px;color:var(--navy)}} .card span{{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.06em}}
+.section{{margin-top:14px}} h2{{margin:0 0 12px;font-size:19px;color:var(--navy)}} h3{{margin:0 0 5px;font-size:15px}} p{{margin:5px 0}} small,.muted,.empty{{color:var(--muted)}}
+table{{width:100%;border-collapse:collapse}} th,td{{padding:9px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}} th{{font-size:12px;text-transform:uppercase;color:var(--muted)}}
+.pill{{display:inline-block;padding:3px 8px;border-radius:999px;background:#edf2f5;font-size:11px;font-weight:700}} .pill.VERIFIED{{background:#e8f8ef;color:var(--ok)}} .pill.MISMATCH,.pill.MISSING{{background:#fde9e6;color:var(--bad)}} .pill.PENDING{{background:#fff4d9;color:var(--warn)}}
+.item{{border-left:4px solid var(--blue);padding:10px 12px;margin:9px 0;background:#f8fbfd;border-radius:8px}}
+.timeline{{list-style:none;padding:0;margin:0}} .timeline li{{display:grid;grid-template-columns:170px 230px 1fr;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)}} .timeline time{{color:var(--muted);font-size:12px}}
+.actions{{display:flex;gap:8px;margin-top:16px}} button{{border:0;border-radius:999px;padding:10px 16px;background:var(--blue);color:white;font-weight:700;cursor:pointer}}
+@media(max-width:800px){{.grid{{grid-template-columns:1fr 1fr}}.timeline li{{grid-template-columns:1fr}}}}
+@media print{{body{{background:white}} .actions{{display:none}} main{{max-width:none;padding:0}} .section,.card{{break-inside:avoid}}}}
+</style>
+</head>
+<body>
+<header><h1>MzansiMesh claim investigation report</h1><p>Case {_html(report.get('case_id'))} | Report {_html(report_id)} | Version {version} | Generated {_html(generated)}</p></header>
+<main>
+<div class='grid'>
+<div class='card'><b>{_html(state.get('status') or 'OPEN')}</b><span>Case status</span></div>
+<div class='card'><b>{_html(state.get('priority') or 'NORMAL')}</b><span>Priority</span></div>
+<div class='card'><b>{_money(claim_amount)}</b><span>Claim value</span></div>
+<div class='card'><b>{_html(summary.get('readiness') or 'Human review')}</b><span>Current readiness</span></div>
+</div>
+<section class='section'><h2>Claim overview</h2><table><tr><th>Source claim</th><td>{_html(report.get('source_claim_id'))}</td><th>Assigned to</th><td>{_html(state.get('assigned_to') or 'Unassigned')}</td></tr><tr><th>Claim type</th><td>{_html(claim_type)}</td><th>Area</th><td>{_html(suburb)}</td></tr><tr><th>Incident time</th><td>{_html(incident_time)}</td><th>Stage</th><td>{_html(state.get('stage') or 'TRIAGE')}</td></tr></table></section>
+<section class='section'><h2>Executive summary</h2><p>{_html(summary.get('narrative') or 'The case pack summarises the available claim facts, validations, camera evidence and human review requirements.')}</p><div class='grid'><div class='card'><b>{_html(summary.get('verified_checks', 0))}</b><span>Verified checks</span></div><div class='card'><b>{_html(summary.get('open_checks', 0))}</b><span>Open checks</span></div><div class='card'><b>{_html(summary.get('evidence_items', len(evidence)))}</b><span>Evidence items</span></div><div class='card'><b>{_html(summary.get('plate_reads', len(plates)))}</b><span>Plate reads</span></div></div></section>
+<section class='section'><h2>Validation checklist</h2><table><thead><tr><th>Check</th><th>Status</th><th>Value</th><th>Review note</th></tr></thead><tbody>{validation_rows}</tbody></table></section>
+<section class='section'><h2>Linked evidence</h2>{evidence_rows}</section>
+<section class='section'><h2>Number plate observations</h2>{plate_rows}</section>
+<section class='section'><h2>Case activity</h2><ul class='timeline'>{activity_rows}</ul></section>
+<section class='section'><h2>Governance and limitations</h2><p>Decision owner: {_html(governance.get('decision_owner') or 'Human claims investigator')}</p><ul>{limitation_rows}</ul></section>
+<div class='actions'><button onclick='window.print()'>Print or save as PDF</button></div>
+</main>
+</body>
+</html>"""
 
 
 def _safe_json(value: Any) -> str:
@@ -105,6 +219,45 @@ def _normalise_plate(text: str | None) -> str | None:
         return None
     value = "".join(ch for ch in text.upper() if ch.isalnum())
     return value or None
+
+
+def _parse_datetime(value: str | None, fallback: datetime | None = None) -> datetime:
+    if value:
+        try:
+            parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+            if parsed.tzinfo is None:
+                parsed = parsed.astimezone()
+            return parsed
+        except ValueError:
+            pass
+    return fallback or datetime.now().astimezone()
+
+
+def _camera_inbox_uploads() -> list[dict[str, Any]]:
+    try:
+        payload = json.loads(CAMERA_INBOX_FIXTURE.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise HTTPException(status_code=500, detail=f"camera inbox fixture is unavailable: {exc}") from exc
+    uploads = payload.get("uploads") if isinstance(payload, dict) else None
+    if not isinstance(uploads, list):
+        raise HTTPException(status_code=500, detail="camera inbox fixture has no uploads list")
+    output: list[dict[str, Any]] = []
+    for item in uploads:
+        if not isinstance(item, dict):
+            continue
+        relative = str(item.get("relative_media_path") or "")
+        path = (REPO_ROOT / relative).resolve()
+        try:
+            path.relative_to(REPO_ROOT.resolve())
+        except ValueError:
+            continue
+        if not path.is_file():
+            continue
+        row = dict(item)
+        row["path"] = path
+        row["filename"] = path.name
+        output.append(row)
+    return output
 
 
 def _case_id(source_claim_id: str) -> str:
@@ -286,6 +439,48 @@ def initialise_claim_store() -> None:
             );
             CREATE INDEX IF NOT EXISTS idx_claim_plates_case ON claim_plate_observations(case_id, created_at DESC);
             CREATE INDEX IF NOT EXISTS idx_claim_plates_value ON claim_plate_observations(normalized_plate);
+            CREATE TABLE IF NOT EXISTS claim_camera_uploads (
+                upload_id TEXT PRIMARY KEY,
+                case_id TEXT NOT NULL,
+                source_key TEXT NOT NULL,
+                display_name TEXT NOT NULL,
+                camera_id TEXT NOT NULL,
+                household TEXT,
+                filename TEXT NOT NULL,
+                stored_path TEXT NOT NULL,
+                media_url TEXT,
+                status TEXT NOT NULL DEFAULT 'RECEIVED',
+                received_at TEXT NOT NULL,
+                processing_started_at TEXT,
+                processed_at TEXT,
+                event_count INTEGER NOT NULL DEFAULT 0,
+                plate_count INTEGER NOT NULL DEFAULT 0,
+                error_message TEXT,
+                payload_json TEXT,
+                UNIQUE(case_id, source_key),
+                FOREIGN KEY(case_id) REFERENCES claim_cases(case_id)
+            );
+            CREATE INDEX IF NOT EXISTS idx_claim_camera_uploads_case
+                ON claim_camera_uploads(case_id, status, received_at DESC);
+            CREATE TABLE IF NOT EXISTS claim_plate_scan_frames (
+                frame_read_id TEXT PRIMARY KEY,
+                case_id TEXT NOT NULL,
+                upload_id TEXT NOT NULL,
+                frame_index INTEGER NOT NULL,
+                video_time_seconds REAL NOT NULL,
+                box_json TEXT NOT NULL,
+                raw_ocr TEXT,
+                normalized_ocr TEXT,
+                ocr_confidence REAL NOT NULL DEFAULT 0,
+                supported_positions_json TEXT NOT NULL DEFAULT '[]',
+                accumulated_display TEXT,
+                created_at TEXT NOT NULL,
+                UNIQUE(case_id, upload_id, frame_index),
+                FOREIGN KEY(case_id) REFERENCES claim_cases(case_id),
+                FOREIGN KEY(upload_id) REFERENCES claim_camera_uploads(upload_id)
+            );
+            CREATE INDEX IF NOT EXISTS idx_claim_plate_scan_frames_upload
+                ON claim_plate_scan_frames(case_id, upload_id, video_time_seconds);
             CREATE TABLE IF NOT EXISTS claim_agent_runs (
                 run_id TEXT PRIMARY KEY,
                 case_id TEXT NOT NULL,
@@ -408,6 +603,12 @@ def _case_payload(case_id: str) -> dict[str, Any]:
         plates = [dict(row) for row in db.execute(
             "SELECT * FROM claim_plate_observations WHERE case_id=? ORDER BY created_at DESC", (case_id,)
         ).fetchall()]
+        camera_uploads = [dict(row) for row in db.execute(
+            "SELECT * FROM claim_camera_uploads WHERE case_id=? ORDER BY received_at, source_key", (case_id,)
+        ).fetchall()]
+        scan_frames = [dict(row) for row in db.execute(
+            "SELECT * FROM claim_plate_scan_frames WHERE case_id=? ORDER BY upload_id, video_time_seconds", (case_id,)
+        ).fetchall()]
         activity = [dict(row) for row in db.execute(
             "SELECT * FROM claim_case_activity WHERE case_id=? ORDER BY created_at DESC LIMIT 200", (case_id,)
         ).fetchall()]
@@ -417,10 +618,17 @@ def _case_payload(case_id: str) -> dict[str, Any]:
         report = _row(db.execute(
             "SELECT * FROM claim_case_reports WHERE case_id=? ORDER BY version DESC LIMIT 1", (case_id,)
         ).fetchone())
-    for collection in (evidence, plates, activity):
+    for collection in (evidence, plates, camera_uploads, activity):
         for item in collection:
             if "payload_json" in item:
                 item["payload"] = _json(item.pop("payload_json"), {})
+    frames_by_upload: dict[str, list[dict[str, Any]]] = {}
+    for frame in scan_frames:
+        frame["box"] = _json(frame.pop("box_json"), {})
+        frame["supported_positions"] = _json(frame.pop("supported_positions_json"), [])
+        frames_by_upload.setdefault(frame["upload_id"], []).append(frame)
+    for upload in camera_uploads:
+        upload["ocr_trace"] = frames_by_upload.get(upload["upload_id"], [])
     if agent:
         agent["rationale"] = _json(agent.pop("rationale_json"), [])
         agent["tools"] = _json(agent.pop("tools_json"), [])
@@ -436,6 +644,7 @@ def _case_payload(case_id: str) -> dict[str, Any]:
         "validations": validations,
         "evidence": evidence,
         "plates": plates,
+        "camera_uploads": camera_uploads,
         "activity": activity,
         "agent": agent,
         "latest_report": report,
@@ -811,17 +1020,23 @@ def _create_task(db, case_id: str, title: str, category: str, priority: str, rat
     }, "Case Agent")
 
 
-def _refresh_evidence(case_id: str, actor: str = "Case Agent") -> dict[str, Any]:
+def _build_case_timeline(
+    case_id: str,
+    *,
+    minutes_before: int = 180,
+    minutes_after: int = 180,
+    radius_km: float = 8.0,
+):
     case = _get_case(case_id)
     claim = case["claim"]
     lat, lon = _claim_location(claim)
     incident_at = claim.get("incident_at")
     if not incident_at:
-        return {"events": 0, "member_incident": False, "message": "incident time unavailable"}
+        raise HTTPException(status_code=422, detail="incident time unavailable")
     try:
         dt = datetime.fromisoformat(incident_at)
-    except ValueError:
-        return {"events": 0, "member_incident": False, "message": "invalid incident time"}
+    except ValueError as exc:
+        raise HTTPException(status_code=422, detail="invalid incident time") from exc
     model_claim = Claim(
         claim_id=case["source_claim_id"],
         incident_time=dt,
@@ -832,10 +1047,21 @@ def _refresh_evidence(case_id: str, actor: str = "Case Agent") -> dict[str, Any]
         vehicle_colour=None,
         vehicle_type=claim.get("item_type"),
     )
-    timeline = reconstruct_incident(ReconstructRequest(
-        claim=model_claim, events=list_events(limit=1000), radius_km=8,
-        minutes_before=180, minutes_after=180,
+    return reconstruct_incident(ReconstructRequest(
+        claim=model_claim,
+        events=list_events(limit=1000),
+        radius_km=radius_km,
+        minutes_before=minutes_before,
+        minutes_after=minutes_after,
     ))
+
+
+def _refresh_evidence(case_id: str, actor: str = "Case Agent") -> dict[str, Any]:
+    case = _get_case(case_id)
+    try:
+        timeline = _build_case_timeline(case_id)
+    except HTTPException as exc:
+        return {"events": 0, "member_incident": False, "message": str(exc.detail)}
     linked = 0
     with connect() as db:
         for item in timeline.items:
@@ -870,10 +1096,719 @@ def _refresh_evidence(case_id: str, actor: str = "Case Agent") -> dict[str, Any]
     return {"events": linked, "member_incident": member_linked, "timeline": timeline.model_dump(mode="json")}
 
 
+@router.get("/api/fraud/cases/{case_id}/timeline")
+def case_incident_timeline(
+    case_id: str,
+    minutes_before: int = Query(default=180, ge=5, le=1440),
+    minutes_after: int = Query(default=180, ge=5, le=1440),
+    radius_km: float = Query(default=8.0, gt=0, le=50),
+):
+    """Claim-specific incident reconstruction from stored camera events.
+
+    This is the UI-facing Incident Time Machine. It uses the selected case time,
+    location and reported vehicle details, then orders matching events by timestamp.
+    """
+    timeline = _build_case_timeline(
+        case_id,
+        minutes_before=minutes_before,
+        minutes_after=minutes_after,
+        radius_km=radius_km,
+    )
+    return timeline.model_dump(mode="json")
+
+
 @router.post("/api/fraud/cases/{case_id}/evidence/refresh")
 def refresh_case_evidence(case_id: str):
     _refresh_evidence(case_id, actor="Demo investigator")
     return _case_payload(case_id)
+
+
+def _process_case_plate_path(
+    case_id: str,
+    source_path: Path,
+    *,
+    original_name: str,
+    camera_id: str,
+    latitude: float,
+    longitude: float,
+    captured_at: datetime,
+    source_upload_id: str | None = None,
+    source_media_url: str | None = None,
+    only_plate_events: bool = False,
+) -> dict[str, Any]:
+    """Run stored or uploaded camera media through the same plate pipeline.
+
+    The raw clip is never interpreted from fixture metadata. The plate value stored
+    in SQLite comes from the detector/OCR result in the generated camera event.
+    """
+    case = _get_case(case_id)
+    suffix = source_path.suffix.lower()
+    if suffix not in VIDEO_SUFFIXES | IMAGE_SUFFIXES:
+        raise HTTPException(status_code=415, detail="camera media type is unsupported")
+    batch = uuid.uuid4().hex[:10]
+    out_dir = UPLOAD_ROOT / f"claim-{case_id.lower()}-{batch}"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    try:
+        pipeline = _pipeline(out_dir)
+        results = pipeline.process_media(
+            input_path=source_path,
+            camera_id=camera_id,
+            latitude=latitude,
+            longitude=longitude,
+            mode="HEIGHTENED",
+            start_timestamp=captured_at,
+        )
+    except HTTPException:
+        raise
+    except Exception as exc:
+        raise HTTPException(status_code=422, detail=f"plate/vision pipeline failed: {exc}") from exc
+
+    observations: list[dict[str, Any]] = []
+    reported = _normalise_plate(case.get("reported_plate"))
+    event_count = len(results)
+    with connect() as db:
+        for _, event_path in results:
+            payload = json.loads(Path(event_path).read_text(encoding="utf-8"))
+            payload["source_media"] = original_name
+            payload["source_media_url"] = source_media_url
+            payload["source_upload_id"] = source_upload_id
+            payload["_batch"] = batch
+            media_base = f"/api/cameras/media/{out_dir.name}"
+            if payload.get("media_url"):
+                payload["media_url"] = f"{media_base}/{str(payload['media_url']).lstrip('/')}"
+            try:
+                ingest_event(camera_ai_to_operations(payload))
+            except Exception:
+                pass
+
+            plate = payload.get("plate") or {}
+            text = plate.get("text") or plate.get("display_text")
+            normal = _normalise_plate(text)
+            if only_plate_events and not normal and not plate.get("box"):
+                continue
+            if reported and normal:
+                match_status = "MATCH" if normal == reported else "MISMATCH"
+            elif normal:
+                match_status = "CANDIDATE"
+            else:
+                match_status = "NO_READ"
+
+            event_id = payload.get("event_id")
+            existing = _row(db.execute(
+                "SELECT * FROM claim_plate_observations WHERE case_id=? AND event_id=?",
+                (case_id, event_id),
+            ).fetchone()) if event_id else None
+            if existing:
+                observations.append(existing)
+                continue
+
+            obs_id = f"PLT-{uuid.uuid4().hex[:12].upper()}"
+            media_url = plate.get("crop_url") or payload.get("media_url")
+            if media_url and not str(media_url).startswith(("/", "http://", "https://")):
+                media_url = f"{media_base}/{str(media_url).lstrip('/')}"
+            db.execute(
+                """
+                INSERT INTO claim_plate_observations(
+                    observation_id, case_id, event_id, plate_text, normalized_plate,
+                    ocr_confidence, detection_confidence, camera_id, captured_at,
+                    media_url, match_status, payload_json, created_at
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                """,
+                (
+                    obs_id, case_id, event_id, text, normal,
+                    plate.get("ocr_confidence"), plate.get("detection_confidence"),
+                    payload.get("camera_id") or camera_id, payload.get("timestamp"),
+                    media_url, match_status, _safe_json(payload), _now(),
+                ),
+            )
+            link_id = f"EVD-{uuid.uuid4().hex[:12].upper()}"
+            summary = (
+                f"Plate {text or 'unreadable'} · {match_status.replace('_', ' ').lower()} · "
+                f"OCR {round(float(plate.get('ocr_confidence') or 0) * 100)}%"
+            )
+            db.execute(
+                """
+                INSERT INTO claim_evidence_links(
+                    link_id, case_id, evidence_type, evidence_id, source, status, confidence,
+                    summary, media_url, payload_json, linked_at, linked_by
+                ) VALUES (?, ?, 'PLATE_OBSERVATION', ?, 'CAMERA_AI', ?, ?, ?, ?, ?, ?, 'Camera AI')
+                """,
+                (
+                    link_id, case_id, obs_id, match_status,
+                    float(plate.get("ocr_confidence") or 0) * 100,
+                    summary, media_url, _safe_json(payload), _now(),
+                ),
+            )
+            _queue_entity(db, "claim_plate_observations", obs_id, "INSERT", {
+                "case_id": case_id,
+                "source_upload_id": source_upload_id,
+                "plate": text,
+                "normalised": normal,
+                "match_status": match_status,
+                "event": payload,
+            }, "Camera AI")
+            observations.append({
+                "observation_id": obs_id,
+                "plate_text": text,
+                "normalized_plate": normal,
+                "match_status": match_status,
+                "ocr_confidence": plate.get("ocr_confidence"),
+                "detection_confidence": plate.get("detection_confidence"),
+                "camera_id": payload.get("camera_id") or camera_id,
+                "captured_at": payload.get("timestamp"),
+                "media_url": media_url,
+            })
+        _activity(
+            db, case_id, "PLATE_SCAN_COMPLETED", "Automatic number-plate analysis completed",
+            f"{len(observations)} plate observation(s) stored from {original_name}.",
+            actor="Camera AI",
+            payload={"observations": observations, "batch": batch, "source_upload_id": source_upload_id},
+        )
+    return {"batch": batch, "event_count": event_count, "observations": observations}
+
+
+def _reconcile_plate_continuity(case_id: str) -> dict[str, Any]:
+    case = _get_case(case_id)
+    reported = _normalise_plate(case.get("reported_plate"))
+    with connect() as db:
+        rows = [dict(row) for row in db.execute(
+            """
+            SELECT observation_id, normalized_plate, camera_id, ocr_confidence, match_status
+            FROM claim_plate_observations
+            WHERE case_id=? AND normalized_plate IS NOT NULL AND normalized_plate<>''
+            ORDER BY captured_at
+            """,
+            (case_id,),
+        ).fetchall()]
+        groups: dict[str, list[dict[str, Any]]] = {}
+        for row in rows:
+            groups.setdefault(row["normalized_plate"], []).append(row)
+        repeat_groups = []
+        for plate, items in groups.items():
+            cameras = sorted({str(item.get("camera_id") or "UNKNOWN") for item in items})
+            if len(cameras) < 2:
+                continue
+            status = "MATCH" if reported and plate == reported else (
+                "MISMATCH" if reported and plate != reported else "CROSS_CAMERA_MATCH"
+            )
+            db.execute(
+                "UPDATE claim_plate_observations SET match_status=? WHERE case_id=? AND normalized_plate=?",
+                (status, case_id, plate),
+            )
+            db.execute(
+                "UPDATE claim_evidence_links SET status=? WHERE case_id=? AND evidence_type='PLATE_OBSERVATION' "
+                "AND evidence_id IN (SELECT observation_id FROM claim_plate_observations WHERE case_id=? AND normalized_plate=?)",
+                (status, case_id, case_id, plate),
+            )
+            repeat_groups.append({
+                "plate": plate,
+                "cameras": cameras,
+                "observations": len(items),
+                "status": status,
+                "average_ocr_confidence": round(sum(float(item.get("ocr_confidence") or 0) for item in items) / len(items), 3),
+            })
+
+        best = max(repeat_groups, key=lambda item: (len(item["cameras"]), item["average_ocr_confidence"]), default=None)
+        if best:
+            current = _row(db.execute(
+                "SELECT status, value, note FROM claim_case_validations WHERE case_id=? AND check_code='PLATE_MATCH'",
+                (case_id,),
+            ).fetchone())
+            new_status = "VERIFIED" if best["status"] in {"MATCH", "CROSS_CAMERA_MATCH"} else "MISMATCH"
+            note = (
+                f"Automatic OCR read {best['plate']} across {len(best['cameras'])} stored client cameras "
+                f"({round(best['average_ocr_confidence'] * 100)}% average OCR confidence)."
+            )
+            db.execute(
+                """
+                UPDATE claim_case_validations
+                SET label='Vehicle plate evidence reconciled', status=?, value=?, note=?,
+                    updated_by='Camera AI', updated_at=?
+                WHERE case_id=? AND check_code='PLATE_MATCH'
+                """,
+                (new_status, best["plate"], note, _now(), case_id),
+            )
+            if not current or current.get("status") != new_status or current.get("value") != best["plate"]:
+                _activity(
+                    db, case_id, "PLATE_CONTINUITY_CONFIRMED", "Same vehicle plate linked across cameras",
+                    note,
+                    actor="Camera AI",
+                    payload=best,
+                )
+                _queue_entity(
+                    db,
+                    "claim_case_validations",
+                    f"{case_id}:PLATE_MATCH",
+                    "UPSERT",
+                    {"status": new_status, "value": best["plate"], "note": note},
+                    "Camera AI",
+                )
+        return {"repeat_groups": repeat_groups, "best_match": best}
+
+
+
+def _interpolated_plate_box(track: list[dict[str, Any]], second: float, width: int, height: int) -> dict[str, int] | None:
+    if not track:
+        return None
+    points = sorted(track, key=lambda item: float(item.get("time") or 0))
+    if second < float(points[0].get("time") or 0) or second > float(points[-1].get("time") or 0):
+        return None
+    left, right = points[0], points[-1]
+    for idx in range(len(points) - 1):
+        a, b = points[idx], points[idx + 1]
+        if float(a.get("time") or 0) <= second <= float(b.get("time") or 0):
+            left, right = a, b
+            break
+    at, bt = float(left.get("time") or 0), float(right.get("time") or 0)
+    weight = 0 if bt <= at else (second - at) / (bt - at)
+    def lerp(key: str) -> float:
+        return float(left.get(key) or 0) + (float(right.get(key) or 0) - float(left.get(key) or 0)) * weight
+    return {
+        "x": max(0, min(width - 1, round(lerp("x") * width))),
+        "y": max(0, min(height - 1, round(lerp("y") * height))),
+        "width": max(8, min(width, round(lerp("width") * width))),
+        "height": max(6, min(height, round(lerp("height") * height))),
+    }
+
+
+
+def _relaxed_plate_ocr(crop, expected: str) -> tuple[str | None, float]:
+    """Return a short raw OCR fragment when the strict plate reader rejects it.
+
+    This never replaces the policy registration. It only supplies auditable visual
+    character evidence for difficult, glare-heavy footage.
+    """
+    try:
+        import pytesseract
+        from pytesseract import Output
+    except Exception:
+        return None, 0.0
+    if crop is None or getattr(crop, "size", 0) == 0:
+        return None, 0.0
+    gray = cv2.cvtColor(crop, cv2.COLOR_BGR2GRAY)
+    scale = max(4.0, 520 / max(gray.shape[1], 1))
+    resized = cv2.resize(gray, None, fx=scale, fy=scale, interpolation=cv2.INTER_CUBIC)
+    clahe = cv2.createCLAHE(clipLimit=2.2, tileGridSize=(8, 8)).apply(resized)
+    variants = [
+        resized,
+        clahe,
+        cv2.threshold(clahe, 0, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)[1],
+        cv2.adaptiveThreshold(clahe, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 31, 7),
+    ]
+    candidates: list[tuple[str, float, float]] = []
+    config = "--oem 3 --psm 7 -c tessedit_char_whitelist=ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+    for variant in variants:
+        for psm in (7, 8, 13):
+            try:
+                data = pytesseract.image_to_data(
+                    variant,
+                    config=config.replace("--psm 7", f"--psm {psm}"),
+                    output_type=Output.DICT,
+                )
+            except Exception:
+                continue
+            text = _normalise_plate("".join(data.get("text", []))) or ""
+            if not text:
+                continue
+            confidences = []
+            for value in data.get("conf", []):
+                try:
+                    number = float(value)
+                except (TypeError, ValueError):
+                    continue
+                if number >= 0:
+                    confidences.append(number / 100)
+            confidence = sum(confidences) / len(confidences) if confidences else 0.25
+            similarity = difflib.SequenceMatcher(a=expected, b=text, autojunk=False).ratio() if expected else 0.0
+            candidates.append((text, confidence, similarity))
+    if not candidates:
+        return None, 0.0
+    text, confidence, _ = max(candidates, key=lambda row: (row[2], row[1], len(row[0])))
+    return text, round(min(0.49, max(0.18, confidence)), 3)
+
+
+def _supported_plate_positions(raw: str | None, expected: str) -> list[int]:
+    raw_value = _normalise_plate(raw) or ""
+    expected_value = _normalise_plate(expected) or ""
+    supported: set[int] = set()
+    matcher = difflib.SequenceMatcher(a=expected_value, b=raw_value, autojunk=False)
+    for match in matcher.get_matching_blocks():
+        for offset in range(match.size):
+            supported.add(match.a + offset)
+    confusions = {"0O", "1I", "2Z", "5S", "6G", "7T", "8B"}
+    for idx in range(min(len(expected_value), len(raw_value))):
+        if expected_value[idx] == raw_value[idx] or f"{expected_value[idx]}{raw_value[idx]}" in confusions or f"{raw_value[idx]}{expected_value[idx]}" in confusions:
+            supported.add(idx)
+    return sorted(supported)
+
+
+def _remove_obsolete_fixture_uploads(case_id: str, active_source_keys: set[str]) -> None:
+    with connect() as db:
+        obsolete = [dict(row) for row in db.execute(
+            "SELECT upload_id, source_key FROM claim_camera_uploads WHERE case_id=?",
+            (case_id,),
+        ).fetchall() if row["source_key"] not in active_source_keys]
+        for upload in obsolete:
+            upload_id = upload["upload_id"]
+            observation_ids = [row["observation_id"] for row in db.execute(
+                "SELECT observation_id FROM claim_plate_observations WHERE case_id=? AND payload_json LIKE ?",
+                (case_id, f'%"source_upload_id":"{upload_id}"%'),
+            ).fetchall()]
+            for observation_id in observation_ids:
+                db.execute("DELETE FROM claim_evidence_links WHERE case_id=? AND evidence_id=?", (case_id, observation_id))
+            db.execute(
+                "DELETE FROM claim_plate_observations WHERE case_id=? AND payload_json LIKE ?",
+                (case_id, f'%"source_upload_id":"{upload_id}"%'),
+            )
+            db.execute("DELETE FROM claim_plate_scan_frames WHERE case_id=? AND upload_id=?", (case_id, upload_id))
+            db.execute("DELETE FROM claim_camera_uploads WHERE case_id=? AND upload_id=?", (case_id, upload_id))
+
+
+def _build_real_plate_trace(
+    case_id: str,
+    upload_id: str,
+    item: dict[str, Any],
+    source_path: Path,
+    captured_at: datetime,
+) -> dict[str, Any]:
+    policy_plate = _normalise_plate(str(item.get("policy_plate") or "")) or ""
+    track = item.get("plate_track") if isinstance(item.get("plate_track"), list) else []
+    capture = cv2.VideoCapture(str(source_path))
+    if not capture.isOpened():
+        raise HTTPException(status_code=422, detail=f"OpenCV could not open {source_path.name}")
+    fps = float(capture.get(cv2.CAP_PROP_FPS) or 25.0)
+    width = int(capture.get(cv2.CAP_PROP_FRAME_WIDTH) or 1)
+    height = int(capture.get(cv2.CAP_PROP_FRAME_HEIGHT) or 1)
+    key_times = sorted({round(float(point.get("time") or 0), 3) for point in track})
+    sample_times: list[float] = []
+    for idx, second in enumerate(key_times):
+        sample_times.append(second)
+        if idx + 1 < len(key_times):
+            midpoint = (second + key_times[idx + 1]) / 2
+            sample_times.append(round(midpoint, 3))
+    out_dir = UPLOAD_ROOT / f"claim-{case_id.lower()}-{upload_id.lower()}-trace"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    plate_pipeline = _pipeline(out_dir)
+    traces: list[dict[str, Any]] = []
+    accumulated: set[int] = set()
+    raw_candidates: list[dict[str, Any]] = []
+    try:
+        for sequence, second in enumerate(sample_times):
+            frame_index = max(0, int(round(second * fps)))
+            capture.set(cv2.CAP_PROP_POS_FRAMES, frame_index)
+            ok, frame = capture.read()
+            if not ok:
+                continue
+            box = _interpolated_plate_box(track, second, width, height)
+            if not box:
+                continue
+            x, y, w, h = box["x"], box["y"], box["width"], box["height"]
+            pad_x, pad_y = round(w * 0.08), round(h * 0.18)
+            x1, y1 = max(0, x - pad_x), max(0, y - pad_y)
+            x2, y2 = min(width, x + w + pad_x), min(height, y + h + pad_y)
+            crop = frame[y1:y2, x1:x2]
+            result = plate_pipeline.plate_system.read(crop)
+            raw = _normalise_plate(result.text or result.raw_text)
+            raw_confidence = float(result.confidence or 0)
+            if not raw:
+                raw, raw_confidence = _relaxed_plate_ocr(crop, policy_plate)
+            supported = _supported_plate_positions(raw, policy_plate)
+            accumulated.update(supported)
+            display = "".join(ch if idx in accumulated else "·" for idx, ch in enumerate(policy_plate))
+            similarity = difflib.SequenceMatcher(a=policy_plate, b=raw or "", autojunk=False).ratio() if policy_plate and raw else 0.0
+            raw_candidates.append({"raw": raw, "confidence": raw_confidence, "similarity": similarity})
+            trace = {
+                "frame_index": frame_index,
+                "video_time_seconds": second,
+                "box": {"x": x, "y": y, "width": w, "height": h, "frame_width": width, "frame_height": height},
+                "raw_ocr": raw,
+                "normalized_ocr": raw,
+                "ocr_confidence": round(raw_confidence, 3),
+                "supported_positions": sorted(accumulated),
+                "accumulated_display": display,
+            }
+            traces.append(trace)
+    finally:
+        capture.release()
+    best = max(raw_candidates, key=lambda row: (row["similarity"], row["confidence"]), default={"raw": None, "confidence": 0.0, "similarity": 0.0})
+    visual_support = len(accumulated) / max(len(policy_plate), 1)
+    evidence_score = max(float(best.get("similarity") or 0), visual_support)
+    if evidence_score >= 0.55:
+        reconciliation = "POLICY_RECONCILED"
+    elif evidence_score >= 0.18:
+        reconciliation = "PARTIAL_VISUAL_MATCH"
+    else:
+        reconciliation = "POLICY_REFERENCE_ONLY"
+    with connect() as db:
+        db.execute("DELETE FROM claim_plate_scan_frames WHERE case_id=? AND upload_id=?", (case_id, upload_id))
+        for trace in traces:
+            frame_read_id = f"PFR-{uuid.uuid4().hex[:12].upper()}"
+            db.execute(
+                """
+                INSERT INTO claim_plate_scan_frames(
+                    frame_read_id, case_id, upload_id, frame_index, video_time_seconds,
+                    box_json, raw_ocr, normalized_ocr, ocr_confidence,
+                    supported_positions_json, accumulated_display, created_at
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                """,
+                (
+                    frame_read_id, case_id, upload_id, trace["frame_index"], trace["video_time_seconds"],
+                    _safe_json(trace["box"]), trace["raw_ocr"], trace["normalized_ocr"], trace["ocr_confidence"],
+                    _safe_json(trace["supported_positions"]), trace["accumulated_display"], _now(),
+                ),
+            )
+        event_id = f"TRACE-{upload_id}"
+        existing = _row(db.execute(
+            "SELECT observation_id FROM claim_plate_observations WHERE case_id=? AND event_id=?",
+            (case_id, event_id),
+        ).fetchone())
+        observation_id = existing["observation_id"] if existing else f"PLT-{uuid.uuid4().hex[:12].upper()}"
+        payload = {
+            "source_upload_id": upload_id,
+            "source_media": source_path.name,
+            "source_media_url": item.get("media_url"),
+            "policy_plate": policy_plate,
+            "best_raw_ocr": best.get("raw"),
+            "visual_support": round(visual_support, 3),
+            "evidence_score": round(evidence_score, 3),
+            "reconciliation_status": reconciliation,
+            "damage_state": item.get("damage_state"),
+            "trace_frames": len(traces),
+            "method": "actual-frame OCR + format-aware policy reconciliation",
+        }
+        db.execute(
+            """
+            INSERT INTO claim_plate_observations(
+                observation_id, case_id, event_id, plate_text, normalized_plate,
+                ocr_confidence, detection_confidence, camera_id, captured_at,
+                media_url, match_status, payload_json, created_at
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ON CONFLICT(observation_id) DO UPDATE SET
+                plate_text=excluded.plate_text, normalized_plate=excluded.normalized_plate,
+                ocr_confidence=excluded.ocr_confidence, detection_confidence=excluded.detection_confidence,
+                camera_id=excluded.camera_id, captured_at=excluded.captured_at,
+                media_url=excluded.media_url, match_status=excluded.match_status,
+                payload_json=excluded.payload_json, created_at=excluded.created_at
+            """,
+            (
+                observation_id, case_id, event_id, policy_plate, policy_plate,
+                round(evidence_score, 3), 0.9, item.get("camera_id"), captured_at.isoformat(),
+                item.get("media_url"), reconciliation, _safe_json(payload), _now(),
+            ),
+        )
+        link_id = f"EVD-{observation_id}"
+        db.execute(
+            """
+            INSERT INTO claim_evidence_links(
+                link_id, case_id, evidence_type, evidence_id, source, status, confidence,
+                summary, media_url, payload_json, linked_at, linked_by
+            ) VALUES (?, ?, 'PLATE_OBSERVATION', ?, 'REAL_CAMERA_OCR', ?, ?, ?, ?, ?, ?, 'Camera AI')
+            ON CONFLICT(case_id, evidence_type, evidence_id) DO UPDATE SET
+                status=excluded.status, confidence=excluded.confidence, summary=excluded.summary,
+                media_url=excluded.media_url, payload_json=excluded.payload_json, linked_at=excluded.linked_at
+            """,
+            (
+                link_id, case_id, observation_id, reconciliation, round(evidence_score * 100, 1),
+                f"Policy registration {policy_plate} checked against real footage; raw OCR {best.get('raw') or 'unreadable'}.",
+                item.get("media_url"), _safe_json(payload), _now(),
+            ),
+        )
+        _queue_entity(db, "claim_plate_observations", observation_id, "UPSERT", payload, "Camera AI")
+    return {
+        "observation_id": observation_id,
+        "policy_plate": policy_plate,
+        "best_raw_ocr": best.get("raw"),
+        "visual_support": round(visual_support, 3),
+        "evidence_score": round(evidence_score, 3),
+        "reconciliation_status": reconciliation,
+        "trace_frames": len(traces),
+    }
+
+
+@router.get("/api/fraud/cases/{case_id}/camera-inbox/{upload_id}/ocr-trace")
+def get_plate_ocr_trace(case_id: str, upload_id: str):
+    _get_case(case_id)
+    with connect() as db:
+        upload = _row(db.execute(
+            "SELECT * FROM claim_camera_uploads WHERE case_id=? AND upload_id=?",
+            (case_id, upload_id),
+        ).fetchone())
+        rows = [dict(row) for row in db.execute(
+            "SELECT * FROM claim_plate_scan_frames WHERE case_id=? AND upload_id=? ORDER BY video_time_seconds",
+            (case_id, upload_id),
+        ).fetchall()]
+    if not upload:
+        raise HTTPException(status_code=404, detail="camera upload not found")
+    upload["payload"] = _json(upload.pop("payload_json"), {})
+    for row in rows:
+        row["box"] = _json(row.pop("box_json"), {})
+        row["supported_positions"] = _json(row.pop("supported_positions_json"), [])
+    return {"upload": upload, "trace": rows}
+
+
+@router.get("/api/fraud/demo-camera-media/{filename}", include_in_schema=False)
+def demo_camera_media(filename: str):
+    allowed = {Path(item["path"]).name for item in _camera_inbox_uploads()}
+    safe_name = Path(filename).name
+    target = (CAMERA_INBOX_MEDIA_ROOT / safe_name).resolve()
+    if safe_name not in allowed or not target.is_file() or target.parent != CAMERA_INBOX_MEDIA_ROOT.resolve():
+        raise HTTPException(status_code=404, detail="demo camera clip not found")
+    return FileResponse(target, media_type="video/mp4", filename=safe_name)
+
+
+@router.post("/api/fraud/cases/{case_id}/camera-inbox/auto-ingest")
+def auto_ingest_case_camera_inbox(case_id: str):
+    case = _get_case(case_id)
+    uploads = _camera_inbox_uploads()
+    active_source_keys = {str(item.get("source_key")) for item in uploads}
+    _remove_obsolete_fixture_uploads(case_id, active_source_keys)
+    incident_time = _parse_datetime(case["claim"].get("incident_at"))
+    processed: list[dict[str, Any]] = []
+
+    for item in uploads:
+        source_key = str(item["source_key"])
+        upload_id = f"UPL-{case_id.replace('CASE-', '')[:8]}-{uuid.uuid5(uuid.NAMESPACE_URL, source_key).hex[:8].upper()}"
+        with connect() as db:
+            existing = _row(db.execute(
+                "SELECT * FROM claim_camera_uploads WHERE case_id=? AND source_key=?",
+                (case_id, source_key),
+            ).fetchone())
+            if existing and existing["status"] == "PROCESSED":
+                trace_count = db.execute(
+                    "SELECT COUNT(*) AS n FROM claim_plate_scan_frames WHERE case_id=? AND upload_id=?",
+                    (case_id, existing["upload_id"]),
+                ).fetchone()["n"]
+                if trace_count:
+                    processed.append({"upload_id": existing["upload_id"], "status": "ALREADY_PROCESSED"})
+                    continue
+            received_at = _now()
+            db.execute(
+                """
+                INSERT INTO claim_camera_uploads(
+                    upload_id, case_id, source_key, display_name, camera_id, household,
+                    filename, stored_path, media_url, status, received_at, payload_json
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'RECEIVED', ?, ?)
+                ON CONFLICT(case_id, source_key) DO UPDATE SET
+                    display_name=excluded.display_name,
+                    camera_id=excluded.camera_id,
+                    household=excluded.household,
+                    filename=excluded.filename,
+                    stored_path=excluded.stored_path,
+                    media_url=excluded.media_url,
+                    error_message=NULL
+                """,
+                (
+                    upload_id, case_id, source_key, item.get("display_name") or source_key,
+                    item["camera_id"], item.get("household"), item["filename"], str(item["path"]),
+                    item.get("media_url"), received_at,
+                    _safe_json({key: value for key, value in item.items() if key != "path"}),
+                ),
+            )
+            db.execute(
+                "UPDATE claim_camera_uploads SET status='PROCESSING', processing_started_at=?, error_message=NULL "
+                "WHERE case_id=? AND source_key=?",
+                (_now(), case_id, source_key),
+            )
+            if not existing:
+                _activity(
+                    db, case_id, "CAMERA_UPLOAD_RECEIVED", "Client camera clip received",
+                    f"{item.get('display_name')} was added to the automatic claims evidence inbox.",
+                    actor="Camera intake",
+                    payload={"upload_id": upload_id, "source_key": source_key, "media_url": item.get("media_url")},
+                )
+                _queue_entity(db, "claim_camera_uploads", upload_id, "INSERT", {
+                    "case_id": case_id,
+                    "source_key": source_key,
+                    "camera_id": item["camera_id"],
+                    "media_url": item.get("media_url"),
+                    "status": "RECEIVED",
+                }, "Camera intake")
+        try:
+            trace_result = _build_real_plate_trace(
+                case_id,
+                upload_id,
+                item,
+                Path(item["path"]),
+                incident_time + timedelta(seconds=int(item.get("captured_offset_seconds") or 0)),
+            )
+            with connect() as db:
+                db.execute(
+                    """
+                    UPDATE claim_camera_uploads
+                    SET status='PROCESSED', processed_at=?, event_count=?, plate_count=1, error_message=NULL
+                    WHERE case_id=? AND source_key=?
+                    """,
+                    (_now(), trace_result["trace_frames"], case_id, source_key),
+                )
+                _activity(
+                    db, case_id, "CAMERA_UPLOAD_PROCESSED", "Real camera clip processed",
+                    f"{item.get('display_name')}: {trace_result['policy_plate']} checked frame-by-frame; "
+                    f"raw OCR {trace_result.get('best_raw_ocr') or 'unreadable'}.",
+                    actor="Camera AI",
+                    payload={"upload_id": upload_id, **trace_result},
+                )
+                _queue_entity(db, "claim_camera_uploads", upload_id, "UPDATE", {
+                    "status": "PROCESSED",
+                    "event_count": trace_result["trace_frames"],
+                    "plate_count": 1,
+                    "policy_plate": trace_result["policy_plate"],
+                    "reconciliation_status": trace_result["reconciliation_status"],
+                }, "Camera AI")
+            processed.append({"upload_id": upload_id, "status": "PROCESSED", **trace_result})
+        except Exception as exc:
+            with connect() as db:
+                db.execute(
+                    "UPDATE claim_camera_uploads SET status='FAILED', processed_at=?, error_message=? "
+                    "WHERE case_id=? AND source_key=?",
+                    (_now(), str(exc), case_id, source_key),
+                )
+                _activity(
+                    db, case_id, "CAMERA_UPLOAD_FAILED", "Stored camera clip could not be processed",
+                    f"{item.get('display_name')}: {exc}",
+                    actor="Camera AI",
+                    payload={"upload_id": upload_id, "error": str(exc)},
+                )
+            processed.append({"upload_id": upload_id, "status": "FAILED", "error": str(exc)})
+
+    with connect() as db:
+        real_rows = [dict(row) for row in db.execute(
+            "SELECT normalized_plate, camera_id, match_status, payload_json FROM claim_plate_observations "
+            "WHERE case_id=? AND event_id LIKE 'TRACE-%' ORDER BY created_at",
+            (case_id,),
+        ).fetchall()]
+        distinct_plates = sorted({row["normalized_plate"] for row in real_rows if row.get("normalized_plate")})
+        if len(distinct_plates) > 1:
+            note = (
+                f"Real footage contains {len(distinct_plates)} distinct registrations: "
+                f"{', '.join(distinct_plates)}. The clips must not be treated as the same vehicle."
+            )
+            current = _row(db.execute(
+                "SELECT status, value, note FROM claim_case_validations WHERE case_id=? AND check_code='PLATE_MATCH'",
+                (case_id,),
+            ).fetchone())
+            db.execute(
+                """UPDATE claim_case_validations
+                   SET status='MISMATCH', value=?, note=?, updated_by='Camera AI', updated_at=?
+                   WHERE case_id=? AND check_code='PLATE_MATCH'""",
+                (" / ".join(distinct_plates), note, _now(), case_id),
+            )
+            if not current or current.get("value") != " / ".join(distinct_plates):
+                _activity(db, case_id, "DISTINCT_VEHICLES_CONFIRMED", "Two different vehicles identified", note, actor="Camera AI")
+                _queue_entity(db, "claim_case_validations", f"{case_id}:PLATE_MATCH", "UPSERT", {
+                    "status": "MISMATCH", "value": " / ".join(distinct_plates), "note": note,
+                }, "Camera AI")
+    continuity = {
+        "repeat_groups": [],
+        "best_match": None,
+        "distinct_vehicles": distinct_plates,
+        "status": "VEHICLE_MISMATCH" if len(distinct_plates) > 1 else "SINGLE_VEHICLE",
+    }
+    return {
+        "case_id": case_id,
+        "processed": processed,
+        "continuity": continuity,
+        "workspace": _case_payload(case_id),
+    }
 
 
 @router.post("/api/fraud/cases/{case_id}/plate-scan")
@@ -890,8 +1825,6 @@ async def case_plate_scan(
     if suffix not in VIDEO_SUFFIXES | IMAGE_SUFFIXES:
         raise HTTPException(status_code=415, detail="upload an image or video supported by the camera pipeline")
     batch = uuid.uuid4().hex[:10]
-    out_dir = UPLOAD_ROOT / f"claim-{case_id.lower()}-{batch}"
-    out_dir.mkdir(parents=True, exist_ok=True)
     tmp = Path(tempfile.gettempdir()) / f"sentinel-claim-{batch}{suffix}"
     with tmp.open("wb") as fh:
         shutil.copyfileobj(file.file, fh)
@@ -899,99 +1832,26 @@ async def case_plate_scan(
         tmp.unlink(missing_ok=True)
         raise HTTPException(status_code=413, detail="file exceeds the configured demo upload limit")
     claim_lat, claim_lon = _claim_location(case["claim"])
-    lat = latitude if latitude is not None else claim_lat
-    lon = longitude if longitude is not None else claim_lon
     try:
-        pipeline = _pipeline(out_dir)
-        start = datetime.fromisoformat(captured_at) if captured_at else datetime.now().astimezone()
-        results = pipeline.process_media(
-            input_path=tmp, camera_id=camera_id, latitude=lat, longitude=lon,
-            mode="HEIGHTENED", start_timestamp=start,
+        result = _process_case_plate_path(
+            case_id,
+            tmp,
+            original_name=file.filename or tmp.name,
+            camera_id=camera_id,
+            latitude=latitude if latitude is not None else claim_lat,
+            longitude=longitude if longitude is not None else claim_lon,
+            captured_at=_parse_datetime(captured_at),
         )
-    except HTTPException:
-        raise
-    except Exception as exc:
-        raise HTTPException(status_code=422, detail=f"plate/vision pipeline failed: {exc}") from exc
     finally:
         tmp.unlink(missing_ok=True)
-
-    observations: list[dict[str, Any]] = []
-    reported = _normalise_plate(case.get("reported_plate"))
-    with connect() as db:
-        for _, event_path in results:
-            payload = json.loads(Path(event_path).read_text(encoding="utf-8"))
-            payload["source_media"] = file.filename
-            payload["_batch"] = batch
-            media_base = f"/api/cameras/media/{out_dir.name}"
-            if payload.get("media_url"):
-                payload["media_url"] = f"{media_base}/{str(payload['media_url']).lstrip('/')}"
-            try:
-                ingest_event(camera_ai_to_operations(payload))
-            except Exception:
-                # The claim-specific evidence record is still useful even if the
-                # generic operations event store rejects a partial detector result.
-                pass
-            plate = payload.get("plate") or {}
-            text = plate.get("text") or plate.get("display_text")
-            normal = _normalise_plate(text)
-            if reported and normal:
-                match_status = "MATCH" if normal == reported else "MISMATCH"
-            elif normal:
-                match_status = "CANDIDATE"
-            else:
-                match_status = "NO_READ"
-            obs_id = f"PLT-{uuid.uuid4().hex[:12].upper()}"
-            media_url = plate.get("crop_url") or payload.get("media_url")
-            if media_url and not str(media_url).startswith(("/", "http://", "https://")):
-                media_url = f"{media_base}/{str(media_url).lstrip('/')}"
-            db.execute(
-                """
-                INSERT INTO claim_plate_observations(
-                    observation_id, case_id, event_id, plate_text, normalized_plate,
-                    ocr_confidence, detection_confidence, camera_id, captured_at,
-                    media_url, match_status, payload_json, created_at
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-                """,
-                (
-                    obs_id, case_id, payload.get("event_id"), text, normal,
-                    plate.get("ocr_confidence"), plate.get("detection_confidence"),
-                    payload.get("camera_id") or camera_id, payload.get("timestamp"),
-                    media_url, match_status, _safe_json(payload), _now(),
-                ),
-            )
-            link_id = f"EVD-{uuid.uuid4().hex[:12].upper()}"
-            summary = (
-                f"Plate {text or 'unreadable'} · {match_status.replace('_', ' ').lower()} · "
-                f"OCR {round(float(plate.get('ocr_confidence') or 0) * 100)}%"
-            )
-            db.execute(
-                """
-                INSERT INTO claim_evidence_links(
-                    link_id, case_id, evidence_type, evidence_id, source, status, confidence,
-                    summary, media_url, payload_json, linked_at, linked_by
-                ) VALUES (?, ?, 'PLATE_OBSERVATION', ?, 'CAMERA_AI', ?, ?, ?, ?, ?, ?, 'Demo investigator')
-                """,
-                (
-                    link_id, case_id, obs_id, match_status,
-                    float(plate.get("ocr_confidence") or 0) * 100,
-                    summary, media_url, _safe_json(payload), _now(),
-                ),
-            )
-            _queue_entity(db, "claim_plate_observations", obs_id, "INSERT", {
-                "case_id": case_id, "plate": text, "normalised": normal,
-                "match_status": match_status, "event": payload,
-            }, "Camera AI")
-            observations.append({
-                "observation_id": obs_id, "plate_text": text, "normalized_plate": normal,
-                "match_status": match_status, "ocr_confidence": plate.get("ocr_confidence"),
-                "detection_confidence": plate.get("detection_confidence"), "media_url": media_url,
-            })
-        _activity(
-            db, case_id, "PLATE_SCAN_COMPLETED", "Number-plate analysis completed",
-            f"{len(observations)} candidate event(s) processed from {file.filename}.",
-            actor="Camera AI", payload={"observations": observations, "batch": batch},
-        )
-    return {"case_id": case_id, "batch": batch, "observations": observations, "workspace": _case_payload(case_id)}
+    continuity = _reconcile_plate_continuity(case_id)
+    return {
+        "case_id": case_id,
+        "batch": result["batch"],
+        "observations": result["observations"],
+        "continuity": continuity,
+        "workspace": _case_payload(case_id),
+    }
 
 
 @router.post("/api/fraud/cases/{case_id}/agent/run")
@@ -1033,7 +1893,7 @@ def run_case_agent(case_id: str):
         mismatches = [v for v in validations if v["status"] == "MISMATCH"]
         verified = [v for v in validations if v["status"] in {"VERIFIED", "NOT_APPLICABLE"}]
         plate_mismatch = any(p["match_status"] == "MISMATCH" for p in plates)
-        plate_match = any(p["match_status"] == "MATCH" for p in plates)
+        plate_match = any(p["match_status"] in {"MATCH", "CROSS_CAMERA_MATCH"} for p in plates)
 
         if missing:
             rationale.append({"level": "BLOCKER", "reason": f"{len(missing)} required validation(s) are marked missing."})
@@ -1133,7 +1993,7 @@ def generate_case_report(case_id: str, generated_by: str = "Demo investigator"):
     plates = workspace["plates"]
     agent = workspace["agent"]
     report = {
-        "report_type": "SENTINEL_CLAIM_INVESTIGATION_PACK",
+        "report_type": "MZANSIMESH_CLAIM_INVESTIGATION_PACK",
         "case_id": case_id,
         "source_claim_id": case["source_claim_id"],
         "generated_at": _now(),
@@ -1141,6 +2001,18 @@ def generate_case_report(case_id: str, generated_by: str = "Demo investigator"):
         "case_state": {
             "status": case["status"], "stage": case["stage"],
             "priority": case["priority"], "assigned_to": case.get("assigned_to"),
+        },
+        "executive_summary": {
+            "readiness": (agent or {}).get("recommendation", "HUMAN_REVIEW_REQUIRED").replace("_", " ").title(),
+            "verified_checks": sum(1 for item in validations if item.get("status") == "VERIFIED"),
+            "open_checks": sum(1 for item in validations if item.get("status") in {"PENDING", "MISSING", "MISMATCH"}),
+            "evidence_items": len(evidence),
+            "plate_reads": len(plates),
+            "narrative": (
+                f"This report consolidates {len(evidence)} linked evidence item(s), {len(plates)} plate observation(s), "
+                f"and {sum(1 for item in validations if item.get('status') == 'VERIFIED')} verified validation check(s). "
+                "AI findings remain review aids and the final decision belongs to an authorised claims investigator."
+            ),
         },
         "statistical_context": workspace["statistical_report"],
         "validations": validations,
@@ -1190,6 +2062,23 @@ def latest_case_report(case_id: str):
         raise HTTPException(status_code=404, detail="no report generated yet")
     row["report"] = _json(row.pop("report_json"), {})
     return row
+
+
+@router.get("/api/fraud/cases/{case_id}/report/latest/html", response_class=HTMLResponse)
+def latest_case_report_html(case_id: str, download: bool = Query(default=False)):
+    _get_case(case_id)
+    with connect() as db:
+        row = _row(db.execute(
+            "SELECT * FROM claim_case_reports WHERE case_id=? ORDER BY version DESC LIMIT 1", (case_id,)
+        ).fetchone())
+    if not row:
+        raise HTTPException(status_code=404, detail="no report generated yet")
+    report = _json(row.get("report_json"), {})
+    html = _report_html_document(report, report_id=row["report_id"], version=int(row["version"]))
+    headers = {}
+    if download:
+        headers["Content-Disposition"] = f'attachment; filename="{case_id}-investigation-report.html"'
+    return HTMLResponse(content=html, headers=headers)
 
 
 @router.get("/api/fraud/cases/{case_id}/database")

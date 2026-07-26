@@ -1,8 +1,8 @@
 {
-  "name": "sentinel-community-chat",
+  "name": "mzansimesh-community-chat",
   "version": "1.0.0",
   "private": true,
-  "description": "Sentinel community safety chat",
+  "description": "MzansiMesh community safety chat",
   "main": "server.js",
   "type": "commonjs",
   "scripts": {

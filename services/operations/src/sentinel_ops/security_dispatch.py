@@ -17,7 +17,7 @@ from __future__ import annotations
 import json
 import math
 import uuid
-from datetime import datetime
+from datetime import datetime, timedelta
 from typing import Any, Literal
 
 from fastapi import APIRouter, HTTPException, Query
@@ -138,6 +138,185 @@ def _json(value: str | None, fallback: Any = None) -> Any:
 
 def _row(row: Any) -> dict[str, Any] | None:
     return dict(row) if row is not None else None
+
+
+def _parse_iso(value: Any) -> datetime | None:
+    if not value:
+        return None
+    try:
+        parsed = datetime.fromisoformat(str(value).replace("Z", "+00:00"))
+        if parsed.tzinfo is None:
+            parsed = parsed.replace(tzinfo=datetime.now().astimezone().tzinfo)
+        return parsed
+    except (TypeError, ValueError):
+        return None
+
+
+def _live_member_state(db) -> dict[str, Any]:
+    """Return active and recent Member incident tracks for the security map.
+
+    A confirmed intruder remains an anonymous operational profile. Every later
+    matching sighting at another participating camera extends the same track.
+    """
+    required = {"member_incidents", "face_sightings", "member_cameras", "face_profiles"}
+    if not all(_table_exists(db, table) for table in required):
+        return {"tracks": [], "heat_points": [], "active_track_count": 0, "live_match_count": 0}
+
+    now = datetime.now().astimezone()
+    cutoff = now - timedelta(hours=24)
+    incidents = db.execute(
+        """
+        SELECT i.incident_id, i.profile_id, i.incident_type, i.status, i.started_at,
+               i.updated_at, i.expires_at, i.notes, p.anonymous_label,
+               c.household AS origin_household, c.suburb AS origin_suburb,
+               c.latitude AS origin_latitude, c.longitude AS origin_longitude
+        FROM member_incidents i
+        JOIN face_profiles p ON p.profile_id=i.profile_id
+        JOIN member_cameras c ON c.camera_id=i.origin_camera_id
+        ORDER BY i.started_at DESC
+        LIMIT 30
+        """
+    ).fetchall()
+
+    tracks: list[dict[str, Any]] = []
+    heat_points: list[dict[str, Any]] = []
+    for row in incidents:
+        incident = dict(row)
+        started = _parse_iso(incident.get("started_at"))
+        if incident.get("status") != "ACTIVE" and (not started or started < cutoff):
+            continue
+        sighting_rows = db.execute(
+            """
+            SELECT s.sighting_id, s.camera_id, s.captured_at, s.latitude, s.longitude,
+                   s.similarity, s.detection_confidence, s.journey_distance_m,
+                   s.journey_speed_kmh, s.journey_direction, c.household, c.suburb
+            FROM face_sightings s
+            JOIN member_cameras c ON c.camera_id=s.camera_id
+            WHERE s.profile_id=? AND s.captured_at>=?
+            ORDER BY s.captured_at
+            """,
+            (incident["profile_id"], incident["started_at"]),
+        ).fetchall()
+        points = [dict(item) for item in sighting_rows]
+        if not points:
+            points = [{
+                "sighting_id": None,
+                "camera_id": None,
+                "captured_at": incident["started_at"],
+                "latitude": incident["origin_latitude"],
+                "longitude": incident["origin_longitude"],
+                "similarity": 1.0,
+                "detection_confidence": 1.0,
+                "journey_distance_m": 0.0,
+                "journey_speed_kmh": 0.0,
+                "journey_direction": "ORIGIN",
+                "household": incident["origin_household"],
+                "suburb": incident["origin_suburb"],
+            }]
+        latest = points[-1]
+        is_active = incident.get("status") == "ACTIVE"
+        tracks.append({
+            "incident_id": incident["incident_id"],
+            "profile_id": incident["profile_id"],
+            "anonymous_label": incident["anonymous_label"],
+            "incident_type": incident["incident_type"],
+            "status": incident["status"],
+            "started_at": incident["started_at"],
+            "expires_at": incident.get("expires_at"),
+            "origin_household": incident["origin_household"],
+            "origin_suburb": incident["origin_suburb"],
+            "points": points,
+            "latest": latest,
+            "match_count": max(0, len(points) - 1),
+            "camera_count": len({item.get("camera_id") for item in points if item.get("camera_id")}),
+            "is_active": is_active,
+        })
+        for index, point in enumerate(points):
+            captured = _parse_iso(point.get("captured_at"))
+            age_minutes = max(0.0, (now - captured).total_seconds() / 60.0) if captured else 180.0
+            recency = max(0.2, 1.0 - min(age_minutes, 180.0) / 180.0)
+            heat_points.append({
+                "incident_id": incident["incident_id"],
+                "profile_id": incident["profile_id"],
+                "latitude": float(point["latitude"]),
+                "longitude": float(point["longitude"]),
+                "household": point.get("household"),
+                "captured_at": point.get("captured_at"),
+                "sequence": index + 1,
+                "weight": round(recency * (1.0 if is_active else 0.6), 3),
+                "is_latest": index == len(points) - 1,
+                "is_active": is_active,
+            })
+    return {
+        "tracks": tracks,
+        "heat_points": heat_points,
+        "active_track_count": sum(1 for item in tracks if item["is_active"]),
+        "live_match_count": sum(item["match_count"] for item in tracks if item["is_active"]),
+    }
+
+
+def _enrich_hotspots_with_live_events(
+    hotspots: list[dict[str, Any]], live_state: dict[str, Any]
+) -> list[dict[str, Any]]:
+    active_tracks = [item for item in live_state.get("tracks", []) if item.get("is_active")]
+    heat_points = live_state.get("heat_points", [])
+    max_incidents = max((int(item.get("incidents_5y") or 0) for item in hotspots), default=1) or 1
+    max_recent = max((int(item.get("recent_90d") or 0) for item in hotspots), default=1) or 1
+    max_priority = max((float(item.get("priority") or 0) for item in hotspots), default=1.0) or 1.0
+    enriched: list[dict[str, Any]] = []
+    for source in hotspots:
+        item = dict(source)
+        radius = max(0.35, float(item.get("geofence_radius_km") or 1.0))
+        nearby = [
+            point for point in heat_points
+            if _distance_km(
+                float(item["latitude"]), float(item["longitude"]),
+                float(point["latitude"]), float(point["longitude"]),
+            ) <= radius
+        ]
+        active_incidents = 0
+        for track in active_tracks:
+            latest = track.get("latest") or {}
+            if latest and _distance_km(
+                float(item["latitude"]), float(item["longitude"]),
+                float(latest.get("latitude") or 0), float(latest.get("longitude") or 0),
+            ) <= radius:
+                active_incidents += 1
+        base_priority = float(item.get("priority") or 0)
+        live_boost = min(24.0, active_incidents * 10.0 + len(nearby) * 2.5)
+        current_priority = min(100.0, base_priority + live_boost)
+        recent_count = int(item.get("recent_90d") or 0) + len(nearby)
+        incident_count = int(item.get("incidents_5y") or 0)
+        historical_component = 0.45 * (incident_count / max_incidents)
+        recent_component = 0.20 * (recent_count / max(max_recent, 1))
+        priority_component = 0.35 * (current_priority / max(max_priority, 1.0))
+        heat_intensity = max(0.08, min(1.0, historical_component + recent_component + priority_component))
+        heat_radius_m = round(260.0 + 1040.0 * math.sqrt(heat_intensity), 1)
+        heat_band = "VERY HIGH" if heat_intensity >= 0.82 else "HIGH" if heat_intensity >= 0.62 else "MEDIUM" if heat_intensity >= 0.40 else "LOW"
+        item.update({
+            "base_priority": round(base_priority, 1),
+            "priority": round(current_priority, 1),
+            "live_priority_boost": round(live_boost, 1),
+            "live_event_count": len(nearby),
+            "active_incident_count": active_incidents,
+            "recent_90d": recent_count,
+            "heat_intensity": round(heat_intensity, 3),
+            "heat_radius_m": heat_radius_m,
+            "heat_band": heat_band,
+            "heat_inputs": {
+                "incidents_5y": incident_count,
+                "recent_90d": recent_count,
+                "current_priority": round(current_priority, 1),
+                "live_event_count": len(nearby),
+            },
+            "source_note": (
+                f"{item.get('source_note', '')} Live Member incident and repeat-camera matches "
+                "are layered onto the baseline at request time. Heat intensity is calculated from "
+                "historical incidents, recent events and current risk priority."
+            ).strip(),
+        })
+        enriched.append(item)
+    return sorted(enriched, key=lambda value: float(value.get("priority") or 0), reverse=True)
 
 
 def _distance_km(a_lat: float, a_lon: float, b_lat: float, b_lon: float) -> float:
@@ -400,8 +579,9 @@ def initialise_security_store() -> None:
             )
 
 
-def _hotspots(db) -> list[dict[str, Any]]:
-    return [dict(row) for row in db.execute("SELECT * FROM security_hotspots ORDER BY priority DESC").fetchall()]
+def _hotspots(db, live_state: dict[str, Any] | None = None) -> list[dict[str, Any]]:
+    baseline = [dict(row) for row in db.execute("SELECT * FROM security_hotspots ORDER BY priority DESC").fetchall()]
+    return _enrich_hotspots_with_live_events(baseline, live_state or _live_member_state(db))
 
 
 def _companies(db) -> list[dict[str, Any]]:
@@ -569,16 +749,16 @@ def _create_notification(db, dispatch: dict[str, Any], unit: dict[str, Any], *, 
     notification_id = f"SNOTE-{uuid.uuid4().hex[:11].upper()}"
     role = "PRIMARY RESPONSE" if primary else "BACKUP / AREA COVER"
     message = (
-        f"SENTINEL {dispatch['priority']} ALERT · {role}\n"
+        f"MZANSIMESH {dispatch['priority']} ALERT | {role}\n"
         f"{dispatch['incident_type'].replace('_', ' ').title()} · {dispatch['address']}\n"
         f"ETA {unit['eta_minutes']:.1f} min · {unit['distance_km']:.2f} km\n"
         f"Reference {dispatch['dispatch_id']} · anonymous evidence only\n"
-        "Acknowledge in Sentinel before dispatch. Do not infer identity from biometric matching."
+        "Acknowledge in MzansiMesh before dispatch. Do not infer identity from biometric matching."
     )
     provider = {
         "provider": "WhatsApp Business API placeholder",
         "to": unit.get("operations_contact"),
-        "template": "sentinel_security_dispatch_v1",
+        "template": "mzansimesh_security_dispatch_v1",
         "parameters": {
             "dispatch_id": dispatch["dispatch_id"],
             "address": dispatch["address"],
@@ -612,12 +792,28 @@ def create_dispatch_for_member_incident(db, incident_id: str, *, actor: str = "S
     # The caller normally initialises the store first; create tables defensively when
     # invoked by an API endpoint with a fresh database.
     existing = db.execute(
-        "SELECT dispatch_id FROM security_dispatches WHERE member_incident_id=?", (incident_id,)
+        "SELECT dispatch_id, status FROM security_dispatches WHERE member_incident_id=?", (incident_id,)
     ).fetchone() if _table_exists(db, "security_dispatches") else None
-    if existing:
+    if existing and existing["status"] not in {"CLOSED", "CANCELLED"}:
         payload = _dispatch_payload(db, existing["dispatch_id"])
         assert payload is not None
         return payload
+    if existing:
+        stale_id = existing["dispatch_id"]
+        db.execute(
+            "UPDATE security_units SET status='AVAILABLE', active_dispatch_id=NULL, route_json='[]', route_index=0, route_kind='PATROL' WHERE active_dispatch_id=?",
+            (stale_id,),
+        )
+        db.execute("DELETE FROM security_notifications WHERE dispatch_id=?", (stale_id,))
+        db.execute("DELETE FROM security_dispatches WHERE dispatch_id=?", (stale_id,))
+        _activity(
+            db,
+            "DISPATCH_REACTIVATED",
+            "Closed response reopened after repeat match",
+            f"Previous dispatch {stale_id} was replaced because the confirmed intruder profile was detected again.",
+            actor=actor,
+            payload={"incident_id": incident_id, "previous_dispatch_id": stale_id},
+        )
 
     incident = db.execute(
         """
@@ -717,6 +913,85 @@ def create_dispatch_for_member_incident(db, incident_id: str, *, actor: str = "S
     payload = _dispatch_payload(db, dispatch_id)
     assert payload is not None
     return payload
+
+
+def queue_repeat_intruder_notifications(
+    db,
+    incident_id: str,
+    *,
+    household: str,
+    sighting_id: str,
+    actor: str = "MzansiMesh repeat matcher",
+) -> dict[str, Any]:
+    """Queue a fresh control-room notification for one repeat intruder sighting.
+
+    The original dispatch remains intact. A new notification is added for the
+    primary and backup units so the security tab visibly receives every repeat
+    match instead of only the first incident confirmation.
+    """
+    dispatch = create_dispatch_for_member_incident(db, incident_id, actor=actor)
+    dispatch_id = dispatch["dispatch_id"]
+    duplicate = db.execute(
+        "SELECT 1 FROM security_notifications WHERE dispatch_id=? AND message LIKE ? LIMIT 1",
+        (dispatch_id, f"%{sighting_id}%"),
+    ).fetchone()
+    if duplicate:
+        return dispatch
+
+    unit_ids = [dispatch.get("selected_unit_id"), *(dispatch.get("backup_unit_ids") or [])]
+    unit_ids = [item for item in unit_ids if item]
+    now = _now()
+    for unit_id in unit_ids:
+        row = db.execute(
+            """
+            SELECT u.*, c.name AS company_name, c.operations_contact, c.short_name
+            FROM security_units u JOIN security_companies c ON c.company_id=u.company_id
+            WHERE u.unit_id=?
+            """,
+            (unit_id,),
+        ).fetchone()
+        if not row:
+            continue
+        unit = dict(row)
+        notification_id = f"SNOTE-{uuid.uuid4().hex[:11].upper()}"
+        message = (
+            "MZANSIMESH REPEAT INTRUDER ALERT\n"
+            f"Active-watch match at {household}\n"
+            f"Dispatch {dispatch_id} | sighting {sighting_id}\n"
+            "Neighbour cameras remain armed. Review the updated movement trail and acknowledge in MzansiMesh."
+        )
+        provider = {
+            "provider": "WhatsApp Business API placeholder",
+            "to": unit.get("operations_contact"),
+            "template": "mzansimesh_repeat_intruder_v1",
+            "parameters": {
+                "dispatch_id": dispatch_id,
+                "sighting_id": sighting_id,
+                "household": household,
+            },
+        }
+        db.execute(
+            """
+            INSERT INTO security_notifications(
+                notification_id, dispatch_id, company_id, unit_id, channel, recipient,
+                message, status, provider_payload_json, created_at
+            ) VALUES (?, ?, ?, ?, 'WHATSAPP_READY', ?, ?, 'QUEUED_LOCAL', ?, ?)
+            """,
+            (
+                notification_id, dispatch_id, unit["company_id"], unit_id,
+                unit.get("operations_contact"), message, _safe_json(provider), now,
+            ),
+        )
+        _queue_entity(db, "security_notifications", notification_id, "INSERT", provider, actor)
+    _activity(
+        db,
+        "REPEAT_INTRUDER_ALERTED",
+        "Repeat intruder match sent to control room",
+        f"Active-watch match at {household}; security notifications queued for {len(unit_ids)} unit(s).",
+        actor=actor,
+        payload={"incident_id": incident_id, "dispatch_id": dispatch_id, "sighting_id": sighting_id, "household": household},
+    )
+    return _dispatch_payload(db, dispatch_id) or dispatch
 
 
 def close_dispatch_for_member_incident(db, incident_id: str, *, actor: str = "Sentinel incident bridge") -> dict[str, Any] | None:
@@ -820,7 +1095,8 @@ def security_operations():
         _reconcile_dispatches(db)
         companies = _companies(db)
         units = _units(db)
-        hotspots = _hotspots(db)
+        live_state = _live_member_state(db)
+        hotspots = _hotspots(db, live_state)
         dispatch_ids = [row["dispatch_id"] for row in db.execute(
             "SELECT dispatch_id FROM security_dispatches WHERE status NOT IN ('CLOSED','CANCELLED') ORDER BY created_at DESC"
         ).fetchall()]
@@ -860,7 +1136,11 @@ def security_operations():
             "hotspots_covered": len(covered),
             "hotspots_total": len(hotspots),
             "risk_coverage_percent": round(100.0 * covered_priority / total_priority, 1),
+            "active_intruder_tracks": live_state["active_track_count"],
+            "live_camera_matches": live_state["live_match_count"],
         },
+        "live_tracks": live_state["tracks"],
+        "live_heat_points": live_state["heat_points"],
         "database": {
             "engine": "SQLite",
             "path": str(database_path()),
@@ -868,7 +1148,7 @@ def security_operations():
             "aws_outbox_pending": outbox,
         },
         "activity": recent_activity,
-        "simulation_note": "Companies, patrol GPS, historical Benoni values and WhatsApp delivery are simulated for the POC. The routes use approximate real-road points.",
+        "simulation_note": "Partner GPS and WhatsApp delivery are simulated for the POC. Member incident tracks and repeat-camera matches are read live from SQLite and layered onto the map and hotspot priorities.",
         "privacy_note": "Security receives operational location and priority only; member names, claim amounts and raw biometric media are excluded.",
     }
 

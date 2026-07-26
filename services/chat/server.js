@@ -10,7 +10,7 @@ const {
   WebSocketServer
 } = require("ws");
 
-const PORT = Number(process.env.PORT || 8080);
+const PORT = Number(process.env.PORT || 8082);
 const HOST = process.env.HOST || "0.0.0.0";
 
 const DATA_DIR =
@@ -33,7 +33,7 @@ const HOTSPOTS_FILE =
     "hotspots.json"
   );
 
-const SYSTEM_KEY = process.env.SENTINEL_SYSTEM_KEY || "";
+const SYSTEM_KEY = process.env.MZANSIMESH_SYSTEM_KEY || process.env.SENTINEL_SYSTEM_KEY || "";
 
 const MAX_MESSAGE_LENGTH = 500;
 const MAX_LOCATION_LENGTH = 120;
@@ -208,7 +208,19 @@ function loadPublicGroups() {
   return fallbackPublicGroups();
 }
 
-const PUBLIC_GROUPS = loadPublicGroups();
+const PUBLIC_GROUPS = (() => {
+  const groups = loadPublicGroups();
+  const pilot = [
+    { id: "lakefield", name: "Lakefield Community", metro: "Gauteng", visibility: "public" },
+    { id: "benoni", name: "Benoni Community", metro: "Gauteng", visibility: "public" }
+  ];
+  const seen = new Set();
+  return [...pilot, ...groups].filter((group) => {
+    if (seen.has(group.id)) return false;
+    seen.add(group.id);
+    return true;
+  });
+})();
 
 function emptyState() {
   return {
@@ -494,7 +506,7 @@ const server = http.createServer(
     ) {
       if (
         !SYSTEM_KEY ||
-        request.headers["x-sentinel-key"] !== SYSTEM_KEY
+        request.headers["x-mzansimesh-key"] !== SYSTEM_KEY
       ) {
         response.writeHead(401, {
           "Content-Type":
@@ -585,7 +597,7 @@ const server = http.createServer(
           groupId: group.id,
           kind: "incident",
           authorId: "system",
-          author: "Sentinel Mesh",
+          author: "MzansiMesh",
           role: "Staff",
           text,
           peril: VALID_PERILS.has(payload.peril)
@@ -766,6 +778,12 @@ wss.on("connection", (ws) => {
           : "Resident";
 
       ws.authenticated = true;
+
+      const defaultMembership = membershipFor(ws.userId);
+      if (defaultMembership.size === 0 && state.groups.some((group) => group.id === "lakefield")) {
+        defaultMembership.add("lakefield");
+        setMembership(ws.userId, defaultMembership);
+      }
 
       send(ws, {
         type: "session",
@@ -1141,7 +1159,7 @@ server.listen(
   HOST,
   () => {
     console.log(
-      `Sentinel chat listening on http://${HOST}:${PORT}`
+      `MzansiMesh community chat listening on http://${HOST}:${PORT}`
     );
 
     console.log(
@@ -1151,7 +1169,7 @@ server.listen(
     console.log(
       SYSTEM_KEY
         ? "System announce endpoint enabled."
-        : "SENTINEL_SYSTEM_KEY unset - /system/announce disabled."
+        : "MZANSIMESH_SYSTEM_KEY unset - /system/announce disabled."
     );
   }
 );
