@@ -1141,7 +1141,10 @@
       const protocol =
         location.protocol === "https:" ? "wss:" : "ws:";
 
-      return `${protocol}//${location.host}/ws`;
+      // Works both directly on :8080 and behind an nginx /chat/ prefix,
+      // so no post-deploy patching is needed.
+      const base = location.pathname.startsWith("/chat") ? "/chat" : "";
+      return `${protocol}//${location.host}${base}/ws`;
     }
 
     function requestId() {
