@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MzansiMesh — Request Console</title>
+<style>
+:root{
+  --bg:#0B1220; --panel:#111B2E; --rule:#1E2C44;
+  --ink:#E6EDF7; --dim:#8A9BB4; --faint:#5A6B85;
+  --ok:#34D399; --warn:#FBBF24; --fail:#F87171; --idle:#546076;
+  --live:#38BDF8; --violet:#A78BFA; --amber:#F0A868;
+  --mono:'Cascadia Mono',Consolas,'SF Mono',Menlo,monospace;
+  --sans:'Segoe UI',-apple-system,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+  font-size:14px;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased}
+header{display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+  padding:13px 22px;border-bottom:1px solid var(--rule);flex:none}
+.brand{font-size:16px;font-weight:700}
+.brand span{color:var(--live)}
+.sub{font-family:var(--mono);font-size:10.5px;color:var(--faint);letter-spacing:.06em}
+.spacer{flex:1}
+.chip{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);
+  font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ok)}
+.chip i{width:7px;height:7px;border-radius:50%;background:currentColor;animation:beat 1.6s infinite}
+@keyframes beat{0%,100%{opacity:1}50%{opacity:.2}}
+button{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+  background:transparent;color:var(--dim);border:1px solid var(--rule);
+  padding:7px 12px;border-radius:5px;cursor:pointer}
+button:hover{color:var(--ink);border-color:var(--faint)}
+button:focus-visible{outline:2px solid var(--live);outline-offset:2px}
+button.on{color:var(--ink);border-color:var(--live)}
+.bar{display:flex;gap:26px;flex-wrap:wrap;padding:9px 22px;background:var(--panel);
+  border-bottom:1px solid var(--rule);flex:none;align-items:center}
+.bar div{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--dim)}
+.bar b{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--ink)}
+.filters{display:flex;gap:7px;flex-wrap:wrap;padding:9px 22px;
+  border-bottom:1px solid var(--rule);flex:none;align-items:center}
+.lbl{font-family:var(--mono);font-size:10px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--faint);margin-right:3px}
+.head,.line{display:grid;grid-template-columns:82px 56px 62px 1fr 128px 78px 92px;
+  gap:12px;padding:5px 22px;align-items:baseline}
+.head{font-family:var(--mono);font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--faint);border-bottom:1px solid var(--rule);padding-top:9px;padding-bottom:9px;flex:none}
+#feed{flex:1;overflow-y:auto;padding:6px 0 30px;font-family:var(--mono);font-size:12.5px}
+.line{border-left:3px solid transparent}
+.line:hover{background:rgba(255,255,255,.03)}
+.line time{color:var(--faint)}
+.line .m{color:var(--violet);font-weight:700}
+.line .s{font-weight:700}
+.line .p{color:var(--ink);word-break:break-all}
+.line .w{color:var(--dim);font-family:var(--sans);font-size:12.5px}
+.line .t{text-align:right;color:var(--dim)}
+.line .c{text-align:right;color:var(--faint)}
+.line.ok{border-left-color:var(--ok)}     .line.ok .s{color:var(--ok)}
+.line.warn{border-left-color:var(--warn)} .line.warn .s{color:var(--warn)}
+.line.fail{border-left-color:var(--fail)} .line.fail .s{color:var(--fail)}
+.line.slow .t{color:var(--amber);font-weight:700}
+.line.hidden{display:none}
+.line.fresh{animation:flash .8s ease-out}
+@keyframes flash{from{background:rgba(56,189,248,.14)}to{background:transparent}}
+@media(max-width:960px){
+  .head,.line{grid-template-columns:70px 52px 56px 1fr 70px}
+  .head span:nth-child(5),.line .w,.head span:nth-child(7),.line .c{display:none}
+}
+.empty{padding:40px 22px;color:var(--faint);font-family:var(--sans)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <div class="brand">Mzansi<span>Mesh</span> — Request Console</div>
+    <div class="sub" id="origin">connecting…</div>
+  </div>
+  <div class="spacer"></div>
+  <div class="chip" id="chip"><i></i><span id="chipText">Live</span></div>
+  <button id="toggle">Pause</button>
+  <button id="clear">Clear</button>
+  <button id="goDash">Dashboard</button>
+</header>
+
+<div class="bar">
+  <div>Requests served <b id="mTotal">0</b></div>
+  <div>Showing <b id="mShown">0</b></div>
+  <div>Errors <b id="mErr">0</b></div>
+  <div>Slowest <b id="mMax">—</b></div>
+  <div>Feed <b id="mState">connecting</b></div>
+</div>
+
+<div class="filters">
+  <span class="lbl">Show</span>
+  <button class="on" data-f="all">Everything</button>
+  <button data-f="err">Errors only</button>
+  <button data-f="slow">Slow only</button>
+  <button data-f="member">Cameras</button>
+  <button data-f="security">Security</button>
+  <button data-f="fraud">Claims</button>
+  <button data-f="aws">AWS &amp; agent</button>
+</div>
+
+<div class="head">
+  <span>Time</span><span>Method</span><span>Status</span><span>Endpoint</span>
+  <span>What it does</span><span>Duration</span><span>From</span>
+</div>
+
+<div id="feed"><div class="empty">Waiting for requests. Open the dashboard in another tab and this fills up.</div></div>
+
+<script>
+(function(){
+'use strict';
+var $=function(id){return document.getElementById(id);};
+var MAX=500, SLOW=600, after=0, running=true, timer=null, filter='all';
+var total=0, errors=0, slowest=0, first=true;
+
+var MEANS=[
+  [/^\/api\/member\/face-detect/,      'Face detection'],
+  [/^\/api\/member\/mesh-state/,       'Household state'],
+  [/^\/api\/member\//,                 'Member workspace'],
+  [/^\/api\/security\/dispatch/,       'Dispatch a unit'],
+  [/^\/api\/security\/simulation/,     'Move units'],
+  [/^\/api\/security\//,               'Security operations'],
+  [/^\/api\/fraud\/cases\/[^/]+\/agent/,'Run the case agent'],
+  [/^\/api\/fraud\/demo-camera-media/, 'Stream evidence video'],
+  [/^\/api\/fraud\//,                  'Claims investigation'],
+  [/^\/api\/claims\//,                 'Area risk data'],
+  [/^\/api\/patterns/,                 'Evidence registry'],
+  [/^\/api\/aws\/status/,              'AWS connection check'],
+  [/^\/api\/agent\/status/,            'Case note writer check'],
+  [/^\/api\/performance/,              'Latency figures'],
+  [/^\/api\/overview/,                 'System overview'],
+  [/^\/api\/community/,                'Community messages'],
+  [/^\/api\/evidence/,                 'Evidence passport'],
+  [/^\/health/,                        'Heartbeat'],
+  [/^\/dashboard/,                     'Dashboard page'],
+  [/^\/console/,                       'This console']
+];
+function meaning(p){
+  for(var i=0;i<MEANS.length;i++){ if(MEANS[i][0].test(p)) return MEANS[i][1]; }
+  return '';
+}
+function group(p){
+  if(p.indexOf('/api/member')===0) return 'member';
+  if(p.indexOf('/api/security')===0) return 'security';
+  if(p.indexOf('/api/fraud')===0||p.indexOf('/api/claims')===0) return 'fraud';
+  if(p.indexOf('/api/aws')===0||p.indexOf('/api/agent')===0) return 'aws';
+  return 'other';
+}
+function keep(el){
+  var st=+el.dataset.status, ms=+el.dataset.ms, g=el.dataset.group;
+  if(filter==='all')   return true;
+  if(filter==='err')   return st>=400||st===0;
+  if(filter==='slow')  return ms>=SLOW;
+  return g===filter;
+}
+function refilter(){
+  var shown=0, lines=document.querySelectorAll('.line');
+  Array.prototype.forEach.call(lines,function(el){
+    var ok=keep(el); el.classList.toggle('hidden',!ok); if(ok) shown++;
+  });
+  $('mShown').textContent=shown;
+}
+function timeOf(iso){
+  try{ return new Date(iso).toLocaleTimeString('en-GB',{hour12:false}); }
+  catch(e){ return '--:--:--'; }
+}
+function add(r){
+  if(first){ $('feed').innerHTML=''; first=false; }
+  var lvl = r.status>=500?'fail':(r.status>=400?'warn':'ok');
+  var el=document.createElement('div');
+  el.className='line '+lvl+(r.ms>=SLOW?' slow':'')+' fresh';
+  el.dataset.status=r.status; el.dataset.ms=r.ms; el.dataset.group=group(r.path);
+  el.innerHTML='<time></time><span class="m"></span><span class="s"></span>'+
+    '<span class="p"></span><span class="w"></span><span class="t"></span><span class="c"></span>';
+  el.querySelector('time').textContent=timeOf(r.at);
+  el.querySelector('.m').textContent=r.method;
+  el.querySelector('.s').textContent=r.status;
+  el.querySelector('.p').textContent=r.path;
+  el.querySelector('.w').textContent=meaning(r.path);
+  el.querySelector('.t').textContent=r.ms+' ms';
+  el.querySelector('.c').textContent=r.client;
+  el.classList.toggle('hidden',!keep(el));
+  $('feed').prepend(el);
+  while($('feed').children.length>MAX) $('feed').lastChild.remove();
+  setTimeout(function(){ el.classList.remove('fresh'); },900);
+}
+function poll(){
+  fetch('/api/requests?after='+after,{cache:'no-store'})
+    .then(function(res){ return res.json(); })
+    .then(function(d){
+      $('mState').textContent='connected';
+      var rows=d.requests||[];
+      rows.forEach(function(r){
+        add(r); after=Math.max(after,r.seq); total++;
+        if(r.status>=400) errors++;
+        if(r.ms>slowest) slowest=r.ms;
+      });
+      if(rows.length){
+        $('mTotal').textContent=total;
+        $('mErr').textContent=errors;
+        $('mMax').textContent=Math.round(slowest)+' ms';
+        refilter();
+      }
+    })
+    .catch(function(){ $('mState').textContent='no connection'; });
+}
+function start(){
+  running=true; $('toggle').textContent='Pause';
+  $('chip').style.color='var(--ok)'; $('chipText').textContent='Live';
+  poll(); timer=setInterval(poll,1200);
+}
+function stop(){
+  running=false; clearInterval(timer); $('toggle').textContent='Resume';
+  $('chip').style.color='var(--idle)'; $('chipText').textContent='Paused';
+  $('mState').textContent='paused';
+}
+$('toggle').addEventListener('click',function(){ running?stop():start(); });
+$('goDash').addEventListener('click',function(){ location.href='/dashboard'; });
+$('clear').addEventListener('click',function(){
+  $('feed').innerHTML='<div class="empty">Cleared. New requests appear here.</div>';
+  first=true; total=0; errors=0; slowest=0;
+  $('mTotal').textContent='0'; $('mErr').textContent='0';
+  $('mMax').textContent='—'; $('mShown').textContent='0';
+});
+var btns=document.querySelectorAll('.filters button');
+Array.prototype.forEach.call(btns,function(b){
+  b.addEventListener('click',function(){
+    Array.prototype.forEach.call(btns,function(x){x.classList.remove('on');});
+    b.classList.add('on'); filter=b.dataset.f; refilter();
+  });
+});
+$('origin').textContent=location.origin;
+start();
+})();
+</script>
+</body>
+</html>

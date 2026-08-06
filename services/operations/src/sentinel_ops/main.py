@@ -1,6 +1,11 @@
 from __future__ import annotations
 
+import itertools
+import time
+from collections import deque
+from datetime import datetime, timezone
 from pathlib import Path
+from typing import Any
 
 from fastapi import FastAPI, HTTPException, Query, Request
 from fastapi.middleware.cors import CORSMiddleware
@@ -102,6 +107,57 @@ app.add_middleware(
 )
 
 
+# --- request feed -------------------------------------------------------------
+# A rolling record of every HTTP request this process has served, so the activity
+# console can show real traffic from the dashboard rather than checks it made
+# itself. Held in memory only; it resets when the application restarts.
+REQUEST_LOG: deque[dict[str, Any]] = deque(maxlen=600)
+_REQUEST_SEQ = itertools.count(1)
+_FEED_PATH = "/api/requests"
+
+
+def _record(request: Request, status: int, started: float) -> None:
+    REQUEST_LOG.append(
+        {
+            "seq": next(_REQUEST_SEQ),
+            "at": datetime.now(timezone.utc).isoformat(),
+            "method": request.method,
+            "path": request.url.path,
+            "status": status,
+            "ms": round((time.perf_counter() - started) * 1000, 1),
+            "client": request.client.host if request.client else "-",
+        }
+    )
+
+
+@app.middleware("http")
+async def record_request(request: Request, call_next):
+    """Record method, path, status and duration for the activity console."""
+    started = time.perf_counter()
+    try:
+        response = await call_next(request)
+    except Exception:
+        # Record the failure before re-raising, otherwise a 500 never reaches the
+        # feed and the console shows a gap with no explanation.
+        _record(request, 500, started)
+        raise
+    # The console polls the feed itself; logging that would drown out real traffic.
+    if request.url.path != _FEED_PATH:
+        _record(request, response.status_code, started)
+    return response
+
+
+@app.get(_FEED_PATH, include_in_schema=False)
+def request_feed(after: int = 0, limit: int = 200):
+    """Return requests newer than ``after``. The activity console polls this."""
+    items = [entry for entry in REQUEST_LOG if entry["seq"] > after][-limit:]
+    return {
+        "requests": items,
+        "latest_seq": REQUEST_LOG[-1]["seq"] if REQUEST_LOG else 0,
+        "captured": len(REQUEST_LOG),
+    }
+
+
 @app.middleware("http")
 async def prevent_stale_api_reads(request: Request, call_next):
     """Live judging screens must never reuse a pre-sighting API response."""
@@ -135,6 +191,12 @@ def initialise_claim_workspace() -> None:
 @app.get("/", include_in_schema=False)
 def home():
     return RedirectResponse(url="/dashboard")
+
+
+@app.get("/console", include_in_schema=False)
+def console():
+    """Live activity console: real requests against this deployment."""
+    return FileResponse(STATIC_DIR / "console.html")
 
 
 @app.get("/dashboard", include_in_schema=False)
@@ -282,6 +344,7 @@ def post_claim(claim: Claim):
 @app.get("/api/alerts")
 def get_alerts(limit: int = Query(default=100, ge=1, le=1000)):
     return [alert.model_dump(mode="json") for alert in list_alerts(limit)]
+
 
 @app.post("/api/demo/seed")
 def seed_demo():
