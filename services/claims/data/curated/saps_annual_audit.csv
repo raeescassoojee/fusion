@@ -1,0 +1,11 @@
+check,value,status
+station_rows,45708,PASS
+stations,1172,PASS
+crime_categories,39,PASS
+duplicate_station_category_keys,0,PASS
+annual_negative_corrections_clipped_in_feature_layer,2,PASS
+base_negative_corrections_clipped_in_feature_layer,1,PASS
+pilot_stations_found,9,PASS
+historical_years,17,PASS
+historical_start,2008/2009,PASS
+historical_end,2024/2025,PASS

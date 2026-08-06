@@ -1,0 +1,361 @@
+feature,coefficient,absolute_importance,effect
+categorical__SUBURB_CAPE TOWN CITY CENTRE,-2.53279277682323,2.53279277682323,decreases high-value likelihood
+categorical__SUBURB_MIDDELBURG,-2.101860445589186,2.101860445589186,decreases high-value likelihood
+categorical__SUBURB_TZANEEN,-2.0627592151075325,2.0627592151075325,decreases high-value likelihood
+categorical__VEHICLE_MAKE_TOYOTA,1.701247862761679,1.701247862761679,increases high-value likelihood
+categorical__SUBURB_GOODWOOD ESTATE,-1.6155731211046709,1.6155731211046709,decreases high-value likelihood
+categorical__SUBURB_HENNOPSPARK,1.5697393273495015,1.5697393273495015,increases high-value likelihood
+categorical__SUBURB_POTCHEFSTROOM,-1.569161945708109,1.569161945708109,decreases high-value likelihood
+categorical__SUBURB_PORT ELIZABETH CENTRAL,-1.551965909388586,1.551965909388586,decreases high-value likelihood
+categorical__PERIL_Windscreen/ Motor glass damage,-1.5473396985989678,1.5473396985989678,decreases high-value likelihood
+categorical__SUBURB_WELLINGTON,-1.5217782027557278,1.5217782027557278,decreases high-value likelihood
+categorical__SUBURB_POLOKWANE SCHOOLS,-1.484569982993761,1.484569982993761,decreases high-value likelihood
+categorical__SUBURB_SIMON'S TOWN,1.4481219838582597,1.4481219838582597,increases high-value likelihood
+categorical__SUBURB_VREDEHOEK,-1.4396100816876978,1.4396100816876978,decreases high-value likelihood
+categorical__SUBURB_HALFWAY GARDENS,-1.43273399033737,1.43273399033737,decreases high-value likelihood
+categorical__VEHICLE_MAKE_LEXUS,1.423227810047708,1.423227810047708,increases high-value likelihood
+categorical__SUBURB_CLAREMONT,-1.4030422617942444,1.4030422617942444,decreases high-value likelihood
+categorical__SUBURB_KRAAIFONTEIN,-1.39179211753756,1.39179211753756,decreases high-value likelihood
+categorical__SUBURB_MOKOPANE,-1.3860495651174776,1.3860495651174776,decreases high-value likelihood
+categorical__SUBURB_CONSTANTIA KLOOF,1.3697882219187765,1.3697882219187765,increases high-value likelihood
+categorical__SUBURB_FAR EAST BANK,-1.3242234771999284,1.3242234771999284,decreases high-value likelihood
+categorical__SUBURB_FLORIDA PARK,1.2932750817046765,1.2932750817046765,increases high-value likelihood
+categorical__SUBURB_MBOMBELA CENTRAL,-1.292262665029424,1.292262665029424,decreases high-value likelihood
+categorical__SUBURB_PRETORIA,-1.2526917074938844,1.2526917074938844,decreases high-value likelihood
+categorical__SUBURB_TERGNIET,-1.2501794912314717,1.2501794912314717,decreases high-value likelihood
+categorical__VEHICLE_MAKE_DAIHATSU,-1.2452431780009918,1.2452431780009918,decreases high-value likelihood
+categorical__SUBURB_WATERKLOOF RIDGE,1.2430575998322315,1.2430575998322315,increases high-value likelihood
+categorical__SUBURB_PHILIPPI,-1.2287470044406894,1.2287470044406894,decreases high-value likelihood
+categorical__SUBURB_GREEN POINT,-1.2171919310148462,1.2171919310148462,decreases high-value likelihood
+categorical__SUBURB_STELLENBOSCH CENTRAL,-1.204438421522685,1.204438421522685,decreases high-value likelihood
+categorical__SUBURB_PARKVIEW,1.1985001894496736,1.1985001894496736,increases high-value likelihood
+categorical__SUBURB_BOSTON,-1.1983232335069778,1.1983232335069778,decreases high-value likelihood
+categorical__SUBURB_CONSTANTIA PARK,1.1938777665479057,1.1938777665479057,increases high-value likelihood
+categorical__SUBURB_PARKTOWN NORTH,1.1559185679715447,1.1559185679715447,increases high-value likelihood
+categorical__VEHICLE_MAKE_PORSCHE,1.146758141095961,1.146758141095961,increases high-value likelihood
+categorical__SUBURB_WITBANK EXT,-1.14271173050193,1.14271173050193,decreases high-value likelihood
+categorical__SUBURB_ATLASVILLE,1.125599283179418,1.125599283179418,increases high-value likelihood
+categorical__SUBURB_SILVERTON,1.1210965941417423,1.1210965941417423,increases high-value likelihood
+categorical__SUBURB_NOORDHOEK,-1.0977732516256364,1.0977732516256364,decreases high-value likelihood
+categorical__SUBURB_AMANZIMTOTI,-1.0877932993140336,1.0877932993140336,decreases high-value likelihood
+categorical__SUBURB_ST FRANCIS BAY,-1.0735899759017815,1.0735899759017815,decreases high-value likelihood
+categorical__SUBURB_POLOKWANE CENTRAL,-1.0723568353929411,1.0723568353929411,decreases high-value likelihood
+categorical__SUBURB_CARLETONVILLE,-1.0714428460856473,1.0714428460856473,decreases high-value likelihood
+categorical__SUBURB_LENASIA SOUTH,1.068601639192979,1.068601639192979,increases high-value likelihood
+categorical__SUBURB_UMKOMAAS,1.0664090418702292,1.0664090418702292,increases high-value likelihood
+categorical__SUBURB_PARKHURST,1.0606498924152166,1.0606498924152166,increases high-value likelihood
+categorical__SUBURB_BRITS,-1.0574341306543205,1.0574341306543205,decreases high-value likelihood
+categorical__PERIL_infrequent_sklearn,-1.0561511499655223,1.0561511499655223,decreases high-value likelihood
+categorical__SUBURB_RYNFIELD,1.0503784715793905,1.0503784715793905,increases high-value likelihood
+categorical__SUBURB_ROBINDALE,1.0162051390764273,1.0162051390764273,increases high-value likelihood
+categorical__SUBURB_ALBERTON,-1.0042635973101648,1.0042635973101648,decreases high-value likelihood
+categorical__SUBURB_SUNNINGHILL,0.9972816857406753,0.9972816857406753,increases high-value likelihood
+categorical__SUBURB_ELSPARK,-0.989563244802179,0.989563244802179,decreases high-value likelihood
+categorical__PERIL_Armed Robbery,0.977696159892819,0.977696159892819,increases high-value likelihood
+categorical__SUBURB_LONE HILL,0.9771078856680347,0.9771078856680347,increases high-value likelihood
+categorical__SUBURB_CASHAN,0.9699233128797965,0.9699233128797965,increases high-value likelihood
+categorical__SUBURB_STELLENBOSCH,-0.9644724531669996,0.9644724531669996,decreases high-value likelihood
+categorical__SUBURB_WESTVILLE,0.9547887260209841,0.9547887260209841,increases high-value likelihood
+categorical__SUBURB_GREENSIDE,0.9506797466004576,0.9506797466004576,increases high-value likelihood
+categorical__SUBURB_WOODSTOCK,-0.9489296146797113,0.9489296146797113,decreases high-value likelihood
+categorical__VEHICLE_MAKE_FIAT,-0.9183060823385296,0.9183060823385296,decreases high-value likelihood
+categorical__SUBURB_SEA POINT,-0.9160821692302623,0.9160821692302623,decreases high-value likelihood
+categorical__SUBURB_AIRPORT AREA,-0.909769889976914,0.909769889976914,decreases high-value likelihood
+categorical__SUBURB_HURLINGHAM,0.8998860275443494,0.8998860275443494,increases high-value likelihood
+categorical__SUBURB_BRYANSTON,0.8977392003681469,0.8977392003681469,increases high-value likelihood
+categorical__SUBURB_RUSTENBURG,-0.8930551621017663,0.8930551621017663,decreases high-value likelihood
+categorical__VEHICLE_MAKE_ISUZU,-0.877919758152284,0.877919758152284,decreases high-value likelihood
+categorical__SUBURB_KEMPTON PARK,-0.8757144177051025,0.8757144177051025,decreases high-value likelihood
+categorical__SUBURB_BANTRY BAY,-0.8756898381757472,0.8756898381757472,decreases high-value likelihood
+categorical__SUBURB_BULWER,0.8718382900925331,0.8718382900925331,increases high-value likelihood
+categorical__SUBURB_CROYDON,0.868393122959258,0.868393122959258,increases high-value likelihood
+categorical__SUBURB_PRETORIA CENTRAL,-0.8680613316056606,0.8680613316056606,decreases high-value likelihood
+categorical__SUBURB_BOKSBURG,-0.8472802411920799,0.8472802411920799,decreases high-value likelihood
+categorical__SUBURB_MALVERN,0.8363579418455834,0.8363579418455834,increases high-value likelihood
+categorical__SUBURB_EDENBURG,0.8274438274107369,0.8274438274107369,increases high-value likelihood
+categorical__SUBURB_KNYSNA,-0.8267631756767069,0.8267631756767069,decreases high-value likelihood
+categorical__VEHICLE_MAKE_CHEVROLET,-0.7978195844836914,0.7978195844836914,decreases high-value likelihood
+categorical__SUBURB_GONUBIE,-0.7973647376316461,0.7973647376316461,decreases high-value likelihood
+categorical__SUBURB_WIERDAPARK,0.7866989132614994,0.7866989132614994,increases high-value likelihood
+categorical__SUBURB_RESERVOIR HILLS,0.7749373827576116,0.7749373827576116,increases high-value likelihood
+categorical__PERIL_Hijack,0.7740824834213565,0.7740824834213565,increases high-value likelihood
+categorical__ITEM_CATEGORY_UNKNOWN,-0.7727817787828253,0.7727817787828253,decreases high-value likelihood
+categorical__ITEM_PERIL_DESCR_Armed Robbery,-0.7727817787828253,0.7727817787828253,decreases high-value likelihood
+categorical__ITEM_PERIL_DESCR_Hijack,0.7725875050015973,0.7725875050015973,increases high-value likelihood
+categorical__SUBURB_DAWNCLIFFE,0.7717091856479076,0.7717091856479076,increases high-value likelihood
+categorical__SUBURB_WEST ACRES,-0.7677819878197601,0.7677819878197601,decreases high-value likelihood
+categorical__SUBURB_WATERKLOOF,0.7647463230418495,0.7647463230418495,increases high-value likelihood
+categorical__SUBURB_HIGHVELD,0.7646802913262467,0.7646802913262467,increases high-value likelihood
+categorical__SUBURB_STRUBENS VALLEY,0.7638042468888797,0.7638042468888797,increases high-value likelihood
+categorical__SUBURB_TOKAI,-0.7626534244566985,0.7626534244566985,decreases high-value likelihood
+categorical__SUBURB_FLORA PARK,0.7608290414398082,0.7608290414398082,increases high-value likelihood
+categorical__VEHICLE_MAKE_JEEP,-0.7550562316236806,0.7550562316236806,decreases high-value likelihood
+categorical__SUBURB_PRETORIA WEST,-0.7524738413506752,0.7524738413506752,decreases high-value likelihood
+categorical__SUBURB_RADIOKOP,0.7319615638378055,0.7319615638378055,increases high-value likelihood
+categorical__SUBURB_RANDPARKRIF,0.7319096858535229,0.7319096858535229,increases high-value likelihood
+categorical__SUBURB_STAMFORD HILL,0.7318075712420257,0.7318075712420257,increases high-value likelihood
+categorical__SUBURB_ROSEBANK,-0.7240600085657565,0.7240600085657565,decreases high-value likelihood
+categorical__SUBURB_SECUNDA,-0.7225519953103064,0.7225519953103064,decreases high-value likelihood
+categorical__SUBURB_LANGENHOVEN PARK,0.7170433279824601,0.7170433279824601,increases high-value likelihood
+categorical__VEHICLE_MAKE_VOLKSWAGEN,0.7139996878933079,0.7139996878933079,increases high-value likelihood
+categorical__VEHICLE_MAKE_HONDA,-0.7085596261370727,0.7085596261370727,decreases high-value likelihood
+categorical__SUBURB_VORNA VALLEY,0.7084624547509961,0.7084624547509961,increases high-value likelihood
+categorical__SUBURB_KHAYELITSHA,0.7042300901050608,0.7042300901050608,increases high-value likelihood
+categorical__SUBURB_SASOLBURG,-0.7022058284527515,0.7022058284527515,decreases high-value likelihood
+categorical__SUBURB_MUSGRAVE,0.6988104352821588,0.6988104352821588,increases high-value likelihood
+categorical__SUBURB_SUNDOWNER,0.696425881044349,0.696425881044349,increases high-value likelihood
+categorical__SUBURB_THREE RIVERS,0.6875309703527744,0.6875309703527744,increases high-value likelihood
+categorical__SUBURB_WINDERMERE,0.6829246602789029,0.6829246602789029,increases high-value likelihood
+categorical__SUBURB_HONEYDEW,0.6665805816779532,0.6665805816779532,increases high-value likelihood
+categorical__SUBURB_PAARL,-0.6653806342700553,0.6653806342700553,decreases high-value likelihood
+categorical__SUBURB_SALT ROCK,-0.6575538714979938,0.6575538714979938,decreases high-value likelihood
+categorical__SUBURB_MELVILLE,0.651504274516777,0.651504274516777,increases high-value likelihood
+categorical__SUBURB_ESSENWOOD,0.6505179765266516,0.6505179765266516,increases high-value likelihood
+categorical__SUBURB_BLAIRGOWRIE,0.648275581321244,0.648275581321244,increases high-value likelihood
+categorical__PERIL_Burglary,0.647637300466948,0.647637300466948,increases high-value likelihood
+categorical__SUBURB_LYTTELTON MANOR,0.6445134340167199,0.6445134340167199,increases high-value likelihood
+categorical__SUBURB_NORTH BEACH,0.6415383684083797,0.6415383684083797,increases high-value likelihood
+categorical__SUBURB_LYNNWOOD GLEN,0.6301260679777149,0.6301260679777149,increases high-value likelihood
+categorical__SUBURB_FOCHVILLE,0.6295057409119951,0.6295057409119951,increases high-value likelihood
+categorical__SUBURB_LYDENBURG,0.6227896205801404,0.6227896205801404,increases high-value likelihood
+categorical__SUBURB_BEDFORDVIEW,0.6226734620960528,0.6226734620960528,increases high-value likelihood
+categorical__VEHICLE_MAKE_MITSUBISHI,-0.6150973783208317,0.6150973783208317,decreases high-value likelihood
+categorical__SUBURB_GLEN AUSTIN AH,0.608451555807992,0.608451555807992,increases high-value likelihood
+categorical__SUBURB_UMBILO,-0.6069689866894069,0.6069689866894069,decreases high-value likelihood
+categorical__SUBURB_WALMER,-0.6060706232743653,0.6060706232743653,decreases high-value likelihood
+categorical__SUBURB_LENASIA,-0.6008261415039036,0.6008261415039036,decreases high-value likelihood
+categorical__SUBURB_GROENKLOOF,0.5977330477063195,0.5977330477063195,increases high-value likelihood
+categorical__SUBURB_HERMANUS,-0.5960769816652712,0.5960769816652712,decreases high-value likelihood
+categorical__SUBURB_MEYERSPARK,0.5933335125074817,0.5933335125074817,increases high-value likelihood
+categorical__SUBURB_TABLE VIEW,-0.5854379289710561,0.5854379289710561,decreases high-value likelihood
+categorical__VEHICLE_MAKE_NISSAN,0.5820865333322432,0.5820865333322432,increases high-value likelihood
+categorical__SUBURB_UMHLANGA ROCKS,0.5747772871588912,0.5747772871588912,increases high-value likelihood
+categorical__SUBURB_BEACON BAY NORTH,0.5716930592575968,0.5716930592575968,increases high-value likelihood
+categorical__VEHICLE_MAKE_SUZUKI,-0.565548377302421,0.565548377302421,decreases high-value likelihood
+categorical__SUBURB_FAIRLAND,0.5627133238863151,0.5627133238863151,increases high-value likelihood
+categorical__SUBURB_UMHLANGA,-0.5626638721090548,0.5626638721090548,decreases high-value likelihood
+categorical__SUBURB_FONTAINEBLEAU,-0.554364568661884,0.554364568661884,decreases high-value likelihood
+categorical__SUBURB_NOORDWYK,-0.5527980826144939,0.5527980826144939,decreases high-value likelihood
+categorical__SUBURB_MIDSTREAM ESTATE,0.5514683827513375,0.5514683827513375,increases high-value likelihood
+categorical__SUBURB_QUEENSWOOD,0.5464345567844422,0.5464345567844422,increases high-value likelihood
+categorical__SUBURB_EERSTERUST,-0.5417071538874605,0.5417071538874605,decreases high-value likelihood
+categorical__SUBURB_WELTEVREDENPARK,0.5335866813046487,0.5335866813046487,increases high-value likelihood
+categorical__VEHICLE_MAKE_MINI,-0.5334577151243983,0.5334577151243983,decreases high-value likelihood
+categorical__SUBURB_HELDERKRUIN,0.5331952004463945,0.5331952004463945,increases high-value likelihood
+categorical__SUBURB_MORELETAPARK,-0.5293711691905173,0.5293711691905173,decreases high-value likelihood
+categorical__VEHICLE_MAKE_HAVAL,-0.5259385558671356,0.5259385558671356,decreases high-value likelihood
+categorical__SUBURB_WOODHURST,-0.5256711225384952,0.5256711225384952,decreases high-value likelihood
+categorical__SUBURB_NORTHWOLD,0.518945866430294,0.518945866430294,increases high-value likelihood
+categorical__SUBURB_MENLO PARK,0.5126227528952267,0.5126227528952267,increases high-value likelihood
+categorical__SUBURB_PLUMSTEAD,-0.5026316325495173,0.5026316325495173,decreases high-value likelihood
+categorical__SUBURB_KELVIN,-0.5009424845646884,0.5009424845646884,decreases high-value likelihood
+categorical__SUBURB_RUIMSIG,0.4967592315300763,0.4967592315300763,increases high-value likelihood
+categorical__SUBURB_CRAIGHALL PARK,0.49331840745896866,0.49331840745896866,increases high-value likelihood
+categorical__SUBURB_BENDOR PARK,0.49279348090738584,0.49279348090738584,increases high-value likelihood
+categorical__SUBURB_FARRARMERE,0.48814336896868155,0.48814336896868155,increases high-value likelihood
+categorical__SUBURB_CRAIGHALL,0.47518862468134165,0.47518862468134165,increases high-value likelihood
+categorical__SUBURB_WINGATE PARK,-0.4748806475762439,0.4748806475762439,decreases high-value likelihood
+categorical__SUBURB_PARKLANDS,-0.4741057033864624,0.4741057033864624,decreases high-value likelihood
+categorical__SUBURB_CAMPS BAY,-0.47352528221742346,0.47352528221742346,decreases high-value likelihood
+categorical__SUBURB_CENTURION CENTRAL,-0.4707038312797052,0.4707038312797052,decreases high-value likelihood
+categorical__SUBURB_HEIDELBERG,0.4638274781605988,0.4638274781605988,increases high-value likelihood
+categorical__SUBURB_GARDENS,-0.46272670927559273,0.46272670927559273,decreases high-value likelihood
+categorical__SUBURB_PROTEA HEIGHTS,-0.4613658329814074,0.4613658329814074,decreases high-value likelihood
+categorical__SUBURB_GARSFONTEIN,0.45791161640396283,0.45791161640396283,increases high-value likelihood
+categorical__SUBURB_BALLITO,0.45559566658078565,0.45559566658078565,increases high-value likelihood
+categorical__SUBURB_RANDPARK,-0.4480141780220606,0.4480141780220606,decreases high-value likelihood
+categorical__SUBURB_ROODEPOORT,0.4467060598081091,0.4467060598081091,increases high-value likelihood
+categorical__SUBURB_WESTCLIFF,0.43804166508175774,0.43804166508175774,increases high-value likelihood
+categorical__SUBURB_BENONI,-0.43782886462365217,0.43782886462365217,decreases high-value likelihood
+categorical__SUBURB_BUCCLEUCH,0.43352410557009763,0.43352410557009763,increases high-value likelihood
+categorical__SUBURB_HOUGHTON ESTATE,0.43223543999538117,0.43223543999538117,increases high-value likelihood
+categorical__SUBURB_SOUTH BEACH,0.4255402183175219,0.4255402183175219,increases high-value likelihood
+categorical__PERIL_Attempted Theft,-0.42123106956210843,0.42123106956210843,decreases high-value likelihood
+categorical__SUBURB_MULBARTON,0.42017530390674346,0.42017530390674346,increases high-value likelihood
+categorical__SUBURB_STELLENBOSCH NU,-0.4169723554151383,0.4169723554151383,decreases high-value likelihood
+numeric__VEHICLE_YEAR,0.4157448241757586,0.4157448241757586,increases high-value likelihood
+categorical__SUBURB_HEUWELOORD,-0.41442239811347975,0.41442239811347975,decreases high-value likelihood
+categorical__SUBURB_DOORNPOORT,0.4143701291800311,0.4143701291800311,increases high-value likelihood
+categorical__SUBURB_LINDHAVEN,-0.4118783199825308,0.4118783199825308,decreases high-value likelihood
+categorical__SUBURB_HATFIELD,0.4113238292568583,0.4113238292568583,increases high-value likelihood
+categorical__SUBURB_MENLYN,-0.40289232025190314,0.40289232025190314,decreases high-value likelihood
+categorical__SUBURB_GLENWOOD,0.40189307963101506,0.40189307963101506,increases high-value likelihood
+categorical__SUBURB_PRIMROSE,0.3982528211883028,0.3982528211883028,increases high-value likelihood
+categorical__SUBURB_KYALAMI AH,-0.39769716325274723,0.39769716325274723,decreases high-value likelihood
+categorical__SUBURB_MORNINGSIDE,0.3968496938307936,0.3968496938307936,increases high-value likelihood
+categorical__SUBURB_DIE HOEWES,0.3945653554563914,0.3945653554563914,increases high-value likelihood
+categorical__SUBURB_KRUGERSDORP NORTH,0.3926924579116995,0.3926924579116995,increases high-value likelihood
+categorical__SUBURB_PIERRE VAN RYNEVELD,-0.38963660211393464,0.38963660211393464,decreases high-value likelihood
+categorical__SUBURB_ERASMUSKLOOF,0.38839706838041027,0.38839706838041027,increases high-value likelihood
+categorical__SUBURB_PLETTENBERG BAY,-0.3880029347897671,0.3880029347897671,decreases high-value likelihood
+categorical__SUBURB_VINCENT,-0.38036592834884353,0.38036592834884353,decreases high-value likelihood
+categorical__VEHICLE_MAKE_GWM,-0.37904565299110543,0.37904565299110543,decreases high-value likelihood
+categorical__SUBURB_WESTDENE,0.37763528242040845,0.37763528242040845,increases high-value likelihood
+categorical__SUBURB_GLENVISTA,0.3768414387040643,0.3768414387040643,increases high-value likelihood
+categorical__SUBURB_BELLVILLE,0.37367672102136906,0.37367672102136906,increases high-value likelihood
+categorical__SUBURB_RIDGEWAY,-0.3725970329413993,0.3725970329413993,decreases high-value likelihood
+categorical__SUBURB_EMMARENTIA,0.37214926154852385,0.37214926154852385,increases high-value likelihood
+categorical__SUBURB_GREENHILLS,0.36978468470807274,0.36978468470807274,increases high-value likelihood
+categorical__SUBURB_FOURWAYS,0.36891687783276794,0.36891687783276794,increases high-value likelihood
+categorical__SUBURB_WITPOORTJIE,0.35942754326218873,0.35942754326218873,increases high-value likelihood
+categorical__VEHICLE_MAKE_MAZDA,0.35759318232110543,0.35759318232110543,increases high-value likelihood
+categorical__SUBURB_LOEVENSTEIN,-0.3555114036428142,0.3555114036428142,decreases high-value likelihood
+categorical__SUBURB_PAULSHOF,-0.3515092883451543,0.3515092883451543,decreases high-value likelihood
+categorical__SUBURB_WILGEHEUWEL,0.34792369519226823,0.34792369519226823,increases high-value likelihood
+categorical__SUBURB_VERULAM,0.3457690848043878,0.3457690848043878,increases high-value likelihood
+categorical__SUBURB_SHERWOOD,-0.34441647568688777,0.34441647568688777,decreases high-value likelihood
+categorical__SUBURB_WATERKLOOF GLEN,0.33795819192645593,0.33795819192645593,increases high-value likelihood
+categorical__SUBURB_RIVONIA,-0.3369346935567856,0.3369346935567856,decreases high-value likelihood
+categorical__SUBURB_MUIZENBERG,0.33653444835951657,0.33653444835951657,increases high-value likelihood
+categorical__SUBURB_BRACKENFELL CENTRAL,-0.3334472929112329,0.3334472929112329,decreases high-value likelihood
+categorical__ITEM_PERIL_DESCR_Theft,-0.33123113714869734,0.33123113714869734,decreases high-value likelihood
+categorical__SUBURB_BRACKENHURST,0.33086844492683476,0.33086844492683476,increases high-value likelihood
+categorical__SUBURB_SPRINGFIELD,0.32807084554903737,0.32807084554903737,increases high-value likelihood
+categorical__SUBURB_HARTEBEESPOORT,0.32788048499683453,0.32788048499683453,increases high-value likelihood
+categorical__SUBURB_VIERLANDEN,-0.3265754022979773,0.3265754022979773,decreases high-value likelihood
+categorical__SUBURB_MILNERTON,0.32485357164766704,0.32485357164766704,increases high-value likelihood
+categorical__SUBURB_MONTANA,0.3241601611794225,0.3241601611794225,increases high-value likelihood
+categorical__SUBURB_EDGEMEAD,-0.3208565203640164,0.3208565203640164,decreases high-value likelihood
+categorical__SUBURB_EDENVALE,0.320713965574885,0.320713965574885,increases high-value likelihood
+categorical__VEHICLE_MAKE_AUDI,0.31981580946156374,0.31981580946156374,increases high-value likelihood
+categorical__SUBURB_MONUMENT,0.31752162457160077,0.31752162457160077,increases high-value likelihood
+categorical__SUBURB_ARCADIA,0.3147217429300946,0.3147217429300946,increases high-value likelihood
+categorical__SUBURB_SUNNINGDALE,-0.31274188558363586,0.31274188558363586,decreases high-value likelihood
+categorical__SUBURB_ROODEPLAAT,0.3045034231309381,0.3045034231309381,increases high-value likelihood
+categorical__SUBURB_DURBAN NORTH,-0.3019729861032317,0.3019729861032317,decreases high-value likelihood
+categorical__SUBURB_FAERIE GLEN,0.3000254280832931,0.3000254280832931,increases high-value likelihood
+categorical__SUBURB_MEYERTON,0.29938464118065017,0.29938464118065017,increases high-value likelihood
+categorical__ITEM_CATEGORY_Motor Vehicle - Theft,0.29912665509925684,0.29912665509925684,increases high-value likelihood
+categorical__SUBURB_ORANJEZICHT,0.2970600419491456,0.2970600419491456,increases high-value likelihood
+categorical__SUBURB_CONSTANTIA,0.29699840787309634,0.29699840787309634,increases high-value likelihood
+categorical__SUBURB_VALHALLA,0.29359194355181706,0.29359194355181706,increases high-value likelihood
+categorical__SUBURB_MOSSEL BAY,0.29301145832920067,0.29301145832920067,increases high-value likelihood
+categorical__SUBURB_HOUT BAY,0.2925688909628586,0.2925688909628586,increases high-value likelihood
+categorical__SUBURB_GLENHAZEL,0.29166318641349825,0.29166318641349825,increases high-value likelihood
+categorical__SUBURB_KENSINGTON,-0.2916085701942087,0.2916085701942087,decreases high-value likelihood
+categorical__SUBURB_ROODEKRANS,0.2891843880451688,0.2891843880451688,increases high-value likelihood
+categorical__SUBURB_MBOMBELA,-0.2854593987252816,0.2854593987252816,decreases high-value likelihood
+categorical__SUBURB_BONAERO PARK,-0.2848535676237411,0.2848535676237411,decreases high-value likelihood
+categorical__ITEM_TYPE_Contents,-0.282024669614304,0.282024669614304,decreases high-value likelihood
+categorical__SUBURB_BROOKLYN,0.2797711596415139,0.2797711596415139,increases high-value likelihood
+categorical__SUBURB_SANDOWN,0.2792055232040978,0.2792055232040978,increases high-value likelihood
+categorical__SUBURB_SUNWARD PARK,0.27702337715399566,0.27702337715399566,increases high-value likelihood
+categorical__SUBURB_LORRAINE,-0.2733631453130457,0.2733631453130457,decreases high-value likelihood
+numeric__VEHICLE_AGE_AT_INCIDENT,0.26998870544952136,0.26998870544952136,increases high-value likelihood
+categorical__SUBURB_WYNBERG,-0.26919853093603885,0.26919853093603885,decreases high-value likelihood
+categorical__SUBURB_LYNNWOOD RIDGE,-0.26867150046053273,0.26867150046053273,decreases high-value likelihood
+categorical__SUBURB_DIE WILGERS,0.266156873085322,0.266156873085322,increases high-value likelihood
+categorical__SUBURB_SCHOEMANSVILLE,0.26475536633533575,0.26475536633533575,increases high-value likelihood
+categorical__SUBURB_KRUGERSDORP,-0.26190416589833354,0.26190416589833354,decreases high-value likelihood
+categorical__SUBURB_ILLOVO,0.2604447110231075,0.2604447110231075,increases high-value likelihood
+categorical__VEHICLE_MAKE_MAHINDRA,0.2599862147808804,0.2599862147808804,increases high-value likelihood
+categorical__PERIL_Stolen and recovered,0.25659748773085217,0.25659748773085217,increases high-value likelihood
+categorical__INCIDENT_DAY_NAME_Tuesday,-0.2533122758137865,0.2533122758137865,decreases high-value likelihood
+categorical__SUBURB_FAUNA,-0.2526384049267042,0.2526384049267042,decreases high-value likelihood
+categorical__SUBURB_GLENMARAIS,0.25206377303952815,0.25206377303952815,increases high-value likelihood
+categorical__SUBURB_NOORDHEUWEL,0.2514376308477766,0.2514376308477766,increases high-value likelihood
+categorical__SUBURB_HILLCREST,0.2490323011693415,0.2490323011693415,increases high-value likelihood
+categorical__SUBURB_PARKMORE,0.24816494785539087,0.24816494785539087,increases high-value likelihood
+categorical__SUBURB_SUNNYSIDE,0.24710148156576758,0.24710148156576758,increases high-value likelihood
+categorical__VEHICLE_MAKE_CHERY,0.24559321571276163,0.24559321571276163,increases high-value likelihood
+categorical__SUBURB_RONDEBOSCH,-0.2432348940799207,0.2432348940799207,decreases high-value likelihood
+categorical__SUBURB_LOMBARDY EAST,0.24065114040232444,0.24065114040232444,increases high-value likelihood
+categorical__SUBURB_PINELANDS,0.23121521582562068,0.23121521582562068,increases high-value likelihood
+categorical__SUBURB_GORDONS BAY,0.22597024498730087,0.22597024498730087,increases high-value likelihood
+categorical__SUBURB_LYNNWOOD,0.22447692710499048,0.22447692710499048,increases high-value likelihood
+categorical__SUBURB_GROOTFONTEIN COUNTRY ESTATES,0.2226323303596644,0.2226323303596644,increases high-value likelihood
+categorical__SUBURB_PARKTOWN,0.21338851760713623,0.21338851760713623,increases high-value likelihood
+categorical__SUBURB_VOSLOORUS,-0.20714557698520888,0.20714557698520888,decreases high-value likelihood
+categorical__SUBURB_NORTHMEAD,0.20636753806475422,0.20636753806475422,increases high-value likelihood
+categorical__VEHICLE_MAKE_UNKNOWN,0.2060071726814911,0.2060071726814911,increases high-value likelihood
+categorical__SUBURB_GEORGE,-0.20337743984626508,0.20337743984626508,decreases high-value likelihood
+categorical__VEHICLE_MAKE_FORD,0.20234931207450366,0.20234931207450366,increases high-value likelihood
+categorical__SUBURB_HENLEY ON KLIP,0.19933236133887794,0.19933236133887794,increases high-value likelihood
+categorical__SUBURB_NORWOOD,0.19919565350423263,0.19919565350423263,increases high-value likelihood
+categorical__SUBURB_BRACKENFELL SOUTH,-0.19684019503885605,0.19684019503885605,decreases high-value likelihood
+categorical__INCIDENT_DAY_NAME_Saturday,0.19641041876499654,0.19641041876499654,increases high-value likelihood
+categorical__SUBURB_MONUMENT PARK,0.19335402606829996,0.19335402606829996,increases high-value likelihood
+categorical__SUBURB_WAVERLEY,-0.17762399776129204,0.17762399776129204,decreases high-value likelihood
+categorical__SUBURB_NORTHome contentsLIFF,-0.17001272078976537,0.17001272078976537,decreases high-value likelihood
+categorical__SUBURB_DAN PIENAAR,-0.16419776056354027,0.16419776056354027,decreases high-value likelihood
+categorical__SUBURB_MARLBORO,-0.16349152831505923,0.16349152831505923,decreases high-value likelihood
+categorical__VEHICLE_MAKE_VOLVO,0.1624882673815975,0.1624882673815975,increases high-value likelihood
+categorical__SUBURB_KLOOF,-0.16119316875361314,0.16119316875361314,decreases high-value likelihood
+categorical__VEHICLE_MAKE_LAND ROVER,0.15868969071616285,0.15868969071616285,increases high-value likelihood
+categorical__SUBURB_NEWLANDS,0.15629130737569347,0.15629130737569347,increases high-value likelihood
+categorical__SUBURB_SYDENHAM,0.15014329142005836,0.15014329142005836,increases high-value likelihood
+categorical__SUBURB_FISH HOEK,-0.14608429675631046,0.14608429675631046,decreases high-value likelihood
+categorical__SUBURB_POMONA,0.1443553875953338,0.1443553875953338,increases high-value likelihood
+categorical__VEHICLE_MAKE_BMW,0.14283804088954424,0.14283804088954424,increases high-value likelihood
+categorical__ITEM_CATEGORY_Home contents - Theft,0.14222971274923463,0.14222971274923463,increases high-value likelihood
+categorical__SUBURB_OLYMPUS AH,0.1419483740277772,0.1419483740277772,increases high-value likelihood
+categorical__SUBURB_WOODMEAD,0.14185993654516899,0.14185993654516899,increases high-value likelihood
+categorical__VEHICLE_MAKE_HYUNDAI,-0.14056680844836167,0.14056680844836167,decreases high-value likelihood
+categorical__SUBURB_OLIVEDALE,0.14040131818038246,0.14040131818038246,increases high-value likelihood
+numeric__INCIDENT_HOUR,0.13984785143454245,0.13984785143454245,increases high-value likelihood
+categorical__SUBURB_HELDERVUE,0.13739819325994856,0.13739819325994856,increases high-value likelihood
+categorical__SUBURB_HIGHLANDS NORTH,-0.1364784743180075,0.1364784743180075,decreases high-value likelihood
+categorical__SUBURB_LANGEBAAN,-0.13558222710146073,0.13558222710146073,decreases high-value likelihood
+categorical__SUBURB_FERNDALE,0.1352314954836919,0.1352314954836919,increases high-value likelihood
+categorical__SUBURB_WILRO PARK,0.13434584371091973,0.13434584371091973,increases high-value likelihood
+categorical__INCIDENT_DAY_NAME_Wednesday,-0.13393787306945532,0.13393787306945532,decreases high-value likelihood
+categorical__SUBURB_BRAKPAN,-0.13155686402486982,0.13155686402486982,decreases high-value likelihood
+categorical__VEHICLE_MAKE_PEUGEOT,0.13099694185380806,0.13099694185380806,increases high-value likelihood
+categorical__VEHICLE_MAKE_RENAULT,-0.13082750708642538,0.13082750708642538,decreases high-value likelihood
+categorical__SUBURB_BLOEMFONTEIN,-0.13045502681941323,0.13045502681941323,decreases high-value likelihood
+categorical__SUBURB_BROMHOF,0.12971192248521596,0.12971192248521596,increases high-value likelihood
+categorical__SUBURB_CARLSWALD AH,-0.1295643743553859,0.1295643743553859,decreases high-value likelihood
+categorical__VEHICLE_MAKE_infrequent_sklearn,0.12225184627884816,0.12225184627884816,increases high-value likelihood
+categorical__INCIDENT_DAY_NAME_Thursday,-0.11767610603840586,0.11767610603840586,decreases high-value likelihood
+categorical__SUBURB_STRAND,-0.11644198613426288,0.11644198613426288,decreases high-value likelihood
+categorical__SUBURB_MELROSE,0.11634199023740537,0.11634199023740537,increases high-value likelihood
+categorical__SUBURB_NORTH RIDING,-0.11461263961096282,0.11461263961096282,decreases high-value likelihood
+categorical__SUBURB_PRETORIA NORTH,-0.10596302049788074,0.10596302049788074,decreases high-value likelihood
+categorical__SUBURB_GRASSY PARK,-0.10579307967815905,0.10579307967815905,decreases high-value likelihood
+categorical__SUBURB_OBSERVATORY,-0.10470992606103127,0.10470992606103127,decreases high-value likelihood
+categorical__SUBURB_TAMBOERSKLOOF,-0.10182436644067412,0.10182436644067412,decreases high-value likelihood
+categorical__INCIDENT_DAY_NAME_Monday,-0.10098084404061759,0.10098084404061759,decreases high-value likelihood
+categorical__SUBURB_KUILS RIVER,-0.09512569476933808,0.09512569476933808,decreases high-value likelihood
+categorical__SUBURB_WENDYWOOD,-0.093669095148777,0.093669095148777,decreases high-value likelihood
+categorical__SUBURB_DURBAN CENTRAL,0.09307649838391725,0.09307649838391725,increases high-value likelihood
+categorical__SUBURB_NEWTON PARK,-0.08836645494260936,0.08836645494260936,decreases high-value likelihood
+categorical__SUBURB_MOWBRAY,0.08751187460470874,0.08751187460470874,increases high-value likelihood
+categorical__SUBURB_ELDORAIGNE,-0.08519880357531048,0.08519880357531048,decreases high-value likelihood
+categorical__SUBURB_FRANKLIN ROOSEVELT PARK,-0.08419231376985907,0.08419231376985907,decreases high-value likelihood
+categorical__SUBURB_HAZELWOOD,0.08244465616654896,0.08244465616654896,increases high-value likelihood
+categorical__SUBURB_PARKRAND,-0.08164602865252517,0.08164602865252517,decreases high-value likelihood
+categorical__SUBURB_BLOUBERGSTRAND,-0.07592162409018388,0.07592162409018388,decreases high-value likelihood
+categorical__SUBURB_ROOIHUISKRAAL,-0.07580590616417238,0.07580590616417238,decreases high-value likelihood
+categorical__SUBURB_LITTLE FALLS,0.07557014728944217,0.07557014728944217,increases high-value likelihood
+categorical__INCIDENT_DAY_NAME_Sunday,0.07530481008226873,0.07530481008226873,increases high-value likelihood
+numeric__INCIDENT_MONTH,0.07480116749945555,0.07480116749945555,increases high-value likelihood
+categorical__SUBURB_EVERTON,0.0729504781293948,0.0729504781293948,increases high-value likelihood
+categorical__SUBURB_THE REEDS,-0.07236805628497556,0.07236805628497556,decreases high-value likelihood
+categorical__SUBURB_SOMERSET WEST,-0.0691730878273488,0.0691730878273488,decreases high-value likelihood
+categorical__SUBURB_MONDEOR,-0.06224372790207236,0.06224372790207236,decreases high-value likelihood
+categorical__SUBURB_DURBANVILLE,-0.0551109275875253,0.0551109275875253,decreases high-value likelihood
+categorical__SUBURB_CLUBVIEW,0.05352522456898649,0.05352522456898649,increases high-value likelihood
+categorical__SUBURB_EAST LONDON,-0.05214526252477873,0.05214526252477873,decreases high-value likelihood
+categorical__SUBURB_UNKNOWN,0.05064179324910839,0.05064179324910839,increases high-value likelihood
+categorical__SUBURB_SUMMERSTRAND,0.049765922935358246,0.049765922935358246,increases high-value likelihood
+categorical__ITEM_TYPE_Vehicle,-0.04940074131998806,0.04940074131998806,decreases high-value likelihood
+categorical__SUBURB_ELARDUSPARK,0.048736807802950075,0.048736807802950075,increases high-value likelihood
+categorical__SUBURB_FLORIDA,0.04738745017994972,0.04738745017994972,increases high-value likelihood
+categorical__SUBURB_infrequent_sklearn,0.042501967142623345,0.042501967142623345,increases high-value likelihood
+categorical__PERIL_Theft,0.03728307568409221,0.03728307568409221,increases high-value likelihood
+categorical__SUBURB_BENDOR,0.036883520918519895,0.036883520918519895,increases high-value likelihood
+categorical__SUBURB_EMALAHLENI,-0.0319410147421175,0.0319410147421175,decreases high-value likelihood
+categorical__SUBURB_KENILWORTH,0.027679390160965472,0.027679390160965472,increases high-value likelihood
+categorical__SUBURB_PANORAMA,0.020995415099219972,0.020995415099219972,increases high-value likelihood
+categorical__VEHICLE_MAKE_KIA,-0.020057507436336514,0.020057507436336514,decreases high-value likelihood
+categorical__VEHICLE_MAKE_MERCEDES-BENZ,0.012851603111131196,0.012851603111131196,increases high-value likelihood
+categorical__SUBURB_BOSKRUIN,-0.011391204983840008,0.011391204983840008,decreases high-value likelihood
+categorical__SUBURB_DAWN PARK,-0.009218477074705442,0.009218477074705442,decreases high-value likelihood
+categorical__SUBURB_MAYFAIR WEST,0.008907107154202449,0.008907107154202449,increases high-value likelihood
+categorical__SUBURB_JOHANNESBURG,0.008592327175622414,0.008592327175622414,increases high-value likelihood
+categorical__VEHICLE_MAKE_JAGUAR,-0.007935135912449045,0.007935135912449045,decreases high-value likelihood
+categorical__SUBURB_BOTHASIG,-0.006669532622770553,0.006669532622770553,decreases high-value likelihood
+categorical__SUBURB_LINDEN,-0.005518884597877498,0.005518884597877498,decreases high-value likelihood
+categorical__INCIDENT_DAY_NAME_Friday,0.002766459182364621,0.002766459182364621,increases high-value likelihood
+categorical__VEHICLE_MAKE_OPEL,0.0011723558980731143,0.0011723558980731143,increases high-value likelihood
+categorical__SUBURB_KIBLER PARK,-0.0008012341703057275,0.0008012341703057275,decreases high-value likelihood

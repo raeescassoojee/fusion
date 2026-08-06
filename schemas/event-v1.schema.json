@@ -1,0 +1,506 @@
+{
+  "$defs": {
+    "AppearanceEvidence": {
+      "additionalProperties": false,
+      "properties": {
+        "upper_colour": {
+          "default": "Unknown",
+          "title": "Upper Colour",
+          "type": "string"
+        },
+        "lower_colour": {
+          "default": "Unknown",
+          "title": "Lower Colour",
+          "type": "string"
+        },
+        "cap": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Cap"
+        },
+        "backpack": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Backpack"
+        },
+        "person_box": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/BoundingBox"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "confidence": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Confidence"
+        }
+      },
+      "title": "AppearanceEvidence",
+      "type": "object"
+    },
+    "BoundingBox": {
+      "additionalProperties": false,
+      "properties": {
+        "x": {
+          "minimum": 0,
+          "title": "X",
+          "type": "integer"
+        },
+        "y": {
+          "minimum": 0,
+          "title": "Y",
+          "type": "integer"
+        },
+        "width": {
+          "exclusiveMinimum": 0,
+          "title": "Width",
+          "type": "integer"
+        },
+        "height": {
+          "exclusiveMinimum": 0,
+          "title": "Height",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "x",
+        "y",
+        "width",
+        "height"
+      ],
+      "title": "BoundingBox",
+      "type": "object"
+    },
+    "FaceEvidence": {
+      "additionalProperties": false,
+      "properties": {
+        "present": {
+          "default": false,
+          "title": "Present",
+          "type": "boolean"
+        },
+        "count": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Count",
+          "type": "integer"
+        },
+        "boxes": {
+          "items": {
+            "$ref": "#/$defs/BoundingBox"
+          },
+          "title": "Boxes",
+          "type": "array"
+        },
+        "crop_paths": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Crop Paths",
+          "type": "array"
+        },
+        "embedding_ref": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Embedding Ref"
+        },
+        "detection_confidence": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Detection Confidence"
+        }
+      },
+      "title": "FaceEvidence",
+      "type": "object"
+    },
+    "Location": {
+      "additionalProperties": false,
+      "properties": {
+        "latitude": {
+          "maximum": 90,
+          "minimum": -90,
+          "title": "Latitude",
+          "type": "number"
+        },
+        "longitude": {
+          "maximum": 180,
+          "minimum": -180,
+          "title": "Longitude",
+          "type": "number"
+        }
+      },
+      "required": [
+        "latitude",
+        "longitude"
+      ],
+      "title": "Location",
+      "type": "object"
+    },
+    "PlateEvidence": {
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Text"
+        },
+        "display_text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Display Text"
+        },
+        "box": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/BoundingBox"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "crop_url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Crop Url"
+        },
+        "detection_confidence": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Detection Confidence"
+        },
+        "ocr_confidence": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Ocr Confidence"
+        },
+        "ocr_frame_count": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Ocr Frame Count",
+          "type": "integer"
+        },
+        "character_confidences": {
+          "items": {
+            "maximum": 1,
+            "minimum": 0,
+            "type": "number"
+          },
+          "title": "Character Confidences",
+          "type": "array"
+        },
+        "ocr_alternatives": {
+          "items": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "title": "Ocr Alternatives",
+          "type": "array"
+        },
+        "consensus_method": {
+          "anyOf": [
+            {"type": "string"},
+            {"type": "null"}
+          ],
+          "default": null,
+          "title": "Consensus Method"
+        }
+      },
+      "title": "PlateEvidence",
+      "type": "object"
+    },
+    "QualityMetrics": {
+      "additionalProperties": false,
+      "properties": {
+        "sharpness": {
+          "maximum": 100,
+          "minimum": 0,
+          "title": "Sharpness",
+          "type": "integer"
+        },
+        "lighting": {
+          "maximum": 100,
+          "minimum": 0,
+          "title": "Lighting",
+          "type": "integer"
+        },
+        "detection": {
+          "maximum": 100,
+          "minimum": 0,
+          "title": "Detection",
+          "type": "integer"
+        },
+        "unobstructed": {
+          "maximum": 100,
+          "minimum": 0,
+          "title": "Unobstructed",
+          "type": "integer"
+        },
+        "resolution": {
+          "maximum": 100,
+          "minimum": 0,
+          "title": "Resolution",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "sharpness",
+        "lighting",
+        "detection",
+        "unobstructed",
+        "resolution"
+      ],
+      "title": "QualityMetrics",
+      "type": "object"
+    },
+    "VehicleEvidence": {
+      "additionalProperties": false,
+      "properties": {
+        "colour": {
+          "default": "Unknown",
+          "title": "Colour",
+          "type": "string"
+        },
+        "type": {
+          "default": "Unknown",
+          "title": "Type",
+          "type": "string"
+        },
+        "make_model": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Make Model"
+        },
+        "direction": {
+          "default": "stationary_or_unknown",
+          "title": "Direction",
+          "type": "string"
+        },
+        "box": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/BoundingBox"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "detection_confidence": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Detection Confidence"
+        }
+      },
+      "title": "VehicleEvidence",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "event_id": {
+      "title": "Event Id",
+      "type": "string"
+    },
+    "camera_id": {
+      "title": "Camera Id",
+      "type": "string"
+    },
+    "timestamp": {
+      "format": "date-time",
+      "title": "Timestamp",
+      "type": "string"
+    },
+    "mode": {
+      "enum": [
+        "NORMAL",
+        "HEIGHTENED"
+      ],
+      "title": "Mode",
+      "type": "string"
+    },
+    "location": {
+      "$ref": "#/$defs/Location"
+    },
+    "source_media": {
+      "title": "Source Media",
+      "type": "string"
+    },
+    "media_url": {
+      "title": "Media Url",
+      "type": "string"
+    },
+    "frame_index": {
+      "default": 0,
+      "minimum": 0,
+      "title": "Frame Index",
+      "type": "integer"
+    },
+    "motion_score": {
+      "default": 0,
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Motion Score",
+      "type": "number"
+    },
+    "face": {
+      "$ref": "#/$defs/FaceEvidence"
+    },
+    "plate": {
+      "$ref": "#/$defs/PlateEvidence"
+    },
+    "vehicle": {
+      "$ref": "#/$defs/VehicleEvidence"
+    },
+    "appearance": {
+      "$ref": "#/$defs/AppearanceEvidence"
+    },
+    "camera_trust_score": {
+      "maximum": 100,
+      "minimum": 0,
+      "title": "Camera Trust Score",
+      "type": "integer"
+    },
+    "quality_metrics": {
+      "$ref": "#/$defs/QualityMetrics"
+    },
+    "trust_reasons": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Trust Reasons",
+      "type": "array"
+    },
+    "model_versions": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Model Versions",
+      "type": "object"
+    },
+    "metadata": {
+      "additionalProperties": true,
+      "title": "Metadata",
+      "type": "object"
+    }
+  },
+  "required": [
+    "event_id",
+    "camera_id",
+    "timestamp",
+    "mode",
+    "location",
+    "source_media",
+    "media_url",
+    "camera_trust_score",
+    "quality_metrics"
+  ],
+  "title": "CameraEvent",
+  "type": "object"
+}

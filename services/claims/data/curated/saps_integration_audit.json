@@ -1,0 +1,34 @@
+{
+  "status": "PASS",
+  "generated_at": "2026-08-02T20:29:38.690428+00:00",
+  "checks": {
+    "current_station_crime_rows": 51832,
+    "current_stations": 1178,
+    "current_categories": 44,
+    "current_duplicate_station_category_keys": 0,
+    "current_null_incidents": 0,
+    "current_negative_incidents": 0,
+    "pilot_stations_in_current": 9,
+    "history_rows": 19609,
+    "history_stations": 1199,
+    "history_years": 17,
+    "history_duplicate_station_year_keys": 0,
+    "history_source_negative_corrections": 1,
+    "pilot_stations_in_history": 9,
+    "pilot_stations_with_17_years": 9,
+    "annual_long_rows": 274248,
+    "annual_long_duplicate_keys": 0,
+    "annual_long_source_negative_corrections": 2,
+    "runtime_hotspots": 14,
+    "runtime_current_year_hotspots": 14,
+    "runtime_historical_context_hotspots": 14
+  },
+  "failed_checks": [],
+  "source_hashes": {
+    "saps_2025_2026_by_station_crime.csv": "9fdb921bb00a611da4e3b61166fe46abda4c9d452428cdf9e04616c38856c259",
+    "saps_history_2008_2025.csv": "314284ffa632fda043e079639f83716e31a1d9e7e740b46ca0a7f3256793d84c",
+    "saps_annual_2019_2025_by_station_crime.csv": "44a9854d80cc609972adcecd2826472dcee63c127dc65526dc7f1300ff58cb4a",
+    "hotspots.json": "bbf58571530de5499d7178db9769f8c59e4db021b8d7413273aee5e54f8bc016"
+  },
+  "correction_policy": "Official negative corrections remain in immutable prepared source files; operational and training feature layers clip counts at zero and record the count."
+}

@@ -1,0 +1,1 @@
+{"$schema":"https://json-schema.org/draft/2020-12/schema","title":"Sentinel Camera Event","type":"object","required":["event_id","camera_id","timestamp","location","camera_trust_score"]}

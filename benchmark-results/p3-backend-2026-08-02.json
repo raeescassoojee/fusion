@@ -1,0 +1,61 @@
+{
+  "date": "2026-08-02",
+  "scope": "P3 backend, SAPS integration and reproducible training",
+  "automated_tests": {
+    "operations": "43 passed",
+    "camera_and_training": "20 passed",
+    "total": "63 passed"
+  },
+  "saps_integration": {
+    "status": "PASS",
+    "current_2025_2026_station_category_rows": 51832,
+    "current_stations": 1178,
+    "current_categories": 44,
+    "historical_station_year_rows": 19609,
+    "historical_years": 17,
+    "pilot_stations_current": "9/9",
+    "pilot_stations_with_full_history": "9/9",
+    "runtime_hotspots_current_layer": "14/14",
+    "duplicate_current_keys": 0,
+    "null_current_incident_counts": 0,
+    "negative_current_incident_counts": 0
+  },
+  "hotspot_forecast": {
+    "split": "chronological 78.8% train / 21.2% untouched test",
+    "train_rows": 12661,
+    "test_rows": 3399,
+    "test_mae": 36.947,
+    "last_year_baseline_mae": 38.4116,
+    "mae_improvement_percent": 3.813,
+    "test_rmse": 69.1902,
+    "test_r2": 0.96204,
+    "independent_2025_2026_stations": 1124,
+    "independent_2025_2026_mae": 32.1633
+  },
+  "claims_severity": {
+    "split": "stratified 80% train / 20% untouched test",
+    "train_rows": 12504,
+    "test_rows": 3127,
+    "roc_auc": 0.72997,
+    "f1": 0.521886,
+    "balanced_accuracy": 0.680532,
+    "purpose": "high-value triage; not fraud prediction"
+  },
+  "evidence_passport": {
+    "api_smoke_test": "PASS",
+    "integrity_algorithm": "SHA-256",
+    "canonical_digest_length": 64,
+    "raw_biometric_template_returned": false,
+    "human_review_required": true,
+    "retention_enforcement": "DEMO_METADATA_ONLY"
+  },
+  "latency_banner": {
+    "status": "PASS",
+    "values": "real latest/p50/p95 samples only",
+    "poll_interval_seconds": 2,
+    "seeded_values": false,
+    "client_metric_whitelist_test": "PASS"
+  },
+  "camera_reference": "benchmark-results/p0-local-2026-08-02.json",
+  "caveat": "Camera latency must be rerun on the finals laptop and physical webcams; the P3 data/model benchmarks are reproducible from bundled artifacts."
+}

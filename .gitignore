@@ -1,0 +1,168 @@
+# =========================
+# Python
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+
+# PyInstaller
+*.spec
+
+# =========================
+# IDEs / Editors
+# =========================
+.vscode/
+.idea/
+*.code-workspace
+
+# =========================
+# OS files
+# =========================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# =========================
+# Logs
+# =========================
+*.log
+logs/
+*.out
+*.err
+
+# =========================
+# Test / coverage
+# =========================
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# =========================
+# Runtime / temp
+# =========================
+tmp/
+temp/
+*.tmp
+*.bak
+*.swp
+
+# =========================
+# Databases (local only)
+# =========================
+*.sqlite3
+*.db
+*.db-journal
+
+# Keep schema migrations if you add them later
+!migrations/
+
+# =========================
+# Demo / generated outputs
+# =========================
+demo-output/
+integration-output/
+deliverables/generated/
+exports/
+captures/
+recordings/
+screenshots/
+
+# =========================
+# Media generated during demos
+# =========================
+*.avi
+*.mp4
+*.mov
+*.mkv
+
+# Keep source media if needed
+!media/
+
+# =========================
+# Machine Learning models
+# =========================
+models/**/*.pt
+models/**/*.pth
+models/**/*.onnx
+models/**/*.engine
+models/**/*.bin
+models/**/*.ckpt
+models/**/*.tflite
+models/**/*.pb
+
+# Keep a placeholder if you want the folder in git
+!models/.gitkeep
+
+# =========================
+# OCR / Paddle / Torch caches
+# =========================
+.paddleocr/
+.paddlehub/
+torch_cache/
+.cache/
+~/.cache/
+
+# =========================
+# AWS local configuration
+# =========================
+aws.local.ps1
+*.pem
+*.key
+*.crt
+.aws/
+
+# Keep examples
+!aws.local.ps1.example
+
+# =========================
+# Environment variables / secrets
+# =========================
+.env
+.env.*
+!.env.example
+
+# =========================
+# Docker
+# =========================
+docker-data/
+*.tar
+
+# =========================
+# Node (if frontend is added later)
+# =========================
+node_modules/
+.next/
+dist-web/
+
+# =========================
+# Jupyter
+# =========================
+.ipynb_checkpoints/
+
+# =========================
+# Keep important docs
+# =========================
+!README.md
+!README_SENTINEL_MESH.md
+!START_HERE.md
+!RUNBOOK.md
+!AWS_QUICKSTART.md
+!LIVE_FACE_CAMERA_DEMO.md

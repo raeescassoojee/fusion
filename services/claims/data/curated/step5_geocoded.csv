@@ -1,0 +1,15 @@
+SUBURB_CLEAN,METRO,lat,lon,matched_address,needs_review
+SOMERSET WEST,Cape Town,-34.0822195,18.8489342,"Somerset West, City of Cape Town, Western Cape, South Africa",True
+RONDEBOSCH,Cape Town,-33.9680556,18.4877778,"Rondebosch, Cape Town, City of Cape Town, Western Cape, 7700, South Africa",True
+CAPE TOWN CITY CENTRE,Cape Town,-33.9252902,18.4185215,"National Library of South Africa (Cape Town Campus), 5, Queen Victoria Street, Cape Town Ward 115, Cape Town, City of Cape Town, Western Cape, 8000, South Africa",True
+CLAREMONT,Cape Town,-33.9847222,18.4625,"Claremont, Cape Town, City of Cape Town, Western Cape, 7708, South Africa",True
+SEA POINT,Cape Town,-33.9172222,18.3922222,"Sea Point, Cape Town, City of Cape Town, Western Cape, South Africa",True
+NEWLANDS,Cape Town,-33.9742832,18.4572951,"Newlands, Cape Town, City of Cape Town, Western Cape, South Africa",True
+TABLE VIEW,Cape Town,-33.8236111,18.4902778,"Table View, Cape Town, City of Cape Town, Western Cape, 7439, South Africa",True
+BRYANSTON,Gauteng,-26.0513889,28.0280556,"Bryanston, Randburg, City of Johannesburg Metropolitan Municipality, Gauteng, South Africa",True
+FOURWAYS,Gauteng,-26.004472,28.0042447,"Fourways, Johannesburg Ward 94, Randburg, City of Johannesburg Metropolitan Municipality, Gauteng, 2055, South Africa",True
+BEDFORDVIEW,Gauteng,-26.1763889,28.1425,"Bedfordview, Ekurhuleni Ward 20, City of Ekurhuleni Metropolitan Municipality, Gauteng, 2013, South Africa",True
+GARSFONTEIN,Gauteng,-25.7944444,28.3,"Garsfontein, Tshwane Ward 44, Pretoria, City of Tshwane Metropolitan Municipality, Gauteng, 0042, South Africa",True
+WATERKLOOF RIDGE,Gauteng,-25.7872222,28.2388889,"Waterkloof Ridge, Tshwane Ward 42, Pretoria, City of Tshwane Metropolitan Municipality, Gauteng, 0181, South Africa",True
+MENLO PARK,Gauteng,-25.7697222,28.2555556,"Menlo Park, Tshwane Ward 82, Pretoria, City of Tshwane Metropolitan Municipality, Gauteng, 0049, South Africa",True
+CENTURION CENTRAL,Gauteng,-25.836389,28.180278,"Centurion, City of Tshwane Metropolitan Municipality, Gauteng, 0246, South Africa",True

@@ -1,0 +1,8 @@
+# Copy this file to aws.local.ps1 only when you prefer manual configuration.
+# configure_aws.ps1 generates it automatically and creates a random plate salt.
+$env:AWS_PROFILE = "sentinel-dev"
+$env:AWS_REGION = "af-south-1"
+$env:SENTINEL_EVIDENCE_BUCKET = "sentinel-mesh-evidence-YOUR-ACCOUNT-af-south-1"
+$env:SENTINEL_PLATE_SALT = "REPLACE-WITH-A-LONG-RANDOM-SECRET"
+$env:SENTINEL_AUTO_PUBLISH_AWS = "1"
+Remove-Item Env:SENTINEL_FORCE_LOCAL -ErrorAction SilentlyContinue

@@ -1,0 +1,125 @@
+{
+  "groups": [
+    {
+      "id": "lakefield",
+      "name": "Lakefield Community",
+      "metro": "Gauteng",
+      "visibility": "public"
+    },
+    {
+      "id": "benoni",
+      "name": "Benoni Community",
+      "metro": "Gauteng",
+      "visibility": "public"
+    },
+    {
+      "id": "rondebosch",
+      "name": "Rondebosch Community",
+      "metro": "Cape Town",
+      "visibility": "public"
+    },
+    {
+      "id": "somerset-west",
+      "name": "Somerset West Community",
+      "metro": "Cape Town",
+      "visibility": "public"
+    },
+    {
+      "id": "bryanston",
+      "name": "Bryanston Community",
+      "metro": "Gauteng",
+      "visibility": "public"
+    },
+    {
+      "id": "newlands",
+      "name": "Newlands Community",
+      "metro": "Cape Town",
+      "visibility": "public"
+    },
+    {
+      "id": "sea-point",
+      "name": "Sea Point Community",
+      "metro": "Cape Town",
+      "visibility": "public"
+    },
+    {
+      "id": "cape-town-city-centre",
+      "name": "Cape Town City Centre Community",
+      "metro": "Cape Town",
+      "visibility": "public"
+    },
+    {
+      "id": "garsfontein",
+      "name": "Garsfontein Community",
+      "metro": "Gauteng",
+      "visibility": "public"
+    },
+    {
+      "id": "claremont",
+      "name": "Claremont Community",
+      "metro": "Cape Town",
+      "visibility": "public"
+    },
+    {
+      "id": "fourways",
+      "name": "Fourways Community",
+      "metro": "Gauteng",
+      "visibility": "public"
+    },
+    {
+      "id": "bedfordview",
+      "name": "Bedfordview Community",
+      "metro": "Gauteng",
+      "visibility": "public"
+    },
+    {
+      "id": "waterkloof-ridge",
+      "name": "Waterkloof Ridge Community",
+      "metro": "Gauteng",
+      "visibility": "public"
+    },
+    {
+      "id": "menlo-park",
+      "name": "Menlo Park Community",
+      "metro": "Gauteng",
+      "visibility": "public"
+    },
+    {
+      "id": "table-view",
+      "name": "Table View Community",
+      "metro": "Cape Town",
+      "visibility": "public"
+    },
+    {
+      "id": "centurion-central",
+      "name": "Centurion Central Community",
+      "metro": "Gauteng",
+      "visibility": "public"
+    }
+  ],
+  "messages": [
+    {
+      "id": "seed-1",
+      "groupId": "lakefield",
+      "kind": "chat",
+      "authorId": "system",
+      "author": "MzansiMesh",
+      "role": "Staff",
+      "text": "Community channel ready. Share verified events and avoid naming or profiling individuals.",
+      "ts": 1784993000000
+    },
+    {
+      "id": "seed-2",
+      "groupId": "lakefield",
+      "kind": "incident",
+      "authorId": "system",
+      "author": "MzansiMesh",
+      "role": "Staff",
+      "text": "Demo alert: unfamiliar visitor detected. A resident review is required before escalation.",
+      "peril": "Suspicious Activity",
+      "location": "Lakefield",
+      "ts": 1784993200000
+    }
+  ],
+  "memberships": {}
+}

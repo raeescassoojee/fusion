@@ -1,0 +1,652 @@
+Incident,PERIL,SUBURB,ITEM_TYPE,VEHICLE_MAKE,VEHICLE_MODEL,VEHICLE_YEAR,INCIDENT_DATE_TIME,CLAIM_AMOUNT,ITEM_CATEGORY,ITEM_PERIL_DESCR,SUBURB_RAW,SUBURB_CLEAN,amount_valid,time_reliable,quarantine_reason
+INC-013,Theft,,Vehicle,HYUNDAI,ATOS 1.1 MOTION-2019-,2020.0,2026-06-21 18:00:00,2500.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-024,Hijack,,Vehicle,BMW,X3 xDRIVE 20d M-SPORT (G01)-2021-,2023.0,2026-06-17 09:15:00,12747.67,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-033,Hijack,,Vehicle,DATSUN,GO 1.2 LUX-2018-2023,2018.0,2026-06-13 22:00:00,123420.44,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-060,Theft,,Vehicle,VOLKSWAGEN,POLO 1.0 TSI LIFE DSG-2022-,2024.0,2026-06-05 20:32:00,427694.59,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-149,Theft,,Contents,,,,2026-05-19 00:00:00,28576.0,Home contents - Theft,Theft,,,True,False,missing_suburb
+INC-156,Theft,,Contents,,,,2026-05-16 15:00:00,37449.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-201,Theft,,Contents,,,,2026-05-08 20:31:00,59485.1,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-217,Theft,,Contents,,,,2026-05-05 19:54:00,16999.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-236,Theft,,Vehicle,TOYOTA,HILUX 2.8 GD-6 GR-S 4X4 A/T P/U D/C-2022-,2023.0,2026-05-02 00:00:00,13629.0,Motor Vehicle - Theft,Theft,,,True,False,missing_suburb
+INC-237,Hijack,,Contents,,,,2026-05-01 17:00:00,35910.8,Home contents - Theft,Hijack,,,True,True,missing_suburb
+INC-268,Theft,,Vehicle,TOYOTA,HILUX 2.8 GD-6 RB LEGEND 55 4X4 A/T P/U E/CAB-2025-,2025.0,2026-04-27 14:00:00,16190.06,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-290,Theft,,Vehicle,BMW,X3 xDRIVE M40i (G01)-2017-2022,2020.0,2026-04-20 12:00:00,9244.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-373,Stolen and recovered,,Vehicle,NISSAN,NAVARA 2.5DDTI PRO-4X WARRIOR 4X4 A/T D/C P/U-2025-,2025.0,2026-04-04 09:41:00,148120.2,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-398,Theft,,Vehicle,SUZUKI,JIMNY 1.5 GLX A/T-2018-,2021.0,2026-03-31 19:27:00,12304.68,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-403,Theft,,Vehicle,TOYOTA,HILUX 2.8 GD-6 RB LEGEND 4X4 A/T P/U D/C-2020-,2023.0,2026-03-31 08:45:00,740341.5,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-407,Theft,,Vehicle,TOYOTA,LANDCRUISER 300 V6 3.5T GR-S-2025-,2025.0,2026-03-30 12:00:00,1572.28,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-427,Theft,,Contents,,,,2026-03-27 00:00:00,26249.0,Home contents - Theft,Theft,,,True,False,missing_suburb
+INC-445,Theft,,Contents,,,,2026-03-25 01:02:00,1250.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-446,Theft,,Contents,,,,2026-03-25 00:00:00,19000.0,Home contents - Theft,Theft,,,True,False,missing_suburb
+INC-449,Theft,,Contents,,,,2026-03-23 15:00:00,28599.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-490,Theft,,Contents,,,,2026-03-17 10:30:00,366.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-534,Theft,,Vehicle,VOLKSWAGEN,POLO 1.6 COMFORTLINE-2005-2010,2008.0,2026-03-10 10:54:00,30377.84,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-550,Theft,,Vehicle,HONDA,BR-V 1.5 ELEGANCE-2016-,2020.0,2026-03-07 00:00:00,22164.25,Motor Vehicle - Theft,Theft,,,True,False,missing_suburb
+INC-581,Burglary,,Contents,,,,2026-02-28 15:50:00,90512.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-624,Theft,,Vehicle,TOYOTA,FORTUNER 2.8GD-6 4X4 A/T-2016-2020,2018.0,2026-02-21 11:36:00,504045.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-674,Theft,,Vehicle,TOYOTA,HILUX 2.8 GD-6 RAIDER 4X4 A/T P/U D/C-2020-,2025.0,2026-02-13 06:00:00,774501.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-685,Armed Robbery,,Contents,,,,2026-02-11 13:00:00,3250.0,,Armed Robbery,,,True,True,missing_suburb
+INC-724,Hijack,,Vehicle,TOYOTA,RUMION 1.5 SX-2021-,2024.0,2026-02-04 23:45:00,315172.0,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-737,Theft,,Contents,,,,2026-02-03 18:00:00,772.59,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-755,Theft,,Contents,,,,2026-02-01 00:00:00,25885.0,Home contents - Theft,Theft,,,True,False,missing_suburb
+INC-780,Theft,,Contents,,,,2026-01-28 09:00:00,44618.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-801,Theft,,Vehicle,MERCEDES-BENZ,C200 AMG COUPE A/T-2016-2018,2016.0,2026-01-25 00:00:00,10359.0,Motor Vehicle - Theft,Theft,,,True,False,missing_suburb
+INC-826,Hijack,,Vehicle,FORD,RANGER 3.0 V6 BI TURBO ECOBOOST RAPTOR 4X4 A/T-2023-,2024.0,2026-01-21 12:00:00,1070500.0,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-869,Theft,,Contents,,,,2026-01-11 19:00:00,1545.19,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-884,Theft,,Vehicle,TOYOTA,RAV4 2.0 GX-R CVT AWD-2019-2023,2019.0,2026-01-09 15:10:00,17178.67,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-885,Theft,,Vehicle,NISSAN,NAVARA 2.5DDTI PRO-4X 4X4 A/T D/C P/U-2021-,2023.0,2026-01-09 15:10:00,123716.41,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-887,Theft,,Vehicle,RENAULT,KWID 1.0 DYNAMIQUE / ZEN / TECHNO 5DR-2019-,2024.0,2026-01-09 12:30:00,153338.36,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-924,Theft,,Vehicle,VOLKSWAGEN,POLO 2.0 GTI DSG (147KW)-2017-2022,2020.0,2026-01-01 11:00:00,1750.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-927,Theft,,Vehicle,FORD,FIESTA 1.4 AMBIENTE 5 Dr-2013-2020,2017.0,2025-12-31 21:00:00,147200.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-1000,Theft,,Vehicle,RENAULT,KWID 1.0 DYNAMIQUE / ZEN / TECHNO 5DR AMT-2019-,2022.0,2025-12-17 18:00:00,143749.97,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-1031,Theft,,Vehicle,NISSAN,NAVARA 2.5DDTI PRO-4X 4X4 A/T D/C P/U-2021-,2025.0,2025-12-13 10:03:00,864733.95,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-1058,Theft,,Contents,,,,2025-12-09 00:00:00,29928.0,Home contents - Theft,Theft,,,True,False,missing_suburb
+INC-1064,Theft,,Vehicle,TOYOTA,URBAN CRUISER 1.5 XR A/T-2023-,2024.0,2025-12-07 20:00:00,84258.12,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-1124,Theft,,Vehicle,NISSAN,PATROL 5.6 V8 LE PREMIUM-2020-,2021.0,2025-11-30 12:00:00,1141776.65,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-1127,Theft,,Contents,,,,2025-11-30 00:00:00,29995.0,Home contents - Theft,Theft,,,True,False,missing_suburb
+INC-1131,Theft,,Vehicle,VOLKSWAGEN,POLO 2.0 GTI DSG (147KW)-2017-2022,2019.0,2025-11-29 09:00:00,63056.2,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-1147,Theft,,Vehicle,TOYOTA,HILUX 3.0 D-4D RAIDER R/B P/U D/C-2011-2014,2012.0,2025-11-26 17:31:00,318516.65,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-1165,Theft,,Vehicle,NISSAN,NAVARA 2.5DDTI PRO-2X A/T D/C P/U-2021-,2021.0,2025-11-24 18:00:00,530092.95,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-1196,Theft,,Vehicle,HONDA,BR-V 1.5 ELEGANCE-2016-,2017.0,2025-11-16 15:00:00,2118.23,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-1216,Theft,,Contents,,,,2025-11-15 00:00:00,7097.0,Home contents - Theft,Theft,,,True,False,missing_suburb
+INC-1218,Theft,,Contents,,,,2025-11-14 20:30:00,29179.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-1230,Theft,,Vehicle,JEEP,WRANGLER 2.8 CRD UNLTD SAHARA A/T-2007-2022,2011.0,2025-11-12 13:58:00,36911.18,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-1234,Hijack,,Vehicle,RENAULT,KWID 1.0 DYNAMIQUE / ZEN / TECHNO 5DR-2019-,2022.0,2025-11-11 20:15:00,154466.83,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-1256,Theft,,Vehicle,TOYOTA,FORTUNER 2.8GD-6 VX A/T-2020-,2022.0,2025-11-08 10:30:00,644440.25,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-1267,Theft,,Contents,,,,2025-11-06 18:00:00,15475.27,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-1269,Theft,,Contents,,,,2025-11-06 16:00:00,3705.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-1290,Theft,,Contents,,,,2025-11-02 05:00:00,112179.25,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-1304,Armed Robbery,,Contents,,,,2025-10-31 21:00:00,1498.74,,Armed Robbery,,,True,True,missing_suburb
+INC-1367,Theft,,Contents,,,,2025-10-21 10:11:00,10999.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-1377,Theft,,Vehicle,TOYOTA,COROLLA CROSS 1.8 XS-2021-,2022.0,2025-10-19 09:30:00,334712.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-1380,Theft,,Vehicle,TOYOTA,FORTUNER 2.4GD-6 4X4 A/T-2023-,2023.0,2025-10-18 19:40:00,282950.47,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-1397,Theft,,Contents,,,,2025-10-16 11:00:00,27999.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-1420,Armed Robbery,,Contents,,,,2025-10-12 03:00:00,17940.0,,Armed Robbery,,,True,True,missing_suburb
+INC-1427,Theft,,Vehicle,FORD,RANGER RAPTOR SE 2.0D BI-TURBO 4X4 A/T P/U D/C-2021-,2022.0,2025-10-11 10:30:00,32053.72,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-1442,Theft,,Vehicle,NISSAN,NP200 1.6  P/U S/C-2008-,2023.0,2025-10-09 17:20:00,5288.04,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-1478,Theft,,Contents,,,,2025-10-03 01:00:00,7616.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-1507,Hijack,,Vehicle,MERCEDES-BENZ,AMG C43 4MATIC-2018-2022,2021.0,2025-09-27 19:32:00,852475.39,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-1513,Theft,,Vehicle,TOYOTA,FORTUNER 3.0D-4D R/B 4X4-2009-2011,2010.0,2025-09-27 08:49:00,257270.07,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-1580,Theft,,Contents,,,,2025-09-17 19:30:00,30698.64,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-1591,Hijack,,Vehicle,MINI,COOPER S CONVERTIBLE A/T (F57)-2015-2018,2016.0,2025-09-14 23:25:00,278099.33,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-1597,Theft,,Vehicle,TOYOTA,RAV4 2.0 VX CVT-2022-,2022.0,2025-09-13 17:30:00,550547.87,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-1598,Theft,,Contents,,,,2025-09-13 17:30:00,1287.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-1679,Theft,,Contents,,,,2025-08-30 22:00:00,23249.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-1682,Theft,,Contents,,,,2025-08-30 19:30:00,18944.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-1727,Theft,,Contents,,,,2025-08-23 19:00:00,31540.24,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-1746,Theft,,Contents,,,,2025-08-21 10:00:00,7249.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-1751,Theft,,Contents,,,,2025-08-21 00:00:00,13999.0,Home contents - Theft,Theft,,,True,False,missing_suburb
+INC-1800,Theft,,Vehicle,AUDI,Q3 2.0 TDI (103KW)-2012-2015,2013.0,2025-08-10 21:00:00,4858.95,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-1816,Theft,,Vehicle,VOLVO,XC40 T3 MOMENTUM-2018-2021,2020.0,2025-08-09 17:30:00,1750.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-1854,Theft,,Vehicle,TOYOTA,STARLET 1.5 Xs-2022-,2024.0,2025-08-04 14:30:00,2500.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-1855,Theft,,Contents,,,,2025-08-04 14:30:00,2289.93,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-1895,Theft,,Contents,,,,2025-07-27 11:00:00,52593.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-1914,Theft,,Contents,,,,2025-07-23 14:30:00,18334.4,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-1927,Theft,,Vehicle,SUZUKI,SWIFT 1.2 GA-2018-,2021.0,2025-07-20 11:20:00,1520.58,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-1954,Theft,,Vehicle,RENAULT,KWID 1.0 DYNAMIQUE 5DR-2016-2020,2018.0,2025-07-17 12:00:00,5035.85,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-1960,Theft,,Contents,,,,2025-07-15 11:00:00,2500.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-1971,Theft,,Vehicle,TOYOTA,COROLLA CROSS 1.8 XR HYBRID-2021-,2024.0,2025-07-13 15:20:00,236551.01,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-1976,Hijack,,Vehicle,TOYOTA,HILUX 2.4 GD-6 RB RAIDER P/U D/C-2020-,2024.0,2025-07-12 22:12:00,292651.89,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-1992,Theft,,Vehicle,TOYOTA,URBAN CRUISER 1.5XR A/T-2021-,2025.0,2025-07-10 04:15:00,35695.17,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-1997,Hijack,,Vehicle,MERCEDES-BENZ,C200 A/T (W206)-2021-,2024.0,2025-07-09 13:11:00,1498.74,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-1998,Remote jamming,,Contents,,,,2025-07-09 09:30:00,568.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-2001,Theft,,Vehicle,BMW,X3 xDRIVE 20d M SPORT (G45)-2024-,2025.0,2025-07-08 11:30:00,26027.59,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-2004,Theft,,Contents,,,,2025-07-07 00:00:00,31500.0,Home contents - Theft,Theft,,,True,False,missing_suburb
+INC-2014,Theft,,Contents,,,,2025-07-05 18:45:00,8565.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-2041,Attempted Theft,,Contents,,,,2025-06-29 11:06:00,62417.99,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-2081,Theft,,Vehicle,MERCEDES-BENZ,B 200 BE-2012-2015,2012.0,2025-06-21 18:30:00,174338.06,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-2095,Theft,,Vehicle,TOYOTA,PRADO TX 3.0 TDi A/T-2013-2017,2015.0,2025-06-20 10:35:00,497464.23,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-2130,Theft,,Vehicle,VOLKSWAGEN,CADDY4 CREWBUS 1.6i-2015-2020,2018.0,2025-06-11 22:00:00,17106.55,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-2131,Theft,,Vehicle,MAHINDRA,PIK UP 2.2 mHAWK S4 P/U S/C-2017-,2024.0,2025-06-11 11:30:00,293056.21,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-2154,Theft,,Vehicle,FORD,RANGER 3.0D V6 WILDTRAK AWD A/T D/C P/U-2022-,2024.0,2025-06-07 06:23:00,1520.58,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-2194,Hijack,,Vehicle,LAND ROVER,FREELANDER II 2.2 SD4 SE A/T-2010-2012,2010.0,2025-05-31 07:15:00,41480.46,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-2195,Theft,,Contents,,,,2025-05-31 02:30:00,49449.8,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-2260,Theft,,Vehicle,TOYOTA,LAND CRUISER 79 4.5D P/U D/C-2013-,2016.0,2025-05-20 14:00:00,8567.5,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-2266,Theft,,Contents,,,,2025-05-19 08:00:00,89928.95,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-2320,Theft,,Vehicle,MERCEDES-BENZ,V300d EXCLUSIVE-2020-,2021.0,2025-05-12 13:00:00,4411.4,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-2343,Theft,,Vehicle,MITSUBISHI,TRITON 2.4 Di-DC 4X4 A/T P/U D/C-2019-,2022.0,2025-05-08 10:16:00,21169.6,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-2360,Hijack,,Vehicle,PORSCHE,CAYENNE S TIPTRONIC-2003-2007,2006.0,2025-05-05 00:17:00,229385.5,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-2376,Theft,,Vehicle,TOYOTA,PRADO VX 3.0 TDi A/T-2013-2017,2014.0,2025-05-02 18:00:00,242108.24,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-2400,Stolen and recovered,,Contents,,,,2025-04-30 07:22:00,93163.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-2416,Theft,,Vehicle,TOYOTA,COROLLA CROSS 1.8 XR HYBRID-2021-,2024.0,2025-04-27 09:00:00,486825.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-2417,Theft,,Contents,,,,2025-04-27 09:00:00,3703.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-2476,Theft,,Vehicle,SUZUKI,JIMNY 1.3-2008-2018,2015.0,2025-04-19 19:20:00,1520.58,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-2489,Theft,,Contents,,,,2025-04-18 05:00:00,78125.7,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-2625,Theft,,Vehicle,FORD,RANGER 2.0D XLT A/T P/U D/C-2019-,2022.0,2025-03-30 22:00:00,465960.76,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-2663,Theft,,Vehicle,HONDA,BRIO 1.2 COMFORT 5DR A/T-2012-2020,2019.0,2025-03-25 12:00:00,2500.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-2686,Theft,,Vehicle,FORD,ECOSPORT 1.5TiVCT AMBIENTE-2018-,2020.0,2025-03-22 05:00:00,1750.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-2733,Theft,,Vehicle,TOYOTA,PRADO VX 3.0 TDi A/T-2009-2013,2010.0,2025-03-16 14:00:00,334843.59,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-2743,Theft,,Vehicle,TOYOTA,FORTUNER 3.0D-4D R/B-2009-2011,2010.0,2025-03-14 16:41:00,3444.74,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-2750,Theft,,Vehicle,VOLKSWAGEN,POLO VIVO 1.6 COMFORTLINE TIP (5DR)-2017-,2024.0,2025-03-13 17:55:00,1095.75,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-2789,Theft,,Vehicle,TOYOTA,FORTUNER 2.5D-4D RB-2011-2017,2013.0,2025-03-07 11:00:00,262852.53,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-2793,Theft,,Vehicle,TOYOTA,TAZZ 130-2000-2006,2002.0,2025-03-06 15:40:00,52731.39,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-2808,Theft,,Vehicle,VOLKSWAGEN,POLO GTi 1.4TSi DSG-2011-2014,2014.0,2025-03-03 19:30:00,181381.62,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-2879,Theft,,Vehicle,TOYOTA,COROLLA CROSS 1.8 GR-S-2022-,2024.0,2025-02-23 20:30:00,107582.73,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-2908,Theft,,Vehicle,VOLKSWAGEN,POLO VIVO 1.6 COMFORTLINE TIP (5DR)-2017-,2019.0,2025-02-19 07:53:00,96292.03,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-2924,Theft,,Vehicle,CHEVROLET,UTILITY 1.4 CLUB P/U S/C-2011-2018,2012.0,2025-02-18 08:00:00,12277.18,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-2975,Theft,,Vehicle,VOLKSWAGEN,POLO 1.9 TDi HIGHLINE-2005-2010,2007.0,2025-02-08 13:00:00,54660.89,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-2977,Theft,,Vehicle,TOYOTA,FORTUNER 2.8GD-6 4X4 A/T-2016-2020,2016.0,2025-02-08 11:38:00,107408.06,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-2985,Stolen and recovered,,Contents,,,,2025-02-07 14:00:00,67672.98,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-2990,Theft,,Contents,,,,2025-02-06 16:00:00,1749.9,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-3022,Theft,,Contents,,,,2025-01-31 06:00:00,375.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-3023,Theft,,Vehicle,VOLKSWAGEN,TIGUAN 1.4 TSI COMFORTLINE DSG (110KW)-2016-2022,2017.0,2025-01-31 06:00:00,6716.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-3038,Hijack,,Vehicle,TOYOTA,ETIOS 1.5 Xs/SPRINT-2012-2022,2012.0,2025-01-29 17:34:00,19092.14,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-3068,Theft,,Contents,,,,2025-01-25 22:00:00,24943.94,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-3081,Hijack,,Vehicle,BMW,120i 5DR (F20)-2015-2018,2015.0,2025-01-22 18:39:00,15793.54,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-3107,Theft,,Vehicle,VOLKSWAGEN,BEACH BUGGY 40 KW 550 KG R/V-1970-2011,1989.0,2025-01-18 19:00:00,74123.8,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-3111,Theft,,Contents,,,,2025-01-18 13:00:00,749.36,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-3123,Theft,,Vehicle,MERCEDES-BENZ,C180K AVANTGARDE A/T-2004-2007,2006.0,2025-01-15 17:05:00,3075.1,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-3128,Theft,,Contents,,,,2025-01-15 02:15:00,40998.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-3136,Armed Robbery,,Vehicle,SUZUKI,CELERIO 1.0 GL-2015-2022,2018.0,2025-01-13 23:27:00,58110.04,,Armed Robbery,,,True,True,missing_suburb
+INC-3137,Armed Robbery,,Contents,,,,2025-01-13 23:27:00,29260.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-3147,Theft,,Vehicle,MAZDA,MAZDA2 1.3 ACTIVE 5Dr-2010-2015,2011.0,2025-01-11 15:00:00,5748.55,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-3169,Hijack,,Contents,,,,2025-01-07 21:55:00,27179.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-3170,Hijack,,Vehicle,FORD,RANGER RAPTOR 2.0D BI-TURBO 4X4 A/T P/U D/C-2019-,2019.0,2025-01-07 21:55:00,672631.06,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-3213,Theft,,Contents,,,,2025-01-02 07:00:00,27235.05,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-3219,Theft,,Vehicle,HYUNDAI,H-1 2.5 CRDI A/T/ 2.5 ELITE A/T-2016-2023,2017.0,2025-01-01 10:55:00,40789.32,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-3240,Windscreen/ Motor glass damage,,Contents,,,,2024-12-31 08:30:00,402.9,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-3249,Theft,,Contents,,,,2024-12-29 23:00:00,30749.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-3251,Theft,,Vehicle,TOYOTA,HILUX 2.8 GD-6 RB LEGEND 4X4 P/U E/CAB-2020-,2022.0,2024-12-29 19:13:00,155246.18,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-3253,Theft,,Vehicle,MERCEDES-BENZ,C220d A/T-2018-2022,2019.0,2024-12-29 15:00:00,21263.38,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-3269,Theft,,Contents,,,,2024-12-28 12:38:00,111568.51,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-3317,Theft,,Vehicle,VOLKSWAGEN,MOVE UP! 1.0 3DR-2015-2016,2015.0,2024-12-21 16:30:00,5166.56,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-3328,Theft,,Contents,,,,2024-12-20 17:00:00,17998.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-3360,Theft,,Vehicle,VOLVO,V40 D3 MOMENTUM GEARTRONIC-2016-2020,2017.0,2024-12-17 19:20:00,273130.46,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-3469,Theft,,Vehicle,ISUZU,KB 280 DT LWB P/U S/C-1994-1997,1996.0,2024-12-01 22:00:00,144932.33,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-3473,Theft,,Contents,,,,2024-11-30 14:58:00,117550.1,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-3474,Theft,,Vehicle,TOYOTA,AVANZA 1.5 SX A/T-2019-2023,2019.0,2024-11-30 14:58:00,237031.94,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-3485,Theft,,Vehicle,VOLKSWAGEN,GOLF VII 1.4 TSI COMFORTLINE DSG-2017-2022,2019.0,2024-11-29 22:00:00,151955.29,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-3506,Theft,,Contents,,,,2024-11-27 12:00:00,16250.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-3530,Theft,,Vehicle,TOYOTA,FORTUNER 2.4GD-6 4X4 A/T-2017-2020,2018.0,2024-11-24 10:00:00,193993.41,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-3535,Theft,,Vehicle,HONDA,BR-V 1.5 ELEGANCE CVT-2022-,2022.0,2024-11-23 14:00:00,5620.9,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-3560,Theft,,Vehicle,TOYOTA,FORTUNER 2.8GD-6 4X4 A/T-2020-,2020.0,2024-11-19 19:00:00,59500.59,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-3569,Theft,,Contents,,,,2024-11-18 20:00:00,51962.99,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-3589,Stolen and recovered,,Contents,,,,2024-11-15 21:30:00,3162.5,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-3617,Theft,,Vehicle,BMW,X3 xDRIVE M40i (G01)-2017-2022,2018.0,2024-11-13 00:00:00,7264.27,Motor Vehicle - Theft,Theft,,,True,False,missing_suburb
+INC-3618,Theft,,Vehicle,BMW,M240i A/T (F22)-2016-2022,2019.0,2024-11-13 00:00:00,7324.89,Motor Vehicle - Theft,Theft,,,True,False,missing_suburb
+INC-3621,Hijack,,Vehicle,DODGE,JOURNEY 3.6 V6 R/T A/T-2012-2017,2013.0,2024-11-12 18:15:00,147931.94,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-3685,Hijack,,Vehicle,JEEP,COMPASS 2.0 LTD-2011-2018,2013.0,2024-11-05 22:55:00,139976.53,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-3713,Theft,,Vehicle,TOYOTA,FORTUNER 2.5D-4D RB-2011-2017,2014.0,2024-11-02 08:19:00,278794.56,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-3729,Hijack,,Vehicle,INFINITI,FX/QX70 30d S PREMIUM-2012-2020,2014.0,2024-10-31 22:17:00,889277.89,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-3732,Hijack,,Vehicle,VOLKSWAGEN,POLO VIVO 1.4 COMFORTLINE (5DR)-2017-,2021.0,2024-10-31 15:00:00,108169.18,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-3785,Theft,,Vehicle,CHEVROLET,UTILITY 1.4 S/C P/U-2011-2018,2011.0,2024-10-23 18:00:00,1322.5,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-3818,Theft,,Vehicle,VOLKSWAGEN,POLO VIVO 1.4 TRENDLINE (5DR)-2017-,2018.0,2024-10-20 13:00:00,712.34,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-3833,Theft,,Contents,,,,2024-10-19 11:20:00,18499.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-3885,Theft,,Contents,,,,2024-10-11 05:45:00,82193.96,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-3895,Theft,,Contents,,,,2024-10-09 07:40:00,7585.7,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-3904,Theft,,Contents,,,,2024-10-08 06:30:00,21096.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-3966,Hijack,,Vehicle,VOLKSWAGEN,POLO 1.6 TRENDLINE-2005-2010,2008.0,2024-09-29 00:00:00,79298.94,Motor Vehicle - Theft,Hijack,,,True,False,missing_suburb
+INC-3969,Theft,,Vehicle,TOYOTA,HILUX 2.8 GD-6 RB LEGEND A/T P/U E/CAB-2020-,2022.0,2024-09-28 18:00:00,544650.34,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-3986,Theft,,Vehicle,JEEP,COMPASS 2.0 CVT LTD-2011-2018,2013.0,2024-09-27 07:00:00,9416.08,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-4021,Theft,,Vehicle,NISSAN,X TRAIL 2.5 TEKNA 4X4 CVT 7S-2017-,2019.0,2024-09-22 09:00:00,2500.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-4055,Theft,,Vehicle,NISSAN,NP200 1.6 S (DUAL AIRBAGS) P/U S/C-2011-2020,2019.0,2024-09-17 05:34:00,134565.4,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-4056,Theft,,Contents,,,,2024-09-17 04:30:00,134274.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-4057,Theft,,Vehicle,HONDA,JAZZ 1.5i A/T-2006-2008,2007.0,2024-09-17 04:30:00,62817.23,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-4062,Theft,,Vehicle,VOLKSWAGEN,AMAROK 3.0TDi H-LINE 190KW 4MOT A/T D/C P/U-2020-,2023.0,2024-09-16 14:00:00,29964.33,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-4080,Theft,,Vehicle,NISSAN,TIIDA 1.6 VISIA + 5Dr (H35)-2006-2015,2011.0,2024-09-13 17:30:00,62901.15,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-4089,Hijack,,Vehicle,NISSAN,QASHQAI 1.5 dCi TEKNA-2017-2020,2018.0,2024-09-12 08:45:00,191753.94,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-4110,Theft,,Vehicle,MERCEDES-BENZ,MAYBACH GLS 600 4MATIC-2020-,2023.0,2024-09-10 04:00:00,5289.4,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-4217,Hijack,,Vehicle,VOLKSWAGEN,POLO GTi 1.4TSi DSG-2011-2014,2013.0,2024-08-25 14:43:00,36519.68,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-4292,Hijack,,Vehicle,FORD,RANGER 2.2TDCi XL P/U SUP/CAB-2015-2020,2018.0,2024-08-16 22:42:00,28764.86,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-4299,Theft,,Vehicle,TOYOTA,HILUX 3.0D-4D RAIDER R/B A/T P/U D/C-2011-2014,2013.0,2024-08-16 11:35:00,26938.48,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-4312,Hijack,,Vehicle,FORD,RANGER 2.2TDCI XL P/U D/C-2019-,2022.0,2024-08-13 22:41:00,493546.35,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-4325,Theft,,Vehicle,HYUNDAI,TUCSON 2.0 PREMIUM A/T-2016-2023,2019.0,2024-08-11 12:15:00,3500.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-4424,Theft,,Vehicle,RENAULT,KWID 1.0 CLIMBER 5DR AMT-2019-,2023.0,2024-07-30 15:15:00,20328.17,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-4446,Theft,,Vehicle,TOYOTA,HILUX 2.8 GD-6 RAIDER 4X4 A/T P/U D/C-2016-2020,2019.0,2024-07-27 12:00:00,557413.91,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-4454,Theft,,Vehicle,FORD,EVEREST 3.2 TDCi XLT 4X4 A/T-2015-2020,2016.0,2024-07-26 17:50:00,4444.75,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-4498,Theft,,Vehicle,TOYOTA,FORTUNER 2.8GD-6 VX A/T-2023-,2023.0,2024-07-22 18:56:00,4842.5,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-4531,Hijack,,Vehicle,NISSAN,NAVARA 2.5DDTI PRO-4X 4X4 A/T D/C P/U-2021-,2023.0,2024-07-18 21:00:00,706809.02,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-4567,Hijack,,Vehicle,NISSAN,NP200 1.6  P/U S/C-2008-,2017.0,2024-07-14 02:20:00,131125.65,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-4587,Theft,,Vehicle,NISSAN,X TRAIL 2.0 XE (T32)-2014-2017,2016.0,2024-07-11 04:30:00,58620.07,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-4606,Theft,,Vehicle,FORD,ECOSPORT 1.0 ECOBOOST TITANIUM A/T-2018-,2020.0,2024-07-08 13:00:00,21588.8,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-4622,Theft,,Vehicle,VOLKSWAGEN,POLO VIVO GP 1.4 CONCEPTLINE 5DR-2014-2018,2014.0,2024-07-06 19:00:00,8889.5,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-4649,Theft,,Contents,,,,2024-07-04 12:45:00,8897.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-4686,Theft,,Contents,,,,2024-06-29 23:54:00,14000.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-4691,Theft,,Vehicle,VOLKSWAGEN,T-CROSS 1.0 TSI HIGHLINE DSG-2019-,2021.0,2024-06-29 14:30:00,8469.18,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-4692,Theft,,Vehicle,VOLKSWAGEN,POLO 1.0 TSI HIGHLINE DSG (85KW)-2017-2023,2021.0,2024-06-29 12:00:00,7226.68,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-4698,Theft,,Contents,,,,2024-06-28 17:00:00,8250.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-4739,Theft,,Contents,,,,2024-06-24 07:00:00,16498.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-4765,Theft,,Vehicle,TOYOTA,ETIOS CROSS 1.5 Xs 5Dr-2014-2022,2014.0,2024-06-21 15:00:00,102432.59,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-4821,Burglary,,Contents,,,,2024-06-14 23:45:00,51116.15,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-4857,Theft,,Vehicle,FORD,RANGER 2.0D XLT A/T P/U D/C-2019-,2020.0,2024-06-09 15:00:00,1750.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-4876,Theft,,Vehicle,VOLKSWAGEN,POLO VIVO GP 1.4 TRENDLINE 5DR-2014-2018,2015.0,2024-06-08 06:30:00,72321.01,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-4901,Theft,,Contents,,,,2024-06-06 15:30:00,712.34,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-4924,Theft,,Vehicle,HYUNDAI,GETZ 1.4-2006-2014,2007.0,2024-06-01 22:00:00,2195.67,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-4925,Theft,,Vehicle,TOYOTA,PRADO VX-L 3.0D A/T-2017-2020,2019.0,2024-06-01 21:36:00,107669.47,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-4926,Theft,,Vehicle,VOLKSWAGEN,POLO CLASSIC 1.9 TDi HIGHLINE 96kW-2008-2011,2009.0,2024-06-01 21:36:00,87900.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-4927,Theft,,Vehicle,MAHINDRA,KUV 100 1.2 K6+ NXT-2018-,2018.0,2024-06-01 14:28:00,17738.99,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-4961,Hijack,,Vehicle,BMW,X5 xDRIVE30d  A/T (F15)-2014-2018,2016.0,2024-05-27 13:45:00,2137.01,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-4979,Theft,,Vehicle,CHEVROLET,TRAILBLAZER 2.8 LTZ 4X4 A/T-2012-2017,2012.0,2024-05-24 05:20:00,19536.26,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-5010,Theft,,Contents,,,,2024-05-20 00:00:00,70694.0,Home contents - Theft,Theft,,,True,False,missing_suburb
+INC-5024,Theft,,Contents,,,,2024-05-17 17:00:00,23240.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-5068,Theft,,Vehicle,RENAULT,CLIO V 1.0T INTENS-2022-,2024.0,2024-05-12 03:45:00,39487.25,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-5116,Hijack,,Vehicle,MITSUBISHI,PAJERO SPORT 2.4D 4X4 A/T-2020-,2022.0,2024-05-06 01:30:00,8409.34,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-5119,Theft,,Vehicle,FORD,RANGER 2.2TDCI XL 4X4 A/T P/U D/C-2019-,2019.0,2024-05-05 21:25:00,65599.85,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-5126,Theft,,Vehicle,MINI,MINI ONE 1.6-2011-2015,2011.0,2024-05-05 04:00:00,4444.75,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-5136,Theft,,Vehicle,KIA,SPORTAGE 2.0 A/T-2010-2014,2012.0,2024-05-03 20:53:00,156096.95,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-5149,Theft,,Vehicle,VOLKSWAGEN,T-ROC 1.4 TSI DESIGN TIPTRONIC-2020-2023,2021.0,2024-05-01 18:30:00,445237.01,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-5153,Theft,,Vehicle,TOYOTA,FORTUNER 2.8GD-6 EPIC A/T-2020-2023,2020.0,2024-05-01 07:06:00,151252.61,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-5156,Theft,,Vehicle,LAND ROVER,DEFENDER 110 D240 S (177KW)-2020-,2021.0,2024-05-01 04:00:00,80828.36,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-5167,Theft,,Vehicle,OPEL,CORSA 1.6 SPORT-2002-2007,2006.0,2024-04-30 03:00:00,13172.01,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-5191,Theft,,Vehicle,VOLKSWAGEN,TIGUAN ALLSPACE 2.0 TSI C/LINE 4MOT DSG(132KW)-2018-2023,2019.0,2024-04-27 11:00:00,1448.17,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-5206,Burglary,,Contents,,,,2024-04-26 11:30:00,839176.91,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-5220,Theft,,Vehicle,MERCEDES-BENZ,CLA200d URBAN A/T-2016-2020,2016.0,2024-04-24 12:10:00,2869.41,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-5261,Theft,,Vehicle,FORD,RANGER 2.2TDCi XLS 4X4 A/T P/U SUP/CAB-2016-2020,2018.0,2024-04-20 10:00:00,4519.5,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-5278,Theft,,Vehicle,AUDI,A5 SPORTBACK 2.0 TDI STRONIC (40 TDI)-2017-2020,2018.0,2024-04-18 00:00:00,31117.45,Motor Vehicle - Theft,Theft,,,True,False,missing_suburb
+INC-5312,Hijack,,Vehicle,TOYOTA,HILUX 2.0 VVTi P/U S/C-2011-2016,2015.0,2024-04-13 22:56:00,38672.97,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-5358,Theft,,Vehicle,TOYOTA,FORTUNER 3.0D-4D 4X4-2011-2017,2015.0,2024-04-09 09:00:00,358344.78,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-5417,Theft,,Contents,,,,2024-04-01 21:50:00,10606.7,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-5421,Theft,,Contents,,,,2024-04-01 10:00:00,90250.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-5435,Theft,,Contents,,,,2024-03-31 08:03:00,127431.5,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-5458,Theft,,Vehicle,VOLKSWAGEN,POLO VIVO 1.6 COMFORTLINE TIP (5DR)-2017-,2023.0,2024-03-28 14:14:00,10894.45,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-5466,Theft,,Vehicle,TOYOTA,ETIOS 1.5 Xs/SPRINT-2012-2022,2014.0,2024-03-27 19:02:00,50444.1,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-5467,Theft,,Vehicle,RENAULT,KIGER 1.0 ENERGY ZEN AMT-2021-,2023.0,2024-03-27 19:00:00,7642.92,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-5475,Theft,,Vehicle,TOYOTA,HILUX 2.8 GD-6 RB LEGEND RS 4X4 A/T P/U D/C-2020-,2021.0,2024-03-27 08:30:00,167181.82,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-5496,Theft,,Contents,,,,2024-03-24 18:00:00,5000.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-5504,Theft,,Vehicle,TOYOTA,HILUX 3.0 D-4D RAIDER 4X4 P/U D/C-2011-2014,2011.0,2024-03-24 08:12:00,159010.73,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-5542,Burglary,,Contents,,,,2024-03-20 08:00:00,11049.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-5579,Theft,,Vehicle,CHEVROLET,AVEO 1.6 LS-2008-2016,2013.0,2024-03-16 23:59:00,74220.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-5597,Theft,,Vehicle,TOYOTA,HILUX 2.8 GD-6 RB LEGEND RS 4X4 A/T P/U D/C-2020-,2021.0,2024-03-15 08:55:00,42830.9,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-5646,Hijack,,Vehicle,MAZDA,MAZDA3 1.6 DYNAMIC A/T-2014-2020,2018.0,2024-03-08 22:30:00,167920.6,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-5691,Theft,,Vehicle,TOYOTA,COROLLA 1.6 PROFESSIONAL-2007-2009,2009.0,2024-03-03 15:30:00,44981.73,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-5707,Theft,,Vehicle,MAZDA,MAZDA3 1.6 ORIGINAL-2014-2020,2016.0,2024-03-02 10:20:00,138446.46,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-5742,Theft,,Vehicle,TOYOTA,FORTUNER 3.0D-4D R/B A/T-2011-2017,2015.0,2024-02-28 14:30:00,342092.11,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-5750,Hijack,,Vehicle,HAVAL,JOLION 1.5T CITY-2021-,2023.0,2024-02-27 18:51:00,356038.85,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-5836,Theft,,Contents,,,,2024-02-18 02:00:00,93876.38,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-5907,Burglary,,Contents,,,,2024-02-10 00:30:00,70517.06,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-5911,Hijack,,Vehicle,TOYOTA,FORTUNER 2.8GD-6 R/B A/T-2016-2020,2018.0,2024-02-09 20:00:00,4963.9,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-5912,Hijack,,Vehicle,KIA,RIO 1.2 5DR-2017-2020,2019.0,2024-02-09 19:26:00,31204.36,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-5933,Hijack,,Vehicle,VOLKSWAGEN,POLO 1.6 COMFORTLINE 5DR-2010-2014,2010.0,2024-02-07 16:00:00,112255.0,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-5963,Theft,,Contents,,,,2024-02-03 20:40:00,245073.06,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-6008,Theft,,Contents,,,,2024-01-30 02:00:00,42894.98,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-6055,Theft,,Vehicle,TOYOTA,FORTUNER 3.0D-4D R/B-2011-2017,2014.0,2024-01-25 06:21:00,338760.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-6063,Theft,,Vehicle,HYUNDAI,VENUE 1.0 TGDI MOTION-2022-,2022.0,2024-01-24 20:00:00,14968.9,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-6073,Armed Robbery,,Contents,,,,2024-01-23 18:31:00,105494.3,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-6090,Theft,,Contents,,,,2024-01-21 14:05:00,34852.85,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-6092,Theft,,Vehicle,TOYOTA,FORTUNER 2.8GD-6 VX A/T-2020-,2020.0,2024-01-21 11:08:00,666144.55,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-6133,Theft,,Vehicle,VOLKSWAGEN,POLO 1.0 TSI LIFE DSG-2022-,2023.0,2024-01-18 20:00:00,18087.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-6143,Theft,,Vehicle,VOLKSWAGEN,GOLF VII 1.4 TSI COMFORTLINE DSG-2013-2015,2015.0,2024-01-17 13:20:00,8803.45,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-6176,Hijack,,Vehicle,KIA,SELTOS 1.6 EX A/T-2019-,2023.0,2024-01-13 23:18:00,48152.12,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-6213,Theft,,Contents,,,,2024-01-10 16:00:00,40148.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-6257,Hijack,,Vehicle,FORD,RANGER 2.2TDCi XLT P/U D/C-2015-2020,2017.0,2024-01-06 19:00:00,977.5,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-6259,Theft,,Contents,,,,2024-01-06 18:00:00,17999.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-6281,Theft,,Vehicle,VOLKSWAGEN,POLO VIVO 1.4 TRENDLINE 5Dr-2010-2014,2011.0,2024-01-04 15:00:00,4835.19,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-6328,Theft,,Vehicle,TOYOTA,FORTUNER 3.0D-4D R/B A/T-2009-2011,2010.0,2023-12-31 05:40:00,89443.87,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-6378,Theft,,Contents,,,,2023-12-26 00:00:00,1500.0,Home contents - Theft,Theft,,,True,False,missing_suburb
+INC-6405,Theft,,Contents,,,,2023-12-23 12:00:00,20250.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-6415,Theft,,Vehicle,TOYOTA,ETIOS CROSS 1.5 Xs 5Dr-2014-2022,2017.0,2023-12-22 19:00:00,152511.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-6422,Theft,,Vehicle,MERCEDES-BENZ,GLE 250d 4MATIC-2015-2020,2015.0,2023-12-22 09:00:00,10669.87,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-6467,Theft,,Contents,,,,2023-12-17 08:00:00,35597.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-6491,Theft,,Contents,,,,2023-12-14 20:00:00,155019.42,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-6495,Theft,,Contents,,,,2023-12-14 11:00:00,15021.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-6519,Hijack,,Vehicle,VOLKSWAGEN,JETTA VI 1.2 TSi TRENDLINE-2011-2014,2014.0,2023-12-12 03:35:00,112952.62,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-6523,Theft,,Vehicle,KIA,RIO 1.2 5DR-2011-2018,2014.0,2023-12-11 19:53:00,123290.54,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-6573,Hijack,,Vehicle,CHERY,TIGGO 7 PRO 1.5T DISTINCTION CVT-2022-,2023.0,2023-12-07 07:20:00,517562.42,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-6584,Theft,,Vehicle,FORD,RANGER 3.2TDCi XLT 4X4 A/T P/U D/C-2015-2020,2019.0,2023-12-05 13:25:00,112557.49,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-6585,Theft,,Vehicle,VOLKSWAGEN,TOUAREG 3.0 TDI V6 LUXURY-2018-,2020.0,2023-12-05 13:00:00,5143.77,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-6619,Theft,,Vehicle,FORD,RANGER 2.0D BI-TURBO STORMTRAK 4X4 A/T P/U D/C-2021-,2022.0,2023-12-02 10:00:00,13298.89,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-6646,Theft,,Vehicle,KIA,PICANTO 1.0 STREET-2017-,2023.0,2023-11-30 14:30:00,250611.89,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-6663,Theft,,Vehicle,TOYOTA,HILUX 2.8 GD-6 RB LEGEND RS 4X4 P/U D/C-2020-,2021.0,2023-11-28 14:26:00,928316.35,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-6705,Theft,,Vehicle,TOYOTA,FORTUNER 2.5D-4D RB A/T-2012-2017,2014.0,2023-11-24 17:00:00,11820.35,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-6710,Hijack,,Vehicle,FORD,MUSTANG 2.3 A/T-2019-2022,2021.0,2023-11-24 11:34:00,799400.02,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-6714,Theft,,Contents,,,,2023-11-23 23:00:00,10037.25,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-6728,Theft,,Vehicle,VOLKSWAGEN,POLO CLASSIC 1.6 COMFORTLINE-2005-2011,2006.0,2023-11-22 15:30:00,2000.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-6745,Hijack,,Vehicle,BMW,X6 xDRIVE50i-2009-2012,2011.0,2023-11-19 23:00:00,565702.5,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-6752,Theft,,Vehicle,FORD,RANGER FX4 2.0D 4X4 A/T P/U D/C-2021-,2021.0,2023-11-19 09:00:00,15847.61,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-6754,Theft,,Contents,,,,2023-11-19 01:00:00,30095.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-6763,Theft,,Contents,,,,2023-11-18 14:00:00,390.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-6771,Theft,,Vehicle,LEXUS,RX 450h SE-2019-,2021.0,2023-11-17 17:47:00,91962.05,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-6772,Theft,,Vehicle,TOYOTA,HILUX 3.0 D-4D RAIDER 4X4 P/U D/C-2011-2014,2011.0,2023-11-17 17:00:00,334400.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-6777,Theft,,Vehicle,ISUZU,MU-X 3.0D 4X4 A/T-2018-2022,2018.0,2023-11-17 12:12:00,16123.1,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-6783,Theft,,Vehicle,FORD,RANGER 3.2TDCi 3.2 WILDTRAK 4X4 A/T P/U D/C-2015-2020,2017.0,2023-11-17 00:00:00,2000.0,Motor Vehicle - Theft,Theft,,,True,False,missing_suburb
+INC-6792,Theft,,Vehicle,TOYOTA,HILUX 2.8 GD-6 RB RAIDER A/T P/U D/C-2018-2021,2020.0,2023-11-16 08:05:00,638219.69,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-6814,Theft,,Vehicle,VOLKSWAGEN,POLO VIVO 1.4 TRENDLINE (5DR)-2017-,2018.0,2023-11-14 05:10:00,158877.39,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-6821,Theft,,Vehicle,TOYOTA,PRADO VX 3.0 TDi A/T-2013-2017,2014.0,2023-11-13 16:00:00,470500.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-6846,Theft,,Vehicle,AUDI,A1 SPORTBACK 1.4T FSi SE S-TRONIC (30 TFSi)-2015-2020,2017.0,2023-11-11 15:15:00,4250.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-6879,Theft,,Vehicle,TOYOTA,COROLLA 1.4D PRESTIGE-2017-2022,2019.0,2023-11-08 12:00:00,8931.98,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-6883,Theft,,Vehicle,SUZUKI,CELERIO 1.0 GA-2015-2022,2019.0,2023-11-08 00:00:00,17619.33,Motor Vehicle - Theft,Theft,,,True,False,missing_suburb
+INC-6893,Theft,,Contents,,,,2023-11-06 20:00:00,29999.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-6963,Theft,,Vehicle,ISUZU,D-MAX 300 LX 4X4 A/T D/C P/U-2018-2023,2019.0,2023-10-30 09:00:00,9338.55,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-6967,Theft,,Vehicle,FORD,RANGER 2.0D BI-TURBO WILDTRAK 4X4 A/T P/U D/C-2019-,2021.0,2023-10-29 19:15:00,640949.74,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-7032,Theft,,Vehicle,TOYOTA,RAV4 2.0 VX CVT-2022-,2022.0,2023-10-23 15:40:00,731574.55,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-7058,Theft,,Vehicle,TOYOTA,RUSH 1.5 A/T-2018-2023,2020.0,2023-10-22 00:00:00,19250.0,Motor Vehicle - Theft,Theft,,,True,False,missing_suburb
+INC-7061,Theft,,Contents,,,,2023-10-21 21:00:00,56883.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-7096,Hijack,,Vehicle,NISSAN,X TRAIL 1.6dCi TEKNA 4X4-2017-,2022.0,2023-10-18 23:00:00,547800.0,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-7102,Hijack,,Vehicle,MERCEDES-BENZ,ML 350 BLUETEC-2012-2016,2012.0,2023-10-18 17:30:00,34500.65,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-7105,Theft,,Vehicle,VOLKSWAGEN,POLO VIVO 1.4 TRENDLINE (5DR)-2017-,2023.0,2023-10-18 03:00:00,4134.25,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-7153,Theft,,Vehicle,TOYOTA,HILUX 2.8 GD-6 RB LEGEND 4X4 A/T P/U E/CAB-2020-,2020.0,2023-10-12 20:00:00,553500.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-7157,Armed Robbery,,Contents,,,,2023-10-12 15:00:00,356952.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-7185,Theft,,Contents,,,,2023-10-10 01:15:42,44342.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-7207,Stolen and recovered,,Contents,,,,2023-10-07 08:39:00,221120.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-7245,Theft,,Vehicle,TOYOTA,STARLET 1.5 Xs A/T-2022-,2022.0,2023-10-04 13:20:00,272424.05,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-7331,Theft,,Contents,,,,2023-09-25 12:30:00,1420.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-7336,Theft,,Vehicle,NISSAN,NP200 1.6  A/C SAFETY PACK P/U S/C-2011-,2014.0,2023-09-25 06:00:00,98172.68,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-7347,Theft,,Vehicle,TOYOTA,HILUX 2.8 GD-6 RAIDER 4X4 A/T P/U D/C-2016-2020,2016.0,2023-09-24 12:00:00,420209.15,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-7360,Theft,,Vehicle,TOYOTA,AURIS 180 XS HSD (HYBRID)-2010-2013,2012.0,2023-09-23 09:00:00,3973.25,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-7363,Theft,,Vehicle,TOYOTA,FORTUNER 2.8GD-6 4X4 A/T-2020-,2021.0,2023-09-23 07:20:00,771540.07,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-7391,Hijack,,Vehicle,VOLKSWAGEN,GOLF 8 GTi  2.0 TSI DSG-2021-,2022.0,2023-09-20 22:00:00,828596.49,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-7445,Theft,,Vehicle,HYUNDAI,i10 1.2 GLS A/T-2008-2013,2010.0,2023-09-16 06:31:00,2200.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-7482,Hijack,,Vehicle,MERCEDES-BENZ,C220 BLUETEC-2014-2018,2015.0,2023-09-12 20:30:00,271623.44,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-7484,Theft,,Vehicle,MERCEDES-BENZ,ML 350 BLUETEC-2012-2016,2015.0,2023-09-12 15:00:00,8399.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-7498,Theft,,Contents,,,,2023-09-10 11:00:00,113500.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-7499,Theft,,Vehicle,SUZUKI,S-PRESSO 1.0 GL+-2020-2023,2022.0,2023-09-10 00:00:00,4134.25,Motor Vehicle - Theft,Theft,,,True,False,missing_suburb
+INC-7510,Hijack,,Vehicle,HAVAL,H6 2.0T LUXURY DCT-2021-,2021.0,2023-09-08 21:51:00,208229.8,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-7511,Hijack,,Contents,,,,2023-09-08 21:51:00,13232.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-7546,Theft,,Contents,,,,2023-09-05 00:00:00,17156.0,Home contents - Theft,Theft,,,True,False,missing_suburb
+INC-7558,Theft,,Vehicle,TOYOTA,HILUX 2.8 GD-6 RAIDER 4X4 P/U D/C-2016-2020,2016.0,2023-09-03 17:35:00,481829.27,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-7578,Hijack,,Vehicle,FORD,RANGER 2.2TDCi XLT A/T P/U D/C-2016-2020,2018.0,2023-09-01 22:05:00,143055.28,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-7636,Theft,,Vehicle,TOYOTA,HILUX 3.0 D-4D RAIDER 4X4 P/U D/C-2011-2014,2014.0,2023-08-26 22:30:00,308469.33,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-7654,Stolen and recovered,,Contents,,,,2023-08-25 23:50:00,117717.76,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-7663,Theft,,Vehicle,SUZUKI,BALENO 1.4 GLX 5DR-2016-2023,2021.0,2023-08-25 19:30:00,4134.25,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-7669,Theft,,Vehicle,NISSAN,NP200 1.6  A/C SAFETY PACK P/U S/C-2011-,2019.0,2023-08-25 15:00:00,149163.66,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-7718,Theft,,Vehicle,LAND ROVER,EVOQUE 2.0D HSE 132KW (D180)-2019-,2020.0,2023-08-21 00:00:00,3134.25,Motor Vehicle - Theft,Theft,,,True,False,missing_suburb
+INC-7742,Theft,,Vehicle,VOLKSWAGEN,POLO VIVO 1.4 TRENDLINE-2010-2014,2014.0,2023-08-18 10:00:00,3134.24,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-7794,Theft,,Vehicle,HYUNDAI,GETZ 1.4 HS-2006-2012,2007.0,2023-08-13 00:00:00,4134.25,Motor Vehicle - Theft,Theft,,,True,False,missing_suburb
+INC-7828,Theft,,Vehicle,RENAULT,SANDERO 900T STEPWAY EXPRESSION-2017-2023,2017.0,2023-08-08 09:00:00,4134.25,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-7859,Hijack,,Vehicle,TOYOTA,HILUX 3.0 D-4D RAIDER R/B P/U D/C-2011-2014,2011.0,2023-08-03 17:30:00,58408.01,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-7868,Theft,,Vehicle,ISUZU,D-MAX 250 HO X-RIDER 4X4 D/C P/U-2018-2023,2019.0,2023-08-03 00:00:00,58354.98,Motor Vehicle - Theft,Theft,,,True,False,missing_suburb
+INC-7902,Theft,,Vehicle,FORD,ECOSPORT 1.0 ECOBOOST TREND A/T-2018-,2020.0,2023-07-30 02:00:00,5500.27,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-7905,Theft,,Vehicle,MERCEDES-BENZ,E 250-2013-2016,2013.0,2023-07-29 16:19:00,146679.03,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-7936,Theft,,Vehicle,VOLKSWAGEN,CITI STORM 1.4i-2009-2010,2009.0,2023-07-26 12:05:00,79093.21,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-7943,Theft,,Vehicle,FORD,RANGER FX4 2.0D A/T P/U D/C-2021-,2021.0,2023-07-25 18:00:00,18767.62,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-7950,Theft,,Vehicle,VOLKSWAGEN,T5 KOMBI 1.9 TDI-2004-2010,2006.0,2023-07-24 17:55:00,3200.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-7973,Theft,,Contents,,,,2023-07-22 20:40:00,34136.04,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-8018,Theft,,Vehicle,BMW,320i A/T (F30)-2012-2015,2014.0,2023-07-16 18:10:00,197427.52,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-8072,Theft,,Vehicle,TOYOTA,HILUX 2.4 GD-6 RB SRX P/U D/C-2016-2018,2017.0,2023-07-11 11:30:00,382777.14,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-8074,Hijack,,Vehicle,TOYOTA,LANDCRUISER 200 V8 4.5D VX A/T-2015-2017,2017.0,2023-07-10 20:44:00,825349.16,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-8099,Theft,,Vehicle,TOYOTA,HILUX 2.8 GD-6 RAIDER 4X4 A/T P/U D/C-2020-,2022.0,2023-07-08 13:12:00,846105.99,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-8179,Theft,,Vehicle,TOYOTA,ETIOS 1.5 Xs/SPRINT 5Dr-2012-2022,2014.0,2023-06-30 14:24:00,62453.51,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-8232,Theft,,Vehicle,FORD,FIESTA 1.0 ECOBOOST TREND 5DR-2013-2018,2014.0,2023-06-24 00:00:00,977.5,Motor Vehicle - Theft,Theft,,,True,False,missing_suburb
+INC-8262,Theft,,Vehicle,TOYOTA,FORTUNER 2.4GD-6 R/B-2016-2020,2016.0,2023-06-21 13:04:00,344145.15,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-8274,Theft,,Vehicle,KIA,PICANTO 1.2 X-LINE A/T-2021-,2022.0,2023-06-19 15:40:00,5500.27,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-8320,Hijack,,Vehicle,FORD,RANGER 2.0D XLT B4 DISC 4X4 A/T P/U D/C-2021-,2023.0,2023-06-14 20:15:00,18123.99,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-8403,Theft,,Vehicle,VOLKSWAGEN,POLO 1.0 TSI LIFE DSG-2022-,2022.0,2023-06-05 15:45:00,361400.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-8406,Theft,,Vehicle,NISSAN,MICRA 1.2 VISIA 5DR (D81)-2011-2014,2014.0,2023-06-05 08:35:00,8837.16,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-8435,Theft,,Vehicle,FIAT,500 1.2-2010-2020,2016.0,2023-06-02 17:50:00,4438.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-8439,Theft,,Vehicle,SUZUKI,S-PRESSO 1.0 GL+ AMT-2020-2023,2022.0,2023-06-02 11:29:00,29286.67,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-8446,Theft,,Vehicle,TOYOTA,PRADO VX-L 3.0D A/T-2017-2020,2019.0,2023-06-01 21:56:00,853643.05,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-8482,Theft,,Vehicle,MERCEDES-BENZ,AMG C63 S-2019-2022,2021.0,2023-05-28 23:00:00,4319.6,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-8487,Theft,,Vehicle,FORD,IKON 1.4 TDCi AMBIENTE-2009-2014,2010.0,2023-05-28 14:35:00,63977.5,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-8496,Theft,,Vehicle,BMW,318i A/T (F30)-2015-2020,2018.0,2023-05-27 16:30:00,2000.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-8530,Theft,,Vehicle,VOLKSWAGEN,T-CROSS 1.0 TSI COMFORTLINE DSG-2019-,2023.0,2023-05-24 21:43:00,27948.08,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-8562,Theft,,Contents,,,,2023-05-20 22:00:00,25218.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-8673,Theft,,Vehicle,OPEL,CORSA 1.4 SPORT 3Dr-2007-2009,2007.0,2023-05-08 00:36:00,27462.42,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-8678,Theft,,Vehicle,BMW,520d M SPORT A/T (G30)-2017-2020,2018.0,2023-05-07 17:17:00,11025.23,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-8698,Theft,,Vehicle,VOLKSWAGEN,POLO 1.6 TRENDLINE-2005-2010,2006.0,2023-05-05 21:41:00,11776.39,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-8729,Theft,,Vehicle,TOYOTA,FORTUNER 3.0D-4D R/B-2011-2017,2012.0,2023-05-03 01:59:00,309904.61,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-8840,Theft,,Contents,,,,2023-04-21 23:00:00,4831.96,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-8860,Theft,,Vehicle,NISSAN,NP200 1.6  P/U S/C-2008-,2019.0,2023-04-19 18:19:00,140175.99,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-8868,Theft,,Vehicle,BMW,750i M SPORT (G11)-2016-2020,2017.0,2023-04-19 05:17:00,112379.19,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-8869,Theft,,Contents,,,,2023-04-19 05:17:00,70974.46,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-8896,Theft,,Contents,,,,2023-04-16 04:00:00,52332.48,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-8923,Theft,,Contents,,,,2023-04-14 00:00:00,38596.0,Home contents - Theft,Theft,,,True,False,missing_suburb
+INC-8928,Theft,,Vehicle,FORD,FIESTA 1.4i TREND 5Dr-2008-2013,2013.0,2023-04-13 12:28:00,114085.44,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-8960,Theft,,Vehicle,VOLKSWAGEN,GOLF VII 1.0 TSI COMFORTLINE-2017-2022,2020.0,2023-04-09 12:00:00,1058.58,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-8962,Theft,,Vehicle,TOYOTA,HILUX 2.8 GD-6 RB LEGEND 4X4 A/T P/U D/C-2020-,2022.0,2023-04-09 05:39:00,868383.44,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-8965,Theft,,Contents,,,,2023-04-09 00:00:00,39339.98,Home contents - Theft,Theft,,,True,False,missing_suburb
+INC-8968,Theft,,Contents,,,,2023-04-08 21:59:00,28166.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-8969,Theft,,Vehicle,TOYOTA,COROLLA QUEST 1.6-2014-2020,2015.0,2023-04-08 21:59:00,70235.28,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-8975,Theft,,Vehicle,VOLKSWAGEN,POLO 1.4 TRENDLINE-2005-2010,2008.0,2023-04-08 09:30:00,64249.57,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-8988,Theft,,Vehicle,FORD,RANGER 2.2TDCi XL PLUS 4X4 P/U C/C-2014-2015,2015.0,2023-04-07 00:00:00,1366.02,Motor Vehicle - Theft,Theft,,,True,False,missing_suburb
+INC-9045,Hijack,,Vehicle,VOLKSWAGEN,TIGUAN 2.0 TDi TRK-FLD 4/MOT DSG-2011-2016,2013.0,2023-04-01 18:40:00,238693.99,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-9059,Theft,,Vehicle,TOYOTA,PRADO VX 3.0D A/T-2017-2020,2020.0,2023-03-31 09:00:00,4633.9,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-9066,Theft,,Vehicle,MERCEDES-BENZ,GLE 400d 4MATIC-2019-,2021.0,2023-03-30 11:00:00,1256.5,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-9110,Attempted Hijack,,Vehicle,MINI,COOPER A/T-2010-2014,2014.0,2023-03-25 23:33:00,100523.19,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-9162,Hijack,,Vehicle,HYUNDAI,GETZ 1.3 A/C-2003-2006,2004.0,2023-03-19 04:30:00,21171.7,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-9167,Theft,,Vehicle,LAND ROVER,DISCOVERY SPORT 2.2 SD4 SE-2015-2018,2015.0,2023-03-18 14:00:00,16295.4,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-9212,Burglary,,Contents,,,,2023-03-14 22:03:00,87710.4,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-9283,Theft,,Contents,,,,2023-03-08 05:30:00,36304.97,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-9291,Theft,,Contents,,,,2023-03-07 13:15:00,18725.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-9386,Theft,,Vehicle,NISSAN,NP200 1.6 S P/U S/C-2009-2011,2011.0,2023-02-24 13:41:00,58599.61,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-9498,Theft,,Vehicle,KIA,RIO 1.4 5DR A/T-2011-2018,2016.0,2023-02-12 09:30:00,1300.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-9505,Theft,,Vehicle,TOYOTA,FORTUNER 2.4GD-6 4X4 A/T-2017-2020,2020.0,2023-02-11 13:10:00,529184.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-9529,Theft,,Contents,,,,2023-02-10 01:45:00,10749.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-9540,Armed Robbery,,Contents,,,,2023-02-09 11:50:00,0.0,,Armed Robbery,,,False,True,missing_suburb
+INC-9570,Theft,,Vehicle,HONDA,CRV 2.0 COMFORT-2012-2015,2014.0,2023-02-06 19:00:00,2500.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-9644,Theft,,Vehicle,VOLKSWAGEN,POLO VIVO GP 1.4 TRENDLINE TIP 5DR-2014-2018,2017.0,2023-01-29 23:00:00,8367.71,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-9693,Theft,,Vehicle,VOLKSWAGEN,POLO VIVO 1.6 5Dr-2010-2014,2010.0,2023-01-25 10:40:00,1366.02,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-9706,Theft,,Vehicle,VOLKSWAGEN,POLO 1.6 COMFORTLINE-2005-2010,2007.0,2023-01-24 20:30:00,75050.31,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-9722,Stolen and recovered,,Vehicle,LEXUS,ES 250 EX-2018-,2019.0,2023-01-22 13:30:00,169515.09,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-9734,Theft,,Vehicle,TOYOTA,FORTUNER 2.8GD-6 R/B A/T-2020-,2020.0,2023-01-21 14:25:00,584998.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-9786,Theft,,Contents,,,,2023-01-16 13:00:00,37047.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-9857,Theft,,Vehicle,MERCEDES-BENZ,GLS 400d-2019-,2020.0,2023-01-09 15:45:00,8667.3,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-9923,Theft,,Vehicle,VOLKSWAGEN,POLO 1.0 TSI LIFE DSG-2022-,2022.0,2023-01-03 05:00:00,2992.77,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-9938,Theft,,Contents,,,,2023-01-02 11:12:00,12482.85,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-9958,Theft,,Contents,,,,2022-12-31 18:28:00,14216.65,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-9987,Stolen and recovered,,Contents,,,,2022-12-28 23:31:00,586490.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-9998,Theft,,Contents,,,,2022-12-28 07:30:00,1448.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-10024,Theft,,Vehicle,LAND ROVER,DISCOVERY XS TD5 A/T-2002-2005,2004.0,2022-12-25 09:00:00,16869.16,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-10090,Theft,,Vehicle,MERCEDES-BENZ,E 350 COUPE-2009-2013,2012.0,2022-12-19 20:00:00,2910.11,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-10106,Theft,,Vehicle,BMW,X4 xDRIVE20d M SPORT-2014-2018,2017.0,2022-12-18 04:00:00,42497.96,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-10110,Theft,,Contents,,,,2022-12-17 23:00:00,54072.9,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-10133,Theft,,Vehicle,VOLKSWAGEN,TIGUAN 2.0 TSI HIGHLINE 4MOT DSG-2016-2022,2019.0,2022-12-16 22:09:00,29464.75,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-10138,Theft,,Contents,,,,2022-12-16 07:12:00,24973.24,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-10250,Theft,,Contents,,,,2022-12-05 00:00:00,43979.7,Home contents - Theft,Theft,,,True,False,missing_suburb
+INC-10288,Theft,,Vehicle,VOLKSWAGEN,CITI CHICO 1.4-2002-2006,2004.0,2022-12-02 09:29:00,12748.39,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-10317,Theft,,Vehicle,VOLKSWAGEN,VELOCITI 1.4i-2006-2007,2007.0,2022-11-29 17:20:00,50915.79,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-10356,Theft,,Vehicle,SUZUKI,IGNIS 1.2 GLX-2017-,2022.0,2022-11-26 12:30:00,2000.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-10361,Theft,,Contents,,,,2022-11-26 07:30:00,8750.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-10407,Theft,,Vehicle,TOYOTA,HILUX 2.8 GD-6 RB LEGEND A/T P/U E/CAB-2020-,2021.0,2022-11-22 09:30:00,15257.32,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-10416,Theft,,Contents,,,,2022-11-21 09:00:00,2450.73,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-10601,Theft,,Vehicle,TOYOTA,FORTUNER 3.0D-4D R/B-2011-2017,2012.0,2022-11-04 10:06:00,129389.8,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-10614,Theft,,Vehicle,FORD,TOURNEO CUSTOM 2.2TDCi TREND LWB (92KW)-2013-2018,2015.0,2022-11-03 18:00:00,3816.65,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-10621,Hijack,,Vehicle,HYUNDAI,TUCSON 2.0 PREMIUM A/T-2016-,2016.0,2022-11-02 22:00:00,20382.49,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-10626,Theft,,Vehicle,TOYOTA,HILUX 2.8 GD-6 RAIDER 4X4 P/U D/C-2018-2021,2020.0,2022-11-02 19:25:00,720600.56,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-10662,Stolen and recovered,,Vehicle,MERCEDES-BENZ,GLA 45 AMG-2014-2017,2015.0,2022-10-30 06:52:00,317263.42,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-10695,Theft,,Vehicle,GWM,P-SERIES 2.0TD DLX A/T P/U D/C-2020-,2021.0,2022-10-28 12:00:00,2000.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-10799,Theft,,Vehicle,VOLKSWAGEN,POLO CLASSIC 1.6 TRENDLINE-2005-2011,2006.0,2022-10-19 11:40:00,58868.2,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-10806,Theft,,Vehicle,TOYOTA,YARIS T3 A/C 5Dr-2005-2010,2008.0,2022-10-18 13:29:00,79438.77,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-10846,Theft,,Vehicle,TOYOTA,FORTUNER 2.4GD-6 R/B A/T-2020-,2020.0,2022-10-15 18:21:00,2664.07,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-10956,Theft,,Vehicle,VOLVO,XC60 2.0T POWERSHIFT-2010-2011,2010.0,2022-10-06 02:20:00,6526.66,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-11051,Hijack,,Vehicle,VOLKSWAGEN,POLO 1.0 TSI HIGHLINE (85KW)-2017-2021,2018.0,2022-09-29 11:30:00,227175.74,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-11104,Theft,,Vehicle,BMW,X6 xDRIVE50i-2009-2012,2010.0,2022-09-24 12:30:00,26818.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-11131,Hijack,,Vehicle,KIA,SPORTAGE 2.0 IGNITE-2016-2018,2018.0,2022-09-21 13:50:00,264150.21,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-11133,Theft,,Vehicle,TOYOTA,VERSO 160 SX-2005-2009,2007.0,2022-09-21 09:39:00,98755.58,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-11166,Theft,,Vehicle,TOYOTA,FORTUNER 2.8GD-6 4X4 A/T-2016-2020,2018.0,2022-09-17 17:23:00,512832.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-11167,Hijack,,Vehicle,MERCEDES-BENZ,C200 A/T-2018-,2018.0,2022-09-17 17:08:00,381778.16,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-11198,Theft,,Vehicle,TOYOTA,ETIOS 1.5 Xi 5Dr-2012-2022,2013.0,2022-09-14 14:17:00,82995.12,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-11204,Theft,,Vehicle,VOLKSWAGEN,AMAROK 2.0 BiTDi HIGHLINE 132KW 4MOT D/C P/U-2012-2020,2015.0,2022-09-13 19:00:00,3766.25,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-11208,Theft,,Vehicle,NISSAN,X TRAIL 1.6dCi VISIA 7S-2017-2022,2019.0,2022-09-13 11:09:00,3427.5,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-11245,Theft,,Vehicle,NISSAN,HARDBODY 3000TD SEL (J45) P/U D/C-2002-2008,2008.0,2022-09-08 07:45:00,4612.08,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-11250,Theft,,Vehicle,NISSAN,LIVINA 1.6 ACENTA+ X-GEAR-2008-2016,2013.0,2022-09-07 20:00:00,3766.25,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-11260,Theft,,Vehicle,VOLKSWAGEN,POLO VIVO 1.4 COMFORTLINE (5DR)-2017-,2018.0,2022-09-07 03:30:00,153172.74,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-11293,Theft,,Vehicle,GWM,STEED 5 2.2 MPi WORKHORSE P/U S/C-2012-2018,2013.0,2022-09-04 14:32:00,66500.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-11295,Theft,,Vehicle,BMW,X3 xDRIVE 20d (G01)-2017-2022,2018.0,2022-09-04 13:52:00,225757.51,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-11296,Hijack,,Vehicle,VOLKSWAGEN,POLO 2.0 GTI DSG (147KW)-2017-2022,2021.0,2022-09-04 12:56:00,511257.31,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-11315,Hijack,,Vehicle,AUDI,A3 1.4T FSI-2016-2018,2017.0,2022-09-03 08:58:00,26450.87,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-11322,Hijack,,Vehicle,RENAULT,KWID 1.0 EXPRESSION / LIFE 5DR-2019-,2022.0,2022-09-02 22:14:00,3800.01,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-11327,Theft,,Vehicle,FORD,EVEREST 3.2 TDCi LTD 4X4 A/T-2015-2020,2016.0,2022-09-02 13:00:00,2343.7,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-11334,Hijack,,Vehicle,TOYOTA,RUSH 1.5-2018-2023,2018.0,2022-09-01 18:45:00,129012.16,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-11387,Theft,,Vehicle,MERCEDES-BENZ,V300d EXCLUSIVE-2020-,2022.0,2022-08-27 15:00:00,1316.65,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-11396,Theft,,Vehicle,TOYOTA,FORTUNER 2.4GD-6 R/B A/T-2016-2020,2019.0,2022-08-26 11:00:00,8528.29,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-11446,Theft,,Vehicle,TOYOTA,HILUX 2.8 GD-6 RB LEGEND A/T P/U D/C-2020-,2021.0,2022-08-20 14:59:00,685900.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-11473,Theft,,Vehicle,VOLKSWAGEN,POLO 1.0 TSI HIGHLINE DSG (85KW)-2017-2023,2020.0,2022-08-18 15:00:00,63201.75,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-11475,Theft,,Contents,,,,2022-08-18 06:30:00,24106.62,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-11481,Hijack,,Vehicle,TOYOTA,COROLLA 1.8 EXCLUSIVE CVT-2014-2017,2017.0,2022-08-17 11:45:00,170061.64,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-11649,Theft,,Vehicle,FORD,RANGER 2.2TDCi XLT P/U D/C-2015-2020,2015.0,2022-07-31 11:30:00,79123.62,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-11650,Theft,,Contents,,,,2022-07-31 11:30:00,969.77,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-11664,Theft,,Vehicle,FORD,RANGER 2.2TDCi XL P/U D/C-2019-,2022.0,2022-07-30 11:30:00,4673.14,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-11674,Theft,,Vehicle,TOYOTA,HILUX 2.8 GD-6 RAIDER 4X4 A/T P/U D/C-2018-2021,2019.0,2022-07-29 16:21:00,575122.99,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-11701,Theft,,Vehicle,MERCEDES-BENZ,C180 CGI BE AVANTGARDE A/T-2010-2011,2011.0,2022-07-26 13:00:00,2000.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-11765,Theft,,Vehicle,TOYOTA,HILUX 2.5D-4D SRX 4X4 P/U D/C-2011-2016,2012.0,2022-07-19 00:15:00,169600.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-11770,Theft,,Vehicle,TOYOTA,HILUX 3.0 D-4D LEGEND 45 R/B P/U D/C-2014-2016,2015.0,2022-07-18 09:15:00,328515.44,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-11807,Theft,,Vehicle,VOLKSWAGEN,POLO VIVO GP 1.4 CONCEPTLINE 5DR-2014-2018,2015.0,2022-07-14 12:00:00,5756.36,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-11822,Hijack,,Vehicle,TOYOTA,HILUX 2.8 GD-6 RB LEGEND 4X4 P/U E/CAB-2020-,2021.0,2022-07-12 19:00:00,618594.99,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-11825,Theft,,Vehicle,MERCEDES-BENZ,CLC 350-2008-2014,2009.0,2022-07-12 08:00:00,2500.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-11829,Theft,,Contents,,,,2022-07-11 21:38:00,41197.67,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-11849,Theft,,Vehicle,TOYOTA,HILUX 2.8 GD-6 RB LEGEND 4X4 A/T P/U D/C-2020-,2022.0,2022-07-09 23:20:00,1133226.61,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-11853,Theft,,Vehicle,ISUZU,KB 250 D-TEQ HO X-RIDER P/U D/C-2017-2020,2017.0,2022-07-09 19:00:00,331843.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-11869,Stolen and recovered,,Vehicle,VOLKSWAGEN,POLO VIVO 1.4 5Dr-2010-2014,2010.0,2022-07-08 13:30:00,39484.67,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-11925,Theft,,Vehicle,KIA,RIO 1.4 TEC A/T 5DR-2020-,2022.0,2022-07-03 14:18:00,9837.1,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-11984,Theft,,Vehicle,TOYOTA,ETIOS 1.5 Xs/SPRINT 5Dr-2012-2022,2013.0,2022-06-28 17:23:00,41595.63,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-11991,Theft,,Vehicle,TOYOTA,FORTUNER 2.4GD-6 R/B A/T-2020-,2020.0,2022-06-28 09:00:00,5913.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-12012,Theft,,Vehicle,TOYOTA,ETIOS 1.5 Xs/SPRINT 5Dr-2012-,2018.0,2022-06-26 09:10:00,148126.8,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-12021,Hijack,,Vehicle,FORD,RANGER 2.2TDCi XLT P/U D/C-2015-2020,2017.0,2022-06-25 20:40:00,47588.18,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-12026,Theft,,Vehicle,PORSCHE,CAYENNE GTS COUPE 8 SPEED TIPTRONIC S-2022-,2022.0,2022-06-25 13:56:00,294278.07,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-12046,Theft,,Contents,,,,2022-06-22 23:00:00,5602.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-12066,Theft,,Contents,,,,2022-06-21 13:30:00,3796.32,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-12074,Theft,,Vehicle,LAND ROVER,DISCOVERY V8 A/T-1993-1996,1995.0,2022-06-20 22:00:00,23329.42,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-12079,Hijack,,Vehicle,NISSAN,MICRA 1.2 VISIA+ 5DR (D82)-2011-2015,2011.0,2022-06-20 13:51:00,44645.73,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-12207,Theft,,Contents,,,,2022-06-07 04:30:00,5000.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-12209,Hijack,,Vehicle,MERCEDES-BENZ,C180 A/T-2014-2018,2016.0,2022-06-06 19:00:00,25939.61,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-12237,Theft,,Vehicle,TOYOTA,ETIOS 1.5 Xi 5Dr-2012-2022,2018.0,2022-06-03 15:00:00,69097.84,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-12270,Theft,,Vehicle,TOYOTA,HILUX 2.8 GD-6 RB RAIDER A/T P/U D/C-2018-2021,2020.0,2022-05-30 20:30:00,538955.09,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-12271,Theft,,Contents,,,,2022-05-30 16:00:00,84426.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-12299,Theft,,Vehicle,TOYOTA,FORTUNER 2.4GD-6 R/B A/T-2016-2020,2019.0,2022-05-28 06:45:00,4210.6,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-12360,Theft,,Vehicle,VOLKSWAGEN,CITI CHICO 1.3-1996-2002,2001.0,2022-05-23 03:00:00,7360.66,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-12372,Theft,,Vehicle,TOYOTA,HILUX 2.8 GD-6 RAIDER 4X4 A/T P/U D/C-2016-2020,2016.0,2022-05-22 00:00:00,177573.66,Motor Vehicle - Theft,Theft,,,True,False,missing_suburb
+INC-12382,Theft,,Vehicle,TOYOTA,HILUX 2.8 GD-6 RB RAIDER 4X4 A/T P/U E/CAB-2017-2020,2018.0,2022-05-21 10:10:00,435476.59,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-12414,Theft,,Vehicle,TOYOTA,FORTUNER 2.8 GD-6 4X4 VX A/T-2020-,2022.0,2022-05-18 11:14:00,865741.99,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-12434,Theft,,Vehicle,LAND ROVER,DISCOVERY 4 3.0 TD/SD V6 SE-2009-2018,2012.0,2022-05-16 02:39:00,333838.79,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-12435,Theft,,Contents,,,,2022-05-16 02:39:00,164078.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-12502,Theft,,Contents,,,,2022-05-10 06:00:00,127704.17,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-12503,Theft,,Vehicle,TOYOTA,FORTUNER 2.8GD-6 R/B A/T-2016-2020,2016.0,2022-05-10 06:00:00,459094.51,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-12521,Hijack,,Vehicle,RENAULT,SANDERO 900T STEPWAY-2014-2017,2016.0,2022-05-08 17:30:00,69407.46,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-12532,Theft,,Vehicle,TOYOTA,FORTUNER 3.0D-4D R/B A/T-2011-2017,2012.0,2022-05-07 12:30:00,232473.87,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-12549,Theft,,Vehicle,KIA,SOUL 1.6 START A/T-2014-2020,2017.0,2022-05-06 00:00:00,200774.3,Motor Vehicle - Theft,Theft,,,True,False,missing_suburb
+INC-12612,Theft,,Vehicle,HYUNDAI,i20 1.4 FLUID-2012-2015,2012.0,2022-04-28 00:00:00,5756.25,Motor Vehicle - Theft,Theft,,,True,False,missing_suburb
+INC-12622,Hijack,,Vehicle,RENAULT,KWID 1.0 EXPRESSION / LIFE 5DR-2019-,2020.0,2022-04-27 00:30:00,80069.46,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-12629,Theft,,Vehicle,TOYOTA,FORTUNER 2.8GD-6 R/B A/T-2016-2020,2018.0,2022-04-26 13:51:00,454600.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-12632,Hijack,,Vehicle,SUZUKI,SWIFT 1.4 GL-2011-2016,2012.0,2022-04-26 08:00:00,57316.01,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-12639,Theft,,Vehicle,FORD,KUGA 1.6 ECOBOOST AMBIENTE-2013-2015,2014.0,2022-04-25 12:00:00,6110.99,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-12667,Theft,,Vehicle,TOYOTA,FORTUNER 2.5D-4D RB A/T-2012-2017,2015.0,2022-04-23 08:50:00,245459.62,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-12682,Theft,,Contents,,,,2022-04-22 18:52:00,139896.94,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-12716,Theft,,Vehicle,TOYOTA,HILUX 2.8 GD-6 RAIDER 4X4 A/T P/U D/C-2018-2021,2019.0,2022-04-19 13:30:00,532809.99,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-12721,Theft,,Vehicle,TOYOTA,HILUX 2.8 GD-6 RB LEGEND RS 4X4 A/T P/U D/C-2020-,2021.0,2022-04-19 08:31:00,939015.99,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-12799,Theft,,Vehicle,TOYOTA,HILUX 3.0 D-4D LEGEND 45 4X4 P/U D/C-2014-2016,2014.0,2022-04-08 18:15:00,4427.5,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-12824,Hijack,,Vehicle,KIA,SPORTAGE 2.0 A/T-2010-2014,2011.0,2022-04-06 20:00:00,135525.04,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-12853,Theft,,Vehicle,GWM,P-SERIES 2.0TD DLX D/C P/U-2020-,2022.0,2022-04-04 14:00:00,9309.53,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-12857,Theft,,Vehicle,VOLKSWAGEN,POLO 1.6 COMFORTLINE 5DR-2010-2014,2012.0,2022-04-03 21:29:00,151668.14,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-12924,Theft,,Vehicle,TOYOTA,YARIS T1 5Dr A/C-2006-2010,2010.0,2022-03-27 19:00:00,86529.25,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-12983,Theft,,Vehicle,TOYOTA,ETIOS 1.5 Xs/SPRINT 5Dr-2012-2022,2014.0,2022-03-22 19:30:00,115462.27,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-12989,Theft,,Vehicle,VOLKSWAGEN,GOLF VI 1.4 TSi DSG CABRIO C/LINE-2012-2015,2012.0,2022-03-21 20:00:00,110237.68,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-13086,Theft,,Contents,,,,2022-03-10 11:00:00,5000.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-13100,Theft,,Vehicle,KIA,K 2700 WORKHORSE P/U S/C-2004-,2018.0,2022-03-08 06:15:00,176600.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-13127,Theft,,Contents,,,,2022-03-06 00:00:00,17696.0,Home contents - Theft,Theft,,,True,False,missing_suburb
+INC-13154,Hijack,,Vehicle,MERCEDES-BENZ,ML 250 BLUETEC-2012-2016,2013.0,2022-03-03 07:20:00,277450.13,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-13160,Hijack,,Vehicle,VOLKSWAGEN,JETTA 1.4 TSi COMFORTLINE-2010-2011,2010.0,2022-03-02 21:40:00,47715.94,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-13188,Theft,,Vehicle,TOYOTA,ETIOS CROSS 1.5 Xs 5Dr-2014-2022,2015.0,2022-02-27 19:07:00,92648.87,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-13241,Theft,,Vehicle,TOYOTA,YARIS T1 3Dr-2006-2010,2007.0,2022-02-23 00:00:00,3322.76,Motor Vehicle - Theft,Theft,,,True,False,missing_suburb
+INC-13300,Theft,,Contents,,,,2022-02-16 10:57:00,17707.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-13333,Theft,,Contents,,,,2022-02-13 08:52:00,29569.37,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-13340,Theft,,Vehicle,TOYOTA,ETIOS CROSS 1.5 Xs 5Dr-2014-,2015.0,2022-02-12 18:48:00,95957.28,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-13343,Theft,,Vehicle,TOYOTA,ETIOS 1.5 Xs/SPRINT 5Dr-2012-2022,2014.0,2022-02-12 17:00:00,100055.45,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-13348,Theft,,Vehicle,TOYOTA,FORTUNER 2.8 GD-6 4X4 VX A/T-2020-,2021.0,2022-02-12 10:35:00,874016.01,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-13473,Theft,,Contents,,,,2022-02-02 11:06:00,23708.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-13484,Theft,,Vehicle,TOYOTA,HILUX 2.8 GD-6 RAIDER 4X4 A/T P/U D/C-2018-2021,2020.0,2022-02-01 10:44:00,152180.22,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-13501,Theft,,Vehicle,MAZDA,CX-5 2.0 CARBON EDITION A/T-2021-,2021.0,2022-01-30 17:05:00,679758.99,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-13525,Hijack,,Vehicle,BMW,X3 3.0d SPORT A/T-2005-2006,2006.0,2022-01-28 20:47:00,161821.55,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-13526,Hijack,,Vehicle,FORD,RANGER 3.2TDCi XLT 4X4 A/T P/U D/C-2011-2016,2016.0,2022-01-28 20:43:00,343422.39,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-13532,Theft,,Vehicle,GWM,STEED 5 2.2 MPi SV P/U D/C-2015-2018,2015.0,2022-01-28 00:40:00,256344.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-13572,Hijack,,Vehicle,MERCEDES-BENZ,C180-2014-2018,2016.0,2022-01-23 23:20:00,147767.18,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-13586,Hijack,,Vehicle,TOYOTA,ETIOS 1.5 Xi-2012-2022,2019.0,2022-01-22 18:15:00,152000.0,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-13669,Theft,,Vehicle,MINI,COOPER JCW COUPE (SX52)-2011-2017,2012.0,2022-01-14 12:00:00,32326.79,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-13685,Theft,,Vehicle,TOYOTA,HILUX 3.0 D-4D RAIDER 4X4 P/U D/C-2008-2011,2010.0,2022-01-12 22:00:00,26681.3,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-13708,Theft,,Vehicle,TOYOTA,LAND CRUISER 200 V8 4.5D VX-R A/T-2017-2023,2019.0,2022-01-10 14:00:00,453445.23,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-13719,Theft,,Vehicle,LAND ROVER,DISCOVERY GS TD5 A/T-2002-2005,2004.0,2022-01-09 18:00:00,5732.11,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-13745,Theft,,Vehicle,HYUNDAI,ATOS 1.1 GLS-2005-2014,2006.0,2022-01-07 11:00:00,2555.97,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-13810,Theft,,Vehicle,MERCEDES-BENZ,GLA 200 A/T-2014-2017,2016.0,2022-01-02 10:30:00,5074.55,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-13871,Theft,,Vehicle,VOLKSWAGEN,POLO 1.6 COMFORTLINE 5DR-2010-2014,2013.0,2021-12-26 21:30:00,95177.96,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-13882,Theft,,Vehicle,HYUNDAI,i20 1.4-2009-2012,2012.0,2021-12-25 20:10:00,12897.7,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-13929,Theft,,Contents,,,,2021-12-22 14:00:00,61594.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-13930,Theft,,Vehicle,NISSAN,QASHQAI+2 1.6 VISIA-2010-2014,2010.0,2021-12-22 14:00:00,81546.69,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-13941,Burglary,,Vehicle,FORD,RANGER 2.2TDCI XL P/U SUP/CAB-2019-,2021.0,2021-12-22 00:00:00,4452.05,Motor Vehicle - Theft,Theft,,,True,False,missing_suburb
+INC-13950,Theft,,Vehicle,NISSAN,NP200 1.6  P/U S/C-2008-,2017.0,2021-12-21 12:45:00,5630.86,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-13961,Theft,,Vehicle,TOYOTA,FORTUNER 3.0D-4D 4X4 A/T-2011-2017,2013.0,2021-12-20 08:13:00,313190.05,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-13970,Hijack,,Vehicle,MAZDA,CX-5 2.0 ACTIVE A/T-2015-2017,2016.0,2021-12-19 02:55:00,51266.8,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-13976,Hijack,,Vehicle,TOYOTA,COROLLA 160i GLE-2005-2007,2005.0,2021-12-18 19:25:00,14990.51,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-14071,Theft,,Contents,,,,2021-12-08 07:20:00,11198.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-14098,Theft,,Vehicle,FORD,FIESTA 1.4 AMBIENTE 5 Dr-2013-2020,2014.0,2021-12-05 12:00:00,3194.47,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-14100,Theft,,Vehicle,NISSAN,NP200 1.6  P/U S/C-2008-,2020.0,2021-12-05 06:40:00,-4990.5,Motor Vehicle - Theft,Theft,,,False,True,missing_suburb
+INC-14103,Theft,,Vehicle,KIA,PICANTO 1.0 SMART-2017-2022,2018.0,2021-12-05 00:00:00,11679.08,Motor Vehicle - Theft,Theft,,,True,False,missing_suburb
+INC-14212,Theft,,Vehicle,HYUNDAI,GETZ 1.6 HS-2003-2006,2006.0,2021-11-26 10:15:00,48548.14,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-14213,Theft,,Vehicle,MAHINDRA,XUV 500 2.2D MHAWK (W6) 7 SEAT-2015-2020,2016.0,2021-11-26 10:15:00,199753.7,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-14221,Theft,,Vehicle,FORD,RANGER 2.0D BI-TURBO WILDTRAK A/T P/U D/C-2019-,2020.0,2021-11-26 00:00:00,4576.34,Motor Vehicle - Theft,Theft,,,True,False,missing_suburb
+INC-14233,Theft,,Vehicle,AUDI,A5 SPORTBACK 2.0T FSI S STRONIC (40 TFSI)-2017-2020,2019.0,2021-11-25 00:00:00,30118.76,Motor Vehicle - Theft,Theft,,,True,False,missing_suburb
+INC-14248,Hijack,,Vehicle,MERCEDES-BENZ,ATEGO 1518K/33 TIP C/C-2010-2020,2013.0,2021-11-24 02:30:00,257792.65,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-14278,Theft,,Vehicle,FORD,ECOSPORT 1.5TiVCT TITANIUM P/SHIFT-2013-2018,2014.0,2021-11-20 14:35:00,151191.02,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-14280,Theft,,Vehicle,NISSAN,MICRA 1.2 VISIA+ 5DR (D82)-2011-2015,2011.0,2021-11-20 08:30:00,9570.38,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-14296,Theft,,Vehicle,HONDA,JAZZ 1.3 TREND-2010-2015,2012.0,2021-11-19 13:00:00,2000.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-14330,Theft,,Vehicle,TOYOTA,HILUX 2.8 GD-6 RAIDER 4X4 P/U D/C-2016-2020,2016.0,2021-11-16 17:51:00,374269.96,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-14362,Theft,,Contents,,,,2021-11-13 03:00:00,11998.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-14373,Theft,,Vehicle,BENTLEY,BENTAYGA 4.0 TD V8-2018-2022,2018.0,2021-11-12 13:00:00,17988.59,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-14405,Theft,,Vehicle,TOYOTA,FORTUNER 2.5D-4D RB-2011-2017,2012.0,2021-11-09 11:00:00,1688.76,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-14444,Hijack,,Vehicle,VOLVO,S60 T4 EXCEL POWERSHIFT-2011-2013,2012.0,2021-11-05 00:00:00,82940.97,Motor Vehicle - Theft,Hijack,,,True,False,missing_suburb
+INC-14473,Theft,,Contents,,,,2021-11-03 02:00:00,10348.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-14491,Theft,,Vehicle,TOYOTA,HILUX 2.8 GD-6 RB RAIDER P/U D/C-2018-2021,2018.0,2021-11-01 08:45:00,405218.84,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-14525,Theft,,Contents,,,,2021-10-29 05:00:00,94110.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-14535,Armed Robbery,,Contents,,,,2021-10-28 13:15:00,33224.5,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-14550,Theft,,Vehicle,NISSAN,NP200 1.6 A/C P/U S/C-2011-2020,2018.0,2021-10-27 10:00:00,41597.92,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-14570,Hijack,,Vehicle,HYUNDAI,ATOS 1.1 GLS-2005-2014,2008.0,2021-10-26 00:45:00,3480.06,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-14585,Theft,,Contents,,,,2021-10-24 18:50:00,609.5,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-14602,Hijack,,Vehicle,TOYOTA,HILUX 2.8 GD-6 RB LEGEND 4X4 A/T P/U D/C-2020-,2021.0,2021-10-22 20:30:00,793964.3,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-14607,Theft,,Contents,,,,2021-10-22 10:00:00,21620.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-14615,Theft,,Contents,,,,2021-10-21 07:35:00,609.5,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-14628,Theft,,Vehicle,VOLKSWAGEN,AMAROK 2.0 BiTDi HIGHLINE 132KW 4MOT A/T D/C P/U-2013-2020,2015.0,2021-10-19 22:00:00,366238.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-14655,Theft,,Vehicle,NISSAN,QASHQAI 2.0 DCi ACENTA-2008-2010,2010.0,2021-10-18 00:00:00,3143.88,Motor Vehicle - Theft,Theft,,,True,False,missing_suburb
+INC-14656,Theft,,Vehicle,ISUZU,KB 250 D-TEQ HO X-RIDER P/U D/C-2017-2020,2017.0,2021-10-18 00:00:00,8329.68,Motor Vehicle - Theft,Theft,,,True,False,missing_suburb
+INC-14657,Theft,,Contents,,,,2021-10-18 00:00:00,1020.5,Home contents - Theft,Theft,,,True,False,missing_suburb
+INC-14688,Burglary,,Contents,,,,2021-10-15 00:00:00,18998.0,Home contents - Theft,Theft,,,True,False,missing_suburb
+INC-14690,Theft,,Contents,,,,2021-10-14 19:10:00,9488.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-14692,Theft,,Vehicle,VOLKSWAGEN,AMAROK 3.0 TDi H-LINE 4MOT A/T D/C P/U-2017-2021,2020.0,2021-10-14 19:00:00,20664.3,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-14693,Theft,,Contents,,,,2021-10-14 19:00:00,20303.75,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-14706,Theft,,Vehicle,RENAULT,SANDERO 1.6 STEPWAY-2010-2015,2012.0,2021-10-13 17:30:00,93094.19,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-14711,Theft,,Contents,,,,2021-10-13 05:00:00,22001.5,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-14716,Theft,,Vehicle,TOYOTA,FORTUNER 3.0D-4D R/B A/T-2011-2017,2013.0,2021-10-12 19:00:00,248772.99,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-14723,Theft,,Vehicle,TOYOTA,COROLLA QUEST 1.8 EXCLUSIVE CVT-2019-,2020.0,2021-10-12 00:00:00,11577.91,Motor Vehicle - Theft,Theft,,,True,False,missing_suburb
+INC-14732,Theft,,Contents,,,,2021-10-11 06:00:00,2650.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-14768,Theft,,Contents,,,,2021-10-08 20:30:00,53086.79,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-14799,Theft,,Contents,,,,2021-10-05 21:00:00,27796.95,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-14861,Hijack,,Vehicle,MERCEDES-BENZ,C200 AMG LINE A/T-2014-2018,2015.0,2021-09-30 22:00:00,284409.5,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-14879,Theft,,Contents,,,,2021-09-29 04:15:00,6482.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-14884,Theft,,Vehicle,TOYOTA,HILUX 2.8 GD-6 RAIDER 4X4 P/U D/C-2016-2020,2016.0,2021-09-28 18:02:00,372642.12,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-14893,Theft,,Contents,,,,2021-09-28 00:00:00,39646.0,Home contents - Theft,Theft,,,True,False,missing_suburb
+INC-14902,Theft,,Vehicle,JEEP,WRANGLER UNLTD RUBICON 3.6L V6 A/T-2011-2022,2015.0,2021-09-26 19:00:00,17733.26,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-14912,Theft,,Contents,,,,2021-09-25 13:00:00,17586.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-14916,Theft,,Contents,,,,2021-09-25 04:30:00,13000.6,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-14936,Theft,,Contents,,,,2021-09-23 11:00:00,50000.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-14949,Hijack,,Vehicle,MERCEDES-BENZ,C180 ESTATE-2014-2020,2014.0,2021-09-22 09:38:00,260145.46,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-14952,Theft,,Vehicle,VOLKSWAGEN,GOLF VI 1.6i TRENDLINE-2009-2013,2010.0,2021-09-22 01:00:00,134212.64,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-14965,Theft,,Vehicle,AUDI,A3 1.0T FSI STRONIC (30 TFSI)-2016-2022,2018.0,2021-09-20 19:30:00,299524.87,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-14968,Theft,,Vehicle,AUDI,A4 2.0T FSI SPORT STRONIC (B9) (40 TFSI)-2016-2020,2019.0,2021-09-20 14:00:00,1943.5,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-14971,Theft,,Contents,,,,2021-09-20 03:31:00,9250.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-14974,Theft,,Vehicle,CHEVROLET,UTILITY 1.4 SPORT P/U S/C-2011-2018,2016.0,2021-09-19 19:00:00,27304.73,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-15002,Theft,,Contents,,,,2021-09-18 01:30:00,2898.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-15007,Hijack,,Vehicle,BMW,323i (E90)-2007-2008,2007.0,2021-09-17 18:00:00,60000.37,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-15023,Theft,,Contents,,,,2021-09-16 03:00:00,37000.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-15037,Theft,,Contents,,,,2021-09-14 15:06:00,88574.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-15054,Theft,,Contents,,,,2021-09-13 09:07:00,17997.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-15056,Theft,,Vehicle,FORD,RANGER 2.2TDCi XL P/U D/C-2015-2020,2017.0,2021-09-13 08:03:00,7067.16,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-15057,Armed Robbery,,Vehicle,TOYOTA,FORTUNER 3.0D-4D 4X4 A/T-2011-2017,2011.0,2021-09-13 08:00:00,2500.0,,Armed Robbery,,,True,True,missing_suburb
+INC-15084,Theft,,Vehicle,LAND ROVER,DISCOVERY SPORT 2.0i4 D SE-2016-2020,2019.0,2021-09-10 10:49:00,22744.24,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-15122,Theft,,Vehicle,AUDI,A5 S5 QUATTRO TIP-2008-2012,2009.0,2021-09-05 13:35:00,100321.98,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-15141,Theft,,Vehicle,TOYOTA,ETIOS CROSS 1.5 Xs 5Dr-2014-2022,2015.0,2021-09-02 17:40:00,139039.94,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-15152,Theft,,Contents,,,,2021-09-01 23:58:00,4050.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-15157,Theft,,Vehicle,ISUZU,KB 300 TDi LX P/U D/C-2004-2007,2007.0,2021-09-01 16:37:00,2940.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-15165,Theft,,Contents,,,,2021-09-01 05:00:00,16842.65,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-15187,Theft,,Vehicle,VOLKSWAGEN,GOLF VII GTi 2.0 TSI DSG-2013-2017,2016.0,2021-08-29 17:59:00,131057.59,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-15200,Theft,,Contents,,,,2021-08-28 11:00:00,9000.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-15213,Theft,,Vehicle,FORD,RANGER 2.0D BI-TURBO WILDTRAK 4X4 A/T P/U D/C-2019-,2019.0,2021-08-27 02:30:00,25629.44,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-15227,Theft,,Contents,,,,2021-08-25 16:00:00,3500.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-15250,Theft,,Contents,,,,2021-08-23 01:00:00,26582.89,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-15253,Theft,,Contents,,,,2021-08-22 11:00:00,2800.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-15255,Theft,,Vehicle,KIA,K 2500 P/U S/C-2013-,2013.0,2021-08-22 10:00:00,104900.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-15258,Hijack,,Vehicle,FORD,TOURNEO CUSTOM 2.0TDCi TREND A/T (96KW)-2020-,2021.0,2021-08-21 21:00:00,616388.16,Motor Vehicle - Theft,Hijack,,,True,True,missing_suburb
+INC-15290,Theft,,Contents,,,,2021-08-18 21:00:00,53546.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-15293,Armed Robbery,,Contents,,,,2021-08-18 14:25:00,609.5,,Armed Robbery,,,True,True,missing_suburb
+INC-15301,Theft,,Contents,,,,2021-08-17 09:25:00,609.5,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-15306,Theft,,Contents,,,,2021-08-16 18:00:00,17630.87,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-15310,Theft,,Contents,,,,2021-08-16 06:30:00,5393.72,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-15314,Theft,,Contents,,,,2021-08-16 03:00:00,67664.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-15318,Theft,,Vehicle,CHEVROLET,UTILITY 1.4 CLUB P/U S/C-2011-2018,2013.0,2021-08-15 10:10:00,59184.32,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-15373,Theft,,Contents,,,,2021-08-10 22:15:00,8995.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-15374,Theft,,Vehicle,VOLKSWAGEN,POLO 1.4 TRENDLINE-2011-2015,2013.0,2021-08-10 20:46:00,61474.6,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-15381,Theft,,Vehicle,FORD,RANGER RAPTOR 2.0D BI-TURBO 4X4 A/T P/U D/C-2019-,2021.0,2021-08-10 08:28:00,22161.57,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-15428,Theft,,Contents,,,,2021-08-05 03:00:00,32517.25,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-15457,Theft,,Contents,,,,2021-08-01 07:00:00,78908.65,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-15486,Theft,,Vehicle,TOYOTA,YARIS T3 A/C 5Dr-2005-2010,2006.0,2021-07-30 10:00:00,48746.48,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-15563,Theft,,Contents,,,,2021-07-22 12:45:00,5734.0,Home contents - Theft,Theft,,,True,True,missing_suburb
+INC-15623,Theft,,Vehicle,TOYOTA,FORTUNER 2.8GD-6 R/B A/T-2016-2020,2019.0,2021-07-14 13:00:00,508700.0,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-15639,Theft,,Vehicle,TOYOTA,RUSH 1.5-2018-2023,2018.0,2021-07-12 07:18:00,45749.93,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-15696,Theft,,Vehicle,ISUZU,D-MAX 250 HO HI-RIDE E/CAB P/U-2018-,2020.0,2021-07-06 06:30:00,3409.35,Motor Vehicle - Theft,Theft,,,True,True,missing_suburb
+INC-15706,Theft,,Contents,,,,2021-07-04 10:05:00,5470.91,Home contents - Theft,Theft,,,True,True,missing_suburb

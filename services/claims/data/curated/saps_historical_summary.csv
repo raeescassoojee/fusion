@@ -1,0 +1,15 @@
+suburb,station,available,latest_historical_year,latest_historical_total,five_year_average,five_year_change_pct,trend,years_available,note
+Rondebosch,Claremont,True,2024/2025,624,952.2,-43.1,DECREASING,17,Historical context through 2024/25 only; not included in the current blended score.
+Somerset West,Somerset West,True,2024/2025,872,845.6,7.0,INCREASING,17,Historical context through 2024/25 only; not included in the current blended score.
+Bryanston,Sandton,True,2024/2025,1250,1248.6,12.5,INCREASING,17,Historical context through 2024/25 only; not included in the current blended score.
+Newlands,Claremont,True,2024/2025,624,952.2,-43.1,DECREASING,17,Historical context through 2024/25 only; not included in the current blended score.
+Sea Point,Cape Town Central,True,2024/2025,2955,2843.2,46.6,INCREASING,17,Historical context through 2024/25 only; not included in the current blended score.
+Cape Town City Centre,Cape Town Central,True,2024/2025,2955,2843.2,46.6,INCREASING,17,Historical context through 2024/25 only; not included in the current blended score.
+Garsfontein,Brooklyn,True,2024/2025,1891,2060.6,-11.6,DECREASING,17,Historical context through 2024/25 only; not included in the current blended score.
+Claremont,Claremont,True,2024/2025,624,952.2,-43.1,DECREASING,17,Historical context through 2024/25 only; not included in the current blended score.
+Fourways,Douglasdale,True,2024/2025,851,943.4,-0.1,STABLE,17,Historical context through 2024/25 only; not included in the current blended score.
+Bedfordview,Germiston,True,2024/2025,864,902.8,-7.9,DECREASING,17,Historical context through 2024/25 only; not included in the current blended score.
+Waterkloof Ridge,Brooklyn,True,2024/2025,1891,2060.6,-11.6,DECREASING,17,Historical context through 2024/25 only; not included in the current blended score.
+Menlo Park,Brooklyn,True,2024/2025,1891,2060.6,-11.6,DECREASING,17,Historical context through 2024/25 only; not included in the current blended score.
+Table View,Table View,True,2024/2025,945,918.6,33.5,INCREASING,17,Historical context through 2024/25 only; not included in the current blended score.
+Centurion Central,Lyttelton,True,2024/2025,1294,1437.2,-9.7,DECREASING,17,Historical context through 2024/25 only; not included in the current blended score.

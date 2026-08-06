@@ -1,0 +1,63 @@
+{
+  "model_purpose": "high-value claim triage; not fraud prediction",
+  "target": "CLAIM_AMOUNT >= R75,000",
+  "amount_used_as_input_feature": false,
+  "input_sha256": "544839ae17a578e00fee9c95b00f96cd57dd3fadef9e586c246397bea13ca569",
+  "rows_total": 15631,
+  "train_rows": 12504,
+  "test_rows": 3127,
+  "train_percent": 79.994882,
+  "test_percent": 20.005118,
+  "positive_rate_total": 0.254238,
+  "seed": 42,
+  "test_metrics": {
+    "accuracy": 0.727534,
+    "balanced_accuracy": 0.680532,
+    "precision": 0.471125,
+    "recall": 0.584906,
+    "f1": 0.521886,
+    "roc_auc": 0.72997,
+    "confusion_matrix": {
+      "true_negative": 1810,
+      "false_positive": 522,
+      "false_negative": 330,
+      "true_positive": 465
+    }
+  },
+  "training_cross_validation": {
+    "roc_auc": {
+      "mean": 0.721229,
+      "standard_deviation": 0.020515,
+      "fold_values": [
+        0.713069,
+        0.730125,
+        0.742678,
+        0.685111,
+        0.735161
+      ]
+    },
+    "f1": {
+      "mean": 0.514771,
+      "standard_deviation": 0.020775,
+      "fold_values": [
+        0.502222,
+        0.514866,
+        0.535613,
+        0.482909,
+        0.538244
+      ]
+    },
+    "balanced_accuracy": {
+      "mean": 0.675243,
+      "standard_deviation": 0.015308,
+      "fold_values": [
+        0.665973,
+        0.675067,
+        0.690504,
+        0.651891,
+        0.692778
+      ]
+    }
+  },
+  "generated_at": "2026-08-02T18:00:21.198234+00:00"
+}

@@ -1,0 +1,10 @@
+=== DATA QUALITY REPORT ===
+Total rows: 15712
+Missing expected columns: none
+Missing suburb (was 'NULL' or blank): 651
+Unique clean suburbs: 2929
+Negative amounts: 4
+Zero amounts: 77
+Non-numeric amounts: 0
+Midnight timestamps (time may be unreliable): 1039
+Date range: 2021-07-04 00:00:00 -> 2026-06-28 14:39:00

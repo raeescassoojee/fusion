@@ -1,0 +1,8 @@
+WEIGHT SENSITIVITY REPORT
+Base weights ({'frequency': 0.45, 'severity': 0.3, 'recency': 0.15, 'peak_time': 0.1}):
+  ['Rondebosch', 'Somerset West', 'Bryanston', 'Newlands', 'Sea Point', 'Cape Town City Centre', 'Garsfontein', 'Claremont', 'Fourways', 'Bedfordview', 'Waterkloof Ridge', 'Menlo Park', 'Table View', 'Centurion Central']
+Equal weights:  ['Rondebosch', 'Bryanston', 'Newlands', 'Somerset West', 'Cape Town City Centre', 'Fourways', 'Sea Point', 'Bedfordview', 'Garsfontein', 'Menlo Park', 'Claremont', 'Table View', 'Waterkloof Ridge', 'Centurion Central']
+Severity-led:   ['Bryanston', 'Somerset West', 'Rondebosch', 'Newlands', 'Garsfontein', 'Sea Point', 'Bedfordview', 'Waterkloof Ridge', 'Menlo Park', 'Fourways', 'Cape Town City Centre', 'Claremont', 'Table View', 'Centurion Central']
+Top-3 overlap: 2/3 (equal), 3/3 (severity-led)
+
+Interpretation: high top-3 overlap means the ranking is robust to weight choice.

@@ -1,0 +1,48 @@
+{
+  "version": "real-footage-v2",
+  "description": "Consented real vehicle footage supplied for the GradHack claims OCR demonstration. Registration values come from policy/claim data and are reconciled against visual OCR evidence.",
+  "uploads": [
+    {
+      "source_key": "REAL-DENT-DV70FTGP-001",
+      "source_claim_ids": ["INC-002"],
+      "display_name": "Dented vehicle evidence · front camera",
+      "camera_id": "CLIENT-CAM-DENT-01",
+      "household": "Client-uploaded vehicle evidence",
+      "relative_media_path": "media/claims_camera_inbox/dented_vehicle_DV70FTGP.mp4",
+      "media_url": "/api/fraud/demo-camera-media/dented_vehicle_DV70FTGP.mp4",
+      "latitude": -26.19802,
+      "longitude": 28.31030,
+      "captured_offset_seconds": 0,
+      "damage_state": "DENT_REPORTED",
+      "policy_plate": "DV70FTGP",
+      "plate_track": [
+        {"time": 1.55, "x": 0.183, "y": 0.793, "width": 0.320, "height": 0.050},
+        {"time": 2.00, "x": 0.205, "y": 0.720, "width": 0.410, "height": 0.058},
+        {"time": 2.65, "x": 0.238, "y": 0.625, "width": 0.390, "height": 0.055},
+        {"time": 3.20, "x": 0.266, "y": 0.557, "width": 0.365, "height": 0.050},
+        {"time": 3.85, "x": 0.315, "y": 0.515, "width": 0.260, "height": 0.038}
+      ]
+    },
+    {
+      "source_key": "REAL-NORMAL-FG47MSGP-001",
+      "source_claim_ids": ["INC-003"],
+      "display_name": "Normal vehicle evidence · driveway camera",
+      "camera_id": "CLIENT-CAM-NORMAL-01",
+      "household": "Client-uploaded vehicle evidence",
+      "relative_media_path": "media/claims_camera_inbox/normal_vehicle_FG47MSGP.mp4",
+      "media_url": "/api/fraud/demo-camera-media/normal_vehicle_FG47MSGP.mp4",
+      "latitude": -26.19809,
+      "longitude": 28.31042,
+      "captured_offset_seconds": 8,
+      "damage_state": "NO_DENT_VISIBLE",
+      "policy_plate": "FG47MSGP",
+      "plate_track": [
+        {"time": 0.00, "x": 0.445, "y": 0.371, "width": 0.190, "height": 0.038},
+        {"time": 0.55, "x": 0.463, "y": 0.376, "width": 0.195, "height": 0.040},
+        {"time": 1.10, "x": 0.492, "y": 0.386, "width": 0.205, "height": 0.042},
+        {"time": 1.70, "x": 0.540, "y": 0.402, "width": 0.215, "height": 0.044},
+        {"time": 2.20, "x": 0.610, "y": 0.421, "width": 0.235, "height": 0.048}
+      ]
+    }
+  ]
+}

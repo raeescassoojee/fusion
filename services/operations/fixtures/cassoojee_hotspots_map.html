@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_abbd8a2fb1df0ea00bf84b9bfb811961 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+    <div style="position: fixed; bottom: 30px; left: 30px; z-index: 9999;
+         background: white; padding: 10px 14px; border: 1px solid #ccc;
+         border-radius: 6px; font: 12px sans-serif; line-height: 1.6">
+      <b>Fill = blended risk (type-matched)</b><br>
+      <span style="color:#c0392b">&#9679;</span> high (70+)&nbsp;
+      <span style="color:#e67e22">&#9679;</span> med (50-69)&nbsp;
+      <span style="color:#27ae60">&#9679;</span> lower<br>
+      <b>Border = confidence</b><br>
+      <span style="color:#1a5276">&#9679;</span> high&nbsp;
+      <span style="color:#7d6608">&#9679;</span> medium&nbsp;
+      <span style="color:#7b241c">&#9679;</span> low
+    </div>
+    
+    
+            <div class="folium-map" id="map_abbd8a2fb1df0ea00bf84b9bfb811961" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_abbd8a2fb1df0ea00bf84b9bfb811961 = L.map(
+                "map_abbd8a2fb1df0ea00bf84b9bfb811961",
+                {
+                    center: [-29.93538571428571, 23.33622142857143],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 6,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_a76422d241fb914f91b23ff6cab085ea = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_a76422d241fb914f91b23ff6cab085ea.addTo(map_abbd8a2fb1df0ea00bf84b9bfb811961);
+        
+    
+            var circle_marker_bb5de85cc64b2a2ff66de4abdcde5d67 = L.circleMarker(
+                [-33.9681, 18.4878],
+                {"bubblingMouseEvents": true, "color": "#1a5276", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e67e22", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 16.6, "stroke": true, "weight": 3}
+            ).addTo(map_abbd8a2fb1df0ea00bf84b9bfb811961);
+        
+    
+        var popup_911f041ab42d84e134e856e41b6dbcfd = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f02a0b4c1a0fad2e054136cf5fef92a2 = $(`<div id="html_f02a0b4c1a0fad2e054136cf5fef92a2" style="width: 100.0%; height: 100.0%;"><b>H001 &middot; Rondebosch</b> (Cape Town)<br><hr style='margin:4px 0'>Claims risk: <b>84.8</b><br>Blended v1 (generic theft): <b>60.9</b><br>Blended v2 (type-matched): <b>64.1</b><br>Confidence: <b>76</b> (HIGH)<br>Primary driver: frequency<br>Main peril: Home Invasion<br><hr style='margin:4px 0'><b>SAPS corroboration</b><br>Generic theft: no (Claremont, 1413)<br>Type-matched (Home Invasion): no (668 incidents)<br><hr style='margin:4px 0'>Peak: Saturday 01:00-04:00<br>Incidents: 102 | Value: R5,118,796</div>`)[0];
+                popup_911f041ab42d84e134e856e41b6dbcfd.setContent(html_f02a0b4c1a0fad2e054136cf5fef92a2);
+            
+        
+
+        circle_marker_bb5de85cc64b2a2ff66de4abdcde5d67.bindPopup(popup_911f041ab42d84e134e856e41b6dbcfd)
+        ;
+
+        
+    
+    
+            circle_marker_bb5de85cc64b2a2ff66de4abdcde5d67.bindTooltip(
+                `<div>
+                     Rondebosch: blend 64.1, conf HIGH
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a86be567fbc9482343197000d3f26b90 = L.circleMarker(
+                [-34.0822, 18.8489],
+                {"bubblingMouseEvents": true, "color": "#1a5276", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e67e22", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 16.5875, "stroke": true, "weight": 3}
+            ).addTo(map_abbd8a2fb1df0ea00bf84b9bfb811961);
+        
+    
+        var popup_a7648b1dd42fa16996b18667409e0f4d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_de469b757cc27dab611b004b338915ae = $(`<div id="html_de469b757cc27dab611b004b338915ae" style="width: 100.0%; height: 100.0%;"><b>H002 &middot; Somerset West</b> (Cape Town)<br><hr style='margin:4px 0'>Claims risk: <b>84.7</b><br>Blended v1 (generic theft): <b>61.2</b><br>Blended v2 (type-matched): <b>66.2</b><br>Confidence: <b>77</b> (HIGH)<br>Primary driver: frequency<br>Main peril: Home Invasion<br><hr style='margin:4px 0'><b>SAPS corroboration</b><br>Generic theft: no (Somerset West, 1467)<br>Type-matched (Home Invasion): no (946 incidents)<br><hr style='margin:4px 0'>Peak: Sunday 01:00-04:00<br>Incidents: 107 | Value: R6,032,135</div>`)[0];
+                popup_a7648b1dd42fa16996b18667409e0f4d.setContent(html_de469b757cc27dab611b004b338915ae);
+            
+        
+
+        circle_marker_a86be567fbc9482343197000d3f26b90.bindPopup(popup_a7648b1dd42fa16996b18667409e0f4d)
+        ;
+
+        
+    
+    
+            circle_marker_a86be567fbc9482343197000d3f26b90.bindTooltip(
+                `<div>
+                     Somerset West: blend 66.2, conf HIGH
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8b72b5667e1ed736d80ad4a2d1eac0e9 = L.circleMarker(
+                [-26.0514, 28.0281],
+                {"bubblingMouseEvents": true, "color": "#1a5276", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e67e22", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 16.5, "stroke": true, "weight": 3}
+            ).addTo(map_abbd8a2fb1df0ea00bf84b9bfb811961);
+        
+    
+        var popup_689cdb1623448d74e4b9dd48470757cc = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_3e943ce8725a3de931967bdb54711257 = $(`<div id="html_3e943ce8725a3de931967bdb54711257" style="width: 100.0%; height: 100.0%;"><b>H003 &middot; Bryanston</b> (Gauteng)<br><hr style='margin:4px 0'>Claims risk: <b>84.0</b><br>Blended v1 (generic theft): <b>67.3</b><br>Blended v2 (type-matched): <b>66.0</b><br>Confidence: <b>90</b> (HIGH)<br>Primary driver: frequency<br>Main peril: Home Invasion<br><hr style='margin:4px 0'><b>SAPS corroboration</b><br>Generic theft: YES (Sandton, 2410)<br>Type-matched (Home Invasion): YES (1003 incidents)<br><hr style='margin:4px 0'>Peak: Friday 12:00-15:00<br>Incidents: 89 | Value: R9,454,547</div>`)[0];
+                popup_689cdb1623448d74e4b9dd48470757cc.setContent(html_3e943ce8725a3de931967bdb54711257);
+            
+        
+
+        circle_marker_8b72b5667e1ed736d80ad4a2d1eac0e9.bindPopup(popup_689cdb1623448d74e4b9dd48470757cc)
+        ;
+
+        
+    
+    
+            circle_marker_8b72b5667e1ed736d80ad4a2d1eac0e9.bindTooltip(
+                `<div>
+                     Bryanston: blend 66.0, conf HIGH
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e9f69905a488e5c791a5d8f7d7e3e41f = L.circleMarker(
+                [-33.9743, 18.4573],
+                {"bubblingMouseEvents": true, "color": "#7d6608", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e67e22", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15.2875, "stroke": true, "weight": 3}
+            ).addTo(map_abbd8a2fb1df0ea00bf84b9bfb811961);
+        
+    
+        var popup_eae03feec0d1c8d54ebbc407f8a91566 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a84d1e0df8e09c62d4760478c317e910 = $(`<div id="html_a84d1e0df8e09c62d4760478c317e910" style="width: 100.0%; height: 100.0%;"><b>H004 &middot; Newlands</b> (Cape Town)<br><hr style='margin:4px 0'>Claims risk: <b>74.3</b><br>Blended v1 (generic theft): <b>53.6</b><br>Blended v2 (type-matched): <b>56.2</b><br>Confidence: <b>64</b> (MEDIUM)<br>Primary driver: frequency<br>Main peril: Home Invasion<br><hr style='margin:4px 0'><b>SAPS corroboration</b><br>Generic theft: no (Claremont, 1413)<br>Type-matched (Home Invasion): no (668 incidents)<br><hr style='margin:4px 0'>Peak: Thursday 18:00-21:00<br>Incidents: 76 | Value: R7,243,880</div>`)[0];
+                popup_eae03feec0d1c8d54ebbc407f8a91566.setContent(html_a84d1e0df8e09c62d4760478c317e910);
+            
+        
+
+        circle_marker_e9f69905a488e5c791a5d8f7d7e3e41f.bindPopup(popup_eae03feec0d1c8d54ebbc407f8a91566)
+        ;
+
+        
+    
+    
+            circle_marker_e9f69905a488e5c791a5d8f7d7e3e41f.bindTooltip(
+                `<div>
+                     Newlands: blend 56.2, conf MEDIUM
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_caaab4f2d43bb562dbf7b1be7b8caeac = L.circleMarker(
+                [-33.9172, 18.3922],
+                {"bubblingMouseEvents": true, "color": "#1a5276", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#c0392b", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.1125, "stroke": true, "weight": 3}
+            ).addTo(map_abbd8a2fb1df0ea00bf84b9bfb811961);
+        
+    
+        var popup_257fed94832de7b88a673a85d393a4b2 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_fd9077402e10fa1409df675aa2ab9ecf = $(`<div id="html_fd9077402e10fa1409df675aa2ab9ecf" style="width: 100.0%; height: 100.0%;"><b>H005 &middot; Sea Point</b> (Cape Town)<br><hr style='margin:4px 0'>Claims risk: <b>64.9</b><br>Blended v1 (generic theft): <b>75.4</b><br>Blended v2 (type-matched): <b>73.7</b><br>Confidence: <b>84</b> (HIGH)<br>Primary driver: frequency<br>Main peril: Vehicle Theft<br><hr style='margin:4px 0'><b>SAPS corroboration</b><br>Generic theft: YES (Cape Town Central, 5496)<br>Type-matched (Vehicle Theft): YES (3867 incidents)<br><hr style='margin:4px 0'>Peak: Sunday 10:00-13:00<br>Incidents: 78 | Value: R4,340,394</div>`)[0];
+                popup_257fed94832de7b88a673a85d393a4b2.setContent(html_fd9077402e10fa1409df675aa2ab9ecf);
+            
+        
+
+        circle_marker_caaab4f2d43bb562dbf7b1be7b8caeac.bindPopup(popup_257fed94832de7b88a673a85d393a4b2)
+        ;
+
+        
+    
+    
+            circle_marker_caaab4f2d43bb562dbf7b1be7b8caeac.bindTooltip(
+                `<div>
+                     Sea Point: blend 73.7, conf HIGH
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_93004ce7f0b66a007828b1732274788f = L.circleMarker(
+                [-33.9253, 18.4185],
+                {"bubblingMouseEvents": true, "color": "#1a5276", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#c0392b", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 13.6375, "stroke": true, "weight": 3}
+            ).addTo(map_abbd8a2fb1df0ea00bf84b9bfb811961);
+        
+    
+        var popup_bb0796548c9b4f306fc80af7c62374d9 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_98ef40ca6d083eaf08b6ff4f57059d25 = $(`<div id="html_98ef40ca6d083eaf08b6ff4f57059d25" style="width: 100.0%; height: 100.0%;"><b>H006 &middot; Cape Town City Centre</b> (Cape Town)<br><hr style='margin:4px 0'>Claims risk: <b>61.1</b><br>Blended v1 (generic theft): <b>72.8</b><br>Blended v2 (type-matched): <b>70.8</b><br>Confidence: <b>92</b> (HIGH)<br>Primary driver: frequency<br>Main peril: Vehicle Theft<br><hr style='margin:4px 0'><b>SAPS corroboration</b><br>Generic theft: YES (Cape Town Central, 5496)<br>Type-matched (Vehicle Theft): YES (3867 incidents)<br><hr style='margin:4px 0'>Peak: Thursday 14:00-17:00<br>Incidents: 93 | Value: R1,343,333</div>`)[0];
+                popup_bb0796548c9b4f306fc80af7c62374d9.setContent(html_98ef40ca6d083eaf08b6ff4f57059d25);
+            
+        
+
+        circle_marker_93004ce7f0b66a007828b1732274788f.bindPopup(popup_bb0796548c9b4f306fc80af7c62374d9)
+        ;
+
+        
+    
+    
+            circle_marker_93004ce7f0b66a007828b1732274788f.bindTooltip(
+                `<div>
+                     Cape Town City Centre: blend 70.8, conf HIGH
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b937df5d63a019d791ad484c22365ea5 = L.circleMarker(
+                [-25.7944, 28.3],
+                {"bubblingMouseEvents": true, "color": "#1a5276", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e67e22", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 13.25, "stroke": true, "weight": 3}
+            ).addTo(map_abbd8a2fb1df0ea00bf84b9bfb811961);
+        
+    
+        var popup_429ea4fdfecc16ccf0699cd663e6e163 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_378dce1d0eda437c8328549de969d0a2 = $(`<div id="html_378dce1d0eda437c8328549de969d0a2" style="width: 100.0%; height: 100.0%;"><b>H007 &middot; Garsfontein</b> (Gauteng)<br><hr style='margin:4px 0'>Claims risk: <b>58.0</b><br>Blended v1 (generic theft): <b>46.6</b><br>Blended v2 (type-matched): <b>51.1</b><br>Confidence: <b>76</b> (HIGH)<br>Primary driver: severity<br>Main peril: Vehicle Theft<br><hr style='margin:4px 0'><b>SAPS corroboration</b><br>Generic theft: YES (Brooklyn, 2045)<br>Type-matched (Vehicle Theft): YES (1602 incidents)<br><hr style='margin:4px 0'>Peak: Saturday 13:00-16:00<br>Incidents: 57 | Value: R10,436,499</div>`)[0];
+                popup_429ea4fdfecc16ccf0699cd663e6e163.setContent(html_378dce1d0eda437c8328549de969d0a2);
+            
+        
+
+        circle_marker_b937df5d63a019d791ad484c22365ea5.bindPopup(popup_429ea4fdfecc16ccf0699cd663e6e163)
+        ;
+
+        
+    
+    
+            circle_marker_b937df5d63a019d791ad484c22365ea5.bindTooltip(
+                `<div>
+                     Garsfontein: blend 51.1, conf HIGH
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_400367a3ce43a3fcd8e8a5a5c8ed7b2c = L.circleMarker(
+                [-33.9847, 18.4625],
+                {"bubblingMouseEvents": true, "color": "#7d6608", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#27ae60", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.925, "stroke": true, "weight": 3}
+            ).addTo(map_abbd8a2fb1df0ea00bf84b9bfb811961);
+        
+    
+        var popup_3e4a70ff74117480d87e25ea506f9887 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8fa4ac31598d24be017a95b7059762de = $(`<div id="html_8fa4ac31598d24be017a95b7059762de" style="width: 100.0%; height: 100.0%;"><b>H008 &middot; Claremont</b> (Cape Town)<br><hr style='margin:4px 0'>Claims risk: <b>55.4</b><br>Blended v1 (generic theft): <b>40.3</b><br>Blended v2 (type-matched): <b>42.0</b><br>Confidence: <b>65</b> (MEDIUM)<br>Primary driver: frequency<br>Main peril: Home Invasion<br><hr style='margin:4px 0'><b>SAPS corroboration</b><br>Generic theft: no (Claremont, 1413)<br>Type-matched (Home Invasion): no (668 incidents)<br><hr style='margin:4px 0'>Peak: Saturday 02:00-05:00<br>Incidents: 82 | Value: R2,140,231</div>`)[0];
+                popup_3e4a70ff74117480d87e25ea506f9887.setContent(html_8fa4ac31598d24be017a95b7059762de);
+            
+        
+
+        circle_marker_400367a3ce43a3fcd8e8a5a5c8ed7b2c.bindPopup(popup_3e4a70ff74117480d87e25ea506f9887)
+        ;
+
+        
+    
+    
+            circle_marker_400367a3ce43a3fcd8e8a5a5c8ed7b2c.bindTooltip(
+                `<div>
+                     Claremont: blend 42.0, conf MEDIUM
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7eb427f721a802f6463d21932c63fcf2 = L.circleMarker(
+                [-26.0045, 28.0042],
+                {"bubblingMouseEvents": true, "color": "#1a5276", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#27ae60", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.5875, "stroke": true, "weight": 3}
+            ).addTo(map_abbd8a2fb1df0ea00bf84b9bfb811961);
+        
+    
+        var popup_c0d0c7c2ed08475196a27cd04759a9f2 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_dbbb8ced025dcaf69866340d25f7626c = $(`<div id="html_dbbb8ced025dcaf69866340d25f7626c" style="width: 100.0%; height: 100.0%;"><b>H009 &middot; Fourways</b> (Gauteng)<br><hr style='margin:4px 0'>Claims risk: <b>52.7</b><br>Blended v1 (generic theft): <b>39.7</b><br>Blended v2 (type-matched): <b>42.4</b><br>Confidence: <b>75</b> (HIGH)<br>Primary driver: severity<br>Main peril: Vehicle Theft<br><hr style='margin:4px 0'><b>SAPS corroboration</b><br>Generic theft: YES (Douglasdale, 1591)<br>Type-matched (Vehicle Theft): YES (984 incidents)<br><hr style='margin:4px 0'>Peak: Sunday 17:00-20:00<br>Incidents: 56 | Value: R4,261,937</div>`)[0];
+                popup_c0d0c7c2ed08475196a27cd04759a9f2.setContent(html_dbbb8ced025dcaf69866340d25f7626c);
+            
+        
+
+        circle_marker_7eb427f721a802f6463d21932c63fcf2.bindPopup(popup_c0d0c7c2ed08475196a27cd04759a9f2)
+        ;
+
+        
+    
+    
+            circle_marker_7eb427f721a802f6463d21932c63fcf2.bindTooltip(
+                `<div>
+                     Fourways: blend 42.4, conf HIGH
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e452672f3e022ead05d2ff46570e3ad7 = L.circleMarker(
+                [-26.1764, 28.1425],
+                {"bubblingMouseEvents": true, "color": "#7d6608", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#27ae60", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.55, "stroke": true, "weight": 3}
+            ).addTo(map_abbd8a2fb1df0ea00bf84b9bfb811961);
+        
+    
+        var popup_5dfcad13cfe0e0f9ea0c30b8b237146f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_1d3977bc513eb2d3a4eeab7c1b8e7039 = $(`<div id="html_1d3977bc513eb2d3a4eeab7c1b8e7039" style="width: 100.0%; height: 100.0%;"><b>H010 &middot; Bedfordview</b> (Gauteng)<br><hr style='margin:4px 0'>Claims risk: <b>52.4</b><br>Blended v1 (generic theft): <b>36.7</b><br>Blended v2 (type-matched): <b>39.3</b><br>Confidence: <b>52</b> (MEDIUM)<br>Primary driver: severity<br>Main peril: Home Invasion<br><hr style='margin:4px 0'><b>SAPS corroboration</b><br>Generic theft: no (Germiston, 1187)<br>Type-matched (Home Invasion): no (604 incidents)<br><hr style='margin:4px 0'>Peak: Friday 14:00-17:00<br>Incidents: 50 | Value: R6,873,700</div>`)[0];
+                popup_5dfcad13cfe0e0f9ea0c30b8b237146f.setContent(html_1d3977bc513eb2d3a4eeab7c1b8e7039);
+            
+        
+
+        circle_marker_e452672f3e022ead05d2ff46570e3ad7.bindPopup(popup_5dfcad13cfe0e0f9ea0c30b8b237146f)
+        ;
+
+        
+    
+    
+            circle_marker_e452672f3e022ead05d2ff46570e3ad7.bindTooltip(
+                `<div>
+                     Bedfordview: blend 39.3, conf MEDIUM
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d66aab7b11e2f60516515e41c715cde0 = L.circleMarker(
+                [-25.7872, 28.2389],
+                {"bubblingMouseEvents": true, "color": "#1a5276", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#27ae60", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.3125, "stroke": true, "weight": 3}
+            ).addTo(map_abbd8a2fb1df0ea00bf84b9bfb811961);
+        
+    
+        var popup_d59b6061ee4439ac1bf27fd06bfd6a9b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_aa13fd08ed01574c9ca4019cae808122 = $(`<div id="html_aa13fd08ed01574c9ca4019cae808122" style="width: 100.0%; height: 100.0%;"><b>H011 &middot; Waterkloof Ridge</b> (Gauteng)<br><hr style='margin:4px 0'>Claims risk: <b>50.5</b><br>Blended v1 (generic theft): <b>41.3</b><br>Blended v2 (type-matched): <b>40.3</b><br>Confidence: <b>74</b> (HIGH)<br>Primary driver: severity<br>Main peril: Home Invasion<br><hr style='margin:4px 0'><b>SAPS corroboration</b><br>Generic theft: YES (Brooklyn, 2045)<br>Type-matched (Home Invasion): no (922 incidents)<br><hr style='margin:4px 0'>Peak: Sunday 01:00-04:00<br>Incidents: 56 | Value: R8,466,709</div>`)[0];
+                popup_d59b6061ee4439ac1bf27fd06bfd6a9b.setContent(html_aa13fd08ed01574c9ca4019cae808122);
+            
+        
+
+        circle_marker_d66aab7b11e2f60516515e41c715cde0.bindPopup(popup_d59b6061ee4439ac1bf27fd06bfd6a9b)
+        ;
+
+        
+    
+    
+            circle_marker_d66aab7b11e2f60516515e41c715cde0.bindTooltip(
+                `<div>
+                     Waterkloof Ridge: blend 40.3, conf HIGH
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_133afa2cc51b3cc5dcf24fd48eb9f471 = L.circleMarker(
+                [-25.7697, 28.2556],
+                {"bubblingMouseEvents": true, "color": "#1a5276", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#27ae60", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 11.675, "stroke": true, "weight": 3}
+            ).addTo(map_abbd8a2fb1df0ea00bf84b9bfb811961);
+        
+    
+        var popup_1ac64cdba5a405004d2e4120b45333c6 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_22e667bd364004e3737509bd35a097ac = $(`<div id="html_22e667bd364004e3737509bd35a097ac" style="width: 100.0%; height: 100.0%;"><b>H012 &middot; Menlo Park</b> (Gauteng)<br><hr style='margin:4px 0'>Claims risk: <b>45.4</b><br>Blended v1 (generic theft): <b>37.8</b><br>Blended v2 (type-matched): <b>41.7</b><br>Confidence: <b>70</b> (HIGH)<br>Primary driver: severity<br>Main peril: Vehicle Theft<br><hr style='margin:4px 0'><b>SAPS corroboration</b><br>Generic theft: YES (Brooklyn, 2045)<br>Type-matched (Vehicle Theft): YES (1602 incidents)<br><hr style='margin:4px 0'>Peak: Saturday 00:00-03:00<br>Incidents: 42 | Value: R8,976,320</div>`)[0];
+                popup_1ac64cdba5a405004d2e4120b45333c6.setContent(html_22e667bd364004e3737509bd35a097ac);
+            
+        
+
+        circle_marker_133afa2cc51b3cc5dcf24fd48eb9f471.bindPopup(popup_1ac64cdba5a405004d2e4120b45333c6)
+        ;
+
+        
+    
+    
+            circle_marker_133afa2cc51b3cc5dcf24fd48eb9f471.bindTooltip(
+                `<div>
+                     Menlo Park: blend 41.7, conf HIGH
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c7b6d0daccfa69c68f1a1c53c28dab84 = L.circleMarker(
+                [-33.8236, 18.4903],
+                {"bubblingMouseEvents": true, "color": "#7d6608", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#27ae60", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 11.1, "stroke": true, "weight": 3}
+            ).addTo(map_abbd8a2fb1df0ea00bf84b9bfb811961);
+        
+    
+        var popup_63cb0bff5589b8785da9fbc5e19178f2 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5d5c4dfa1d0392c5fc9b27b81d60bd56 = $(`<div id="html_5d5c4dfa1d0392c5fc9b27b81d60bd56" style="width: 100.0%; height: 100.0%;"><b>H013 &middot; Table View</b> (Cape Town)<br><hr style='margin:4px 0'>Claims risk: <b>40.8</b><br>Blended v1 (generic theft): <b>30.2</b><br>Blended v2 (type-matched): <b>33.4</b><br>Confidence: <b>57</b> (MEDIUM)<br>Primary driver: frequency<br>Main peril: Home Invasion<br><hr style='margin:4px 0'><b>SAPS corroboration</b><br>Generic theft: no (Table View, 1425)<br>Type-matched (Home Invasion): no (966 incidents)<br><hr style='margin:4px 0'>Peak: Tuesday 01:00-04:00<br>Incidents: 57 | Value: R1,941,403</div>`)[0];
+                popup_63cb0bff5589b8785da9fbc5e19178f2.setContent(html_5d5c4dfa1d0392c5fc9b27b81d60bd56);
+            
+        
+
+        circle_marker_c7b6d0daccfa69c68f1a1c53c28dab84.bindPopup(popup_63cb0bff5589b8785da9fbc5e19178f2)
+        ;
+
+        
+    
+    
+            circle_marker_c7b6d0daccfa69c68f1a1c53c28dab84.bindTooltip(
+                `<div>
+                     Table View: blend 33.4, conf MEDIUM
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2f03f086d13131e5d7512a2d67f300bf = L.circleMarker(
+                [-25.8364, 28.1803],
+                {"bubblingMouseEvents": true, "color": "#7d6608", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#27ae60", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9.5125, "stroke": true, "weight": 3}
+            ).addTo(map_abbd8a2fb1df0ea00bf84b9bfb811961);
+        
+    
+        var popup_d4a49f4d39e6c295b159aeb6c25ecb26 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_9120f4beb9c09c6c6418d6855b2f93c2 = $(`<div id="html_9120f4beb9c09c6c6418d6855b2f93c2" style="width: 100.0%; height: 100.0%;"><b>H014 &middot; Centurion Central</b> (Gauteng)<br><hr style='margin:4px 0'>Claims risk: <b>28.1</b><br>Blended v1 (generic theft): <b>19.7</b><br>Blended v2 (type-matched): <b>28.5</b><br>Confidence: <b>52</b> (MEDIUM)<br>Primary driver: severity<br>Main peril: Vehicle Theft<br><hr style='margin:4px 0'><b>SAPS corroboration</b><br>Generic theft: no (Lyttelton, 1188)<br>Type-matched (Vehicle Theft): YES (1566 incidents)<br><hr style='margin:4px 0'>Peak: Saturday 11:00-14:00<br>Incidents: 50 | Value: R3,190,783</div>`)[0];
+                popup_d4a49f4d39e6c295b159aeb6c25ecb26.setContent(html_9120f4beb9c09c6c6418d6855b2f93c2);
+            
+        
+
+        circle_marker_2f03f086d13131e5d7512a2d67f300bf.bindPopup(popup_d4a49f4d39e6c295b159aeb6c25ecb26)
+        ;
+
+        
+    
+    
+            circle_marker_2f03f086d13131e5d7512a2d67f300bf.bindTooltip(
+                `<div>
+                     Centurion Central: blend 28.5, conf MEDIUM
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+</script>
+</html>

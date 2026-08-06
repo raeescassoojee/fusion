@@ -1,0 +1,21 @@
+{
+  "date": "2026-08-02",
+  "fixture": "media/synthetic_face_fixture.png",
+  "conditions": "warm local FastAPI TestClient; temporary SQLite database",
+  "runs_per_scenario": 10,
+  "client_round_trip_ms": {
+    "detection": {"p50": 86.2, "p95": 96.9, "mean": 87.7, "min": 79.9, "max": 101.5},
+    "one_face_three_crop_signature": {"p50": 341.6, "p95": 414.2, "mean": 353.3, "min": 321.5, "max": 447.6},
+    "three_face_nine_crop_batch": {"p50": 1033.8, "p95": 1086.4, "mean": 1027.4, "min": 934.7, "max": 1092.3}
+  },
+  "server_ms": {
+    "face_detection": {"p50": 82.0, "p95": 91.9, "min": 76.2, "max": 97.0},
+    "face_recognition_persistence_stage": {"p50": 51.2, "p95": 57.6, "min": 48.9, "max": 142.6},
+    "mixed_one_and_three_face_batches": {"p50": 671.9, "p95": 1056.7, "min": 310.8, "max": 1061.7}
+  },
+  "test_results": {
+    "complete_suite": "63 passed",
+    "dashboard_inline_scripts": "4 executable scripts compiled"
+  },
+  "caveat": "Synthetic-fixture/local-runtime measurement; rerun on the finals laptop and physical webcams before public claims."
+}
