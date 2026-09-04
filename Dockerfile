@@ -13,13 +13,13 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
-
 COPY pyproject.toml README.md ./
 COPY src ./src
 RUN python -m pip install --no-cache-dir .
 
 COPY config ./config
 COPY models ./models
+COPY deliverables ./deliverables
 
-# Binds to Render's dynamic $PORT (defaulting to 10000) so health checks pass
-CMD ["sh", "-c", "python -m http.server ${PORT:-10000}"]
+# Serve the site directory directly
+CMD ["sh", "-c", "python -m http.server ${PORT:-10000} --directory deliverables/site"]
