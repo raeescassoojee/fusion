@@ -13,13 +13,17 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
+
 COPY pyproject.toml README.md ./
 COPY src ./src
 RUN python -m pip install --no-cache-dir .
 
 COPY config ./config
 COPY models ./models
-COPY deliverables ./deliverables
+COPY services ./services
 
-# Serve the site directory directly
-CMD ["sh", "-c", "python -m http.server ${PORT:-10000} --directory deliverables/site"]
+# Automatically create an index.html alias for dashboard.html during build
+RUN cp services/operations/static/dashboard.html services/operations/static/index.html
+
+# Serve the static folder directly so the dashboard loads at the root URL
+CMD ["sh", "-c", "python -m http.server ${PORT:-10000} --directory services/operations/static"]
