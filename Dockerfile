@@ -13,13 +13,15 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
+
 COPY pyproject.toml README.md ./
 COPY src ./src
 RUN python -m pip install --no-cache-dir .
 
 COPY config ./config
 COPY models ./models
-COPY deliverables ./deliverables
+COPY services ./services
+COPY index.html ./
 
-# Serve the site directory directly
-CMD ["sh", "-c", "python -m http.server ${PORT:-10000} --directory deliverables/site"]
+# Serves the root so index.html loads immediately, and links/paths to services/operations/static/dashboard.html resolve automatically
+CMD ["sh", "-c", "python -m http.server ${PORT:-10000}"]
