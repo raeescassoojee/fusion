@@ -21,7 +21,9 @@ RUN python -m pip install --no-cache-dir .
 COPY config ./config
 COPY models ./models
 COPY services ./services
-COPY index.html ./
 
-# Serves the root so index.html loads immediately, and links/paths to services/operations/static/dashboard.html resolve automatically
-CMD ["sh", "-c", "python -m http.server ${PORT:-10000}"]
+# Automatically create an index.html alias for dashboard.html during build
+RUN cp services/operations/static/dashboard.html services/operations/static/index.html
+
+# Serve the static folder directly so the dashboard loads at the root URL
+CMD ["sh", "-c", "python -m http.server ${PORT:-10000} --directory services/operations/static"]
